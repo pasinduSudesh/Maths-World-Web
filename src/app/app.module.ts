@@ -6,18 +6,20 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { AvailablePapersComponent } from './available-papers/available-papers.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     HomeComponent,
-    SignupComponent
+    SignupComponent,
+    AvailablePapersComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
-  ],
+    ],
   providers: [
     NavbarComponent
   ],
