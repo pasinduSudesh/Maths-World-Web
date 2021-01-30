@@ -8,6 +8,10 @@ import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
 import { AvailablePapersComponent } from './available-papers/available-papers.component';
 
+import { HttpClientModule } from '@angular/common/http';
+
+import { AvailablePapersService } from './services/available-papers.service'
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,10 +22,12 @@ import { AvailablePapersComponent } from './available-papers/available-papers.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
     ],
   providers: [
-    NavbarComponent
+    NavbarComponent,
+    AvailablePapersService
   ],
   bootstrap: [AppComponent]
 })
