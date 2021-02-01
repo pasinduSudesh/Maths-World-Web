@@ -11,6 +11,8 @@ import { AvailablePapersComponent } from './available-papers/available-papers.co
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
+import { UtilService } from './services/util.service'
+
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { AvailablePapersService } from './services/available-papers.service'
     ],
   providers: [
     NavbarComponent,
-    AvailablePapersService
+    AvailablePapersService,
+    UtilService
   ],
   bootstrap: [AppComponent]
 })
