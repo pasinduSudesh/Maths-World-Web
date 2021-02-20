@@ -1,0 +1,98 @@
+/* 
+ *  Copyright 2020-2021 404 Solutions Company
+ */
+
+ @import "../styles/colors_function";
+ .my-login-page .card-wrapper {
+     width: 400px;
+     margin: 0 auto;
+     margin-top: 7.5em;
+ }
+ 
+ .my-login-page .card {
+     border-color: transparent;
+     box-shadow: 0 0 40px rgba(0, 0, 0, .05);
+ }
+ 
+ .my-login-page .card.fat {
+     padding: 10px;
+ }
+ 
+ .my-login-page .card .card-title {
+     margin-bottom: 30px;
+     
+ }
+ 
+ .my-login-page .form-control {
+     border-width: 2.3px;
+ }
+ 
+ .my-login-page .form-group label {
+     width: 100%;
+ }
+ 
+ .my-login-page .btn.btn-block {
+     padding: 5px 10px;
+ }
+ 
+ .my-login-page .margin-top20 {
+     margin-top: 20px;
+ }
+ 
+ .my-login-page .no-margin {
+     margin: 0;
+ }
+ 
+ .my-login-page .footer {
+     margin: 30px 0;
+     color: #888;
+     text-align: center;
+ }
+ 
+ @media screen and (max-width: 425px) {
+     .my-login-page .card-wrapper {
+         width: 90%;
+         margin: 0 auto;
+         margin-top: 6em;
+     }
+ }
+ 
+ @media screen and (max-width: 320px) {
+     .my-login-page .card.fat {
+         padding: 0;
+     }
+ 
+     .my-login-page .card.fat .card-body {
+         padding: 15px;
+     }
+ }
+ 
+ .custom-google-btn {
+     color: #757575;
+     /* background-color: #FFFFFF; */
+ }
+ 
+ .input-with-icon {
+     /* causes absolute icon div to be positioned correctly */
+     position: relative;
+     box-sizing: border-box;
+ }
+ 
+ .input-with-icon .icon {
+     position: absolute;
+     /* These are set relative to the height of the input box to bound the box neatly inside. 
+     This is aesthetic to me but you may change the dimensions of course. */
+     right: 0.3rem;
+     top: 0.3rem;
+     border-radius: 0.3rem;
+     /* content in the icon div is centered, without bootstrap or font-awesome 
+     you may wish to add your own text in the span */
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     box-sizing: border-box;
+     color: #6c757d;
+ }
+ .error{
+     border-radius: 5px; border:#FF0000 1px solid;
+ }

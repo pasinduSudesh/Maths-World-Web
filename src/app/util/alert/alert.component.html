@@ -1,0 +1,14 @@
+<!-- 
+  Copyright 2020-2021 404 Solutions Company
+ -->
+
+<div *ngFor="let alert of alerts" class="{{ cssClass(alert) }} alert-dismissable py-1">
+  <div class="row pr-1 pl-1">
+    <div class="col-sm-11 p-0">
+      <p class="my-1">{{alert.message}}</p>
+    </div>
+    <div class="col-sm-1 p-0">
+      <a class="close" (click)="removeAlert(alert)">&times;</a>
+    </div>
+  </div>
+</div>

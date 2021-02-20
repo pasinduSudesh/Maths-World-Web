@@ -34,7 +34,7 @@
               "src/assets/vendor/remixicon/remixicon.css",
               "src/assets/vendor/venobox/venobox.css",
               "src/assets/vendor/owl.carousel/assets/owl.carousel.min.css",
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
@@ -107,7 +107,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.scss"
             ],
             "scripts": []
           }
