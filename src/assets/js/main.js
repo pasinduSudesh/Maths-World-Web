@@ -183,6 +183,8 @@
     });
   });
 
+  // $('.file-upload').file_upload();
+
   // Portfolio details carousel
   $(".portfolio-details-carousel").owlCarousel({
     autoplay: true,

@@ -6,12 +6,13 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { AvailablePapersComponent } from './available-papers/available-papers.component';
+import { AvailablePapersComponent } from './papers/available-papers/available-papers.component';
 
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
-import { UtilService } from './services/util.service'
+import { DateService } from './services/util/date.service';
+import { AddPaperComponent } from './papers/add-paper/add-paper.component'
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { UtilService } from './services/util.service'
     NavbarComponent,
     HomeComponent,
     SignupComponent,
-    AvailablePapersComponent
+    AvailablePapersComponent,
+    AddPaperComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +32,7 @@ import { UtilService } from './services/util.service'
   providers: [
     NavbarComponent,
     AvailablePapersService,
-    UtilService
+    DateService
   ],
   bootstrap: [AppComponent]
 })
