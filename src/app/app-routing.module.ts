@@ -5,6 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from "../app/home/home.component";
 import { SignupComponent } from "../app/signup/signup.component";
 import { AvailablePapersComponent } from "./papers/available-papers/available-papers.component";
+import { ShowPaperComponent } from "./papers/show-paper/show-paper.component";
 import { AddPaperComponent } from "./papers/add-paper/add-paper.component";
 // import { AvailablePapersComponent } from "../app/available-papers/available-papers.component";
 import { LoginComponent } from "../app/login/login.component";
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path: "add-papers", component: AddPaperComponent},
   {path: "login", component: LoginComponent},
   {path: "addUser", component: UserAccountComponent},
-  {path: "key-code", component: KeyCodeComponent}
+  {path: "key-code", component: KeyCodeComponent},
+  {path: "show-paper", component: ShowPaperComponent}
 ];
 
 @NgModule({

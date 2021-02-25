@@ -22,8 +22,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
 import { DateService } from './services/util/date.service';
-import { AddPaperComponent } from './papers/add-paper/add-paper.component'
+import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+import { ShowPaperComponent } from './papers/show-paper/show-paper.component';
+// import { TimerComponent } from './common/timer/timer.component';
+ 
 
+// services
+import {UploadService } from './services/paper/upload.service';
+import { TimerComponent } from './common/timer/timer.component';
+import { ShowPaperService } from './services/paper/show-paper.service';
+import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
+import { PdfViewerModule } from 'ng2-pdf-viewer';
 
 @NgModule({
   declarations: [
@@ -37,15 +46,22 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     LoginComponent,
     AlertComponent,
     UserAccountComponent,
-    KeyCodeComponent
+    KeyCodeComponent,
+    ShowPaperComponent,
+    TimerComponent,
+    PdfViewerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    PdfViewerModule
     ],
+  exports: [
+    TimerComponent
+  ],
   providers: [
     NavbarComponent,
     AvailablePapersService,
@@ -55,7 +71,10 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     AlertService,
     UserService,
     AuthenticationService,
-    HttpClientModule
+    UploadService,
+    HttpClientModule,
+    TimerComponent,
+    ShowPaperService
 
   ],
   bootstrap: [AppComponent]

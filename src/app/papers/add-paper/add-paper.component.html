@@ -67,11 +67,11 @@
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="formFileSm" class="form-label">Small file input example</label>
-                            <input class="form-control" id="formFileSm" type="file" />                            
+                            <input class="form-control" id="formFileSm" type="file" (change)="selectFile($event)"/>                            
                         </div>
                     </div>
                 </div>
-                <div class="row">
+                <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="file-upload-wrapper">
@@ -89,8 +89,8 @@
                             <input type="text" class="form-control" placeholder="Confirm Password *" value="" />
                         </div>
                     </div>
-                </div>
-                <button type="button" class="btnSubmit">Submit</button>
+                </div> -->
+                <button type="button" [disabled]="!paperPDF" (click)="upload()" class="btnSubmit">Submit</button>
             </div>
         </div>
     </div>
