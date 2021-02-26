@@ -42,8 +42,7 @@ export class UserService {
         res = responseData;
         if ( responseData.status.code == 200 ) {
           this.user = responseData.payload.user;
-          this.authenticationService.setUser(user.userId);
-          console.log("Userrrrr"+this.user.userId)
+          this.authenticationService.setUser(this.user.userId);
         }
         this.alertMessageOccured.next({ code: responseData.status.code, message: responseData.status.message });
       }, err => {
