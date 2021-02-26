@@ -42,7 +42,6 @@ import { Subject } from "../../../node_modules/rxjs";
 
     setUser(user) {
         this.User = user
-        console.log("setuser"+this.User)
         this.userChanged.next(this.User)
     }
     
