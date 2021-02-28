@@ -1,1 +1,12 @@
-<p>pdf-viewer works!</p>
+<div class="pdf-viwer-container">
+    <div  class="pdf-controller row">
+        <div class="col-sm-12">
+            <div class="d-inline" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="zoomIn()">Zoom In <i class="icofont-ui-zoom-in"></i></button>
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="zoomOut()">Zoom Out <i class="icofont-ui-zoom-out"></i></button>
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="download()">Download <i class="icofont-download"></i></button>
+              </div>
+        </div>
+    </div>
+    <pdf-viewer [src]="url" [original-size]="false" [zoom]="zoom" style="display: block;"></pdf-viewer>
+</div>

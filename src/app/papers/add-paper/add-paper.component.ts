@@ -37,7 +37,7 @@ export class AddPaperComponent implements OnInit {
 
   upload() {
     const file = this.paperPDF.item(0);
-    this.uploadService.uploadPaper(file);
+    // this.uploadService.uploadPaper(file);
   }
 
   selectFile(event) {

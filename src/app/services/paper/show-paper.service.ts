@@ -1,11 +1,16 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ShowPaperService {
 
-  constructor() { }
+  serverURL = environment.SERVER_URL;
+  
+
+  constructor(private http: HttpClient) { }
 
   getPaper(){
     return true;
@@ -19,4 +24,6 @@ export class ShowPaperService {
     console.log(minutes);
     return hours*60*60*1000 + minutes*60*1000
   }
+
+  
 }

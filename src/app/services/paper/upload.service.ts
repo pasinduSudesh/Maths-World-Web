@@ -1,43 +1,44 @@
 import { Injectable } from '@angular/core';
-import * as AWS from 'aws-sdk/global';
-import * as S3 from 'aws-sdk/clients/s3';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../../environments/environment';
+import { HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UploadService {
 
-  constructor() { }
+  serverURL = environment.SERVER_URL;
+  
 
-  uploadPaper(paper) {
-    const contentType = paper.type;
-    // console.log(contentType);
+  constructor(private http: HttpClient) { }
 
-    const bucket = new S3(
-      {
-        accessKeyId: 'ASIAWQUF7FH32O6BPY6R',
-        secretAccessKey: 'gR4V/scSm8+VclfLNmAWKF2l47u2EPTV/BNz7Li1',
-        region: 'us-east-1'
-      }
-    );
 
-    const params = {
-      Bucket: 'mathsworld-s3-test',
-      Key: paper.name,
-      Body: paper,
-      ACL: 'public-read',
-      ContentType: contentType
-    };
-
-    bucket.upload(params, function (err, data) {
-      if (err) {
-          console.log('There was an error uploading your file: ', err);
-          return false;
-      }
-      console.log('Successfully uploaded file.', data);
-      return true;
-  });
+  getSignedRequest(fileName:string, fileType:string){
+    const url = this.serverURL + `/v1/s3/getUploadURL?fileName=${fileName}&fileType=${fileType}`;
+    return this.http
+    .get<{ status: any; payload: any }>(url)
   }
+
+  uploadFile(file:any, requrl:string){
+
+    console.log(file.type);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  file.type      })
+    };
+    // const req = new HttpRequest(
+    //   'PUT',
+    //   requrl,
+    //   file,
+    //   {
+    //     Headers: header,
+    //     reportProgress: true, //This is required for track upload process
+    //   });
+    return this.http.put(requrl,file, httpOptions)
+  }
+
+  
 
 
 }
