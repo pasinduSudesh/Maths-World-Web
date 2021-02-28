@@ -21,8 +21,12 @@ import { UserService } from './user-account/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
+
+import { UtilService } from './services/util.service';
+import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
 import { AddPaperComponent } from './papers/add-paper/add-paper.component'
+
 
 
 @NgModule({
@@ -37,7 +41,8 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     LoginComponent,
     AlertComponent,
     UserAccountComponent,
-    KeyCodeComponent
+    KeyCodeComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
