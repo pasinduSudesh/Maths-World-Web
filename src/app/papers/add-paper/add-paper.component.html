@@ -1,0 +1,97 @@
+<app-navbar></app-navbar>
+<section class="add-papers">
+    <div class="container register-form">
+        <div class="form">
+            <div class="note">
+                <h3>Add Paper</h3>
+            </div>
+
+            <div class="form-content forma">
+
+                <div class="row">
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="year">Year</label>
+                            <select class="form-control" id="year" name="year">
+                                <option *ngFor="let year of years; let i = index" [value]="year"
+                                    [attr.selected]="year==currentYear?true:null">{{year}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="months">Month</label>
+                            <select class="form-control" id="month" name="month">
+                                <option *ngFor="let month of months; let i = index" [value]="i+1"
+                                    [attr.selected]="i==currentMonth?true:null">{{month}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12">
+                        <div class="form-group">
+                            <label for="week">Week</label>
+                            <select class="form-control" id="week" name="week">
+                                <option *ngFor="let week of weeks; let i = index" [value]="i+1">{{week}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="paperName">Paper Name</label>
+                            <input type="text" class="form-control" placeholder="Add Paper Name" />
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="form-group">
+                            <label for="paperPrize">Paper Price (Rs)</label>
+                            <input type="number" class="form-control" placeholder="Add Paper Price in LKR" value="" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        <div class="form-group">
+                            <label for="description">Paper Description</label>
+                            <textarea name="description" rows="3" class="form-control" id="description"
+                                placeholder="Add Paper Description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <!-- start here -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label for="formFileSm" class="form-label">Small file input example</label>
+                            <input class="form-control" id="formFileSm" type="file" />                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <div class="file-upload-wrapper">
+                                <input type="file" id="input-file-now-custom-1" class="file-upload" data-default-file="https://mdbootstrap.com/img/Photos/Others/images/89.jpg" />
+                              </div>                 
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Your Password *" value="" />
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Confirm Password *" value="" />
+                        </div>
+                    </div>
+                </div>
+                <button type="button" class="btnSubmit">Submit</button>
+            </div>
+        </div>
+    </div>
+</section>

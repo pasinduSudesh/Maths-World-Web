@@ -189,3 +189,12 @@
       font-weight: bolder;
       box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
   }
+
+  .btn-enter{
+    background-image: linear-gradient(to right, #ff0014 , #ff6c00);
+      padding: 10px 25px 10px 25px;
+      border-radius: 100px;
+      color: white;
+      font-weight: bolder;
+      box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+  }

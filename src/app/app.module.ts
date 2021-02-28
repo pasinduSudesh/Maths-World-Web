@@ -6,7 +6,9 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
-import { AvailablePapersComponent } from './available-papers/available-papers.component';
+import { AvailablePapersComponent } from './papers/available-papers/available-papers.component';
+
+// import { AvailablePapersComponent } from './available-papers/available-papers.component';
 import { LoginComponent } from './login/login.component';
 import { LocalStorage } from './util/localStorage.service';
 import { AlertService } from './util/alert/alert.service';
@@ -19,8 +21,12 @@ import { UserService } from './user-account/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
+
 import { UtilService } from './services/util.service';
 import { PaymentComponent } from './payment/payment.component'
+import { DateService } from './services/util/date.service';
+import { AddPaperComponent } from './papers/add-paper/add-paper.component'
+
 
 
 @NgModule({
@@ -30,6 +36,7 @@ import { PaymentComponent } from './payment/payment.component'
     HomeComponent,
     SignupComponent,
     AvailablePapersComponent,
+    AddPaperComponent,
     SignupComponent,
     LoginComponent,
     AlertComponent,
@@ -47,7 +54,8 @@ import { PaymentComponent } from './payment/payment.component'
   providers: [
     NavbarComponent,
     AvailablePapersService,
-    UtilService,
+    DateService,
+    // UtilService,
     LocalStorage,
     AlertService,
     UserService,
