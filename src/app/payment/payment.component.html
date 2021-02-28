@@ -1,0 +1,64 @@
+<div class="payment-msg-page">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="card-wrapper">
+					<div class="card fat">
+						<div class="card-body">
+							<h4 class="card-title"><b>Payment Description</b></h4>
+
+							<!-- <div *ngIf="hasErrors" class="alert alert-danger" role="alert">
+								{{loginError}}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div> -->
+							<app-alert></app-alert>
+
+							<!-- <div *ngIf="isSuccess" class="alert alert-success" role="alert">
+								{{success}}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>-->
+
+							<div *ngIf="hasErrors" class="alert alert-danger" role="alert">
+								{{loginError}}
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div> 
+              <form [formGroup]="registrationForm" (ngSubmit)="paynow()">
+                
+                <div class="group-gap">
+                  <h5 class="mb-3">Please Select Your Subscription Method</h5>
+                  <div class="d-block my-3">
+        
+                    <div class="custom-control custom-radio">
+                      <input id="weekly" type="radio" class="custom-control-input" value="300" name="subscription" formControlName="subscription">
+                      <label class="custom-control-label" for="weekly">Weekly Subscription of Rs.300</label>
+                    </div>
+        
+                    <div class="custom-control custom-radio">
+                      <input id="monthly" type="radio" class="custom-control-input" value="1000" name="subscription" formControlName="subscription">
+                      <label class="custom-control-label" for="monthly">Monthly Subscription of Rs.1000</label>
+                    </div>
+        
+                    <div class="invalid-feedback" *ngIf="isSubmitted && myForm.errors?.required">
+                      <p>Please select either value</p>
+                    </div>
+                  </div>
+                </div>
+        
+                  <!-- Submit Button -->
+                  <button type="submit" class="btn btn-primary btn-block">Submit</button>
+              </form><!-- Form ends -->
+
+							
+				</div>
+			</div>
+		</div>
+    </div>
+    </div>
+	</section>
+</div>

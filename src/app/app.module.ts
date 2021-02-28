@@ -19,7 +19,8 @@ import { UserService } from './user-account/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
-import { UtilService } from './services/util.service'
+import { UtilService } from './services/util.service';
+import { PaymentComponent } from './payment/payment.component'
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { UtilService } from './services/util.service'
     LoginComponent,
     AlertComponent,
     UserAccountComponent,
-    KeyCodeComponent
+    KeyCodeComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
