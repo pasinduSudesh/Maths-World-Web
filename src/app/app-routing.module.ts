@@ -9,6 +9,8 @@ import { LoginComponent } from "../app/login/login.component";
 import { UserAccountComponent } from "../app/user-account/user-account.component";
 import { KeyCodeComponent } from "../app/key-code/key-code.component";
 import { PaymentComponent } from "../app/payment/payment.component";
+import { ForgotpasswordComponent } from "../app/forgotpassword/forgotpassword.component";
+import { ResetpasswordComponent } from "../app/resetpassword/resetpassword.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "addUser", component: UserAccountComponent},
   {path: "key-code", component: KeyCodeComponent},
-  {path: "payment", component: PaymentComponent}
+  {path: "payment", component: PaymentComponent},
+  {path: "forgot-password", component: ForgotpasswordComponent},
+  {path: "reset-password", component: ResetpasswordComponent}
 ];
 
 @NgModule({

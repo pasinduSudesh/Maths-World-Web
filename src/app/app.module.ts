@@ -20,7 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
 import { UtilService } from './services/util.service';
-import { PaymentComponent } from './payment/payment.component'
+import { PaymentComponent } from './payment/payment.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordComponentService } from './resetpassword/resetpassword.service';
+import { ForgotPasswordComponentService } from './forgotpassword/forgotpassword.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 
 
 @NgModule({
@@ -35,7 +39,9 @@ import { PaymentComponent } from './payment/payment.component'
     AlertComponent,
     UserAccountComponent,
     KeyCodeComponent,
-    PaymentComponent
+    PaymentComponent,
+    ResetpasswordComponent,
+    ForgotpasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -52,6 +58,8 @@ import { PaymentComponent } from './payment/payment.component'
     AlertService,
     UserService,
     AuthenticationService,
+    ResetpasswordComponentService,
+    ForgotPasswordComponentService,
     HttpClientModule
 
   ],
