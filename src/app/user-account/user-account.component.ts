@@ -16,6 +16,7 @@ import { AuthenticationService } from "../util/authentication.service";
 export class UserAccountComponent implements OnInit, OnDestroy {
   public showPassword_au: boolean = false
   subscription!: Subscription;
+  isSubmitted: boolean = false;
   Districts: any[] = [
   { name: 'Ampara' },
   { name: 'Anuradhapura' },
@@ -95,7 +96,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       return;
     }
     if (addUserForm.valid) {
-
+      this.isSubmitted = true;
       const user = {
         firstName: addUserForm.value.firstName,
         lastName: addUserForm.value.lastName,
@@ -120,6 +121,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
             this.alertService.clear();
             this.router.navigateByUrl("key-code");
           } else {
+            this.isSubmitted = false;
             this.alertService.clear();
             this.alertService.error(alert.message);
           }

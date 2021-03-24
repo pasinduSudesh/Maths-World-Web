@@ -5,6 +5,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 //import getMAC, { isMAC } from 'getmac';
 import { LocalStorage } from '../util/localStorage.service';
 import { AlertService } from 'src/app/util/alert/alert.service';
+import { AuthenticationService } from "../util/authentication.service";
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs';
 
@@ -29,7 +30,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private router: Router,
     private http: HttpClient,
-    private alertService: AlertService
+    private alertService: AlertService,
+    private authenticationService: AuthenticationService
   ) { }
 
   ngOnInit() {
@@ -55,7 +57,7 @@ export class LoginComponent implements OnInit {
     }
     console.log("[AuthenticationService]::validateUser()");
     return this.http.post<any>(
-      environment.SERVER_URL+ "/v1/users/login",
+      environment.SERVER_URL + "/v1/users/login",
       user
     )
   }
@@ -85,10 +87,10 @@ export class LoginComponent implements OnInit {
     }
 
 
-      this.validateUser(
-        this.loginForm.value.userName,
-        this.loginForm.value.password
-      )
+    this.validateUser(
+      this.loginForm.value.userName,
+      this.loginForm.value.password
+    )
       .subscribe(
         response => {
           returnedStatus = response.status
@@ -97,26 +99,33 @@ export class LoginComponent implements OnInit {
           console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response)
           this.user = response.payload
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.userId);
-          localStorage.setItem(LocalStorage.USER_ID, response.payload.user.userId);
-          localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
-          localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.name);
-          localStorage.setItem(LocalStorage.REFRESHTOKEN, response.payload.refreshtoken);
-          localStorage.setItem(LocalStorage.ROLES, JSON.stringify(response.payload.roles));
-          localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
+          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
+          if (response.payload.user.status == '200') {
+            localStorage.setItem(LocalStorage.USER_ID, response.payload.user.userId);
+            localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
+            localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.name);
+            localStorage.setItem(LocalStorage.REFRESHTOKEN, response.payload.refreshtoken);
+            localStorage.setItem(LocalStorage.ROLES, JSON.stringify(response.payload.roles));
+            localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
-          console.log(response.payload.roles);
+            console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
+            console.log(response.payload.roles);
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
-          console.log(localStorage.getItem(LocalStorage.ROLES));
+            console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
+            console.log(localStorage.getItem(LocalStorage.ROLES));
 
 
-          this.setUser(this.user)
-          console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
-          if (returnedStatus.code == 200) {
-            this.router.navigateByUrl("user-role")
+            this.setUser(this.user)
+            console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
+            if (returnedStatus.code == 200) {
+              this.router.navigateByUrl("user-role")
+            }
+          } else if (response.payload.user.status == '406') {
+            this.authenticationService.setUser(response.payload.user.userId);
+            this.router.navigateByUrl("key-code");
           }
+
+         
           // return returnedStatus;
         },
         err => {
