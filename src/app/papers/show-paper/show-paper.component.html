@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <section class="show-paper">
-    <h5>Paper Title</h5>
+    <h5>{{paperTitle}}</h5>
     <a *ngIf="!isPaperStarted" class="btn btn-start-paper" (click)="startPaper()">Start Paper</a>
 
     <div  *ngIf="isPaperStarted">
@@ -21,29 +21,30 @@
                 <div class="col-4">Submission Complete</div>
             </div> -->
 
-            <div [ngSwitch]="paperStatus" class="row mt-2">
-                <div class="col-4 text-left">
+            <div [ngSwitch]="paperStatus" class="row mt-4 mb-2">
+                <div class="col-4 text-left submission-status">
                     Submission Status
                 </div>
-                <div *ngSwitchCase="'notstart'" class="col-8 text-left">
-                    Not Submitted
+                <div *ngSwitchCase="'notstart'" class="col-8 text-left submission-status status-notsubmitted">
+                    <i class="icofont-close-circled"></i> Not Submitted
                 </div>
-                <div *ngSwitchCase="'start'" class="col-8 text-left">
-                    Not Submitted
+                <div *ngSwitchCase="'start'" class="col-8 text-left submission-status status-notsubmitted">
+                    <i class="icofont-close-circled"></i> Not Submitted
                 </div>
-                <div *ngSwitchCase="'upload'" class="col-8 text-left">
-                    File is uploaded, Please confirm submission
+                <div *ngSwitchCase="'upload'" class="col-8 text-left submission-status status-uploaded">
+                    <i class="icofont-warning-alt"></i> File is uploaded, Please confirm submission
                 </div>
-                <div *ngSwitchCase="'submit'" class="col-8 text-left">
-                    Submitted Successfuly
+                <div *ngSwitchCase="'submit'" class="col-8 text-left submission-status status-submitted">
+                    <i class="icofont-check-circled"></i> Submitted Successfuly
                 </div>
             </div>
     
-            <div class="upload-text">
+            <!-- <div class="upload-text">
                 <p>Upload your answers as a PDF file here</p>
                 {{message}}
-            </div>
-            <app-file-uploader (uploadEvent)="paperStatus=$event"></app-file-uploader>
+            </div> -->
+            <app-file-uploader (uploadEvent)="paperStatus=$event" (fileEvent)="files=$event"></app-file-uploader>
+            <button (click)="onSubmit()">submit</button>
         </div>
     </div>
 </section>

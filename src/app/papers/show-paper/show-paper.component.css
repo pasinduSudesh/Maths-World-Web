@@ -177,3 +177,22 @@ h3 {
 .upload-section{
   padding: 5%;
 }
+
+
+.submission-status{
+  display:block;
+  font-size: large;
+  font-weight: bold;
+}
+
+.status-notsubmitted{
+  color: red;
+}
+
+.status-uploaded{
+  color: rgb(199, 115, 5);
+}
+
+.status-submitted{
+  color: green;
+}

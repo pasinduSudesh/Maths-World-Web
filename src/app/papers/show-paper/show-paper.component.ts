@@ -34,6 +34,8 @@ export class ShowPaperComponent implements OnInit {
   pdfSrc = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   paperStatus:string = 'notstart'; //start, upload, submit
   message = "aaaaaaa"
+  paperTitle = "Title of the paper";
+  files = [];
   ngOnInit(): void {
 
     var started = localStorage.getItem('paperStatus');
@@ -60,5 +62,9 @@ export class ShowPaperComponent implements OnInit {
       localStorage.setItem('endTime', endTime.toString());
       localStorage.setItem('paperStatus', 'start');
     }
+  }
+
+  onSubmit(){
+    console.log(this.files.length);
   }
 }

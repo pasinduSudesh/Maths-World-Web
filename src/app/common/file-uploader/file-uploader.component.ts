@@ -10,8 +10,9 @@ import { UploadService } from '../../services/paper/upload.service';
 })
 export class FileUploaderComponent implements OnInit {
 
-  @Input() public hideUploadButton: boolean = false;
+  // @Input() public hideUploadButton: boolean = false;
   @Output() public uploadEvent = new EventEmitter();
+  @Output() public fileEvent = new EventEmitter();
 
   constructor(
     private uploadService: UploadService
@@ -73,6 +74,8 @@ export class FileUploaderComponent implements OnInit {
       this.files.push(item);
     }
     this.uploadFilesSimulator(0);
+    this.uploadEvent.emit('upload');
+    this.fileEvent.emit(this.files);
   }
 
   /**

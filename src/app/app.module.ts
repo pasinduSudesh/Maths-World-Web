@@ -35,6 +35,8 @@ import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileUploaderComponent } from './common/file-uploader/file-uploader.component';
 import { DndDirective } from './common/file-uploader/dnd.directive';
+import { LoadingComponent } from './common/loading/loading.component';
+import { AlertsComponent } from './common/alerts/alerts.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +55,9 @@ import { DndDirective } from './common/file-uploader/dnd.directive';
     TimerComponent,
     PdfViewerComponent,
     FileUploaderComponent,
-    DndDirective
+    DndDirective,
+    LoadingComponent,
+    AlertsComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +84,9 @@ import { DndDirective } from './common/file-uploader/dnd.directive';
     TimerComponent,
     ShowPaperService,
     FileUploaderComponent,
-    PdfViewerComponent
+    PdfViewerComponent,
+    LoadingComponent,
+    AlertsComponent
 
   ],
   bootstrap: [AppComponent]
