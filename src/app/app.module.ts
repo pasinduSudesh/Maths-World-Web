@@ -21,6 +21,9 @@ import { UserService } from './user-account/user.service';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
+
+import { UtilService } from './services/util.service';
+import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
 import { AddPaperComponent } from './papers/add-paper/add-paper.component';
 import { ShowPaperComponent } from './papers/show-paper/show-paper.component';
@@ -37,6 +40,7 @@ import { FileUploaderComponent } from './common/file-uploader/file-uploader.comp
 import { DndDirective } from './common/file-uploader/dnd.directive';
 import { LoadingComponent } from './common/loading/loading.component';
 import { AlertsComponent } from './common/alerts/alerts.component';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +61,9 @@ import { AlertsComponent } from './common/alerts/alerts.component';
     FileUploaderComponent,
     DndDirective,
     LoadingComponent,
-    AlertsComponent
+    AlertsComponent,
+     PaymentComponent
+
   ],
   imports: [
     BrowserModule,

@@ -50,13 +50,12 @@ export class KeyCodeComponent implements OnInit {
           if (returnedStatus == 401) {
             this.keycodeError = "Invalid key code";
             this.authenticationService.setKeycodeError(this.keycodeError);
-            this._location.back();
+            
 
 
           } else if (returnedStatus == 500) {
             this.keycodeError = "Error validating key code";
             this.authenticationService.setKeycodeError(this.keycodeError);
-            this._location.back();
 
             return;
           }
