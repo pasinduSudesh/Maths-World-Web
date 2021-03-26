@@ -1,20 +1,20 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { AddPaperComponent } from './add-paper.component';
+// import { PdfViewerComponent } from './pdf-viewer.component';
 
-// describe('AddPaperComponent', () => {
-//   let component: AddPaperComponent;
-//   let fixture: ComponentFixture<AddPaperComponent>;
+// describe('PdfViewerComponent', () => {
+//   let component: PdfViewerComponent;
+//   let fixture: ComponentFixture<PdfViewerComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       declarations: [ AddPaperComponent ]
+//       declarations: [ PdfViewerComponent ]
 //     })
 //     .compileComponents();
 //   });
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(AddPaperComponent);
+//     fixture = TestBed.createComponent(PdfViewerComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

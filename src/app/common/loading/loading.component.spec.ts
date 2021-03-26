@@ -1,20 +1,20 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { AddPaperComponent } from './add-paper.component';
+// import { LoadingComponent } from './loading.component';
 
-// describe('AddPaperComponent', () => {
-//   let component: AddPaperComponent;
-//   let fixture: ComponentFixture<AddPaperComponent>;
+// describe('LoadingComponent', () => {
+//   let component: LoadingComponent;
+//   let fixture: ComponentFixture<LoadingComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       declarations: [ AddPaperComponent ]
+//       declarations: [ LoadingComponent ]
 //     })
 //     .compileComponents();
 //   });
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(AddPaperComponent);
+//     fixture = TestBed.createComponent(LoadingComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });

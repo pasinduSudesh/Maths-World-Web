@@ -1,20 +1,20 @@
 // import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-// import { AddPaperComponent } from './add-paper.component';
+// import { TimerComponent } from './timer.component';
 
-// describe('AddPaperComponent', () => {
-//   let component: AddPaperComponent;
-//   let fixture: ComponentFixture<AddPaperComponent>;
+// describe('TimerComponent', () => {
+//   let component: TimerComponent;
+//   let fixture: ComponentFixture<TimerComponent>;
 
 //   beforeEach(async () => {
 //     await TestBed.configureTestingModule({
-//       declarations: [ AddPaperComponent ]
+//       declarations: [ TimerComponent ]
 //     })
 //     .compileComponents();
 //   });
 
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(AddPaperComponent);
+//     fixture = TestBed.createComponent(TimerComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //   });
