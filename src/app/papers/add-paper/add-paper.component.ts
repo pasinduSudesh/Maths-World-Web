@@ -7,6 +7,7 @@ import { LoadingComponent } from '../../common/loading/loading.component';
 import { AlertsComponent } from '../../common/alerts/alerts.component';
 import { NgForm } from "@angular/forms";
 import { CompileShallowModuleMetadata } from '@angular/compiler';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 
 
 @Component({
@@ -45,7 +46,8 @@ export class AddPaperComponent implements OnInit {
     private uploadService: UploadService,
     private fileUploaderComponent: FileUploaderComponent,
     private loadingComponent: LoadingComponent,
-    private alertsComponent: AlertsComponent
+    private alertsComponent: AlertsComponent,
+    private router: Router
     ) { }
 
 
@@ -100,9 +102,10 @@ export class AddPaperComponent implements OnInit {
                       addUserForm.value.month,
                       addUserForm.value.week,
                       isPublish,
-                      addUserForm.value.categoryPrice
+                      this.categoryPrice
                     ).toPromise();
           this.loading = "";
+          this.router.navigate(['/paper-list']);
         }catch(err){
           this.loading = "";
           console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!1")
