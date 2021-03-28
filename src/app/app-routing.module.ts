@@ -12,6 +12,7 @@ import { LoginComponent } from "../app/login/login.component";
 import { UserAccountComponent } from "../app/user-account/user-account.component";
 import { KeyCodeComponent } from "../app/key-code/key-code.component";
 import { PaymentComponent } from "../app/payment/payment.component";
+import { ListPapersComponent } from "../app/papers/list-papers/list-papers.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -22,7 +23,8 @@ const routes: Routes = [
   {path: "addUser", component: UserAccountComponent},
   {path: "key-code", component: KeyCodeComponent},
   {path: "show-paper", component: ShowPaperComponent},
-  {path: "payment", component: PaymentComponent}
+  {path: "payment", component: PaymentComponent},
+  {path: "paper-list", component: ListPapersComponent}
 
 ];
 

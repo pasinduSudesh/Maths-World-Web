@@ -58,6 +58,7 @@ export class UploadService {
       isPublish:isPublish,
       monthlyPrice:monthlyPrice
     }
+    console.log(data, "add paper data");
     return this.http.post<{ status: any; payload: any }>(url,data).pipe(
       catchError(this.handleError)
     )
