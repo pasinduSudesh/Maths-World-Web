@@ -28,7 +28,7 @@ export class AvailablePapersComponent implements OnInit {
     const monthIndex = date.getMonth();
     this.monthName = this.util.getMonthName(Number(monthIndex));
 
-    this.availablePapersService.gatAvailablePapers(year, month).subscribe((data: any)=>{
+    this.availablePapersService.gatAvailablePapers(year, month,"2323232323232").subscribe((data: any)=>{
       // console.log(data.payload);
       this.papers = data.payload.papers;
       this.isPaidForCategory = data.payload.isCategoryPaid;

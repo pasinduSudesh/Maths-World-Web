@@ -42,7 +42,15 @@ export class UploadService {
     )
   }
 
-  savePaperData(id, paperName, pdfLink, imageLink, price, duration, paperDescription, year, month, week, isPublish, monthlyPrice){
+  getSubject(teacheId){
+    const url = this.serverURL + `/v1/subject/getSubjectByTeacher/${teacheId}`;
+    return this.http
+    .get<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  savePaperData(id, paperName, pdfLink, imageLink, price, duration, paperDescription, year, month, week, isPublish, monthlyPrice, subjectId){
     const url = this.serverURL + `/v1/papers/addPaper`;
     const data = {
       id:id,
@@ -56,10 +64,18 @@ export class UploadService {
       month:month,
       week:week,
       isPublish:isPublish,
-      monthlyPrice:monthlyPrice
+      monthlyPrice:monthlyPrice,
+      subjectId:subjectId
     }
     console.log(data, "add paper data");
     return this.http.post<{ status: any; payload: any }>(url,data).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  updatePaperData(updateData){
+    const url = this.serverURL + `/v1/papers/updatePaper`;
+    return this.http.put<{ status: any; payload: any }>(url,updateData).pipe(
       catchError(this.handleError)
     )
   }
@@ -88,5 +104,14 @@ export class UploadService {
     )
   }
 
+  publishPaperById(paperId){
+    const url = this.serverURL + `/v1/papers/publishPaperById`;
+    const data = {
+      paperId:paperId
+    }
+    return this.http.post<{ status: any; payload: any }>(url,data).pipe(
+      catchError(this.handleError)
+    )
+  }
 
 }

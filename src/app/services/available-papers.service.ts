@@ -18,11 +18,11 @@ export class AvailablePapersService {
     console.log(this.serverURL);
    }
 
-  gatAvailablePapers(year: string, month: string) {
+  gatAvailablePapers(year: string, month: string, userId: string) {
 
     // "/v1/papers/getPaperById/daaebe1a-b2dc-4e94-89b2-d714d3a7cc31/aa6a2292-4fe1-4cd7-97a5-8516782e58a0"
     console.log( environment.SERVER_URL)
-    const url = this.serverURL + '/v1/papers/getPapersByMonth/' + year + '/' + month + '/aa6a2292-4fe1-4cd7-97a5-8516782e58a0'
+    const url = this.serverURL + '/v1/papers/getPapersByMonth/' + year + '/' + month + '/' + userId;
         console.log(url);
       return this.http
         .get<{ status: any; payload: any }>(url)

@@ -8,6 +8,7 @@ import { AlertsComponent } from '../../common/alerts/alerts.component';
 import { NgForm } from "@angular/forms";
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { LocalStorage } from '../../util/localStorage.service';
 
 
 @Component({
@@ -36,6 +37,8 @@ export class AddPaperComponent implements OnInit {
   publishLater = "";
   publishNow = "";
   loading = "";
+  subjectId = "";
+
 
 
   // paperPDF: FileList;
@@ -51,17 +54,33 @@ export class AddPaperComponent implements OnInit {
     ) { }
 
 
-  ngOnInit(): void {
-    this.date = new Date();
-    this.months = this.dateService.getMonths();
-    const thisYear = this.date.getUTCFullYear();
-    this.currentYear = thisYear;
-    this.currentMonth = this.date.getMonth() + 1;
-    this.years = [thisYear - 2, thisYear - 1, thisYear, thisYear + 1];
-    this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
-    console.log(this.weeks);
-    console.log(this.currentMonth, "current month");
-    // this.addUserForm.value.year=thisYear
+  async ngOnInit(){
+    let adminId = localStorage.getItem(LocalStorage.ADMIN_ID);
+    adminId = "saa"; //should have change 
+    if(adminId === "" || adminId === null){
+      this.router.navigate(['/login'])
+    }else{
+      try{
+        this.loading = "Loading";
+        var result = await this.uploadService.getSubject(adminId).toPromise();
+        this.subjectId = result.payload.subjectid;
+        this.date = new Date();
+        this.months = this.dateService.getMonths();
+        const thisYear = this.date.getUTCFullYear();
+        this.currentYear = thisYear;
+        this.currentMonth = this.date.getMonth() + 1;
+        this.years = [thisYear - 2, thisYear - 1, thisYear, thisYear + 1];
+        this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
+        console.log(this.weeks);
+        console.log(this.currentMonth, "current month");
+        this.loading=""
+        // this.addUserForm.value.year=thisYear
+      }catch(error){
+        this.loading=""
+        this.errMsg = "Please Try again";
+        console.log(error);
+      }
+    }
   }
 
   onChange(e){
@@ -93,8 +112,8 @@ export class AddPaperComponent implements OnInit {
           var c = await this.uploadService.savePaperData(
                       paperId,
                       addUserForm.value.paperName, 
-                      awsReq.payload.url, 
-                      awsReq.payload.url,
+                      `papers/${paperId}/${file.name}`, 
+                      `papers/${paperId}/${file.name}`,
                       addUserForm.value.price,
                       addUserForm.value.duration,
                       addUserForm.value.paperDescription,
@@ -102,7 +121,8 @@ export class AddPaperComponent implements OnInit {
                       addUserForm.value.month,
                       addUserForm.value.week,
                       isPublish,
-                      this.categoryPrice
+                      this.categoryPrice,
+                      this.subjectId
                     ).toPromise();
           this.loading = "";
           this.router.navigate(['/paper-list']);

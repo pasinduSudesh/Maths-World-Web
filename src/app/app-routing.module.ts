@@ -13,6 +13,9 @@ import { UserAccountComponent } from "../app/user-account/user-account.component
 import { KeyCodeComponent } from "../app/key-code/key-code.component";
 import { PaymentComponent } from "../app/payment/payment.component";
 import { ListPapersComponent } from "../app/papers/list-papers/list-papers.component";
+import { LandingComponent } from "../app/landing/landing.component";
+import { ViewPaperAdminComponent } from "../app/papers/view-paper-admin/view-paper-admin.component";
+import { EditPaperAdminComponent } from "../app/papers/edit-paper-admin/edit-paper-admin.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -24,7 +27,10 @@ const routes: Routes = [
   {path: "key-code", component: KeyCodeComponent},
   {path: "show-paper", component: ShowPaperComponent},
   {path: "payment", component: PaymentComponent},
-  {path: "paper-list", component: ListPapersComponent}
+  {path: "paper-list", component: ListPapersComponent},
+  {path: "landing", component: LandingComponent},
+  {path: "admin-view-paper", component: ViewPaperAdminComponent},
+  {path: "admin-edit-paper", component: EditPaperAdminComponent}
 
 ];
 
