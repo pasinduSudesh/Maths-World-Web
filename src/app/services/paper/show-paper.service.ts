@@ -28,10 +28,24 @@ export class ShowPaperService {
     return hours*60*60*1000 + minutes*60*1000
   }
 
-  getPapers(){
-    const url = this.serverURL + `/v1/papers/getAllPapers`;
+  getPapers(subjectId){
+    const url = this.serverURL + `/v1/papers/getAllPapers/${subjectId}`;
     return this.http
     .get<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPdfLink(fileName, expireTime){
+    const url = this.serverURL + `/v1/s3/getFileLink?fileName=${fileName}&expireTime=${expireTime}`;
+    return this.http.get<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  deletePaper(paperId,pdfLink){
+    const url = this.serverURL + `/v1/papers/deletePaper?paperId=${paperId}&fileName=${pdfLink}`;
+    return this.http.delete<{ status: any; payload: any }>(url).pipe(
       catchError(this.handleError)
     )
   }

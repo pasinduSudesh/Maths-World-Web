@@ -115,7 +115,7 @@ export class LoginComponent implements OnInit {
           this.setUser(this.user)
           console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
           if (returnedStatus.code == 200) {
-            this.router.navigateByUrl("user-role")
+            this.router.navigateByUrl("landing")
           }
           // return returnedStatus;
         },
@@ -170,7 +170,7 @@ export class LoginComponent implements OnInit {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 200) {
-            this.router.navigateByUrl("user-role")
+            this.router.navigateByUrl("landing")
           }
         }
       )

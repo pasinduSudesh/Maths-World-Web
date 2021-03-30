@@ -18,5 +18,6 @@ export class LocalStorage {
   public static TOKEN: string = "token"
   public static REFRESHTOKEN: string = "refreshToken";
   public static ROLE_SELECTED: string = "role_selected"
+  public static ADMIN_ID: string = "admin_id"
 
 }
