@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-navbar',
@@ -6,11 +6,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-
-  collapsed = true;
+  toggled: boolean = false;
+  scrolled: boolean;
   constructor() { }
 
   ngOnInit(): void {
   }
+  @HostListener('window:scroll', ['$event'])
 
+  onWindowScroll(e) {
+    let element = document.querySelector('.navbar');
+    if (window.pageYOffset > element.clientHeight) {
+      this.scrolled = true;
+    } else {
+      this.scrolled = false;
+    }
+  }
+
+  onNavbarToggle () {
+    this.toggled = !this.toggled;
+  }
 }

@@ -12,6 +12,8 @@ import { LoginComponent } from "../app/login/login.component";
 import { UserAccountComponent } from "../app/user-account/user-account.component";
 import { KeyCodeComponent } from "../app/key-code/key-code.component";
 import { PaymentComponent } from "../app/payment/payment.component";
+import { ForgotpasswordComponent } from "../app/forgotpassword/forgotpassword.component";
+import { ResetpasswordComponent } from "../app/resetpassword/resetpassword.component";
 import { ListPapersComponent } from "../app/papers/list-papers/list-papers.component";
 import { LandingComponent } from "../app/landing/landing.component";
 import { ViewPaperAdminComponent } from "../app/papers/view-paper-admin/view-paper-admin.component";
@@ -25,6 +27,9 @@ const routes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "addUser", component: UserAccountComponent},
   {path: "key-code", component: KeyCodeComponent},
+  {path: "payment", component: PaymentComponent},
+  {path: "forgot-password", component: ForgotpasswordComponent},
+  {path: "reset-password", component: ResetpasswordComponent}
   {path: "show-paper", component: ShowPaperComponent},
   {path: "payment", component: PaymentComponent},
   {path: "paper-list", component: ListPapersComponent},

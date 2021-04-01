@@ -243,7 +243,7 @@
             </div>
             <div class="form row mt-1 ">
               <div class="col-12 col-md sm-3">
-                <button type="submit" class="btn btn-custom lg  float-right " (click)="onSave(addUserForm)">Submit</button>
+                <button type="submit" class="btn btn-custom lg  float-right " [disabled]="isSubmitted" (click)="onSave(addUserForm)">Submit</button>
               </div>
             </div>
             

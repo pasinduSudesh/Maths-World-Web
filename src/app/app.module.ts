@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { BasicRequest } from './util/basic-request';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,9 +20,22 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { KeyCodeComponent } from './key-code/key-code.component';
 import { AuthenticationService } from './util/authentication.service';
 import { UserService } from './user-account/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
+
+
+//import { UtilService } from './services/util.service';
+//import { PaymentComponent } from './payment/payment.component';
+import { ResetpasswordComponent } from './resetpassword/resetpassword.component';
+import { ResetpasswordComponentService } from './resetpassword/resetpassword.service';
+import { ForgotPasswordComponentService } from './forgotpassword/forgotpassword.service';
+import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+//import { DateService } from './services/util/date.service';
+import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+import { Svg1Component } from './svg1/svg1.component';
+import { Svg1MobileComponent } from './svg1-mobile/svg1-mobile.component';
+import { FooterComponent } from './footer/footer.component'
 
 // import { UtilService } from './services/util.service';
 import { PaymentComponent } from './payment/payment.component'
@@ -46,6 +61,7 @@ import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-ad
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +75,11 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
     AlertComponent,
     UserAccountComponent,
     KeyCodeComponent,
+    ResetpasswordComponent,
+    ForgotpasswordComponent,
+    Svg1Component,
+    Svg1MobileComponent,
+    FooterComponent,
     ShowPaperComponent,
     TimerComponent,
     PdfViewerComponent,
@@ -93,6 +114,8 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
     AlertService,
     UserService,
     AuthenticationService,
+    ResetpasswordComponentService,
+    ForgotPasswordComponentService,
     UploadService,
     HttpClientModule,
     TimerComponent,
@@ -101,7 +124,12 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
     PdfViewerComponent,
     LoadingComponent,
     AlertsComponent,
-    UserAccessService
+    UserAccessService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicRequest,
+      multi: true
+    }
 
   ],
   bootstrap: [AppComponent]
