@@ -20,6 +20,11 @@ export class Constants {
     public static PAY_DET = {
       merchant_id : '1216754'
     }
+
+    public static RECAPTURE_DET = {
+      siteKey: '6LdTIJUaAAAAAEn7FXBIxk4y2F3r2JB3qiNq56XB',
+      secreateKey: '6LdTIJUaAAAAAE4PBrtD6sB2cckCWZhnb6TLSm_7'
+    }
   
     public static NORMAL_HEADER_OPTION = {
       isHamburger: true,

@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { BasicRequest } from './util/basic-request';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -18,7 +20,7 @@ import { UserAccountComponent } from './user-account/user-account.component';
 import { KeyCodeComponent } from './key-code/key-code.component';
 import { AuthenticationService } from './util/authentication.service';
 import { UserService } from './user-account/user.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
 
@@ -29,7 +31,10 @@ import { ResetpasswordComponentService } from './resetpassword/resetpassword.ser
 import { ForgotPasswordComponentService } from './forgotpassword/forgotpassword.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 import { DateService } from './services/util/date.service';
-import { AddPaperComponent } from './papers/add-paper/add-paper.component'
+import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+import { Svg1Component } from './svg1/svg1.component';
+import { Svg1MobileComponent } from './svg1-mobile/svg1-mobile.component';
+import { FooterComponent } from './footer/footer.component'
 
 
 
@@ -48,7 +53,10 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     KeyCodeComponent,
     PaymentComponent,
     ResetpasswordComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    Svg1Component,
+    Svg1MobileComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -68,7 +76,12 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     AuthenticationService,
     ResetpasswordComponentService,
     ForgotPasswordComponentService,
-    HttpClientModule
+    HttpClientModule,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BasicRequest,
+      multi: true
+    }
 
   ],
   bootstrap: [AppComponent]

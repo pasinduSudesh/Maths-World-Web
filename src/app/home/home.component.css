@@ -57,4 +57,101 @@ svg{
     top:0px;}
 }
 
+/* arrow animation */
+#page {
+  padding: 0.1rem;
+}
+.filter-openCloseWrap {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  margin: 10px auto;
+  display: block;
+  cursor: pointer;
+}
+.filter-openCloseWrap:hover .filter-openClose, .filter-openCloseWrap:hover .filter-openClose:before {
+  background-color: rgba(0,0,0,0.6);
+}
+.filter-openCloseWrap .filter-openClose {
+  width: 3rem;
+  height: 2px;
+  background-color: #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.filter-openCloseWrap .filter-openClose:before {
+  content: " ";
+  position: absolute;
+  height: 2px;
+  width: 3rem;
+  top: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: 50% 50%;
+  -webkit-transition: all 0.2s ease-out;
+  -moz-transition: all 0.2s ease-out;
+  -ms-transition: all 0.2s ease-out;
+  -o-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+.filter-openClose {
+  transform: rotate(45deg) translate(1.5rem,0px);
+  -webkit-transform: rotate(45deg) translate(1.5rem,0px);
+  -moz-transform: rotate(45deg) translate(1.5rem,0px);
+  -ms-transform: rotate(45deg) translate(1.5rem,0px);
+  -o-transform: rotate(45deg) translate(1.5rem,0px);
+}
+.filter-openClose:before {
+  transform: rotate(-90deg) translate(-1.5rem,-1.5rem);
+  -webkit-transform: rotate(-90deg) translate(-1.5rem,-1.5rem);
+  -moz-transform: rotate(-90deg) translate(-1.5rem,-1.5rem);
+  -ms-transform: rotate(-90deg) translate(-1.5rem,-1.5rem);
+  -o-transform: rotate(-90deg) translate(-1.5rem,-1.5rem);
+}
+.no-filter .filter-openClose {
+  transform: rotate(45deg) translate(0px,1.5rem);
+  -webkit-transform: rotate(45deg) translate(0px,1.5rem);
+  -moz-transform: rotate(45deg) translate(0px,1.5rem);
+  -ms-transform: rotate(45deg) translate(0px,1.5rem);
+  -o-transform: rotate(45deg) translate(0px,1.5rem);
+}
+.no-filter .filter-openClose:before {
+  transform: rotate(-90deg) translate(1.5rem,1.5rem);
+  -webkit-transform: rotate(-90deg) translate(1.5rem,1.5rem);
+  -moz-transform: rotate(-90deg) translate(1.5rem,1.5rem);
+  -ms-transform: rotate(-90deg) translate(1.5rem,1.5rem);
+  -o-transform: rotate(-90deg) translate(1.5rem,1.5rem);
+}
 
+.trophySvgOther {
+  height: 70px;
+  margin-bottom: 5px;
+}
+
+.winnerList {
+  width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+
+@font-face {
+  font-family: englishBodyFont;
+  src: url('../../assets/fontawesome-pro/webfonts/ArialMdm.woff');
+}
+
+@font-face {
+  font-family: sinhalaBodyFont;
+  src: url('../../assets/fontawesome-pro/webfonts/un-ganganee.ttf');
+}
+
+legend{width:200px;padding:10px 20px;}
