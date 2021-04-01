@@ -179,7 +179,7 @@ export class LoginComponent implements OnInit {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 200) {
-            this.router.navigateByUrl("user-role")
+            this.router.navigateByUrl("landing")
           }
         }
       )

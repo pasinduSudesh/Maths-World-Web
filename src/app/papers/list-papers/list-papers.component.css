@@ -1,0 +1,20 @@
+.table-section{
+    margin-top: 70px;
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.view-month{
+    /* margin-left: 30px; */
+   padding-left: 30px;
+   padding-right: 100px;
+}
+
+.add-paper{
+    display: inline-block;
+    margin-left: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    margin-right: 20PX;
+}
