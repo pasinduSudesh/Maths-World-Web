@@ -28,6 +28,18 @@ export class ShowPaperService {
     return hours*60*60*1000 + minutes*60*1000
   }
 
+  getHoursOfDuration1(duration){
+    let times = duration.split(":");
+    let hours = parseInt(times[0]);
+    return hours;
+  }
+
+  getMinutesOfDuration1(duration){
+    let times = duration.split(":");
+    let minutes = parseInt(times[1]);
+    return minutes;
+  }
+
   getPapers(subjectId){
     const url = this.serverURL + `/v1/papers/getAllPapers/${subjectId}`;
     return this.http
@@ -46,6 +58,27 @@ export class ShowPaperService {
   deletePaper(paperId,pdfLink){
     const url = this.serverURL + `/v1/papers/deletePaper?paperId=${paperId}&fileName=${pdfLink}`;
     return this.http.delete<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPaperState(paperid, userid){
+    const url = this.serverURL + `/v1/papers/getExamInstance/${paperid}/${userid}`;
+    return this.http.get<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPaperById(paperid, userid){
+    const url = this.serverURL + `/v1/papers/getPaperById/${paperid}/${userid}`;
+    return this.http.get<{ status: any; payload: any }>(url).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  addExamInstance(instance){
+    const url = this.serverURL + `/v1/papers/addExamInstance`;
+    return this.http.post<{ status: any; payload: any }>(url,instance).pipe(
       catchError(this.handleError)
     )
   }

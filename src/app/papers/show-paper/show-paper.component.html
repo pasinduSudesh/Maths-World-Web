@@ -1,6 +1,6 @@
 <app-navbar></app-navbar>
 <section class="show-paper">
-    <h5>{{paperTitle}}</h5>
+    <h5>{{paper?.papername}}</h5>
     <a *ngIf="!isPaperStarted" class="btn btn-start-paper" (click)="startPaper()">Start Paper</a>
 
     <div  *ngIf="isPaperStarted">
@@ -8,7 +8,7 @@
 
 
         <div class="pdf-container">
-            <app-pdf-viewer></app-pdf-viewer>
+            <app-pdf-viewer [src]="link"></app-pdf-viewer>
         </div>
 
         <div class="upload-section">

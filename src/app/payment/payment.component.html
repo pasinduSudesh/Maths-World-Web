@@ -35,13 +35,13 @@
                   <div class="d-block my-3">
         
                     <div class="custom-control custom-radio">
-                      <input id="weekly" type="radio" class="custom-control-input" value="300" name="subscription" formControlName="subscription">
-                      <label class="custom-control-label" for="weekly">Weekly Subscription of Rs.300</label>
+                      <input id="weekly" type="radio" class="custom-control-input" [value]="paper.prize" name="subscription" formControlName="subscription">
+                      <label class="custom-control-label" for="weekly">Weekly Subscription of Rs.{{paper?.prize}}</label>
                     </div>
         
                     <div class="custom-control custom-radio">
-                      <input id="monthly" type="radio" class="custom-control-input" value="1000" name="subscription" formControlName="subscription">
-                      <label class="custom-control-label" for="monthly">Monthly Subscription of Rs.1000</label>
+                      <input id="monthly" type="radio" class="custom-control-input" [value]="paper?.categoryprize" name="subscription" formControlName="subscription">
+                      <label class="custom-control-label" for="monthly">Monthly Subscription of Rs.{{paper?.categoryprize}}</label>
                     </div>
         
                     <div class="invalid-feedback" *ngIf="isSubmitted && myForm.errors?.required">

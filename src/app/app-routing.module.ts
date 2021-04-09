@@ -29,7 +29,7 @@ const routes: Routes = [
   {path: "key-code", component: KeyCodeComponent},
   {path: "payment", component: PaymentComponent},
   {path: "forgot-password", component: ForgotpasswordComponent},
-  {path: "reset-password", component: ResetpasswordComponent}
+  {path: "reset-password", component: ResetpasswordComponent},
   {path: "show-paper", component: ShowPaperComponent},
   {path: "payment", component: PaymentComponent},
   {path: "paper-list", component: ListPapersComponent},
