@@ -95,7 +95,7 @@ export class LandingComponent implements OnInit {
   enterToPaper(paper){
     console.log(paper);
     this.paymentService.paper = paper;
-    if(!paper.isPaidForPaper){
+    if(paper.isPaidForPaper){
       this.router.navigate(['/show-paper'])
     }else{
       this.router.navigate(['/payment']);

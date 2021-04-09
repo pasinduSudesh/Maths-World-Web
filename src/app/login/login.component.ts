@@ -96,11 +96,12 @@ export class LoginComponent implements OnInit {
           returnedStatus = response.status
           var roles: string[];
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response)
+          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + JSON.stringify(response))
           this.user = response.payload
 
           console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
-          if (response.payload.user.status == '200') {
+          // if (response.payload.user.status == '200') {
+          if (returnedStatus.code == '200') {//changed
             localStorage.setItem(LocalStorage.USER_ID, response.payload.user.userId);
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
             localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.name);
@@ -118,7 +119,7 @@ export class LoginComponent implements OnInit {
             this.setUser(this.user)
             console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
             if (returnedStatus.code == 200) {
-              this.router.navigateByUrl("user-role")
+              this.router.navigateByUrl("landing")
             }
           } else if (response.payload.user.status == '406') {
             this.authenticationService.setUser(response.payload.user.userId);

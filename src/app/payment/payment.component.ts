@@ -106,7 +106,7 @@ export class PaymentComponent implements OnInit {
             "return_url": "https:google.com",     // Important
             "cancel_url": "https://ecbd2efff36d.ngrok.io/login",     // Important
             "notify_url": notifyUrl,
-            "order_id": this.paper.paperid,
+            "order_id": this.orderId,
             "items": this.paper.papername,
             "amount": amount,
             "currency": currency,
