@@ -43,12 +43,14 @@ export class ShowPaperComponent implements OnInit {
   files = [];
   paperid;
   userid;
+  loading = "";
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   async ngOnInit() {
-
+    this.loading = "Loadind Paper Data";
     let userid = localStorage.getItem(LocalStorage.USER_ID);
     if (userid === "" || userid === null) {
+      this.loading = "";
       this.router.navigate(['/login'])
     }
     this.userid = userid;
@@ -65,6 +67,7 @@ export class ShowPaperComponent implements OnInit {
         localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
         this.paperStatus = "notstart";
         this.isPaperStarted = false;
+        this.loading = "";
       } else {
         console.log("has logg", this.paper);
         if(paperState[0].submitstate === "not-submited"){
@@ -79,8 +82,16 @@ export class ShowPaperComponent implements OnInit {
           let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
           this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60);
 
+          var nowTimeStamp = new Date().getTime();
+
+          if(nowTimeStamp>endTimeStamp){
+            this.paperStatus = "overdue"
+          }
+          this.loading = "";
         }else{
           // paper is submited
+          this.loading = "";
+          this.router.navigate(['show-result']);
         }
         //paper opened previouslly
         // *************have impleme
@@ -91,6 +102,7 @@ export class ShowPaperComponent implements OnInit {
       console.log("no paper")
       var paperid = localStorage.getItem(LocalStorage.CURRENT_PAPER_ID);
       if (paperid === null || paperid === "") {
+        this.loading = "";
         this.router.navigate(['/landing']);
       } else {
         this.paperid = paperid;
@@ -102,6 +114,7 @@ export class ShowPaperComponent implements OnInit {
           localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
           this.paperStatus = "notstart";
           this.isPaperStarted = false;
+          this.loading = "";
         } else {
           console.log("has logg", this.paper);
           if(paperState[0].submitstate === "not-submited"){
@@ -120,8 +133,15 @@ export class ShowPaperComponent implements OnInit {
             let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
             this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60);
 
+            var nowTimeStamp = new Date().getTime();
+
+            if(nowTimeStamp>endTimeStamp){
+              this.paperStatus = "overdue"
+            }
+            this.loading = "";
           }else{
-            // paper is submited
+            this.loading = "";
+            this.router.navigate(['show-result']);
           }
           //paper opened previouslly
           // *************have impleme
@@ -149,6 +169,7 @@ export class ShowPaperComponent implements OnInit {
 
 
   async startPaper() {
+    this.loading = " ";
     let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
     this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000);
     let now = new Date();
@@ -172,6 +193,7 @@ export class ShowPaperComponent implements OnInit {
     localStorage.setItem(LocalStorage.PAPER_STATUS, "start");
     this.paperStatus = "start";
     this.isPaperStarted = true;
+    this.loading = "";
   }
 
   async onSubmit() {

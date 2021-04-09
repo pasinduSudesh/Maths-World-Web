@@ -61,6 +61,7 @@ import { ListPapersComponent } from './papers/list-papers/list-papers.component'
 import { LandingComponent } from './landing/landing.component';
 import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-admin.component';
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
+import { ShowResultComponent } from './papers/show-result/show-result.component';
 
 
 
@@ -93,7 +94,8 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
      ListPapersComponent,
      LandingComponent,
      ViewPaperAdminComponent,
-     EditPaperAdminComponent
+     EditPaperAdminComponent,
+     ShowResultComponent
 
   ],
   imports: [
