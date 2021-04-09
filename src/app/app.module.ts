@@ -40,15 +40,17 @@ import { FooterComponent } from './footer/footer.component'
 // import { UtilService } from './services/util.service';
 import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
-import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+// import { AddPaperComponent } from './papers/add-paper/add-paper.component';
 import { ShowPaperComponent } from './papers/show-paper/show-paper.component';
 // import { TimerComponent } from './common/timer/timer.component';
  
 import {UserAccessService } from './services/util/user-access.service'
 // services
 import {UploadService } from './services/paper/upload.service';
+import {PaymentDetailsService } from './services/payment/payment-details.service';
 import { TimerComponent } from './common/timer/timer.component';
 import { ShowPaperService } from './services/paper/show-paper.service';
+import { UserDetailsService } from './services/user/user-details.service';
 import { PdfViewerComponent } from './common/pdf-viewer/pdf-viewer.component';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileUploaderComponent } from './common/file-uploader/file-uploader.component';
@@ -59,6 +61,7 @@ import { ListPapersComponent } from './papers/list-papers/list-papers.component'
 import { LandingComponent } from './landing/landing.component';
 import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-admin.component';
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
+import { ShowResultComponent } from './papers/show-result/show-result.component';
 
 
 
@@ -91,7 +94,8 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
      ListPapersComponent,
      LandingComponent,
      ViewPaperAdminComponent,
-     EditPaperAdminComponent
+     EditPaperAdminComponent,
+     ShowResultComponent
 
   ],
   imports: [
@@ -125,6 +129,8 @@ import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-ad
     LoadingComponent,
     AlertsComponent,
     UserAccessService,
+    UserDetailsService,
+    PaymentDetailsService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BasicRequest,

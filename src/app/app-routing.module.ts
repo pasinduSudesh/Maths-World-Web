@@ -18,6 +18,7 @@ import { ListPapersComponent } from "../app/papers/list-papers/list-papers.compo
 import { LandingComponent } from "../app/landing/landing.component";
 import { ViewPaperAdminComponent } from "../app/papers/view-paper-admin/view-paper-admin.component";
 import { EditPaperAdminComponent } from "../app/papers/edit-paper-admin/edit-paper-admin.component";
+import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -29,13 +30,14 @@ const routes: Routes = [
   {path: "key-code", component: KeyCodeComponent},
   {path: "payment", component: PaymentComponent},
   {path: "forgot-password", component: ForgotpasswordComponent},
-  {path: "reset-password", component: ResetpasswordComponent}
+  {path: "reset-password", component: ResetpasswordComponent},
   {path: "show-paper", component: ShowPaperComponent},
   {path: "payment", component: PaymentComponent},
   {path: "paper-list", component: ListPapersComponent},
   {path: "landing", component: LandingComponent},
   {path: "admin-view-paper", component: ViewPaperAdminComponent},
-  {path: "admin-edit-paper", component: EditPaperAdminComponent}
+  {path: "admin-edit-paper", component: EditPaperAdminComponent},
+  {path: "show-result", component: ShowResultComponent}
 
 ];
 

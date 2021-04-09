@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment';
 import { Constants } from '../util/constants';
 import { Router } from "@angular/router";
+import { PaymentDetailsService } from '../services/payment/payment-details.service';
 declare var payhere: any;
 
 @Component({
@@ -22,9 +23,16 @@ export class PaymentComponent implements OnInit {
   items: string
   paperId: string
   categoryId: string
+
+  paper:any;
   
   
-  constructor(public fb: FormBuilder, private alertService: AlertService, private http: HttpClient, private router: Router) { 
+  constructor(public fb: FormBuilder, 
+    private alertService: AlertService, 
+    private http: HttpClient, 
+    private router: Router,
+    private paymentService: PaymentDetailsService
+    ) { 
     payhere.onCompleted = function onCompleted(orderId) {
       console.log("Payment completed. OrderID:" + orderId);
     };
@@ -71,7 +79,7 @@ export class PaymentComponent implements OnInit {
         return false;
       } else {
         amount = JSON.parse(JSON.stringify(this.registrationForm.value.subscription));
-        if (amount == "300") {
+        if (amount.toString() === this.paper.prize) {
           this.orderId = this.paperId;
         } else {
           this.orderId = this.categoryId;
@@ -98,8 +106,8 @@ export class PaymentComponent implements OnInit {
             "return_url": "https:google.com",     // Important
             "cancel_url": "https://ecbd2efff36d.ngrok.io/login",     // Important
             "notify_url": notifyUrl,
-            "order_id": "ItemNo12345",
-            "items": "Door bell wireles",
+            "order_id": this.paper.paperid,
+            "items": this.paper.papername,
             "amount": amount,
             "currency": currency,
             "first_name": firstName,
@@ -126,7 +134,12 @@ export class PaymentComponent implements OnInit {
     }
   
   ngOnInit() {
-  
+    console.log(this.paymentService.paper);
+    if(this.paymentService.paper === null){
+      this.router.navigate(['/landing']);
+    }
+    this.paper = this.paymentService.paper;
+    this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId)
   }
 
   getUserDetails() {

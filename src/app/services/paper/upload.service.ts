@@ -114,4 +114,11 @@ export class UploadService {
     )
   }
 
+  updateExamInstanceDetails(examDate){
+    const url = this.serverURL + `/v1/papers/updateExamInstance`;
+    return this.http.put<{ status: any; payload: any }>(url,examDate).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 }

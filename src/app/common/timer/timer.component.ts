@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
+import { LocalStorage } from '../../util/localStorage.service';
 
 @Component({
   selector: 'app-timer',
@@ -19,7 +20,7 @@ export class TimerComponent implements OnInit {
   warning = false;
 
   ngOnInit(): void {
-    let endTime = parseInt(localStorage.getItem('endTime'));
+    let endTime = parseInt(localStorage.getItem(LocalStorage.PAPER_END_TIME));
     if(endTime){
       this.endTime = endTime;
   

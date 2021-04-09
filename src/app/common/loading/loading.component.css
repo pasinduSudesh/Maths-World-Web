@@ -1,5 +1,5 @@
 .loading{
-    position: sticky;
+    position: relative;
     text-align: center;
     z-index: 2;
     top: 0;
