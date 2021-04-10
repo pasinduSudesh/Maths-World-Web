@@ -6,7 +6,7 @@ import { Injectable, Injector } from '@angular/core';
 import { HttpInterceptor, HttpEvent, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LocalStorage } from './localStorage.service';
-import { Constants } from './constants';
+import { Constants } from './Constants';
 import { tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from './alert/alert.service';

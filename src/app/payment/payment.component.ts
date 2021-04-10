@@ -4,7 +4,7 @@ import { AlertService } from 'src/app/util/alert/alert.service';
 import { LocalStorage } from '../util/localStorage.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment';
-import { Constants } from '../util/constants';
+import { Constants } from '../util/Constants';
 import { Router } from "@angular/router";
 import { PaymentDetailsService } from '../services/payment/payment-details.service';
 declare var payhere: any;

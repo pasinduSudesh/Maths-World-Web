@@ -8,8 +8,8 @@ import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { map } from "rxjs/operators"
 import { throwError, Subject, Subscription } from "rxjs"
 import { catchError } from "rxjs/operators"
-import { LocalStorage } from '../util/localstorage.service';
-import { Constants } from '../util/constants';
+import { LocalStorage } from '../util/localStorage.service';
+import { Constants } from '../util/Constants';
 
 @Injectable({
   providedIn: "root"
