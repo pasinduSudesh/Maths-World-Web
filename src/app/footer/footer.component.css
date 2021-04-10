@@ -53,12 +53,12 @@ footer {
      background-color: #3B5998;
    }
    
-   .social-network a.icoLinkedin:hover {
+   .social-network a.icoYoutube:hover {
      background-color: #FF0000;
    }
    
    .social-network a.icoFacebook:hover i,
-   .social-network a.icoLinkedin:hover i {
+   .social-network a.icoYoutube:hover i {
      color: #fff;
    }
    

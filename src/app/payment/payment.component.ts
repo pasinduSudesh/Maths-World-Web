@@ -95,7 +95,7 @@ export class PaymentComponent implements OnInit {
           var payment = {
             "sandbox": true,
             "merchant_id": merchantId,    // Replace your Merchant ID
-            "return_url": "https:google.com",     // Important
+            "return_url": "https://google.com",     // Important
             "cancel_url": "https://ecbd2efff36d.ngrok.io/login",     // Important
             "notify_url": notifyUrl,
             "order_id": "ItemNo12345",
