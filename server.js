@@ -9,10 +9,10 @@ const express = require('express');
 const app = express();
 // app.use(requireHTTPS);
 
-app.use(express.static('./dist/maths-world-web'));
+app.use(express.static('./dist/Maths-World-Web'));
 
 app.get('/*', function(req, res) {
-    res.sendFile('index.html', {root: 'dist/maths-world-web/'}
+    res.sendFile('index.html', {root: 'dist/Maths-World-Web/'}
   );
 });
 
