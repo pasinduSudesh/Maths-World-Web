@@ -1,10 +1,18 @@
-body {
+.interiorBody {
   position: relative;
+  background-color: white;
+  /* background-image: url('../../assets/images/bck.png'); */
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+  /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+
+/* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
 }
 
-#carouselHome {
-  background-color: #178109;
-}
+/* .interiorBody::after {
+  background-image: url("https://www.transparenttextures.com/patterns/3px-tile.png");
+  opacity: 0.9;
+  position: absolute;
+} */
 
 .h4 {
   font-size: 0.8rem;
@@ -146,7 +154,12 @@ svg{
 
 @font-face {
   font-family: englishBodyFont;
-  src: url('../../assets/fontawesome-pro/webfonts/ArialMdm.woff');
+  src: url('../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: englishBodyFont2;
+  src: url('../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
 }
 
 @font-face {
@@ -155,3 +168,25 @@ svg{
 }
 
 legend{width:200px;padding:10px 20px;}
+
+
+.leftRound {
+  border-top-left-radius: 15px; border-bottom-left-radius: 15px
+}
+
+.rightRound {
+  border-bottom-right-radius: 15px
+}
+
+.allCornerRound {
+  border-radius: 10px;
+
+}
+
+.bottomRadius {
+  border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;
+  -webkit-box-shadow: 0 100px 6px -6px #000;
+     -moz-box-shadow: 0 10px 6px -6px #000;
+          box-shadow: 0 8px 6px -6px #000;
+}
+
