@@ -1,0 +1,12 @@
+<div class="pdf-viwer-container">
+    <div  class="pdf-controller row">
+        <div class="col-sm-12">
+            <div class="d-inline" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="zoomIn()" title="Zoom In"><i class="icofont-ui-zoom-in"></i></button>
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="zoomOut()" title="Zoom Out"><i class="icofont-ui-zoom-out"></i></button>
+                <button type="button" class="btn btn-secondary btn-pdf" (click)="download()" title="Download"><i class="icofont-download"></i></button>
+              </div>
+        </div>
+    </div>
+    <pdf-viewer [src]="src" [original-size]="false" [zoom]="zoom" style="display: block;"></pdf-viewer>
+</div>

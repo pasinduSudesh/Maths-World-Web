@@ -1,77 +1,139 @@
 <app-navbar></app-navbar>
+
 <section class="add-papers">
     <div class="container register-form">
         <div class="form">
             <div class="note">
                 <h3>Add Paper</h3>
             </div>
+            <form #addPaperForm="ngForm">
+                <div class="form-content forma">
 
-            <div class="form-content forma">
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="year">Year</label>
+                                <select class="form-control" id="year" name="year" [(ngModel)]="currentYear"
+                                    (ngModelChange)="onChangeYear($event)">
+                                    <!-- <option *ngFor="let year of years; let i = index"  [value]="year" 
+                                        [selected]="year==currentYear?true:null" >{{year}}</option> -->
+                                    <option *ngFor="let year of years; let i = index" [value]="year">{{year}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="months">Month</label>
+                                <select class="form-control" id="month" name="month" [(ngModel)]="currentMonth"
+                                    (ngModelChange)="onChangeMonth($event)">
+                                    <option *ngFor="let month of months; let i = index" [value]="i+1"
+                                        [attr.selected]="i==currentMonth?true:null">{{month}}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="week">Week</label>
+                                <select class="form-control" id="week" name="week" [(ngModel)]="week"
+                                    (ngModelChange)="onChangeWeek($event)">
+                                    <option *ngFor="let week of weeks; let i = index" [value]="i+1">{{week}}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <p class="err-duplicate" *ngIf="errDuplicate!==''">{{errDuplicate}}</p>
+                        </div>
+                    </div>
 
-                <div class="row">
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group">
-                            <label for="year">Year</label>
-                            <select class="form-control" id="year" name="year">
-                                <option *ngFor="let year of years; let i = index" [value]="year"
-                                    [attr.selected]="year==currentYear?true:null">{{year}}</option>
-                            </select>
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="paperName">Paper Name </label>
+                                <input type="text" class="form-control" placeholder="Add Paper Name" name="paperName"
+                                    required ngModel (ngModelChange)="onChangePaperName($event)" />
+                                <p class="err-duration" *ngIf="errPaperName.length>0">{{errPaperName}} </p>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group">
-                            <label for="months">Month</label>
-                            <select class="form-control" id="month" name="month">
-                                <option *ngFor="let month of months; let i = index" [value]="i+1"
-                                    [attr.selected]="i==currentMonth?true:null">{{month}}</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4 col-sm-12">
-                        <div class="form-group">
-                            <label for="week">Week</label>
-                            <select class="form-control" id="week" name="week">
-                                <option *ngFor="let week of weeks; let i = index" [value]="i+1">{{week}}</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label for="paperName">Paper Name</label>
-                            <input type="text" class="form-control" placeholder="Add Paper Name" />
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-sm-12">
-                        <div class="form-group">
-                            <label for="paperPrize">Paper Price (Rs)</label>
-                            <input type="number" class="form-control" placeholder="Add Paper Price in LKR" value="" />
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row">
-                    <div class="col-md-12 col-sm-12">
-                        <div class="form-group">
-                            <label for="description">Paper Description</label>
-                            <textarea name="description" rows="3" class="form-control" id="description"
-                                placeholder="Add Paper Description"></textarea>
+                    <div class="row">
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="duration">Duration (HH:MM)</label>
+                                <input type="text" class="form-control" placeholder="HH:MM" name="duration" ngModel
+                                    required (ngModelChange)="onChangeDuration($event)" />
+                                <p class="err-duration" *ngIf="errDuration.length>0">{{errDuration}} </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="paperPrize">Paper Price (Rs)</label>
+                                <input type="number" class="form-control" placeholder="Add Paper Price in LKR"
+                                    name="price" required ngModel (ngModelChange)="onChangePaperPrice($event)"
+                                    value="" />
+                                <p class="err-duration" *ngIf="errPaperPrice.length>0">{{errPaperPrice}} </p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-12">
+                            <div class="form-group">
+                                <label for="monthlyPrice">Monthly Price (Rs)</label>
+                                <input type="number" class="form-control" placeholder="Add Monthly Price in LKR"
+                                    name="monthlyPrice" [(ngModel)]="categoryPrice"
+                                    (ngModelChange)="onChangePaperMonthlyPrice($event)" />
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <label for="description">Paper Description</label>
+                                <textarea name="description" rows="3" class="form-control" id="description"
+                                    placeholder="Add Paper Description" name="paperDescription" ngModel></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12 col-sm-12">
+                            <!-- <div class="form-group">
+                                <input type="radio" id="male" name="publishNow" value="publishNow" checked>
+                                <label for="male">Publish now</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="radio" id="male" name="publishLater" value="publishLater">
+                                <label for="male">Publish later</label>
+                            </div> -->
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publish" value="publishNow" id="flexRadioDefault1" ngModel>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    Publish now
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="publish" id="flexRadioDefault2" value="publishLater" ngModel>
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                    Publish later
+                                </label>
+                            </div>
 
 
-                <!-- start here -->
-                <div class="row">
+                        </div>
+                    </div>
+
+
+                    <!-- start here -->
+                    <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <label for="formFileSm" class="form-label">Small file input example</label>
-                            <input class="form-control" id="formFileSm" type="file" />                            
+                            <input class="form-control" id="formFileSm" type="file" (change)="selectFile($event)"/>                            
                         </div>
                     </div>
-                </div>
-                <div class="row">
+                </div> -->
+                    <!-- <div class="row">
                     <div class="col-md-12">
                         <div class="form-group">
                             <div class="file-upload-wrapper">
@@ -89,9 +151,27 @@
                             <input type="text" class="form-control" placeholder="Confirm Password *" value="" />
                         </div>
                     </div>
+                </div> -->
+                    <div class="row mt-3">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="description">Upload Paper</label>
+                                <app-file-uploader (uploadEvent)="uploadStatus=$event" (fileEvent)="files=$event">
+                                </app-file-uploader>
+                            </div>
+                        </div>
+                    </div>
+                  
+                    <button type="submit" [disabled]="false" (click)="upload(addPaperForm)"
+                        class="btnSubmit">Submit</button>
+                    <p class="err-duration" *ngIf="errMsg.length>0">{{errMsg}} </p>
                 </div>
-                <button type="button" class="btnSubmit">Submit</button>
-            </div>
+            </form>
         </div>
     </div>
 </section>
+<app-loading *ngIf="loading.length>0" [loadingMsg]="loading"></app-loading>
+<app-alerts></app-alerts>
+
+
+

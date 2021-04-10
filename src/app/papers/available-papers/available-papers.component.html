@@ -43,7 +43,7 @@
                         </div>
                         <ng-template #paid>
                             <h3 class="paper-month-des">Gell all pepers for month of {{monthName}} for</h3>
-                            <a class="btn btn-fee">Rs 500</a>
+                            <a class="btn btn-fee" (click)="payForCategory(category)">Rs 500</a>
                         </ng-template>
                     </div>
                 </div>
@@ -58,7 +58,7 @@
                             <div class="card-body">
                                 <p class="card-text">{{paper.paperdescription}}</p>
                                 <div *ngIf="paper.isPaidForPaper; else showPayementButton">
-                                    <a class="btn btn-fee">Rs.{{paper.prize}}</a>
+                                    <a class="btn btn-fee" (click)="paperPay(paper)">Rs.{{paper.prize}}</a>
                                 </div>
                                 <ng-template #showPayementButton>
                                     <a class="btn btn-enter" (click)="enterToPaper(paper)">Enter</a>

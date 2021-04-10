@@ -41,7 +41,7 @@
     border-radius: 0;
     /* border-color: black; */
     border:1px solid #3354CC;
-    height: 44px;
+    /* height: 44px; */
 }
 
 .forma input:focus {
@@ -81,3 +81,12 @@
     border:1px solid #0C1BF3;
     box-shadow: none;
 }
+
+.err-duplicate{
+    color: red;
+}
+
+.err-duration{
+    color: red;
+}
+
