@@ -1,0 +1,164 @@
+.container{
+    padding: unset;
+    margin: unset;
+    font-family: 'Poppins';
+}
+
+a{
+    text-decoration: none;   
+}
+
+ul, li{
+    list-style-type: none;
+}
+
+/* navbar section -----------------------------------*/
+.navbar{
+    padding: 0.5em 1em;
+    background: #229eac; 
+    z-index: 800;
+    justify-content: center;
+    
+}
+
+.navbar .container{
+    display: grid;
+    grid-template-columns: 40px 180px auto;
+    justify-content: unset;
+    
+}
+
+.navbar .open-nav{
+    cursor: pointer;
+    width: 20px;
+    height:20px;
+}
+
+.navbar .logo .logo-img{
+    width: 35px;
+    height:35px;
+    margin-right: 0.5em;
+}
+
+.navbar .logo a{
+    color: rgb(0, 0, 0);
+    font-size: 1.5em;
+    font-weight: bold;
+    vertical-align: middle;
+    font-style: italic;
+}
+
+.navbar ul{
+    display: flex;
+    margin: auto 0 auto auto;
+}
+
+.navbar ul li img{
+    width: 35px;
+    height:35px;
+    cursor: pointer;
+}
+
+/* side-menu section ----------------------------------- */
+nav{
+    display: none;
+}
+
+nav.menu-btn{
+    display: block;
+}
+
+.side-menu nav{
+    z-index: 999;
+    position: fixed;
+    width: 60%;
+    height: 100vh;
+    max-width: 300px;
+    background: rgba(0, 0, 0, 0.95);
+    top: 0;
+    left: 0;
+    padding: 1em;
+}
+
+.side-menu nav .header{
+    display: flex;
+    place-content: space-between;
+}
+
+.side-menu nav .header .header-logo{
+    display: flex;
+    justify-content: center;
+}
+
+.side-menu nav .header .header-logo img{
+    width: 35px;
+    height: 35px;
+}
+
+.side-menu nav .header .header-logo p{
+    font-size: large;
+    font-weight: bold;
+    margin: auto 2px;
+    color: #229eac;
+}
+
+.side-menu nav .header .close-nav{
+    display: flex;
+    margin-left: auto;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    padding: 5px;
+    background: rgba(255, 255, 255, 0.25);
+    border-radius: 50px; 
+}
+
+.side-menu nav ul{
+    margin-top: 3em;
+    padding-left: unset;
+}
+
+.side-menu nav ul li a{
+    display: flex;
+    margin-bottom: 3px;
+    background: rgba(255, 255, 255, 0.075);
+    padding: 5px 0 5px 5px;
+    color: #3FAC00;
+    font-size: 1.1em;
+}
+
+.side-menu nav ul li a:hover{
+    margin: 5px;
+    background: rgba(255, 255, 255, 0.384);
+    padding: 5px 0 5px 5px;
+    color: white;
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+
+@media screen and (min-width: 1500px){
+    .side-menu nav{
+        display: block;
+        z-index: unset;
+        position: absolute;
+        height: 100%;
+        background: rgb(236, 236, 236);
+    }
+
+    .side-menu nav .header{
+        display: none;
+    }
+
+    .side-menu nav ul{
+        margin-top: 5em;
+        padding-left: unset;
+    }
+
+    .side-menu nav ul li a{
+        background: #fcfcfc
+    }
+
+
+}
+

@@ -22,10 +22,12 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
 
-import { UtilService } from './services/util.service';
+// import { UtilService } from './services/util.service';
 import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
-import { AddPaperComponent } from './papers/add-paper/add-paper.component'
+import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+import { DashboardComponent } from './admin/dashboard/dashboard.component';
+import { NavigationComponent } from './admin/navigation/navigation.component'
 
 
 
@@ -42,7 +44,9 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component'
     AlertComponent,
     UserAccountComponent,
     KeyCodeComponent,
-    PaymentComponent
+    PaymentComponent,
+    DashboardComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,

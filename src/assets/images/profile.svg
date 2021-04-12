@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="87" height="83" viewBox="0 0 87 83">
+  <defs>
+    <filter id="profile" x="0" y="0" width="87" height="83" filterUnits="userSpaceOnUse">
+      <feOffset dy="5" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="7.5" result="blur"/>
+      <feFlood flood-color="red"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g transform="matrix(1, 0, 0, 1, 0, 0)" filter="url(#profile)">
+    <g id="profile-2" data-name="profile" transform="translate(22.5 17.5)" fill="#fff" stroke="#707070" stroke-width="1">
+      <ellipse cx="21" cy="19" rx="21" ry="19" stroke="none"/>
+      <ellipse cx="21" cy="19" rx="20.5" ry="18.5" fill="none"/>
+    </g>
+  </g>
+</svg>

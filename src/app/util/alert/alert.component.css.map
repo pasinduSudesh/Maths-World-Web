@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAC;;EAEC",
+    "sources": [
+        "alert.component.scss"
+    ],
+    "names": [],
+    "file": "alert.component.css"
+}

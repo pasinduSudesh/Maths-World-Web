@@ -1,0 +1,93 @@
+/* 
+ *  Copyright 2019-2020 Axis Limited Liability Company
+ */
+/**
+ * Retrieves a color value from the $material-colors Sass map
+ *
+ * @function
+ * @param {string} color-name             - quoted, lower-case, dasherized color
+ *                                          name (e.g. 'pink', 'amber')
+ * @param {string} [color-variant='500']  - quoted, lowercase color variant (e.g.
+ *                                          '200', 'a100')
+ */
+.create-account-form .card-wrapper {
+  width: 700px;
+  margin: 0 auto;
+  margin-top: 7.5em;
+}
+
+.create-account-form .card {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 0 40px rgba(0, 0, 0, 0.05);
+}
+
+.create-account-form .card.fat {
+  padding: 10px;
+}
+
+.create-account-form .card-title {
+  margin-bottom: 20px;
+}
+
+.create-account-form .txtBox {
+  margin-top: 1em;
+}
+
+.full-height {
+  height: 100%;
+  background-color: #fafafa;
+}
+
+.jumbotron-light {
+  background-color: #178109;
+}
+
+.background-light {
+  background-color: #FFFFFF;
+}
+
+.card-header-font {
+  font-size: 1.8rem !important;
+  line-height: 1.2;
+}
+
+.role-icon {
+  height: 50%;
+  width: 50%;
+}
+
+.role-card {
+  cursor: pointer;
+  border-radius: 1rem !important;
+  background-color: #f5f5f5;
+}
+
+.role-card .role-card-body {
+  width: 100%;
+  border-bottom-left-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+  color: white;
+  background-color: #178109;
+}
+
+.role-card-selected {
+  cursor: pointer;
+  border-radius: 1rem !important;
+  color: #212121 !important;
+  background-color: #178109 !important;
+}
+
+.role-card-body-selected {
+  width: 100%;
+  border-bottom-left-radius: 1rem !important;
+  border-bottom-right-radius: 1rem !important;
+  color: #178109;
+  background-color: #212121;
+}
+
+.error {
+  border-radius: 5px;
+  border: #FF0000 1px solid;
+}
+/*# sourceMappingURL=user-account.component.css.map */
