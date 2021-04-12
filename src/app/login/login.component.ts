@@ -100,8 +100,7 @@ export class LoginComponent implements OnInit {
           this.user = response.payload
 
           console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
-          // if (response.payload.user.status == '200') {
-          if (returnedStatus.code == '200') {//changed
+          if (response.payload.user.status == '200') {
             localStorage.setItem(LocalStorage.USER_ID, response.payload.user.userId);
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
             localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.name);
