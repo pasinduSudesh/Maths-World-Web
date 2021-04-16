@@ -36,7 +36,7 @@ import { AddPaperComponent } from './papers/add-paper/add-paper.component';
 import { Svg1Component } from './svg1/svg1.component';
 import { Svg1MobileComponent } from './svg1-mobile/svg1-mobile.component';
 import { FooterComponent } from './footer/footer.component'
-
+import { UserComponent } from './admin/user/user.component';
 // import { UtilService } from './services/util.service';
 import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
@@ -63,6 +63,12 @@ import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-ad
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
 import { ShowResultComponent } from './papers/show-result/show-result.component';
 import { AdminRootComponent } from './admin-root/admin-root.component';
+import { UserDetailsComponent } from './admin/user-details/user-details.component';
+import { UserDetailsGridComponent } from './admin/user-details-grid/user-details-grid.component';
+import { AgGridModule } from 'ag-grid-angular';
+import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
+import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
+
 
 
 
@@ -97,7 +103,11 @@ import { AdminRootComponent } from './admin-root/admin-root.component';
      ViewPaperAdminComponent,
      EditPaperAdminComponent,
      ShowResultComponent,
-     AdminRootComponent
+     AdminRootComponent,
+     UserComponent,
+     UserDetailsComponent,
+     UserDetailsGridComponent,
+     DeleteEditorButtonComponent
 
   ],
   imports: [
@@ -106,7 +116,8 @@ import { AdminRootComponent } from './admin-root/admin-root.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    PdfViewerModule
+    PdfViewerModule,
+    AgGridModule.withComponents([])
     ],
   exports: [
     TimerComponent
