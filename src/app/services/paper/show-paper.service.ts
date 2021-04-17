@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs'
+import { throwError } from 'rxjs';
+import { LocalStorage } from '../../util/localStorage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,45 +41,77 @@ export class ShowPaperService {
     return minutes;
   }
 
-  getPapers(subjectId){
+  getPapers(subjectId, adminId){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(adminId));
+    // headers = headers.append("app")
+    let options = {
+      headers: headers
+    }
+
     const url = this.serverURL + `/v1/papers/getAllPapers/${subjectId}`;
     return this.http
-    .get<{ status: any; payload: any }>(url).pipe(
+    .get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )
   }
 
-  getPdfLink(fileName, expireTime){
+  getPdfLink(fileName, expireTime, userId){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(userId));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/s3/getFileLink?fileName=${fileName}&expireTime=${expireTime}`;
-    return this.http.get<{ status: any; payload: any }>(url).pipe(
+    return this.http.get<{ status: any; payload: any }>(url, options).pipe(
       catchError(this.handleError)
     )
   }
 
   deletePaper(paperId,pdfLink){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/papers/deletePaper?paperId=${paperId}&fileName=${pdfLink}`;
-    return this.http.delete<{ status: any; payload: any }>(url).pipe(
+    return this.http.delete<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )
   }
 
   getPaperState(paperid, userid){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(userid));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/papers/getExamInstance/${paperid}/${userid}`;
-    return this.http.get<{ status: any; payload: any }>(url).pipe(
+    return this.http.get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )
   }
 
   getPaperById(paperid, userid){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(userid));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/papers/getPaperById/${paperid}/${userid}`;
-    return this.http.get<{ status: any; payload: any }>(url).pipe(
+    return this.http.get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )
   }
 
   addExamInstance(instance){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/papers/addExamInstance`;
-    return this.http.post<{ status: any; payload: any }>(url,instance).pipe(
+    return this.http.post<{ status: any; payload: any }>(url,instance, options).pipe(
       catchError(this.handleError)
     )
   }

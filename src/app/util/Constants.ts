@@ -39,7 +39,9 @@ export class Constants {
       Student: "Student",
       Instructor: "Instructor"
     };
-    public static USERAPP = "SUNFIFBvcnRhbF8zNDM0MzQ=";
+    // public static USERAPP = "U1VORklGQnZjblJoYkY4ek5ETTBNelE9";
+    // public static USERAPP = "SUNFIFBvcnRhbF8zNDM0MzQ=";
+    public static USERAPP = "UG9ydGFs";
     public static APPLANGUAGE = "en-US";
   }
   

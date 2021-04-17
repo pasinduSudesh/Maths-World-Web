@@ -80,7 +80,7 @@ export class ShowPaperComponent implements OnInit {
           this.paperStatus = "start";
 
           let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
-          this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60);
+          this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60, this.userid);
 
           var nowTimeStamp = new Date().getTime();
 
@@ -131,7 +131,7 @@ export class ShowPaperComponent implements OnInit {
             this.paperStatus = "start";
 
             let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
-            this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60);
+            this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60, this.userid);
 
             var nowTimeStamp = new Date().getTime();
 
@@ -171,7 +171,7 @@ export class ShowPaperComponent implements OnInit {
   async startPaper() {
     this.loading = " ";
     let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
-    this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000);
+    this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000, localStorage.getItem(LocalStorage.USER_ID));
     let now = new Date();
     let endingTime = new Date();
 
@@ -230,8 +230,8 @@ export class ShowPaperComponent implements OnInit {
     return result.payload;
   }
 
-  async getPaperPdfLink(pdfLink: string, duration: number) {
-    var result = await this.showPaperService.getPdfLink(pdfLink, duration).toPromise();
+  async getPaperPdfLink(pdfLink: string, duration: number, userId:string) {
+    var result = await this.showPaperService.getPdfLink(pdfLink, duration, userId).toPromise();
     return result.payload;
   }
 }

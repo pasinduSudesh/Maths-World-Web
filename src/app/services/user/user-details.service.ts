@@ -3,7 +3,8 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs'
+import { throwError } from 'rxjs';
+import { LocalStorage } from '../../util/localStorage.service';
 
 
 @Injectable({
@@ -16,9 +17,14 @@ export class UserDetailsService {
   constructor(private http: HttpClient) { }
 
   getSubscribedSubjects(userid){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
     const url = this.serverURL + `/v1/users/getSubscribedSubjects/${userid}`;
     return this.http
-    .get<{ status: any; payload: any }>(url).pipe(
+    .get<{ status: any; payload: any }>(url, options).pipe(
       catchError(this.handleError)
     )
   }
