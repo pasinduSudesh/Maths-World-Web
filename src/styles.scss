@@ -7,6 +7,8 @@
  @import "node_modules/bootstrap/scss/variables";
  @import "node_modules/bootstrap/scss/mixins/_breakpoints";
  @import "./app/styles/colors_function";
+ @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+ @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
  $primary-color-acent: #047c0a;
  $error-color:#FF6D4A;
  $success-green:#28a745;
