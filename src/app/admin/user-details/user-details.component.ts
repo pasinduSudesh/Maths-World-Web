@@ -8,7 +8,7 @@ import { environment } from "../../../environments/environment";
 @Component({
   selector: 'app-user-details',
   templateUrl: './user-details.component.html',
-  styleUrls: ['./user-details.component.css']
+  styleUrls: ['./user-details.component.scss']
 })
 export class UserDetailsComponent implements OnInit {
   public showPassword_au: boolean = false
@@ -75,7 +75,16 @@ export class UserDetailsComponent implements OnInit {
           this.alertService.clear();
           this.alertService.error("Input Error");
         }
-
+        if (returnedStatus == 502) {
+          this.isSubmitted = false;
+          this.alertService.clear();
+          this.alertService.error("Unauthorize User");
+        }
+        if (returnedStatus == 503) {
+          this.isSubmitted = false;
+          this.alertService.clear();
+          this.alertService.error("Error in adding details, please contact admin");
+        }
       
         });
     }
