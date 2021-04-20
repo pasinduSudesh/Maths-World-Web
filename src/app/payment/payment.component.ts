@@ -34,9 +34,9 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentDetailsService
     ) { 
     payhere.onCompleted = function onCompleted(orderId) {
-      console.log(this.paymentService.paper);
-      this.isSubmitted = true;
       console.log("Payment completed. OrderID:" + orderId);
+      console.log("dsds"+this.paymentService.paper);
+      this.isSubmitted = true;
     };
 
     payhere.onDismissed = function onDismissed() {
