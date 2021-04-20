@@ -95,7 +95,7 @@ export class EditPaperAdminComponent implements OnInit {
         this.ispublished = true;
       }
       this.paperId = this.paper.paperid;
-      var pdfLinkResult = await this.showPaperService.getPdfLink(this.paper.pdflink, 60).toPromise()
+      var pdfLinkResult = await this.showPaperService.getPdfLink(this.paper.pdflink, 60, adminId).toPromise()
       this.paperlink = pdfLinkResult.payload;
       this.date = new Date();
       this.months = this.dateService.getMonths();

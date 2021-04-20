@@ -42,7 +42,7 @@ export class ViewPaperAdminComponent implements OnInit {
     }else{
       this.paper = this.route.snapshot.paramMap['params'];
       console.log(this.paper);
-      var pdfLinkResult = await this.showPaperService.getPdfLink(this.paper.pdflink, 60).toPromise()
+      var pdfLinkResult = await this.showPaperService.getPdfLink(this.paper.pdflink, 60, adminId).toPromise()
       this.link = pdfLinkResult.payload;
     }
   }

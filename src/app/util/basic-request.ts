@@ -25,7 +25,6 @@ export class BasicRequest implements HttpInterceptor {
             this.token = localStorage.getItem(LocalStorage.TOKEN);
         }
         
-
         request = request.clone({
             setHeaders: {
                 Authorization: this.token,
