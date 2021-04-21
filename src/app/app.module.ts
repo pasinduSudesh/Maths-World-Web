@@ -68,6 +68,7 @@ import { UserDetailsGridComponent } from './admin/user-details-grid/user-details
 import { AgGridModule } from 'ag-grid-angular';
 import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 
 
 
@@ -107,7 +108,8 @@ import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-ed
      UserComponent,
      UserDetailsComponent,
      UserDetailsGridComponent,
-     DeleteEditorButtonComponent
+     DeleteEditorButtonComponent,
+     AdminLoginComponent
 
   ],
   imports: [

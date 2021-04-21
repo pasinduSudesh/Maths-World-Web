@@ -23,6 +23,7 @@ import { ShowResultComponent } from "../app/papers/show-result/show-result.compo
 //admin components
 import { UserComponent } from "../app/admin/user/user.component"; 
 import { UserDetailsComponent } from "../app/admin/user-details/user-details.component";
+import { AdminLoginComponent } from "../app/admin/admin-login/admin-login.component";
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path: "admin-edit-paper", component: EditPaperAdminComponent},
   {path: "show-result", component: ShowResultComponent},
   {path: "addEditor", component: UserComponent},
-  {path: "addEditorDetails", component: UserDetailsComponent}
+  {path: "addEditorDetails", component: UserDetailsComponent},
+  {path: "adminLogin", component: AdminLoginComponent}
 
 ];
 
