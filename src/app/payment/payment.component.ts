@@ -81,7 +81,7 @@ export class PaymentComponent implements OnInit {
         return false;
       } else {
         amount = JSON.parse(JSON.stringify(this.registrationForm.value.subscription));
-        if (amount.toString() === this.paper.prize) {
+        if (amount.toString() === this.paper.prize.toString()) {
           this.orderId = this.paperId;
         } else {
           this.orderId = this.categoryId;
