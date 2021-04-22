@@ -19,6 +19,7 @@ import { LandingComponent } from "../app/landing/landing.component";
 import { ViewPaperAdminComponent } from "../app/papers/view-paper-admin/view-paper-admin.component";
 import { EditPaperAdminComponent } from "../app/papers/edit-paper-admin/edit-paper-admin.component";
 import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
+import { PayedPapersComponent } from "./papers/paid-papers/payed-papers.component";
 
 //admin components
 import { UserComponent } from "../app/admin/user/user.component"; 
@@ -43,7 +44,8 @@ const routes: Routes = [
   {path: "admin-edit-paper", component: EditPaperAdminComponent},
   {path: "show-result", component: ShowResultComponent},
   {path: "addEditor", component: UserComponent},
-  {path: "addEditorDetails", component: UserDetailsComponent}
+  {path: "addEditorDetails", component: UserDetailsComponent},
+  {path: "paid-papers", component: PayedPapersComponent}
 
 ];
 

@@ -12,6 +12,7 @@ import { LocalStorage } from '../../util/localStorage.service';
 export class ShowPaperService {
 
   serverURL = environment.SERVER_URL;
+  paperId:string=null;
   
 
   constructor(private http: HttpClient) { }
@@ -112,6 +113,30 @@ export class ShowPaperService {
     }
     const url = this.serverURL + `/v1/papers/addExamInstance`;
     return this.http.post<{ status: any; payload: any }>(url,instance, options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPaidPapers(userId, subjectId){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(userId));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/users/getPaidPapers/${userId}/${subjectId}`;
+    return this.http.get<{ status: any; payload: any }>(url,options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  getPaperResult(userId, paperId){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(userId));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/users/getPaperResult/${userId}/${paperId}`;
+    return this.http.get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )
   }

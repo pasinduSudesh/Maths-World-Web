@@ -91,6 +91,7 @@ export class ShowPaperComponent implements OnInit {
         }else{
           // paper is submited
           this.loading = "";
+          this.showPaperService.paperId = this.paperid;
           this.router.navigate(['show-result']);
         }
         //paper opened previouslly
@@ -141,6 +142,7 @@ export class ShowPaperComponent implements OnInit {
             this.loading = "";
           }else{
             this.loading = "";
+            this.showPaperService.paperId = this.paperid;
             this.router.navigate(['show-result']);
           }
           //paper opened previouslly
