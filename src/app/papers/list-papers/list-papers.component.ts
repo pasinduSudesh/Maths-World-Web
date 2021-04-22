@@ -37,7 +37,7 @@ export class ListPapersComponent implements OnInit {
       this.loading = "Getting Paper Details";
       var subjectDetails = await this.uploadService.getSubject(adminId).toPromise();
       this.subjectId = subjectDetails.payload.subjectid;
-      var result = await this.showPaperService.getPapers(this.subjectId).toPromise();
+      var result = await this.showPaperService.getPapers(this.subjectId, adminId).toPromise();
       this.papers = result.payload;
       this.loading = "";
       // console.log(this.papers);

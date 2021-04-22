@@ -35,6 +35,8 @@ export class PaymentComponent implements OnInit {
     ) { 
     payhere.onCompleted = function onCompleted(orderId) {
       console.log("Payment completed. OrderID:" + orderId);
+      console.log("dsds"+this.paymentService.paper);
+      this.isSubmitted = true;
     };
 
     payhere.onDismissed = function onDismissed() {
@@ -79,7 +81,7 @@ export class PaymentComponent implements OnInit {
         return false;
       } else {
         amount = JSON.parse(JSON.stringify(this.registrationForm.value.subscription));
-        if (amount.toString() === this.paper.prize) {
+        if (amount.toString() === this.paper.prize.toString()) {
           this.orderId = this.paperId;
         } else {
           this.orderId = this.categoryId;
@@ -103,7 +105,7 @@ export class PaymentComponent implements OnInit {
           var payment = {
             "sandbox": true,
             "merchant_id": merchantId,    // Replace your Merchant ID
-            "return_url": "https:google.com",     // Important
+            "return_url": "https://google.com",     // Important
             "cancel_url": "https://ecbd2efff36d.ngrok.io/login",     // Important
             "notify_url": notifyUrl,
             "order_id": this.orderId,
@@ -123,13 +125,7 @@ export class PaymentComponent implements OnInit {
         })
 
       }
-
-      
-     
-      
-      
-  
-      
+    
   
     }
   

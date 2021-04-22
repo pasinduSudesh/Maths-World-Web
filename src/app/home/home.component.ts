@@ -12,17 +12,29 @@ export class HomeComponent implements OnInit {
   firstPlace: string;
   secondPlace: string;
   thirdPlace: string;
+  firstCollege: string;
+  secondCollege: string;
+  thirdCollege: string;
+  firstDistrict: string;
+  secondDistrict: string;
+  thirdDistrict: string;
   constructor( private navbar: NavbarComponent) { }
 
   ngOnInit() {
 
     this.firstPlace = "Nimal Perera"
+    this.firstCollege = "H/Thopawewa college"
+    this.firstDistrict = "Hambantota"
     this.secondPlace = "kamal Perera"
+    this.secondCollege = "Anuradhapura central"
+    this.secondDistrict = "Anuradhapura"
     this.thirdPlace = "Sunil Perera"
+    this.thirdCollege = "Kurunegala maliyadewa college"
+    this.thirdDistrict = "Kurunegala"
     this.winnerList = [
-      { id: 11, name: 'Dr Niceeeeeeeeeeee eeeeeeeeeeeee' },
-      { id: 12, name: 'Narco cccccccccccc ccccccccccccc' },
-      { id: 13, name: 'Bombasto' }
+      { id: 11, name: 'Dr Niceeeeeeeeeeee eeeeeeeeeeeee' , college: 'Richmond College', District: 'Galle'},
+      { id: 12, name: 'Narco cccccccccccc ccccccccccccc', college: 'Mahinda College' , District: 'Galle'},
+      { id: 13, name: 'Bombasto', college: 'Sangamitta Balika Vidyalaya', District: 'Gampaha' }
     ]
   }
 

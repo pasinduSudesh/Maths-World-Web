@@ -21,6 +21,11 @@ import { EditPaperAdminComponent } from "../app/papers/edit-paper-admin/edit-pap
 import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
 import { AdminRootComponent } from './admin-root/admin-root.component';
 
+//admin components
+import { UserComponent } from "../app/admin/user/user.component"; 
+import { UserDetailsComponent } from "../app/admin/user-details/user-details.component";
+import { AdminLoginComponent } from "../app/admin/admin-login/admin-login.component";
+
 const routes: Routes = [
   {path: "", component: HomeComponent},
   {path: "signup", component: SignupComponent},
@@ -39,7 +44,10 @@ const routes: Routes = [
   {path: "admin-view-paper", component: ViewPaperAdminComponent},
   {path: "admin-edit-paper", component: EditPaperAdminComponent},
   {path: "show-result", component: ShowResultComponent},
-  {path: "admin", component: AdminRootComponent}
+  {path: "admin", component: AdminRootComponent},
+  {path: "addEditor", component: UserComponent},
+  {path: "addEditorDetails", component: UserDetailsComponent},
+  {path: "adminLogin", component: AdminLoginComponent}
 
 ];
 
