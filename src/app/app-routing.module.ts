@@ -19,12 +19,13 @@ import { LandingComponent } from "../app/landing/landing.component";
 import { ViewPaperAdminComponent } from "../app/papers/view-paper-admin/view-paper-admin.component";
 import { EditPaperAdminComponent } from "../app/papers/edit-paper-admin/edit-paper-admin.component";
 import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
-import { AdminRootComponent } from './admin-root/admin-root.component';
+import { AdminRootComponent } from './admin/admin-root/admin-root.component';
 
 //admin components
 import { UserComponent } from "../app/admin/user/user.component"; 
 import { UserDetailsComponent } from "../app/admin/user-details/user-details.component";
 import { AdminLoginComponent } from "../app/admin/admin-login/admin-login.component";
+import { adminRoutes } from './admin/admin-routing';
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
@@ -41,13 +42,8 @@ const routes: Routes = [
   {path: "payment", component: PaymentComponent},
   {path: "paper-list", component: ListPapersComponent},
   {path: "landing", component: LandingComponent},
-  {path: "admin-view-paper", component: ViewPaperAdminComponent},
-  {path: "admin-edit-paper", component: EditPaperAdminComponent},
-  {path: "show-result", component: ShowResultComponent},
-  {path: "admin", component: AdminRootComponent},
-  {path: "addEditor", component: UserComponent},
-  {path: "addEditorDetails", component: UserDetailsComponent},
-  {path: "adminLogin", component: AdminLoginComponent}
+
+  {path: "admin", children: adminRoutes},
 
 ];
 

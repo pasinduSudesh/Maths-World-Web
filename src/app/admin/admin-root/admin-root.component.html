@@ -1,0 +1,41 @@
+<!-- Container for sidebar(s) + page content -->
+<ng-sidebar-container>
+
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="_opened" [sidebarClass]="'app-sidebar'" [mode]="_mode"
+        [autoCollapseWidth]="_autoCollapseWidth">
+
+        <div style="height: 70px;"></div>
+        <h3>Profile</h3>
+        <hr>
+        <a href="admin/admin-view-paper">View Paper</a>
+        <hr>
+        <a href="admin/admin-edit-paper">Edit Paper</a>
+        <hr>
+        <a href="admin/show-result">Results</a>
+        <hr>
+        <a href="admin/addEditor">Add Editor</a>
+        <hr>
+        <a href="admin/addEditorDetails">Add Editor Details</a>
+        <hr>
+        <a href="admin/adminLogin">Login</a>
+
+
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content style="margin-top: 70px;">
+        <nav class="navbar navbar-dark fixed-top">
+
+            <span class="">
+                <span class="navbar-toggler" (click)="_toggleSidebar()">
+                    <i class="icofont-navigation-menu"></i>
+                </span>
+                <a class="navbar-brand" href="/">MathsWorld</a>
+            </span>
+
+        </nav>
+        <router-outlet name="adminRouter"></router-outlet>
+    </div>
+
+</ng-sidebar-container>

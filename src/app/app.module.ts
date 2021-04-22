@@ -62,7 +62,7 @@ import { LandingComponent } from './landing/landing.component';
 import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-admin.component';
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
 import { ShowResultComponent } from './papers/show-result/show-result.component';
-import { AdminRootComponent } from './admin-root/admin-root.component';
+import { AdminRootComponent } from './admin/admin-root/admin-root.component';
 import { SidebarModule } from 'ng-sidebar';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { UserDetailsGridComponent } from './admin/user-details-grid/user-details-grid.component';
