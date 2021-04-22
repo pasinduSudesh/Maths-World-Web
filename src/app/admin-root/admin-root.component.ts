@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminRootComponent implements OnInit {
 
-  constructor() { }
+  ngOnInit() {
 
-  ngOnInit(): void {
   }
-
+  
+  public _opened: boolean = false;
+ 
+  public _toggleSidebar() {
+    this._opened = !this._opened;
+  }
 }
