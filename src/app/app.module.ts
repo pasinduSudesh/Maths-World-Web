@@ -27,7 +27,8 @@ import { PaymentComponent } from './payment/payment.component'
 import { DateService } from './services/util/date.service';
 import { AddPaperComponent } from './papers/add-paper/add-paper.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { NavigationComponent } from './admin/navigation/navigation.component'
+import { NavigationComponent } from './admin/navigation/navigation.component';
+import { SummaryComponent } from './admin/summary/summary.component'
 
 
 
@@ -46,7 +47,8 @@ import { NavigationComponent } from './admin/navigation/navigation.component'
     KeyCodeComponent,
     PaymentComponent,
     DashboardComponent,
-    NavigationComponent
+    NavigationComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

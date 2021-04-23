@@ -1,0 +1,151 @@
+.container{
+    padding: unset;
+    margin: unset;
+    font-family: 'Poppins';
+}
+
+.summary{
+    width: 100%;
+    height: 100%;
+}
+
+/* hero section -----------------------------------*/
+.hero{
+    justify-content: center;
+    width: 80%;
+    margin-inline: auto;
+    max-width: 500px;
+}
+
+.hero .container{
+    display: block;
+    margin: 1em auto;
+    background-color: rgb(245, 245, 245);
+    border-style: inherit;
+    border: 0.5px dotted #d6d6d6;
+    padding: 0.5em;
+    border-radius: 10px;
+}
+
+.hero .container .hero-topic{
+    padding-left: 0.5em;
+    font-size: large;
+    color: rgb(173, 173, 173);
+}
+
+.hero .container .note{
+    margin-inline: auto;
+    display: block;
+    width: 80%;
+    max-width: 300px;
+}
+
+.hero .container .note .note-data{
+    display: grid;
+    grid-template-columns: 200px 50px;
+    margin: unset;
+    width: max-content;
+    padding-left: 1em;
+    
+}
+
+.hero .container .note .note-name{
+    float: left;
+    margin: unset;
+}
+
+.hero .container .note .note-value{
+    float: right;
+    margin: unset;
+}
+
+/* options section -----------------------------------*/
+.options{
+    margin-top: 30px;
+    width: 100%;
+}
+
+.options .container{
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+}
+
+.options input[type=text] {
+    padding: 6px;
+    font-size: 15px;
+    width: 100%;
+    border: 1px solid #ccc;
+    border-top-left-radius: 50px;
+    border-bottom-left-radius: 50px;
+}
+
+.options .search-container form{
+    display: flex;
+    margin: 1em 0;
+    width: 300px;
+}
+
+.options .search-container button {
+    padding: 5px 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    border-top-right-radius: 50px;
+    border-bottom-right-radius: 50px;
+}
+
+.options .search-container button img{
+    width: 20px;
+    height: 20px;
+}
+
+.options .search-container button:hover {
+    background: rgb(165, 165, 165);
+}
+
+.options .select-panes{
+    display: flex;
+    margin: 1em 0;
+    margin-left: auto;
+}
+
+.options .select-panes .input-group{
+    margin-inline: 5px;
+    max-width: 300px;
+
+}
+
+.options .select-panes .input-group-text{
+    padding: 0 12px;
+}
+
+.options .select-panes .input-group-text, .custom-select option{
+    font-size: 15px;
+}
+
+@media screen and (max-width: 600px) {
+    .options .container{
+        display: block;
+    }
+
+    .options .search-container form{
+      justify-content: center;
+      width: unset;
+    }
+
+    .options input[type=text]{
+      float: none;
+      display: flex;
+      text-align: left;
+      width: 85%;
+      margin: 0;
+    }
+}
+
+@media screen and (max-width: 768px) and (min-width: 600px){
+    .options .search-container form{
+        width: 200px;
+    }
+}
