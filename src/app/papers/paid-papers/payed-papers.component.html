@@ -1,0 +1,28 @@
+<section>
+    <div class="subjects">
+        <button *ngFor="let subject of subjectList; let i = index" class="btn"
+            [class]="selectedSubjectId===subject.subjectid?'selected':'not-selected'"
+            (click)="changeSubject(subject)">{{subject.subjectname}}</button>
+        <!-- <button class="btn not-selected">Success</button> -->
+    </div>
+
+    <div *ngIf="papers.length>0" class="d-flex row justify-content-center">
+        <div *ngFor="let paper of papers; let i = index" class="col-lg-3 col-md-6 mt-3 mb-3">
+            <div class="card">
+                <img class="card-img-top" src="../../assets/images/papers/{{paper.week}}.png" alt="Card image cap">
+                <div class="card-body">
+                    <h6 class="time">{{paper.year}}/{{getMonth(paper.month)}} - Week {{paper.week}}</h6>
+                    <h6>{{paper.papername}}</h6>
+                    <p class="card-text">{{paper.paperdescription}}</p>
+                    <a class="btn-enter mt-2" (click)="enterToPaper(paper)">Enter</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="no-papers" *ngIf="loading.length===0&&papers.length===0">
+        No any paid papers papers
+    </div>
+
+
+</section>
+<app-loading *ngIf="loading.length>0" [loadingMsg]="loading"></app-loading>

@@ -85,7 +85,11 @@ export class LandingComponent implements OnInit {
   }
 
   toggle(i){
-    this.showingIndex = i;
+    if(i === this.showingIndex){
+      this.showingIndex = -1;
+    }else{
+      this.showingIndex = i;
+    }
   }
 
   getMonthName(monthName){

@@ -70,8 +70,8 @@ export class ShowPaperComponent implements OnInit {
         this.loading = "";
       } else {
         console.log("has logg", this.paper);
-        if(paperState[0].submitstate === "not-submited"){
-          
+        if (paperState[0].submitstate === "not-submited") {
+
           let endTimeString = paperState[0].endingtime;
           let endTimeObj = new Date(endTimeString);
           let endTimeStamp = endTimeObj.getTime();
@@ -80,17 +80,19 @@ export class ShowPaperComponent implements OnInit {
           this.paperStatus = "start";
 
           let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
-          this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60, this.userid);
+          this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60 * 60, this.userid);
+          console.log(this.link)
 
           var nowTimeStamp = new Date().getTime();
 
-          if(nowTimeStamp>endTimeStamp){
+          if (nowTimeStamp > endTimeStamp) {
             this.paperStatus = "overdue"
           }
           this.loading = "";
-        }else{
+        } else {
           // paper is submited
           this.loading = "";
+          this.showPaperService.paperId = this.paperid;
           this.router.navigate(['show-result']);
         }
         //paper opened previouslly
@@ -117,8 +119,8 @@ export class ShowPaperComponent implements OnInit {
           this.loading = "";
         } else {
           console.log("has logg", this.paper);
-          if(paperState[0].submitstate === "not-submited"){
-          
+          if (paperState[0].submitstate === "not-submited") {
+
             let endTimeString = paperState[0].endingtime;
             let endTimeObj = new Date(endTimeString);
             console.log(endTimeObj);
@@ -131,16 +133,17 @@ export class ShowPaperComponent implements OnInit {
             this.paperStatus = "start";
 
             let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
-            this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60*60, this.userid);
+            this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60 * 60, this.userid);
 
             var nowTimeStamp = new Date().getTime();
 
-            if(nowTimeStamp>endTimeStamp){
+            if (nowTimeStamp > endTimeStamp) {
               this.paperStatus = "overdue"
             }
             this.loading = "";
-          }else{
+          } else {
             this.loading = "";
+            this.showPaperService.paperId = this.paperid;
             this.router.navigate(['show-result']);
           }
           //paper opened previouslly
@@ -153,7 +156,7 @@ export class ShowPaperComponent implements OnInit {
 
 
 
-
+    console.log(this.link, "link");
 
 
 
@@ -172,6 +175,7 @@ export class ShowPaperComponent implements OnInit {
     this.loading = " ";
     let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
     this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000, localStorage.getItem(LocalStorage.USER_ID));
+    console.log(this.link);
     let now = new Date();
     let endingTime = new Date();
 
@@ -181,12 +185,12 @@ export class ShowPaperComponent implements OnInit {
     let startTime = now.getTime();
     let endTime = startTime + durationTimeStamp;
 
-     localStorage.setItem(LocalStorage.PAPER_END_TIME, endTime.toString());
-     await this.showPaperService.addExamInstance({
+    localStorage.setItem(LocalStorage.PAPER_END_TIME, endTime.toString());
+    await this.showPaperService.addExamInstance({
       userid: localStorage.getItem(LocalStorage.USER_ID),
       paperid: this.paper.paperid,
       startedTime: now,
-      endingTime:endingTime,
+      endingTime: endingTime,
       submissionState: "not-submited"
     }).toPromise();
 
@@ -197,24 +201,36 @@ export class ShowPaperComponent implements OnInit {
   }
 
   async onSubmit() {
-    if(this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf"){
+    if (this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf") {
       console.log(this.files);
       const file = this.files[0];
+      console.log(file, "file");
       var awsReq = await this.uploadService.getSignedRequest(`answers/${this.paper.paperid}/${this.userid}/${file.name}`, file.type).toPromise();
       console.log(awsReq);
-      var b = await this.uploadService.uploadFile(file,awsReq.payload.signedRequest).toPromise();
+      var b = await this.uploadService.uploadFile(file, awsReq.payload.signedRequest).toPromise();
+      console.log("uploaded", b);
       await this.uploadService.updateExamInstanceDetails({
-        userid:this.userid,
-        paperid:this.paper.paperid,
+        userid: this.userid,
+        paperid: this.paper.paperid,
         uploadedTime: new Date(),
-        state:"submited"
+        state: "submited"
       }).toPromise();
-      this.isPaperStarted =true;
+      this.isPaperStarted = true;
       this.paperStatus = "submit";
       localStorage.removeItem(LocalStorage.CURRENT_PAPER_ID);
       localStorage.removeItem(LocalStorage.PAPER_END_TIME);
       localStorage.removeItem(LocalStorage.PAPER_STATUS);
-    }else{
+
+      const studentAnswers = {
+        paperid: this.paper.paperid,
+        userid: this.userid,
+        pdfLink: `answers/${this.paper.paperid}/${this.userid}/${file.name}`
+      }
+
+      const upload = await this.uploadService.addStudentAnswer(studentAnswers).toPromise();
+      this.showPaperService.paperId = this.paperid;
+      this.router.navigate(['show-result']);
+    } else {
 
     }
   }
@@ -230,7 +246,7 @@ export class ShowPaperComponent implements OnInit {
     return result.payload;
   }
 
-  async getPaperPdfLink(pdfLink: string, duration: number, userId:string) {
+  async getPaperPdfLink(pdfLink: string, duration: number, userId: string) {
     var result = await this.showPaperService.getPdfLink(pdfLink, duration, userId).toPromise();
     return result.payload;
   }
