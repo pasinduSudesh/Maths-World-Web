@@ -34,10 +34,13 @@ export class UploadService {
     console.log(file.type);
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  file.type      
+        'Content-Type':  file.type
       })
     };
-    return this.http.put(requrl,file, httpOptions)
+    let headers: HttpHeaders = new HttpHeaders();
+  
+
+    return this.http.put(requrl,file, httpOptions);
   }
 
   getPaperId(){
@@ -102,6 +105,18 @@ export class UploadService {
     }
     const url = this.serverURL + `/v1/papers/updatePaper`;
     return this.http.put<{ status: any; payload: any }>(url,updateData,options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  addStudentAnswer(data){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/papers/addStudentAnswers`;
+    return this.http.post<{ status: any; payload: any }>(url,data,options).pipe(
       catchError(this.handleError)
     )
   }

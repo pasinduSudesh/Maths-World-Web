@@ -24,14 +24,20 @@ export class BasicRequest implements HttpInterceptor {
         if (localStorage.getItem(LocalStorage.TOKEN) != null) {
             this.token = localStorage.getItem(LocalStorage.TOKEN);
         }
+
+        console.log(request.headers, "request");
+        var splitedUrl = request.url.split("/");
+        if (!(splitedUrl.includes(`${Constants.STORAGE.BucketName}.${Constants.STORAGE.Server}`))){
+            request = request.clone({
+                setHeaders: {
+                    Authorization: this.token,
+                    'user-app': Constants.USERAPP,
+                   
+                }
+            });
+        }
         
-        request = request.clone({
-            setHeaders: {
-                Authorization: this.token,
-                'user-app': Constants.USERAPP,
-               
-            }
-        });
+        
         return next.handle(request).pipe(
             tap(event => {
                 //ignore this

@@ -24,7 +24,7 @@
                     <h4>Marks</h4>
                 </div>
                 <div class="content">
-                    <h2>88%</h2>
+                    <h2>{{result.graded?result.rank.marks:'-'}}</h2>
                 </div>
             </div>
         </div>
@@ -35,7 +35,7 @@
                 </div>
                 <div class="content">
                     <p class="total">Total 244</p>
-                    <h2>12</h2>
+                    <h2>{{result.graded?result.rank.rank:'-'}}</h2>
                     
                 </div>
             </div>

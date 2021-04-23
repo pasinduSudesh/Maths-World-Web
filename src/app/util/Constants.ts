@@ -43,5 +43,10 @@ export class Constants {
     // public static USERAPP = "SUNFIFBvcnRhbF8zNDM0MzQ=";
     public static USERAPP = "UG9ydGFs";
     public static APPLANGUAGE = "en-US";
+
+    public static STORAGE = {
+      BucketName:"mathsworld-s3-test",
+      Server:"s3.amazonaws.com",
+    }
   }
   

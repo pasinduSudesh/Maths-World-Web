@@ -17,7 +17,17 @@ export class ShowResultComponent implements OnInit {
   userId:any;
   paperLink="";
   answerLink="";
-  result:any;
+  result:any = {
+    graded:false,
+    rank:{
+      rank:false,
+      marks:false,
+      total:false
+    },
+    answer:{
+      pdf_link:false
+    }
+  };
 
   constructor(
     private showPaperService: ShowPaperService,
@@ -39,10 +49,15 @@ export class ShowResultComponent implements OnInit {
     this.paperId = this.showPaperService.paperId;
     this.userId = userid;
 
+    console.log(this.userId, "userid");
+    console.log(this.paperId);
+
     this.result = await this.getPaperResult(this.userId, this.paperId);
 
     var paperlinkPath = "paperLink";//asign paper link here
     var answerlinkPath = "answerLink";//asign answer link here
+
+    console.log(this.result);
 
     this.paperLink = await this.getPdfLink(paperlinkPath, 60, this.userId);
     this.answerLink = await this.getPdfLink(answerlinkPath, 60, this.userId);
