@@ -3,16 +3,17 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
+    "start": "node server.js",
+    "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ngcc --properties es2015 browser module main --first-only --create-ivy-entry-points"
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^11.0.9",
-    "@angular/cdk": "^11.0.4",
+    "@angular/animations": "~11.0.6",
+    "@angular/cdk": "^11.2.2",
     "@angular/common": "~11.0.6",
     "@angular/compiler": "~11.0.6",
     "@angular/core": "~11.0.6",
@@ -20,9 +21,17 @@
     "@angular/platform-browser": "~11.0.6",
     "@angular/platform-browser-dynamic": "~11.0.6",
     "@angular/router": "~11.0.6",
-    "bootstrap": "^4.5.3",
+    "ag-grid-angular": "^25.1.0",
+    "ag-grid-community": "^25.1.0",
+    "ag-grid-enterprise": "^25.1.0",
+    "aws-sdk": "^2.852.0",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.0",
+    "express": "^4.17.1",
     "jquery": "^3.5.1",
-    "rxjs": "~6.6.0",
+    "ng-sidebar": "^9.4.2",
+    "ng2-pdf-viewer": "^6.4.0",
+    "rxjs": "^6.6.6",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
@@ -30,8 +39,8 @@
     "@angular-devkit/build-angular": "~0.1100.6",
     "@angular/cli": "~11.0.6",
     "@angular/compiler-cli": "~11.0.6",
-    "@types/jasmine": "~3.6.0",
-    "@types/node": "^12.11.1",
+    "@types/jasmine": "^3.6.4",
+    "@types/node": "^12.20.4",
     "codelyzer": "^6.0.0",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
@@ -43,6 +52,10 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.5"
+  },
+  "engines": {
+    "node": "12.19.0",
+    "npm": "6.14.8"
   }
 }

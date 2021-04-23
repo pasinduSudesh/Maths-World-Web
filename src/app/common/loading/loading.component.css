@@ -1,0 +1,15 @@
+.loading{
+    position: relative;
+    text-align: center;
+    z-index: 2;
+    top: 0;
+
+    margin-right: auto;
+    margin-left: auto;
+}
+.loading-container{
+    position: fixed;
+    top: 40vh;
+    width: 100%;
+    /* background-color: blueviolet; */
+}

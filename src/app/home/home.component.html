@@ -1,14 +1,438 @@
-<app-navbar></app-navbar>
-<section id="hero" class="d-flex flex-column justify-content-center">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-xl-8">
-          <h1>KnightOne - Create Bootstrap Website Template</h1>
-          <h2>We are team of designers making websites with Bootstrap</h2>
-          <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+<body data-spy="scroll" data-target="#navbar" data-offset="51">
+
+  <div class="interiorBody">
+    <!-- Your Chat Plugin code -->
+
+    <div class="fb-customerchat" attribution="install_email" page_id="102406025091898" theme_color="#050542">
+    </div>
+
+
+
+
+
+
+    <!-- navbar -->
+    <app-navbar></app-navbar>
+
+
+    <!-- carousel div -->
+    <div id="carouselHome" class="carousel slide interiorBody" data-ride="carousel">
+      <div class="carousel-inner">
+
+        <!-- web view -->
+        <div class="row d-none d-md-flex">
+          <div class="container-fluid">
+            <div class="carousel-item active">
+              <!-- <img class="d-block w-100" src="../../assets/images/carousal/5ABC.svg" alt="First slide"> -->
+              <app-svg1></app-svg1>
+            </div>
+            <div class="carousel-item">
+              <img class="d-block w-100" src="../../assets/images/carousal/slide22.png" alt="Second slide">
+            </div>
+            <!-- <div class="carousel-item">
+                  <img class="d-block w-100" src="../../assets/images/carousal/a2.svg" alt="Third slide">
+                </div> -->
+          </div>
+        </div>
+
+        <!-- mobile view -->
+        <div class="row d-md-none">
+          <div class="container-fluid">
+            <div class="carousel-item active">
+              <!-- <img class="d-block w-100" src="../../assets/images/carousal/mobileView/slide11.svg" alt="First slide"> -->
+              <app-svg1-mobile></app-svg1-mobile>
+            </div>
+             <div class="carousel-item">
+                <img class="d-block w-100" src="../../assets/images/carousal/slide22.png" alt="Second slide">
+              </div>
+            <!--  <div class="carousel-item">
+                <img class="d-block w-100" src="../../assets/images/carousal/a2.svg" alt="Third slide">
+              </div> -->
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  
+    <!-- winner List -->
+    <section id="ranker">
+      <div class="container-fluid">
+        <div class="row d-none d-md-flex">
+          <div class="col-lg-3 col-md-3 col-sm-3"></div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <div class="container text-center mb-3">
+              <h1 style="font-family: englishBodyFont2; font-size: 3rem; ">Weekly</h1>
+              <h1 style="font-family: englishBodyFont; font-size: 5rem;">Winner List</h1>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-3"></div>
+        </div>
+
+        <div class="row d-md-none">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+            <div class="container text-center mb-3">
+              <h1 style="font-family: englishBodyFont2; font-size: 2.2rem; ">Weekly</h1>
+              <h1 style="font-family: englishBodyFont; font-size: 3rem;">Winner List</h1>
+            </div>
+          </div>
+          <div class="col-sm-3"></div>
+        </div>
+
+        <!-- web view -->
+        <div class="row d-none d-md-flex mt-4 mb-4">
+
+          <div class="col-lg-1 col-md-1"></div>
+          <div class="col-lg-10 col-md-10">
+            <div class="row">
+              <div class="col-lg-4 col-md-4">
+                <div class="container-fluid">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8 ">
+                      <img class="d-block w-100" src="../../assets/images/winnerList/cup33.svg">
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                    </div>
+                  </div>
+                  
+                  <h2 class="text-center mt-3">{{thirdPlace}}</h2>
+                  <h4 class="text-center" style="font-weight: 300;">{{thirdCollege}}</h4>
+                  <h4 class="text-center" style="font-weight: 300;">{{thirdDistrict}}</h4>
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-4">
+                <div class="container-fluid">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8">
+                      <img class="d-block w-100" src="../../assets/images/winnerList/cup11.svg">
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                    </div>
+                  </div>
+                  <h2 class="text-center mt-3">{{firstPlace}}</h2>
+                  <h4 class="text-center" style="font-weight: 300;">{{firstCollege}}</h4>
+                  <h4 class="text-center" style="font-weight: 300;">{{firstDistrict}}</h4>
+
+                </div>
+              </div>
+
+              <div class="col-lg-4 col-md-4">
+                <div class="container-fluid">
+                  <div class="row d-flex justify-content-center">
+                    <div class="col-lg-2 col-md-2"></div>
+                    <div class="col-lg-8 col-md-8">
+                      <img class="d-block w-100" src="../../assets/images/winnerList/cup22.svg">
+                    </div>
+                    <div class="col-lg-2 col-md-2">
+                    </div>
+                  </div>
+                  <h2 class="text-center mt-3">{{secondPlace}}</h2>
+                  <h4 class="text-center" style="font-weight: 300;">{{secondCollege}}</h4>
+                  <h4 class="text-center" style="font-weight: 300;">{{secondDistrict}}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-1 col-md-1"></div>
+
+        </div>
+
+
+        <!-- mobile view -->
+        <div class="row d-md-none">
+          <div class="container text-center">
+            <div class="row">
+              <div class="col-4">
+                <img class="d-block w-50 mx-auto" src="../../assets/images/winnerList/cup33.svg">
+                <h5 class="text-center mt-3">{{thirdPlace}}</h5>
+                <p class="text-center mb-0">{{thirdCollege}}</p>
+                <!-- <p class="text-center">{{thirdDistrict}}</p> -->
+              </div>
+              <div class="col-4">
+                <img class="d-block w-50 mx-auto" src="../../assets/images/winnerList/cup11.svg">
+                <h5 class="text-center mt-3">{{firstPlace}}</h5>
+                <p class="text-center mb-0">{{firstCollege}}</p>
+                <!-- <p class="text-center">{{firstDistrict}}</p> -->
+              </div>
+              <div class="col-4">
+                <img class="d-block w-50 mx-auto" src="../../assets/images/winnerList/cup22.svg">
+                <h5 class="text-center mt-3">{{secondPlace}}</h5>
+                <p class="text-center mb-0">{{secondCollege}}</p>
+                <!-- <p class="text-center">{{secondDistrict}}</p> -->
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="row d-md-none">
+      <div class="container text-center">
+        <div class="col-sm-6">
+          <img class="d-block w-50 mx-auto" src="../../assets/images/winnerList/secondPlace.svg">
+          <h3 class="text-center">{{secondPlace}}</h3>
+        </div>
+        
+      </div>
+    </div>
+
+    <div class="row d-md-none">
+      <div class="container text-center">
+        <div class="col-sm-6">
+          <img class="d-block w-50 mx-auto" src="../../assets/images/winnerList/thirdPlace.svg">
+          <h3 class="text-center">{{thirdPlace}}</h3>
+        </div>
+      </div>
+    </div> -->
+
+
+        <div id="page">
+          <span class="filter-openCloseWrap" (click)="changeDirection()">
+            <span class="filter-openClose"></span>
+          </span>
+          <div *ngIf="isDisplay">
+            <div *ngFor="let winner of winnerList">
+              <div class="container-fluid">
+                <div class="row mb-1">
+                  <div class="col-lg-4 col-md-4 col-sm-4 col-2"></div>
+                  <div class="col-lg-1 col-md-1 col-sm-1 col-3 text-center">
+                    <img class="img-fluid center-block trophySvgOther" src="../../assets/images/winnerList/medal.svg">
+                  </div>
+                  <div class="col-lg-5 col-md-5 col-sm-5 col-6">
+                    <div class="d-flex align-items-center" style="height: 80px;">
+                      <h5>{{winner.name}}</h5>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="winnerList">
+                  <hr />
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- procedure -->
+    <div class="container-fluid"
+      style="background-image:linear-gradient(to right, rgb(22,77,126) 1%, rgb(32,150,152) 72%);">
+      <section id="procedure">
+
+        <!-- mobile view -->
+        <div class="row d-md-none">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="container text-center mt-5 allCornerRound" style="background-color: white;">
+              <p class="h1 pt-3" style="font-family: englishBodyFont; font-size: 3rem; padding-top: 2rem;">Log In</p>
+              <p class="h2" style="font-family: englishBodyFont;">To The System</p>
+              <p class="h5 text-center">Email සහ Password ඇතුලත් කර Log In වෙන්න</p>
+              <img class="img-fluid" src="../../assets/images/procedure/mobile/login3.svg">
+            </div>
+            
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row d-md-none mt-5">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="container text-center mt-5 allCornerRound" style="background-color: white;">
+              <p class="h1 pt-3" style="font-family: englishBodyFont; font-size: 3rem;">start</p>
+              <p class="h2" style="font-family: englishBodyFont;">The Paper</p>
+              <p class="h5 text-center">paper එක select කර අදාල කාලය තුල අවසන් කර පිලිතුරු
+                පත්‍රය
+                submit කිර්‍රම</p>
+              <img class="img-fluid" src="../../assets/images/procedure/mobile/paper2.svg">
+            </div>
+            
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+        <div class="row d-md-none mt-5" style="padding-bottom: 6rem;">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-8">
+            <div class="container text-center mt-5 allCornerRound" style="background-color: white;">
+              <p class="h1 pt-3" style="font-family: englishBodyFont; font-size: 3rem;">Analyze</p>
+              <p class="h2" style="font-family: englishBodyFont;">The Result</p>
+              <p class="h5 text-center">දිවයිනේ දක්ශතම පිලිතුරු පත්‍ර පරීක්ශකයින් විසින්
+                පරීක්ශා කරන බැවින් විශයේ ඇති අඩුපාඩු සොයා බලා ඒවාට
+                විසදුම් සෙවීම</p>
+              <img class="img-fluid" src="../../assets/images/procedure/mobile/analyzis4.svg">
+            </div>
+            
+          </div>
+          <div class="col-sm-2"></div>
+        </div>
+
+
+        <!-- web view -->
+        <div class="row d-none d-md-flex">
+          <div class="col-lg-1 col-md-1"></div>
+
+          <div class="col-lg-10 col-md-10">
+            <div class="row d-none d-md-flex mt-5">
+              <div class="col-lg-6 col-md-6"></div>
+              <div class="col-lg-1 col-md-1"></div>
+              <div class="col-lg-5 col-md-5 mt-5"
+                style="background-color: white; border-top-right-radius: 15px;border-top-left-radius: 15px; height: 1.5rem;">
+              </div>
+            </div>
+            <div class="row d-none d-md-flex mb-5">
+              <div class="col-lg-6 col-md-6 leftRound" style="background-color: white;">
+                <img class="img-fluid align-items-right" src="../../assets/images/procedure/login3.svg">
+              </div>
+              <div class="col-lg-6 col-md-6 d-flex align-items-center  rightRound" style="background-color: white;">
+                <div class="container-fluid">
+                  <p class="h1" style="font-family: englishBodyFont; font-size: 5rem;">Log In</p>
+                  <p class="h2" style="font-family: englishBodyFont;">To The System</p>
+
+                  <p class="h4 mt-4 pr-5">ඔබගේ ලියාපදිංචි වී ඇති Email සහ Password ඇතුලත් කර
+                    Profile
+                    එකට Log වෙන්න.</p>
+                  <p class="h4 pr-5">Account එකක් නැද්ද?</p>
+                  <p class="h4" style="padding-right: 5rem;">එසේ නම්<a href="../addUser" style="color:#209597;"> Create
+                      New Account</a> හරහා ගොස් අලුත් ගිනුමක් ආරම්බ කරන්න</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="row d-none d-md-flex">
+              <div class="col-lg-5 col-md-5 mt-5"
+                style="background-color: white; border-top-right-radius: 15px;border-top-left-radius: 15px; height: 1.5rem;">
+              </div>
+              <div class="col-lg-1 col-md-1"></div>
+              <div class="col-lg-6 col-md-6"></div>
+            </div>
+            <div class="row d-none d-md-flex mb-5">
+              <div class="col-lg-6 col-md-6 d-flex align-items-center"
+                style="background-color: white;border-bottom-left-radius: 15px;">
+                <div class="container-fluid pl-5">
+                  <p class="h2" style="font-family: englishBodyFont;font-size: 5rem;">Start</p>
+                  <p class="h1" style="font-family: englishBodyFont;">The Paper</p>
+                  <p class="h4 pr-5">ඔබගේ account එකට ගොස් අවශය paper එක select කර අදාල කාලය තුල අවසන් කර පිලිතුරු
+                    පත්‍රය
+                    submit කිර්‍රම
+                  </p>
+                  <p class="h4 pr-5">අදාල කාලය තුල කල යුත්තේ?</p>
+                  <p class="h4 pr-5">මෙමගින් exam hall එකේදී විබාග බීතිකාව සහ කාලය කලමනාකරනයේදී ඇතිවන ‍දුර්වලතා වලින්
+                    ඔබට
+                    මිදිය හැක</p>
+                </div>
+              </div>
+              <div class="col-lg-6 col-md-6"
+                style="background-color: white;border-top-right-radius: 20px;border-bottom-right-radius: 20px;">
+                <img class="img-fluid align-items-right" src="../../assets/images/procedure/paper2.svg">
+              </div>
+            </div>
+
+            <div class="row d-none d-md-flex">
+              <div class="col-lg-6 col-md-6"></div>
+              <div class="col-lg-1 col-md-1"></div>
+              <div class="col-lg-5 col-md-5 mt-5"
+                style="background-color: white; border-top-right-radius: 15px;border-top-left-radius: 15px; height: 1.5rem;">
+              </div>
+            </div>
+            <div class="row d-none d-md-flex">
+              <div class="col-lg-6 col-md-6 leftRound mb-5" style="background-color: white;">
+                <img class="img-fluid align-items-right" src="../../assets/images/procedure/analyzis4.svg">
+              </div>
+              <div class="col-lg-6 col-md-6 d-flex align-items-center rightRound mb-5" style="background-color: white;">
+                <div class="container-fluid">
+                  <p class="h1" style="font-family: englishBodyFont; font-size: 5rem;">Analyze</p>
+                  <p class="h2" style="font-family: englishBodyFont;">The Results</p>
+
+                  <p class="h4 mt-4 pr-5">දිවයිනේ දක්ශතම පිලිතුරු පත්‍ර පරීක්ශකයින් විසින්
+                    පරීක්ශා කරන බැවින් විශයේ ඇති අඩුපාඩු සොයා බලා ඒවාට
+                    විසදුම් සෙවීම.</p>
+
+                  <p class="h4 pr-5">
+                    විශයේ ඇති Strenths n Weeknesses සොයාගෙන ඒවා දියුණු කිරීමෙන් A+ පහසුවෙන් ලබා ගත හැක
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-1 col-md-1"></div>
+          </div>
+
+
+        </div>
+      </section>
+
+
+    </div>
+
+    <!-- quote -->
+
+    <section id="intro">
+
+      <div class="container-fluid my-5">
+        <div class="row">
+          <div class="container text-center">
+            <p class="h4 text-center">ඔබට කල නොහැකි දේ මට කලහැකියි</p>
+            <p class="h4 text-center">මට කල නොහැකි දේ ඔබට කලහැකියි</p>
+            <p class="h4 text-center mb-5">අපි එක්ව වැඩ කලොත් <b>කිසිවෙකුටත්</b> කල <b>නොහැකි</b> දේ කල <b>හැකියි</b>
+            </p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-3 col-lg-2 col-md-2"></div>
+          <div class="col-sm-6 col-lg-8 col-md-8 mb-5">
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe src="https://www.youtube.com/embed/netL27ccC6A" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- footer with contact us -->
+
+    <app-footer></app-footer>
+
+
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <!-- js tag by bootstrap -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+    integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+    integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+  <script>
+    $(function () {
+      $('#page').toggleClass('no-filter');
+    });
+
+    $('.filter-openCloseWrap').click(function () {
+      $('#page').toggleClass('no-filter');
+    });
+  </script>
+
+</body>

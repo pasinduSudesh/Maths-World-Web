@@ -17,6 +17,7 @@ export class AvailablePapersComponent implements OnInit {
   monthName: any;
   isPaidForCategory: boolean = false;
   loading: boolean = true;
+  category: any = "";
 
   constructor(private navbar: NavbarComponent, private availablePapersService: AvailablePapersService, private util:DateService) { }
 
@@ -27,12 +28,13 @@ export class AvailablePapersComponent implements OnInit {
     const monthIndex = date.getMonth();
     this.monthName = this.util.getMonthName(Number(monthIndex));
 
-    this.availablePapersService.gatAvailablePapers(year, month).subscribe((data: any)=>{
-      console.log(data.payload);
+    this.availablePapersService.gatAvailablePapers(year, month,"2323232323232","sd").subscribe((data: any)=>{
+      // console.log(data.payload);
       this.papers = data.payload.papers;
       this.isPaidForCategory = data.payload.isCategoryPaid;
+      this.category = data.payload;
       this.loading = false;
-      console.log(this.papers);
+      // console.log(this.papers);
       // this.papers = [];
   })
     
@@ -41,6 +43,14 @@ export class AvailablePapersComponent implements OnInit {
   enterToPaper(paper:any){
     console.log(paper);
     
+  }
+
+  payForCategory(category:any){
+    console.log(category);
+  }
+  paperPay(paper:any){
+    console.log(paper);
+
   }
 
 }

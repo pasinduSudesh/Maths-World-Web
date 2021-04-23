@@ -14,9 +14,15 @@ export class LocalStorage {
   public static DEVICE_ID: string = "device_id";
   public static USER_ID: string = "user_id";
   public static USER_EMAIL: string = "user_email";
-  public static ROLES: any;
-  public static TOKEN: string = "token"
+  public static ROLES: string = "role";
+  public static TOKEN: string = "token";
   public static REFRESHTOKEN: string = "refreshToken";
-  public static ROLE_SELECTED: string = "role_selected"
+  public static ROLE_SELECTED: string = "role_selected";
+  public static ADMIN_ID: string = "admin_id";
+  public static SUBSCRIPTION: string = "subscription";
+  public static CURRENT_PAPER_ID: string = "current_paper";
+  public static PAPER_END_TIME: string = "end_time";
+  public static PAPER_STATUS: string = "paper_status";
+
 
 }

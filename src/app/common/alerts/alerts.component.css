@@ -1,0 +1,17 @@
+.alert{
+    position: sticky;
+    text-align: center;
+    z-index: 100;
+    /* top: 100px; */
+
+    margin-right: auto;
+    margin-left: auto;
+    /* width: 80%; */
+}
+.alert-container{
+    position: fixed;
+    top: 100px;
+    width: 100%;
+    z-index: 99;
+    /* background-color: blueviolet; */
+}

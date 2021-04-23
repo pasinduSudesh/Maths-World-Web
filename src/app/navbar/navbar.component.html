@@ -1,51 +1,36 @@
+<!-- data-toggle="collapse"
+      data-target="#navbarSupportedContent" -->
+
 <div class="nav-opacity">
-
-
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark font-style">
+  <nav [ngClass]="scrolled || toggled ? 'navbar-light bg-light' : 'navbar-dark'"  class="navbar fixed-top navbar-expand-md font-style" id="navbar" (scroll)="onWindowScroll($event);">
     <a class="navbar-brand" href="#">Navbar</a>
-    <div class="btn navbar-toggler ml-auto mr-2" type="button" data-toggle="collapse"
-      data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-      aria-label="Toggle navigation">
-      <!-- <i class="bi bi-list"></i> -->
-      <!-- <span class="glyphicon glyphicon-menu-hamburger"></span> -->
+    <div  class="navbar-toggler ml-auto mr-2" aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation" style="border-color: transparent;" (click)="onNavbarToggle()">
+      
+
       <i class="icofont-navigation-menu"></i>
   </div>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <div [ngClass]="toggled ? 'show' : ''" class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <li class="nav-item">
+          <a class="nav-link" href="#carouselHome">Home</a>
+        </li>
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#ranker">Ranker</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#procedure">Procedure</a>
         </li>
-        <!-- <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a class="nav-link disabled" href="#">Disabled</a>
-        </li> -->
+       
         <li class="nav-item">
-          <a class="nav-link" href="#">Disabled</a>
+          <a class="nav-link" href="#intro">Introduction</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+          <a class="nav-link" href="#contactUs">Contact Us</a>
         </li>
       </ul>
-      <!-- <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-      </form> -->
     </div>
-    <a href="#about" class="get-started-btn scrollto">Get Started</a>
   </nav>
 </div>
