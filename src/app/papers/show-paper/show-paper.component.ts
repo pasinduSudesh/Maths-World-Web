@@ -47,7 +47,7 @@ export class ShowPaperComponent implements OnInit {
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   async ngOnInit() {
-    this.loading = "Loadind Paper Data";
+    this.loading = "Loading Paper Data";
     let userid = localStorage.getItem(LocalStorage.USER_ID);
     if (userid === "" || userid === null) {
       this.loading = "";
@@ -206,7 +206,7 @@ export class ShowPaperComponent implements OnInit {
       const file = this.files[0];
       console.log(file, "file");
       var awsReq = await this.uploadService.getSignedRequest(`answers/${this.paper.paperid}/${this.userid}/${file.name}`, file.type).toPromise();
-      console.log(awsReq);
+      console.log(awsReq, "resign URL");
       var b = await this.uploadService.uploadFile(file, awsReq.payload.signedRequest).toPromise();
       console.log("uploaded", b);
       await this.uploadService.updateExamInstanceDetails({
