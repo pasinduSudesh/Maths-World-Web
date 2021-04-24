@@ -63,12 +63,15 @@ import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-ad
 import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
 import { ShowResultComponent } from './papers/show-result/show-result.component';
 import { AdminRootComponent } from './admin-root/admin-root.component';
+import { SidebarModule } from 'ng-sidebar';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { UserDetailsGridComponent } from './admin/user-details-grid/user-details-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
 import { PayedPapersComponent } from './papers/paid-papers/payed-papers.component';
+import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+
 
 
 
@@ -109,7 +112,9 @@ import { PayedPapersComponent } from './papers/paid-papers/payed-papers.componen
      UserDetailsComponent,
      UserDetailsGridComponent,
      DeleteEditorButtonComponent,
-     PayedPapersComponent
+     PayedPapersComponent,
+     AdminLoginComponent
+
 
   ],
   imports: [
@@ -119,8 +124,9 @@ import { PayedPapersComponent } from './papers/paid-papers/payed-papers.componen
     FormsModule,
     ReactiveFormsModule,
     PdfViewerModule,
+    SidebarModule.forRoot(),
     AgGridModule.withComponents([])
-    ],
+  ],
   exports: [
     TimerComponent
   ],
