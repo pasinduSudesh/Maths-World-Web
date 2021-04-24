@@ -10,7 +10,7 @@ import { Constants } from './Constants';
 import { tap } from 'rxjs/operators';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AlertService } from './alert/alert.service';
-
+import { environment } from '../../environments/environment';
 @Injectable()
 export class BasicRequest implements HttpInterceptor {
     private token: string = "";
@@ -19,15 +19,14 @@ export class BasicRequest implements HttpInterceptor {
     constructor(private router: Router, private injector: Injector, private route: ActivatedRoute) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        console.log("==============Basic Request Interceptor");
         const notificationService = this.injector.get(AlertService);
         if (localStorage.getItem(LocalStorage.TOKEN) != null) {
             this.token = localStorage.getItem(LocalStorage.TOKEN);
         }
 
-        console.log(request.headers, "request");
-        var splitedUrl = request.url.split("/");
-        if (!(splitedUrl.includes(`${Constants.STORAGE.BucketName}.${Constants.STORAGE.Server}`))){
+        console.log(environment.SERVER_URL);
+        var url = request.url;
+        if (url.includes(environment.SERVER_URL)){
             request = request.clone({
                 setHeaders: {
                     Authorization: this.token,

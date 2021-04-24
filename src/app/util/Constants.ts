@@ -45,7 +45,7 @@ export class Constants {
     public static APPLANGUAGE = "en-US";
 
     public static STORAGE = {
-      BucketName:"mathsworld-s3-test",
+      BucketName:"project-tuition",
       Server:"s3.amazonaws.com",
     }
   }
