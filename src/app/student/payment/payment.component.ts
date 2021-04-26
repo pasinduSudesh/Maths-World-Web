@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { AlertService } from 'src/app/util/alert/alert.service';
-import { LocalStorage } from '../util/localStorage.service';
+import { LocalStorage } from '../../util/localStorage.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { environment } from '../../environments/environment';
-import { Constants } from '../util/Constants';
+import { environment } from '../../../environments/environment';
+import { Constants } from '../../util/Constants';
 import { Router } from "@angular/router";
-import { PaymentDetailsService } from '../services/payment/payment-details.service';
+import { PaymentDetailsService } from '../../services/payment/payment-details.service';
 declare var payhere: any;
 
 @Component({

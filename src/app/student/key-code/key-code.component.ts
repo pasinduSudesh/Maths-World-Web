@@ -3,9 +3,9 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { Location } from "@angular/common";
-import { Subject } from "../../../node_modules/rxjs";
-import { environment } from "../../environments/environment";
-import { AuthenticationService } from "../util/authentication.service";
+import { Subject } from "rxjs";
+import { environment } from "../../../environments/environment";
+import { AuthenticationService } from "../../util/authentication.service";
 
 
 @Component({

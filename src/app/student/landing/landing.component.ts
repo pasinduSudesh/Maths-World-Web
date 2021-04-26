@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '../util/localStorage.service';
+import { LocalStorage } from '../../util/localStorage.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { AvailablePapersService } from '../services/available-papers.service';
-import { UserDetailsService } from '../services/user/user-details.service';
-import { DateService } from '../services/util/date.service';
-import { PaymentDetailsService } from '../services/payment/payment-details.service';
+import { AvailablePapersService } from '../../services/available-papers.service';
+import { UserDetailsService } from '../../services/user/user-details.service';
+import { DateService } from '../../services/util/date.service';
+import { PaymentDetailsService } from '../../services/payment/payment-details.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({

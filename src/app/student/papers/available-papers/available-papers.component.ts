@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
-import {AvailablePapersService } from '../../services/available-papers.service';
-import { DateService } from '../../services/util/date.service';
+import { NavbarComponent } from '../../../navbar/navbar.component';
+import {AvailablePapersService } from '../../../services/available-papers.service';
+import { DateService } from '../../../services/util/date.service';
 
 
 @Component({

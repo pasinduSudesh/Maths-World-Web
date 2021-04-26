@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { LocalStorage } from '../../util/localStorage.service';
+import { LocalStorage } from '../../../util/localStorage.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { ShowPaperService } from '../../services/paper/show-paper.service';
-import { PaymentDetailsService } from '../../services/payment/payment-details.service';
-import { DateService } from '../../services/util/date.service';
-import { LoadingComponent } from '../../common/loading/loading.component';
+import { ShowPaperService } from '../../../services/paper/show-paper.service';
+import { PaymentDetailsService } from '../../../services/payment/payment-details.service';
+import { DateService } from '../../../services/util/date.service';
+import { LoadingComponent } from '../../../common/loading/loading.component';
 
 @Component({
   selector: 'app-payed-papers',

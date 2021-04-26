@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { NavbarComponent } from '../../navbar/navbar.component';
+import { NavbarComponent } from '../../../navbar/navbar.component';
 import { Subscription, interval } from 'rxjs';
-import { TimerComponent } from '../../common/timer/timer.component';
-import { FileUploaderComponent } from '../../common/file-uploader/file-uploader.component';
-import { ShowPaperService } from '../../services/paper/show-paper.service';
-import { UploadService } from '../../services/paper/upload.service';
-import { PaymentDetailsService } from '../../services/payment/payment-details.service';
+import { TimerComponent } from '../../../common/timer/timer.component';
+import { FileUploaderComponent } from '../../../common/file-uploader/file-uploader.component';
+import { ShowPaperService } from '../../../services/paper/show-paper.service';
+import { UploadService } from '../../../services/paper/upload.service';
+import { PaymentDetailsService } from '../../../services/payment/payment-details.service';
 import { bool } from 'aws-sdk/clients/signer';
-import { PdfViewerComponent } from '../../common/pdf-viewer/pdf-viewer.component';
+import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { LocalStorage } from '../../util/localStorage.service';
+import { LocalStorage } from '../../../util/localStorage.service';
 
 @Component({
   selector: 'app-show-paper',
