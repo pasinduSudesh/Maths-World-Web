@@ -17,6 +17,8 @@ import { ListPapersComponent } from "../app/papers/list-papers/list-papers.compo
 import { LandingComponent } from "../app/landing/landing.component";
 import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
 
+
+
 //admin components
 import { adminRoutes } from './admin/admin-routing';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
@@ -37,8 +39,7 @@ const routes: Routes = [
   {path: "landing", component: LandingComponent},
   {path: "show-result", component: ShowResultComponent },
   {path: "addEditorDetails", component: UserDetailsComponent},
-  {path: "admin", children: adminRoutes},
-
+  {path: "admin", children: adminRoutes}
 ];
 
 @NgModule({

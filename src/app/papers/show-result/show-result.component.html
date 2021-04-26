@@ -1,1 +1,70 @@
-<p>show-result works!</p>
+<section>
+    <div class="row">
+        <div class="col-12">
+            <div class="paper-name shadow">
+                <h4>{{paper.paperName?paper.paperName:'-'}}</h4>
+                <h4>{{paper.paperName?paper.year+' '+getMonthName(paper.month)+' , Week: '+paper.week:'-'}}</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="rectangle shadow red">
+                <div class="topic">
+                    <h4>State</h4>
+                </div>
+                <div class="content-state">
+                    <h2>{{result.graded?'Graded':'Not Graded'}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="rectangle shadow green">
+                <div class="topic">
+                    <h4>Marks</h4>
+                </div>
+                <div class="content">
+                    <h2>{{result.graded?result.rank.marks:'-'}}</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="rectangle shadow blue">
+                <div class="topic">
+                    <h4>Rank</h4>
+                </div>
+                <div class="content">
+                    <p class="total">Total 244</p>
+                    <h2>{{result.graded?result.rank.rank:'-'}}</h2>
+                    
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="rectangle shadow yellow">
+                <div class="topic">
+                    <h4>Paper</h4>
+                </div>
+                <div class="buttons">
+                    <div>
+                        <button class="btn">View paper</button>
+                    </div>
+                    <div>
+                        <button class="btn">View Answer</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="paper mt-4 mb-2">
+        <div class="header"><h5>Paper</h5></div>
+        <app-pdf-viewer [src]="paperLink"></app-pdf-viewer>
+    </div>
+    <div class="answer mt-4 mb-2">
+        <div class="header"><h5>Corrections</h5></div>
+        <app-pdf-viewer [src]="answerLink"></app-pdf-viewer>
+    </div>
+</section>
+
+<app-loading *ngIf="loading.length>0" [loadingMsg]="loading"></app-loading>
