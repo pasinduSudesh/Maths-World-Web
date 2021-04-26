@@ -34,10 +34,10 @@ export class Constants {
     };
   
     public static USER_ROLES = {
-      SystemAdmin: "System Admin",
+      SystemAdmin: "admin",
       CourseAdmin: "Course Admin",
       Student: "Student",
-      Instructor: "Instructor"
+      Evaluaor: "evaluator"
     };
     // public static USERAPP = "U1VORklGQnZjblJoYkY4ek5ETTBNelE9";
     // public static USERAPP = "SUNFIFBvcnRhbF8zNDM0MzQ=";
@@ -47,6 +47,13 @@ export class Constants {
     public static STORAGE = {
       BucketName:"project-tuition",
       Server:"s3.amazonaws.com",
+    }
+
+    public static USER_ROLE_ASSIGNMENTS = {
+      AddPapers:[Constants.USER_ROLES.SystemAdmin],
+      EditPapers:[Constants.USER_ROLES.SystemAdmin],
+      ViewPapers:[Constants.USER_ROLES.SystemAdmin, Constants.USER_ROLES.Evaluaor],
+      UserManage:[Constants.USER_ROLES.SystemAdmin]
     }
   }
   

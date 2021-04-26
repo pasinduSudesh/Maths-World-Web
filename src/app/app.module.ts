@@ -57,7 +57,7 @@ import { FileUploaderComponent } from './common/file-uploader/file-uploader.comp
 import { DndDirective } from './common/file-uploader/dnd.directive';
 import { LoadingComponent } from './common/loading/loading.component';
 import { AlertsComponent } from './common/alerts/alerts.component';
-import { ListPapersComponent } from './papers/list-papers/list-papers.component';
+import { ListPapersComponent } from './admin/list-papers/list-papers.component';
 import { LandingComponent } from './landing/landing.component';
 import { ViewPaperAdminComponent } from './admin/view-paper-admin/view-paper-admin.component';
 import { EditPaperAdminComponent } from './admin/edit-paper-admin/edit-paper-admin.component';

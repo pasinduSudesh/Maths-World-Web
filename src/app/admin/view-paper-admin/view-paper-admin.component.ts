@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../util/localStorage.service';
 import { ShowPaperService } from '../../services/paper/show-paper.service';
 import { PdfViewerComponent } from '../../common/pdf-viewer/pdf-viewer.component';
+import { Constants } from 'src/app/util/Constants';
 
 @Component({
   selector: 'app-view-paper-admin',
@@ -35,10 +36,13 @@ export class ViewPaperAdminComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    let adminId = localStorage.getItem(LocalStorage.ADMIN_ID);
-    adminId = "saa"; //should have change 
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll))){
+      this.router.navigate(['/admin/login']);
+    }
+    let adminId = localStorage.getItem(LocalStorage.USER_ID);
     if(adminId === "" || adminId === null){
-      this.router.navigate(['/login'])
+      this.router.navigate(['/admin/login'])
     }else{
       this.paper = this.route.snapshot.paramMap['params'];
       console.log(this.paper);
@@ -48,7 +52,7 @@ export class ViewPaperAdminComponent implements OnInit {
   }
 
   backToList(){
-    this.router.navigate(['/paper-list']);
+    this.router.navigate(['/admin/paper/list']);
   }
 
 }

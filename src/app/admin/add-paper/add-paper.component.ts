@@ -9,6 +9,7 @@ import { NgForm } from "@angular/forms";
 import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../util/localStorage.service';
+import { Constants } from '../../util/Constants';
 
 
 @Component({
@@ -55,10 +56,13 @@ export class AddPaperComponent implements OnInit {
 
 
   async ngOnInit(){
-    let adminId = localStorage.getItem(LocalStorage.ADMIN_ID);
-    adminId = "saa"; //should have change 
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS.AddPapers.includes(userRoll))){
+      this.router.navigate(['/admin/login']);
+    }
+    let adminId = localStorage.getItem(LocalStorage.USER_ID );
     if(adminId === "" || adminId === null){
-      this.router.navigate(['/login'])
+      this.router.navigate(['/admin/login']);
     }else{
       try{
         this.loading = "Loading";

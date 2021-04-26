@@ -8,6 +8,7 @@ import { PdfViewerComponent } from '../../common/pdf-viewer/pdf-viewer.component
 import { FileUploaderComponent } from '../../common/file-uploader/file-uploader.component';
 import { NgForm } from "@angular/forms";
 import { LoadingComponent } from '../../common/loading/loading.component';
+import { Constants } from 'src/app/util/Constants';
 
 @Component({
   selector: 'app-edit-paper-admin',
@@ -76,8 +77,11 @@ export class EditPaperAdminComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    let adminId = localStorage.getItem(LocalStorage.ADMIN_ID);
-    adminId = "saa"; //should have change 
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS.EditPapers.includes(userRoll))){
+      this.router.navigate(['/admin/login']);
+    }
+    let adminId = localStorage.getItem(LocalStorage.USER_ID);
     if(adminId === "" || adminId === null){
       this.router.navigate(['/login'])
     }else{

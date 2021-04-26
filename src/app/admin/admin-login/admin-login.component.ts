@@ -106,7 +106,7 @@ export class AdminLoginComponent implements OnInit {
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
             localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.firstname);
             localStorage.setItem(LocalStorage.REFRESHTOKEN, response.payload.refreshtoken);
-            localStorage.setItem(LocalStorage.ROLES, JSON.stringify(response.payload.role));
+            localStorage.setItem(LocalStorage.ROLES,response.payload.role);
             localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
 
             console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
@@ -118,7 +118,7 @@ export class AdminLoginComponent implements OnInit {
 
             this.setUser(this.user)
             // TODO- change the routing
-            this.router.navigateByUrl("/")
+            this.router.navigateByUrl("/admin/paper/list")
           
           } 
           // return returnedStatus;

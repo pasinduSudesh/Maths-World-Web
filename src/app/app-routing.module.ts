@@ -13,7 +13,7 @@ import { KeyCodeComponent } from "../app/key-code/key-code.component";
 import { PaymentComponent } from "../app/payment/payment.component";
 import { ForgotpasswordComponent } from "../app/forgotpassword/forgotpassword.component";
 import { ResetpasswordComponent } from "../app/resetpassword/resetpassword.component";
-import { ListPapersComponent } from "../app/papers/list-papers/list-papers.component";
+// import { ListPapersComponent } from "./admin/list-papers/list-papers.component";
 import { LandingComponent } from "../app/landing/landing.component";
 import { ShowResultComponent } from "../app/papers/show-result/show-result.component";
 
@@ -35,7 +35,7 @@ const routes: Routes = [
   {path: "reset-password", component: ResetpasswordComponent},
   {path: "show-paper", component: ShowPaperComponent},
   {path: "payment", component: PaymentComponent},
-  {path: "paper-list", component: ListPapersComponent},
+  // {path: "paper-list", component: ListPapersComponent},
   {path: "landing", component: LandingComponent},
   {path: "show-result", component: ShowResultComponent },
   {path: "addEditorDetails", component: UserDetailsComponent},
