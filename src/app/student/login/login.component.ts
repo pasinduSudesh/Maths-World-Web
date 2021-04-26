@@ -3,10 +3,10 @@ import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 //import getMAC, { isMAC } from 'getmac';
-import { LocalStorage } from '../util/localStorage.service';
+import { LocalStorage } from '../../util/localStorage.service';
 import { AlertService } from 'src/app/util/alert/alert.service';
-import { AuthenticationService } from "../util/authentication.service";
-import { environment } from '../../environments/environment';
+import { AuthenticationService } from "../../util/authentication.service";
+import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
 
 @Component({

@@ -83,7 +83,7 @@ export class EditPaperAdminComponent implements OnInit {
     }
     let adminId = localStorage.getItem(LocalStorage.USER_ID);
     if(adminId === "" || adminId === null){
-      this.router.navigate(['/login'])
+      this.router.navigate(['/admin/login'])
     }else{
       this.loading = "Loading Paper Data";
       this.paper = this.route.snapshot.paramMap['params'];
@@ -151,12 +151,12 @@ export class EditPaperAdminComponent implements OnInit {
           }
           await this.uploadService.updatePaperData(updateedData).toPromise();
           this.loading = "";
-          this.router.navigate(['/paper-list']);
+          this.router.navigate(['/admin/paper/list']);
   
         }
       }else{
         this.loading = "";
-        this.router.navigate(['/paper-list']);
+        this.router.navigate(['/admin/paper/list']);
       }
 
     }catch(err){

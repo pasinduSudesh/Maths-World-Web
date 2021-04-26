@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ShowPaperService } from '../../services/paper/show-paper.service';
+import { ShowPaperService } from '../../../services/paper/show-paper.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { LocalStorage } from '../../util/localStorage.service';
-import { DateService } from '../../services/util/date.service';
-import { PdfViewerComponent } from '../../common/pdf-viewer/pdf-viewer.component';
-import { LoadingComponent } from '../../common/loading/loading.component';
+import { LocalStorage } from '../../../util/localStorage.service';
+import { DateService } from '../../../services/util/date.service';
+import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.component';
+import { LoadingComponent } from '../../../common/loading/loading.component';
 
 
 @Component({

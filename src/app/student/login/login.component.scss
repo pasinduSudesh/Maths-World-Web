@@ -2,55 +2,55 @@
  *  Copyright 2020-2021 404 Solutions Company
  */
 
- @import "../styles/colors_function";
- .payment-msg-page .card-wrapper {
+ @import "../../styles/colors_function";
+ .my-login-page .card-wrapper {
      width: 400px;
      margin: 0 auto;
      margin-top: 7.5em;
  }
  
- .payment-msg-page .card {
+ .my-login-page .card {
      border-color: transparent;
      box-shadow: 0 0 40px rgba(0, 0, 0, .05);
  }
  
- .payment-msg-page .card.fat {
+ .my-login-page .card.fat {
      padding: 10px;
  }
  
- .payment-msg-page .card .card-title {
+ .my-login-page .card .card-title {
      margin-bottom: 30px;
      
  }
  
- .payment-msg-page .form-control {
+ .my-login-page .form-control {
      border-width: 2.3px;
  }
  
- .payment-msg-page .form-group label {
+ .my-login-page .form-group label {
      width: 100%;
  }
  
- .payment-msg-page .btn.btn-block {
+ .my-login-page .btn.btn-block {
      padding: 5px 10px;
  }
  
- .payment-msg-page .margin-top20 {
+ .my-login-page .margin-top20 {
      margin-top: 20px;
  }
  
- .payment-msg-page .no-margin {
+ .my-login-page .no-margin {
      margin: 0;
  }
  
- .payment-msg-page .footer {
+ .my-login-page .footer {
      margin: 30px 0;
      color: #888;
      text-align: center;
  }
  
  @media screen and (max-width: 425px) {
-     .payment-msg-page .card-wrapper {
+     .my-login-page .card-wrapper {
          width: 90%;
          margin: 0 auto;
          margin-top: 6em;
@@ -58,11 +58,11 @@
  }
  
  @media screen and (max-width: 320px) {
-     .payment-msg-page .card.fat {
+     .my-login-page .card.fat {
          padding: 0;
      }
  
-     .payment-msg-page .card.fat .card-body {
+     .my-login-page .card.fat .card-body {
          padding: 15px;
      }
  }
