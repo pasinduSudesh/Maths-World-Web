@@ -129,7 +129,7 @@ export class AddPaperComponent implements OnInit {
                       this.subjectId
                     ).toPromise();
           this.loading = "";
-          this.router.navigate(['/paper-list']);
+          this.router.navigate(['/admin/paper/list']);
         }catch(err){
           this.loading = "";
           console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!1")
