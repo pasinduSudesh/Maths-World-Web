@@ -32,7 +32,7 @@ import { ResetpasswordComponentService } from './resetpassword/resetpassword.ser
 import { ForgotPasswordComponentService } from './forgotpassword/forgotpassword.service';
 import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
 //import { DateService } from './services/util/date.service';
-import { AddPaperComponent } from './papers/add-paper/add-paper.component';
+import { AddPaperComponent } from './admin/add-paper/add-paper.component';
 import { Svg1Component } from './svg1/svg1.component';
 import { Svg1MobileComponent } from './svg1-mobile/svg1-mobile.component';
 import { FooterComponent } from './footer/footer.component'
@@ -59,10 +59,10 @@ import { LoadingComponent } from './common/loading/loading.component';
 import { AlertsComponent } from './common/alerts/alerts.component';
 import { ListPapersComponent } from './papers/list-papers/list-papers.component';
 import { LandingComponent } from './landing/landing.component';
-import { ViewPaperAdminComponent } from './papers/view-paper-admin/view-paper-admin.component';
-import { EditPaperAdminComponent } from './papers/edit-paper-admin/edit-paper-admin.component';
+import { ViewPaperAdminComponent } from './admin/view-paper-admin/view-paper-admin.component';
+import { EditPaperAdminComponent } from './admin/edit-paper-admin/edit-paper-admin.component';
 import { ShowResultComponent } from './papers/show-result/show-result.component';
-import { AdminRootComponent } from './admin-root/admin-root.component';
+import { AdminRootComponent } from './admin/admin-root/admin-root.component';
 import { SidebarModule } from 'ng-sidebar';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { UserDetailsGridComponent } from './admin/user-details-grid/user-details-grid.component';
