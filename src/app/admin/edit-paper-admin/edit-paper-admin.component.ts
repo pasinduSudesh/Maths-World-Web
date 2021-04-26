@@ -87,9 +87,10 @@ export class EditPaperAdminComponent implements OnInit {
     }else{
       this.loading = "Loading Paper Data";
       this.paper = this.route.snapshot.paramMap['params'];
-      console.log(this.paper)
+      console.log(this.paper, "editing paper")
       this.year = this.paper.year;
       this.week = this.paper.week;
+      this.month = this.paper.month;
       this.paperName = this.paper.papername;
       this.duration = this.paper.duration.slice(0,5);
       this.price = this.paper.prize;
@@ -104,8 +105,8 @@ export class EditPaperAdminComponent implements OnInit {
       this.date = new Date();
       this.months = this.dateService.getMonths();
       const thisYear = this.date.getUTCFullYear();
-      this.year = thisYear;
-      this.month = this.date.getMonth() + 1;
+      // this.year = thisYear;
+      // this.month = this.date.getMonth() + 1;
       this.years = [thisYear - 2, thisYear - 1, thisYear, thisYear + 1];
       this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
       this.loading = "";
