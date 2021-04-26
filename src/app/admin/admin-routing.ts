@@ -6,6 +6,7 @@ import { AdminRootComponent } from "./admin-root/admin-root.component";
 import { UserDetailsComponent } from "./user-details/user-details.component";
 import { UserComponent } from "./user/user.component";
 import { AddPaperComponent } from "./add-paper/add-paper.component";
+import { ListPapersComponent } from "./list-papers/list-papers.component";
 
 export const adminRoutes: Routes = [
 
@@ -21,6 +22,11 @@ export const adminRoutes: Routes = [
   {
     path: "paper/add", component: AdminRootComponent, children: [
       { path: "", component: AddPaperComponent, outlet: 'adminRouter' }
+    ]
+  },
+  {
+    path: "paper/list", component: AdminRootComponent, children: [
+      { path: "", component: ListPapersComponent, outlet: 'adminRouter' }
     ]
   },
   {

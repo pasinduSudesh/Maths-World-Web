@@ -3,9 +3,10 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { ShowPaperService } from '../../services/paper/show-paper.service';
 import { LoadingComponent } from '../../common/loading/loading.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { LocalStorage } from '../../util/localStorage.service';
 import { UploadService } from '../../services/paper/upload.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
+import { Constants } from 'src/app/util/Constants';
+import { LocalStorage } from '../../util/localStorage.service';
 @Component({
   selector: 'app-list-papers',
   templateUrl: './list-papers.component.html',
@@ -28,11 +29,20 @@ export class ListPapersComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
-    let adminId = localStorage.getItem(LocalStorage.ADMIN_ID);
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    console.log("in list");
+    console.log(userRoll,"in list");
+    console.log(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers,"list of roles")
+    console.log(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll.toString()),"asasasas")
 
-    adminId = "saa"; //should have change
+    if(!(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll))){
+      console.log('Constants.USER_ROLE_ASSIGNMENTS.ViewPapers')
+      this.router.navigate(['/admin/login']);
+    }
+    
+    let adminId = localStorage.getItem(LocalStorage.USER_ID);
     if(adminId === "" || adminId === null){
-      this.router.navigate(['/login'])
+      this.router.navigate(['/admin/login'])
     }else{
       this.loading = "Getting Paper Details";
       var subjectDetails = await this.uploadService.getSubject(adminId).toPromise();
@@ -69,7 +79,7 @@ export class ListPapersComponent implements OnInit {
   }
 
   addpaper() {
-    this.router.navigate(['/add-papers', { data: "hello" }]);
+    this.router.navigate(['/admin/paper/add']);
   }
 
   async publishPaper(paperId){
@@ -90,7 +100,7 @@ export class ListPapersComponent implements OnInit {
   }
 
   viewPaper(paper){
-    this.router.navigate(['/admin-view-paper',paper])
+    this.router.navigate(['/admin/paper/view',paper])
   }
 
   async deletePaper(paper){
@@ -118,7 +128,7 @@ export class ListPapersComponent implements OnInit {
   }
 
   editPaper(paper){
-    this.router.navigate(['/admin-edit-paper',paper])
+    this.router.navigate(['/admin/paper/edit',paper])
   }
 
 }
