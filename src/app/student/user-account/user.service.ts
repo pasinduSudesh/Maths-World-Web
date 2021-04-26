@@ -4,11 +4,11 @@
 
 import { Injectable } from "@angular/core";
 import { User } from "./user";
-import { environment } from "../../environments/environment";
-import { Subject, Subscription } from "../../../node_modules/rxjs";
+import { environment } from "../../../environments/environment";
+import { Subject, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { AuthenticationService } from "../util/authentication.service";
+import { AuthenticationService } from "../../util/authentication.service";
 
 
 @Injectable({

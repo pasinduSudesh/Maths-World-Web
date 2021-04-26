@@ -4,8 +4,8 @@ import { Router } from "@angular/router";
 import { User } from "./user";
 import { UserService } from "./user.service";
 import { Subscription } from 'rxjs';
-import { AlertService } from '../util/alert/alert.service';
-import { AuthenticationService } from "../util/authentication.service";
+import { AlertService } from '../../util/alert/alert.service';
+import { AuthenticationService } from "../../util/authentication.service";
 
 
 @Component({

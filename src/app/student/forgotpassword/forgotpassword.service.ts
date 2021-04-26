@@ -3,13 +3,13 @@
  */
 
 import { Injectable } from "@angular/core"
-import { environment } from "../../environments/environment"
+import { environment } from "../../../environments/environment"
 import { HttpClient, HttpHeaders } from "@angular/common/http"
 import { map } from "rxjs/operators"
 import { throwError, Subject, Subscription } from "rxjs"
 import { catchError } from "rxjs/operators"
-import { LocalStorage } from '../util/localStorage.service';
-import { Constants } from '../util/Constants';
+import { LocalStorage } from '../../util/localStorage.service';
+import { Constants } from '../../util/Constants';
 
 @Injectable({
   providedIn: "root"

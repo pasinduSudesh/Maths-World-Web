@@ -1,0 +1,44 @@
+
+$sidenav-color: gray;
+$sidenav-bg-color: white;
+
+::ng-deep .app-sidebar {
+    /* background-color: rgb(40 40 40); */
+    background-color: white;
+    box-shadow: 0 0 2.5em rgb(85 85 85 / 50%);
+    padding: 20px;
+    color: gray;
+    width: 15rem;
+}
+
+nav {
+    /* background-color: white; */
+    /* box-shadow: 0 0 2.5em rgb(85 85 85 / 50%); */
+    background-color: rgb(40 40 40);
+}
+
+.navbar-toggler {
+    border-style: none;
+}
+
+.navbar-brand {
+    margin: 0 1rem;
+}
+
+.sidenav-link {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: $sidenav-color;
+    background-color: $sidenav-bg-color;
+}
+
+.sidenav-link-active, .sidenav-link:hover {
+    color: $sidenav-bg-color;
+    background-color: $sidenav-color;
+}
+
+.sidenav-link-seperator {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}

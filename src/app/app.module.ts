@@ -16,10 +16,10 @@ import { LocalStorage } from './util/localStorage.service';
 import { AlertService } from './util/alert/alert.service';
 import { AlertComponent } from './util/alert/alert.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { UserAccountComponent } from './user-account/user-account.component';
+import { UserAccountComponent } from './student/user-account/user-account.component';
 import { KeyCodeComponent } from './student/key-code/key-code.component';
 import { AuthenticationService } from './util/authentication.service';
-import { UserService } from './user-account/user.service';
+import { UserService } from './student/user-account/user.service';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AvailablePapersService } from './services/available-papers.service'
@@ -29,8 +29,8 @@ import { AvailablePapersService } from './services/available-papers.service'
 //import { PaymentComponent } from './payment/payment.component';
 import { ResetpasswordComponent } from './student/resetpassword/resetpassword.component';
 import { ResetpasswordComponentService } from './student/resetpassword/resetpassword.service';
-import { ForgotPasswordComponentService } from './forgotpassword/forgotpassword.service';
-import { ForgotpasswordComponent } from './forgotpassword/forgotpassword.component';
+import { ForgotPasswordComponentService } from './student/forgotpassword/forgotpassword.service';
+import { ForgotpasswordComponent } from './student/forgotpassword/forgotpassword.component';
 //import { DateService } from './services/util/date.service';
 import { AddPaperComponent } from './admin/add-paper/add-paper.component';
 import { Svg1Component } from './svg1/svg1.component';
@@ -43,11 +43,11 @@ import { DateService } from './services/util/date.service';
 // import { AddPaperComponent } from './papers/add-paper/add-paper.component';
 import { ShowPaperComponent } from './student/papers/show-paper/show-paper.component';
 // import { TimerComponent } from './common/timer/timer.component';
- 
-import {UserAccessService } from './services/util/user-access.service'
+
+import { UserAccessService } from './services/util/user-access.service'
 // services
-import {UploadService } from './services/paper/upload.service';
-import {PaymentDetailsService } from './services/payment/payment-details.service';
+import { UploadService } from './services/paper/upload.service';
+import { PaymentDetailsService } from './services/payment/payment-details.service';
 import { TimerComponent } from './common/timer/timer.component';
 import { ShowPaperService } from './services/paper/show-paper.service';
 import { UserDetailsService } from './services/user/user-details.service';
@@ -67,10 +67,10 @@ import { SidebarModule } from 'ng-sidebar';
 import { UserDetailsComponent } from './admin/user-details/user-details.component';
 import { UserDetailsGridComponent } from './admin/user-details-grid/user-details-grid.component';
 import { AgGridModule } from 'ag-grid-angular';
-import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
 import { PayedPapersComponent } from './student/papers/paid-papers/payed-papers.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
+import { StudentRootComponent } from './student/student-root/student-root.component';
 
 
 
@@ -101,19 +101,20 @@ import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
     DndDirective,
     LoadingComponent,
     AlertsComponent,
-     PaymentComponent,
-     ListPapersComponent,
-     LandingComponent,
-     ViewPaperAdminComponent,
-     EditPaperAdminComponent,
-     ShowResultComponent,
-     AdminRootComponent,
-     UserComponent,
-     UserDetailsComponent,
-     UserDetailsGridComponent,
-     DeleteEditorButtonComponent,
-     PayedPapersComponent,
-     AdminLoginComponent
+    PaymentComponent,
+    ListPapersComponent,
+    LandingComponent,
+    ViewPaperAdminComponent,
+    EditPaperAdminComponent,
+    ShowResultComponent,
+    AdminRootComponent,
+    StudentRootComponent,
+    UserComponent,
+    UserDetailsComponent,
+    UserDetailsGridComponent,
+    DeleteEditorButtonComponent,
+    PayedPapersComponent,
+    AdminLoginComponent
 
 
   ],
