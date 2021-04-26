@@ -10,7 +10,7 @@ pdf-viewer {
   .pdf-controller{
     text-align: left;
     margin-bottom: 5px;
-    width: 90vw;
+    /* width: 90vw; */
     margin-left: auto;
     margin-right: auto;
   }

@@ -1,3 +1,14 @@
+<nav class="navbar navbar-dark fixed-top">
+
+    <span class="">
+        <span class="navbar-toggler" (click)="_toggleSidebar()">
+            <i class="icofont-navigation-menu"></i>
+        </span>
+        <a class="navbar-brand" href="/">MathsWorld</a>
+    </span>
+
+</nav>
+
 <!-- Container for sidebar(s) + page content -->
 <ng-sidebar-container>
 
@@ -7,32 +18,25 @@
 
         <div style="height: 70px;"></div>
         <h3>Profile</h3>
-        <hr>
-        <a href="admin/paper/view">View Paper</a>
-        <hr>
-        <a href="admin/paper/edit">Edit Paper</a>
-        <hr>
-        <a href="admin/paper/add">Add Paper</a>
-        <hr>
-        <a href="admin/users">Users</a>
-        <hr>
-        <a href="admin/login">Login</a>
+        <br>
+
+        <a class="sidenav-link" [routerLink]="'/admin/paper/list'" [routerLinkActive]="'sidenav-link-active'">All Papers</a>
+        <hr class="sidenav-link-seperator">
+        <!-- <a class="sidenav-link" [routerLink]="'/admin/paper/view'" [routerLinkActive]="'sidenav-link-active'">View Paper</a>
+        <hr class="sidenav-link-seperator">
+        <a class="sidenav-link" [routerLink]="'/admin/paper/edit'" [routerLinkActive]="'sidenav-link-active'">Edit Paper</a>
+        <hr class="sidenav-link-seperator"> -->
+        <a class="sidenav-link" [routerLink]="'/admin/paper/add'" [routerLinkActive]="'sidenav-link-active'">Add Paper</a>
+        <hr class="sidenav-link-seperator">
+        <a class="sidenav-link" [routerLink]="'/admin/users'" [routerLinkActive]="'sidenav-link-active'">Users</a>
+        <hr class="sidenav-link-seperator">
+        <a class="sidenav-link" [routerLink]="'/admin/login'" [routerLinkActive]="'sidenav-link-active'">Login</a>
 
 
     </ng-sidebar>
 
     <!-- Page content -->
     <div ng-sidebar-content style="margin-top: 70px;">
-        <nav class="navbar navbar-dark fixed-top">
-
-            <span class="">
-                <span class="navbar-toggler" (click)="_toggleSidebar()">
-                    <i class="icofont-navigation-menu"></i>
-                </span>
-                <a class="navbar-brand" href="/">MathsWorld</a>
-            </span>
-
-        </nav>
         <router-outlet name="adminRouter"></router-outlet>
     </div>
 
