@@ -51,24 +51,16 @@ export const studentRoutes: Routes = [
   },
 
   {
-    path: "forgot-password", component: StudentRootComponent, children: [
-      { path: "", component: ForgotpasswordComponent, outlet: 'studentRouter' }
-    ]
+    path: "forgot-password", component: ForgotpasswordComponent
   },
   {
-    path: "reset-password", component: StudentRootComponent, children: [
-      { path: "", component: ResetpasswordComponent, outlet: 'studentRouter' }
-    ]
+    path: "reset-password", component: ResetpasswordComponent
   },
   {
-    path: "signup", component: StudentRootComponent, children: [
-      { path: "", component: UserAccountComponent, outlet: 'studentRouter' }
-    ]
+    path: "signup", component: UserAccountComponent
   },
   {
-    path: "verify", component: StudentRootComponent, children: [
-      { path: "", component: KeyCodeComponent, outlet: 'studentRouter' }
-    ]
+    path: "verify", component: KeyCodeComponent
   },
 
 ];
