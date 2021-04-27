@@ -37,7 +37,7 @@ export class PaymentComponent implements OnInit {
       console.log("Payment completed. OrderID:" + orderId);
       console.log("dsds"+paymentService.paper);
       this.isSubmitted = true;
-      router.navigate(['/show-paper']);
+      router.navigate(['/paper/list']);
     };
 
     payhere.onDismissed = function onDismissed() {
@@ -133,7 +133,7 @@ export class PaymentComponent implements OnInit {
   ngOnInit() {
     console.log(this.paymentService.paper);
     if(this.paymentService.paper === null){
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/paper/list']);
     }
     this.paper = this.paymentService.paper;
     this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId)
