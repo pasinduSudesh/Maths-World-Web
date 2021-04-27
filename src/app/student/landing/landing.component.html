@@ -14,7 +14,7 @@
 
             <div class="row paper-topic" (click)="toggle(i)">
                 <div class="col-10">
-                    <h3 class="d-inline align-items-start"> {{category.year}} - {{getMonthName(category.month)}}</h3>
+                    <h3 class="d-inline align-items-start"> {{category.year}} - {{getMonthName(category.month-1)}}</h3>
                 </div>
                 <div class="col-2">
                     <h3 *ngIf="showingIndex!==i; else collaps" class="text-right pr-2"><i class="icofont-dotted-down"></i></h3>
@@ -41,3 +41,15 @@
 
     </div>
 </section>
+
+<nav aria-label="Page navigation example" *ngIf="hasNextPage||hasPreviousPage">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class]="hasPreviousPage?'':'disabled'">
+        <a class="page-link" (click)="previousPage()" tabindex="-1">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link">{{pageNo}}</a></li>
+      <li class="page-item" [class]="hasNextPage?'':'disabled'">
+        <a class="page-link"  (click)="nextPage()">Next</a>
+      </li>
+    </ul>
+  </nav>

@@ -105,7 +105,7 @@ export class LoginComponent implements OnInit {
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
             localStorage.setItem(LocalStorage.LOGGED_USER, response.payload.user.name);
             localStorage.setItem(LocalStorage.REFRESHTOKEN, response.payload.refreshtoken);
-            localStorage.setItem(LocalStorage.ROLES, JSON.stringify(response.payload.roles));
+            localStorage.setItem(LocalStorage.ROLES, response.payload.roles);
             localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
 
             console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
