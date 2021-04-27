@@ -174,7 +174,7 @@ export class LandingComponent implements OnInit {
     console.log(paper);
     this.paymentService.paper = paper;
     if (paper.isPaidForPaper) {
-      this.router.navigate(['/show-paper'])
+      this.router.navigate(['/paper/view'])
     } else {
       this.router.navigate(['/payment']);
     }
@@ -183,13 +183,13 @@ export class LandingComponent implements OnInit {
   previousPage() {
     this.pageNo = parseInt(this.pageNo.toString());
     this.pageNo -=1;
-    this.router.navigate(['/landing'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month } });
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month } });
   }
 
   nextPage() {
     this.pageNo = parseInt(this.pageNo.toString());
     this.pageNo +=1;
-    this.router.navigate(['/landing'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month } });
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month } });
   }
 
 

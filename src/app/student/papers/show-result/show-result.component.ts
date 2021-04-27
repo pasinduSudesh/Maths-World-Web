@@ -52,7 +52,7 @@ export class ShowResultComponent implements OnInit {
     }
 
     if(this.showPaperService.paperId === null){
-      this.router.navigate(['/landing']);
+      this.router.navigate(['/paper/list']);
     }
 
     this.loading = "Loading your result"

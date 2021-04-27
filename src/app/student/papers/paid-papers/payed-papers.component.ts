@@ -69,7 +69,7 @@ export class PayedPapersComponent implements OnInit {
     console.log(paper);
     this.paymentService.paper = paper;
     console.log(this.paymentService.paper)
-    this.router.navigate(['/show-paper'])
+    this.router.navigate(['/paper/view'])
   }
 
   getMonth(i){

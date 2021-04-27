@@ -93,7 +93,7 @@ export class ShowPaperComponent implements OnInit {
           // paper is submited
           this.loading = "";
           this.showPaperService.paperId = this.paperid;
-          this.router.navigate(['show-result']);
+          this.router.navigate(['paper/result']);
         }
         //paper opened previouslly
         // *************have impleme
@@ -105,7 +105,7 @@ export class ShowPaperComponent implements OnInit {
       var paperid = localStorage.getItem(LocalStorage.CURRENT_PAPER_ID);
       if (paperid === null || paperid === "") {
         this.loading = "";
-        this.router.navigate(['/landing']);
+        this.router.navigate(['/paper/list']);
       } else {
         this.paperid = paperid;
         this.paperStatus = localStorage.getItem(LocalStorage.PAPER_STATUS);
@@ -144,7 +144,7 @@ export class ShowPaperComponent implements OnInit {
           } else {
             this.loading = "";
             this.showPaperService.paperId = this.paperid;
-            this.router.navigate(['show-result']);
+            this.router.navigate(['paper/result']);
           }
           //paper opened previouslly
           // *************have impleme
@@ -229,7 +229,7 @@ export class ShowPaperComponent implements OnInit {
 
       const upload = await this.uploadService.addStudentAnswer(studentAnswers).toPromise();
       this.showPaperService.paperId = this.paperid;
-      this.router.navigate(['show-result']);
+      this.router.navigate(['paper/result']);
     } else {
 
     }
