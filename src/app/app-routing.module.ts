@@ -12,7 +12,7 @@ import { UserDetailsComponent } from './admin/user-details/user-details.componen
 
 const routes: Routes = [
   {path: "", component: HomeComponent},
-  {path: "signup", component: SignupComponent}, // empty
+  {path: "signupEmpty", component: SignupComponent}, // empty
   {path: "addEditorDetails", component: UserDetailsComponent},
   {path: "admin", children: adminRoutes},
   {path: "", children: studentRoutes}
