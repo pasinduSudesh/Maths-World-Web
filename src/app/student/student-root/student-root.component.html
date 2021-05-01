@@ -24,8 +24,11 @@
         <hr class="sidenav-link-seperator">
         <a class="sidenav-link" [routerLink]="'/paper/paid'" [routerLinkActive]="'sidenav-link-active'">Paid Papers</a>
         <hr class="sidenav-link-seperator">
-
-        <a class="sidenav-link" [routerLink]="'/login'" [routerLinkActive]="'sidenav-link-active'">Login</a>
+        <a class="sidenav-link" [routerLink]="'/login'" [routerLinkActive]="'sidenav-link-active'">Login</a>        
+        <div *ngFor="let subject of subscribedSubjects">
+            <hr class="sidenav-link-seperator">
+            <a class="sidenav-link" (click)="navigate(subject)" [routerLinkActive]="'sidenav-link-active'">{{subject.subjectname}}</a>
+        </div>
 
 
     </ng-sidebar>
