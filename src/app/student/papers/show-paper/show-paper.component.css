@@ -160,7 +160,7 @@ h3 {
     text-align: center;
     height: 50px;
     /* background: -webkit-linear-gradient(left, #0072ff, #8811c5); */
-    background-color: #00b371;
+    background-color: #164E7E;
     color: #fff;
     /* font-weight: bold; */
     
@@ -186,7 +186,7 @@ h3 {
 }
 
 .status-notsubmitted{
-  color: red;
+  color: #C30020;
 }
 
 .status-uploaded{
@@ -195,4 +195,41 @@ h3 {
 
 .status-submitted{
   color: green;
+}
+
+@font-face {
+  font-family: englishBodyFont;
+  src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: englishBodyFont2;
+  src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+.paper-name{
+ font-family: englishBodyFont;
+ color: #164E7E;
+ font-size: 3.2rem;
+}
+.btn-container{
+  width: 80%;
+  /* background-color: tomato; */
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-submit{
+  background-color: #164E7E !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
 }
