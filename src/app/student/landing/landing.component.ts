@@ -32,6 +32,7 @@ export class LandingComponent implements OnInit {
   hasNextPage = false;
   hasPreviousPage = false;
   pageNo = 1;
+  subjectName = "";
   constructor(
     private router: Router,
     private activatedRouter: ActivatedRoute,
@@ -52,35 +53,38 @@ export class LandingComponent implements OnInit {
 
     let userId = localStorage.getItem(LocalStorage.USER_ID);
     if (userId === "" || userId === null) {
-      this.router.navigate(['/login'])
+      this.router.navigate(['/login']);
+    }
+
+    let subscriptions = localStorage.getItem(LocalStorage.SUBSCRIPTION);
+    if(subscriptions === "" || subscriptions === null){
+      this.router.navigate(['/login']);
     }
    
+    this.subjectList = JSON.parse(subscriptions);
     //geting subscribed papers
-    var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
-    var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
-    this.subjectList = subscriptionResult.payload;
+    // var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
+    // var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
     this.hasNextPage = false;
     this.hasPreviousPage = false;
     if (this.subjectList.length > 0) {
 
       this.activatedRouter.queryParams.subscribe(async p => {
-        console.log("query params")
         if (p.page !== undefined) {
           
-          console.log(p);
           this.showingPapers = [];
           this.pageNo = p.page;
-          this.selectedSubjectId = this.subjectList[0].subjectid;
+          this.selectedSubjectId = p.subject ? p.subject : this.subjectList[0].subjectid;
+          this.subjectName = this.getSubjectName(this.selectedSubjectId);
           await this.getPapers(p.y, p.m, userId, this.selectedSubjectId);
 
         } else {
           this.pageNo = 1;
-          this.selectedSubjectId = this.subjectList[0].subjectid;
-          localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
-
+          this.selectedSubjectId = p.subject ? p.subject : this.subjectList[0].subjectid;
+          this.subjectName = this.getSubjectName(this.selectedSubjectId);
+          this.showingPapers = [];
           let today = new Date();
           this.month = today.getMonth() + 1;
-          console.log(this.month, "this month")
           this.year = today.getFullYear();
 
           await this.getPapers(this.year, this.month, userId, this.selectedSubjectId);
@@ -125,11 +129,8 @@ export class LandingComponent implements OnInit {
     let i = 0;
     let nextMonth = this.getNextMonth(yearNeed, monthNeed);
     while (i < this.pageLimit) {
-      console.log(monthNeed, "month need")
-      console.log(yearNeed, "year Need ")
       let paperdet = await this.availablePapersService.gatAvailablePapers(yearNeed.toString(), monthNeed.toString(), userid, subjectid).toPromise();
       let papersForMonth = paperdet.payload;
-      console.log("papersForMonth",monthNeed, yearNeed, papersForMonth);
       if (papersForMonth.papers.length > 0) {
         papersForMonth['month'] = monthNeed;
         papersForMonth['year'] = yearNeed;
@@ -145,7 +146,6 @@ export class LandingComponent implements OnInit {
 
     }
     let nextPaper = await this.availablePapersService.gatAvailablePapers(this.nextPageData.year.toString(), this.nextPageData.month.toString(), userid, subjectid).toPromise();
-    console.log(nextPaper,"nnext paper");
     if (nextPaper.payload.papers.length > 0) {
       this.hasNextPage = true;
     }else{
@@ -190,13 +190,25 @@ export class LandingComponent implements OnInit {
   previousPage() {
     this.pageNo = parseInt(this.pageNo.toString());
     this.pageNo -=1;
-    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month } });
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month, subject:this.selectedSubjectId } });
   }
 
   nextPage() {
     this.pageNo = parseInt(this.pageNo.toString());
     this.pageNo +=1;
-    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month } });
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month, subject:this.selectedSubjectId } });
+  }
+
+  getSubjectName(id){
+    if (this.subjectList.length>0){
+       for(let i=0; i<this.subjectList.length; i++){
+         if(this.subjectList[i].subjectid === id){
+           return this.subjectList[i].subjectname;
+         }
+       }  
+    }else{
+      return "";
+    }
   }
 
 
@@ -204,3 +216,4 @@ export class LandingComponent implements OnInit {
 }
 
 // PsD@1997MW12354!@#
+
