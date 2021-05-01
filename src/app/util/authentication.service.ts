@@ -45,6 +45,10 @@ import { Subject } from "../../../node_modules/rxjs";
         this.userChanged.next(this.User)
     }
     
+    setSuccessAlert(successMessage) {
+      this.successMessages = successMessage
+      this.successAlert.next(this.successMessages)
+    }
     
     
   }  

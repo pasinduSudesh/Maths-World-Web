@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from "@angular/router";
 import { FormGroup, FormControl, Validators, FormBuilder } from "@angular/forms";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
@@ -14,7 +14,7 @@ import { Subject } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
   public showPassword: boolean = false
   loginForm: FormGroup
   fp: any
@@ -38,6 +38,11 @@ export class LoginComponent implements OnInit {
     this.initForm();
     // console.log(getMAC());
     // localStorage.setItem(LocalStorage.DEVICE_ID, getMAC()); 
+    if (this.authenticationService.successMessages) {
+      this.isSuccess = true;
+      this.success = this.authenticationService.successMessages;
+
+    }
   }
 
   initForm() {
@@ -122,7 +127,7 @@ export class LoginComponent implements OnInit {
             }
           } else if (response.payload.user.status == '406') {
             this.authenticationService.setUser(response.payload.user.userId);
-            this.router.navigateByUrl("key-code");
+            this.router.navigateByUrl("verify");
           }
 
          
@@ -187,6 +192,14 @@ export class LoginComponent implements OnInit {
     //console.log("LoginComponent::loginBtnClickEvent():: returnedStatus:: " + returnedStatus)
 
     //this.router.navigateByUrl("user-role");
+  }
+
+  ngOnDestroy() {
+    this.hasErrors = false;
+    this.authenticationService.keycodeError = '';
+    this.authenticationService.pwdResetError = '';
+    this.isSuccess = false;
+    this.authenticationService.successMessages = '';
   }
 
 
