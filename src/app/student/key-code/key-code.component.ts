@@ -6,6 +6,7 @@ import { Location } from "@angular/common";
 import { Subject } from "rxjs";
 import { environment } from "../../../environments/environment";
 import { AuthenticationService } from "../../util/authentication.service";
+import { AlertService } from 'src/app/util/alert/alert.service';
 
 
 @Component({
@@ -17,8 +18,9 @@ export class KeyCodeComponent implements OnInit {
   User: any
   myForm: FormGroup;
   keycodeError: string = "";
+  successMessage: string = ""
   keycodeErrorOccurred = new Subject<any>()
-  constructor(private http: HttpClient, private router: Router, private _location: Location, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private router: Router, private _location: Location, private authenticationService: AuthenticationService, private alertService: AlertService) { }
 
   ngOnInit() {
     this.myForm = new FormGroup({
@@ -39,6 +41,8 @@ export class KeyCodeComponent implements OnInit {
           returnedStatus = data.status;
           console.log(returnedStatus.code);
             if (returnedStatus.code == 200) {
+            this.successMessage = "KeyCode verification is Success."
+            this.authenticationService.setSuccessAlert(this.successMessage);
             this.router.navigateByUrl("login");
           }
 
@@ -50,13 +54,13 @@ export class KeyCodeComponent implements OnInit {
           if (returnedStatus == 401) {
             this.keycodeError = "Invalid key code";
             this.authenticationService.setKeycodeError(this.keycodeError);
-            
-
-
+            this.alertService.clear();
+            this.alertService.error("Invalid key code");
           } else if (returnedStatus == 500) {
             this.keycodeError = "Error validating key code";
             this.authenticationService.setKeycodeError(this.keycodeError);
-
+            this.alertService.clear();
+            this.alertService.error("Error validating key code");
             return;
           }
 

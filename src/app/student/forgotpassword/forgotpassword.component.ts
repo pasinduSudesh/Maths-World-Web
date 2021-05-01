@@ -5,6 +5,7 @@
 import { Component, OnInit, OnDestroy } from "@angular/core";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { ForgotPasswordComponentService } from "./forgotpassword.service";
+import { AuthenticationService } from "../../util/authentication.service";
 import { HttpClient } from "@angular/common/http";
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
@@ -28,6 +29,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private forgotPasswordComponent: ForgotPasswordComponentService,
+    private authenticationService: AuthenticationService,
     private _location: Location,
     private http: HttpClient
   ){}
@@ -57,8 +59,8 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
           console.log(returnedStatus);
           if (returnedStatus == 200) {
             this.successMessage = "Password reset request has been sent. Please check your email."
-            this.forgotPasswordComponent.setSuccessAlert(this.successMessage);
-            this._location.back();
+            this.authenticationService.setSuccessAlert(this.successMessage);
+            this.router.navigateByUrl("/login");
           }
           // localStorage.setItem("token", data.token);
           // localStorage.setItem("userId", data.userId);
@@ -85,7 +87,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
   }
   back() {
-    this.router.navigateByUrl("");
+    this.router.navigateByUrl("/login");
   }
   ngOnDestroy() {
     this.hasErrors = false;

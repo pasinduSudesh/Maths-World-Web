@@ -119,7 +119,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
           console.log(alert);
           if (alert.code == 200) {
             this.alertService.clear();
-            this.router.navigateByUrl("key-code");
+            this.router.navigateByUrl("verify");
           } else {
             this.isSubmitted = false;
             this.alertService.clear();
