@@ -5,6 +5,7 @@ import { ShowPaperService } from '../../../services/paper/show-paper.service';
 import { PaymentDetailsService } from '../../../services/payment/payment-details.service';
 import { DateService } from '../../../services/util/date.service';
 import { LoadingComponent } from '../../../common/loading/loading.component';
+import { Constants } from '../../../util/Constants';
 
 @Component({
   selector: 'app-payed-papers',
@@ -27,6 +28,11 @@ export class PayedPapersComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
 
     this.loading = "Loading Papers";
 

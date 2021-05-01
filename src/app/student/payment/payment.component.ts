@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../../environments/environment';
 import { Constants } from '../../util/Constants';
 import { Router } from "@angular/router";
+
 import { PaymentDetailsService } from '../../services/payment/payment-details.service';
 declare var payhere: any;
 
@@ -131,6 +132,12 @@ export class PaymentComponent implements OnInit {
     }
   
   ngOnInit() {
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
+    
     console.log(this.paymentService.paper);
     if(this.paymentService.paper === null){
       this.router.navigate(['/paper/list']);

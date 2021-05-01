@@ -10,6 +10,7 @@ import { bool } from 'aws-sdk/clients/signer';
 import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../../util/localStorage.service';
+import { Constants } from '../../../util/Constants';
 
 @Component({
   selector: 'app-show-paper',
@@ -47,6 +48,11 @@ export class ShowPaperComponent implements OnInit {
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   async ngOnInit() {
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
+    
     this.loading = "Loading Paper Data";
     let userid = localStorage.getItem(LocalStorage.USER_ID);
     if (userid === "" || userid === null) {
