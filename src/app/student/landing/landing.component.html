@@ -2,10 +2,11 @@
 <section>
     <div class="months">
 
-        <button *ngFor="let subject of subjectList; let i = index" class="btn"
+        <!-- <button *ngFor="let subject of subjectList; let i = index" class="btn"
             [class]="selectedSubjectId===subject.subjectid?'selected':'not-selected'"
-            (click)="loadPapers(subject)">{{subject.subjectname}}</button>
+            (click)="loadPapers(subject)">{{subject.subjectname}}</button> -->
         <!-- <button class="btn not-selected">Success</button> -->
+        <h3>{{subjectName}}</h3>
 
     </div>
 
