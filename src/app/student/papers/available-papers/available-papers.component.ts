@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../../navbar/navbar.component';
 import {AvailablePapersService } from '../../../services/available-papers.service';
 import { DateService } from '../../../services/util/date.service';
+import { Constants } from '../../../util/Constants';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { LocalStorage } from '../../../util/localStorage.service';
 
 
 @Component({
@@ -19,9 +22,19 @@ export class AvailablePapersComponent implements OnInit {
   loading: boolean = true;
   category: any = "";
 
-  constructor(private navbar: NavbarComponent, private availablePapersService: AvailablePapersService, private util:DateService) { }
+  constructor(private navbar: NavbarComponent, 
+    private availablePapersService: AvailablePapersService, 
+    private util:DateService,
+    private router: Router
+      ) { }
 
   ngOnInit(): void {
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
+
     const date = new Date();
     const month = (date.getMonth()+1).toString();
     const year = (date.getUTCFullYear()).toString();

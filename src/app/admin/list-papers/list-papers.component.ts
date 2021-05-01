@@ -32,11 +32,11 @@ export class ListPapersComponent implements OnInit {
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
     console.log("in list");
     console.log(userRoll,"in list");
-    console.log(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers,"list of roles")
-    console.log(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll.toString()),"asasasas")
+    console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers,"list of roles")
+    console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll.toString()),"asasasas")
 
-    if(!(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll))){
-      console.log('Constants.USER_ROLE_ASSIGNMENTS.ViewPapers')
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll))){
+      console.log('Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers')
       this.router.navigate(['/admin/login']);
     }
     

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PdfViewerModule } from 'ng2-pdf-viewer';
+declare var require: any
+const FileSaver = require('file-saver');
+
 @Component({
   selector: 'app-pdf-viewer',
   templateUrl: './pdf-viewer.component.html',
@@ -8,6 +11,7 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 export class PdfViewerComponent implements OnInit {
 
   @Input() src:string;
+  @Input() name:string;
 
   constructor() { }
 
@@ -30,6 +34,7 @@ export class PdfViewerComponent implements OnInit {
   }
 
   download(){
-
+    // console.log(this.src)
+    FileSaver.saveAs(this.src, this.name);
   }
 }

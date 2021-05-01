@@ -5,6 +5,7 @@ import { LocalStorage } from '../../../util/localStorage.service';
 import { DateService } from '../../../services/util/date.service';
 import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.component';
 import { LoadingComponent } from '../../../common/loading/loading.component';
+import { Constants } from '../../../util/Constants';
 
 
 @Component({
@@ -45,6 +46,11 @@ export class ShowResultComponent implements OnInit {
   ) { }
 
   async ngOnInit() {
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
 
     let userid = localStorage.getItem(LocalStorage.USER_ID);
     if (userid === "" || userid === null) {

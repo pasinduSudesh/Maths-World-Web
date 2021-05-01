@@ -59,11 +59,11 @@
 
     <div class="paper mt-4 mb-2">
         <div class="header"><h5>Paper</h5></div>
-        <app-pdf-viewer [src]="paperLink"></app-pdf-viewer>
+        <app-pdf-viewer [src]="paperLink" [name]="'paper'"></app-pdf-viewer>
     </div>
     <div class="answer mt-4 mb-2">
         <div class="header"><h5>Corrections</h5></div>
-        <app-pdf-viewer [src]="answerLink"></app-pdf-viewer>
+        <app-pdf-viewer [src]="answerLink" name="'answer'"></app-pdf-viewer>
     </div>
 </section>
 

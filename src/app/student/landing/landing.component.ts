@@ -6,6 +6,7 @@ import { UserDetailsService } from '../../services/user/user-details.service';
 import { DateService } from '../../services/util/date.service';
 import { PaymentDetailsService } from '../../services/payment/payment-details.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
+import { Constants } from '../../util/Constants';
 
 @Component({
   selector: 'app-landing',
@@ -13,7 +14,7 @@ import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent implements OnInit {
-  pageLimit = 2;
+  pageLimit = 5;
   subjectList = [];
   selectedSubjectId = null;
   showingPapers = [];
@@ -43,6 +44,12 @@ export class LandingComponent implements OnInit {
   }
 
   async ngOnInit() {
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+      this.router.navigate(['/login']);
+    }
+
     let userId = localStorage.getItem(LocalStorage.USER_ID);
     if (userId === "" || userId === null) {
       this.router.navigate(['/login'])

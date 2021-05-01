@@ -37,7 +37,7 @@ export class ViewPaperAdminComponent implements OnInit {
 
   async ngOnInit() {
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
-    if(!(Constants.USER_ROLE_ASSIGNMENTS.ViewPapers.includes(userRoll))){
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll))){
       this.router.navigate(['/admin/login']);
     }
     let adminId = localStorage.getItem(LocalStorage.USER_ID);
