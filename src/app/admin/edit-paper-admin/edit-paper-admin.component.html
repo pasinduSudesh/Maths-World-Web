@@ -120,7 +120,7 @@
                         <p class="err-duration" *ngIf="errMsg.length>0">{{errMsg}} </p>
                         
                         <div *ngIf="showPdf" class="pdf-container">
-                            <app-pdf-viewer [src]="paperlink"></app-pdf-viewer>
+                            <app-pdf-viewer [src]="paperlink" [name]="paperName+'_'+year+'_'+month+'_'+week"></app-pdf-viewer>
                         </div>
                     <!-- <div class="row">
                         <div class="col-md-12 col-sm-12">                           

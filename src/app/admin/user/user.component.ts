@@ -19,7 +19,7 @@ export class UserComponent implements OnInit {
 
   ngOnInit(): void {
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
-    if(!(Constants.USER_ROLE_ASSIGNMENTS.UserManage.includes(userRoll))){
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.UserManage.includes(userRoll))){
       this.router.navigate(['/admin/login']);
     }
   }
