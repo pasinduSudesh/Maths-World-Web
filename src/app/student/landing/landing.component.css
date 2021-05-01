@@ -1,3 +1,13 @@
+@font-face {
+    font-family: englishBodyFont;
+    src: url('../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: englishBodyFont2;
+    src: url('../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+
 section {
     margin-top: 70px;
 }
@@ -78,9 +88,12 @@ section {
     /* background-color: rgb(133, 92, 92); */
     height: 50px;
     margin: 10px 0px 3px 0px;
-    -webkit-box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
+    /* -webkit-box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
     -moz-box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
-    box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1); */
+    -webkit-box-shadow: 3px 1px 21px 9px rgba(0,0,0,0.14);
+    -moz-box-shadow: 3px 1px 21px 9px rgba(0,0,0,0.14);
+    box-shadow: 3px 1px 21px 9px rgba(0,0,0,0.14);
     border-radius: 5px;
 }
 
@@ -119,7 +132,7 @@ section {
     margin-bottom: 15px;
 }
 
-.hhh :hover{
+.hhh :hover {
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
 }
 
@@ -136,8 +149,19 @@ section {
     background-image: linear-gradient(to right, #219799, #219799);
     padding: 7px 25px 7px 25px;
     border-radius: 100px;
-    color: white;
+    color: white !important;
     font-weight: bolder;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
     text-decoration: none;
+    cursor: pointer;
+    /* inherits: ; */
+}
+
+.subject-name h1 {
+    text-align: left;
+    font-family: englishBodyFont;
+    /* margin: 20px 20px 20px 20px; */
+    color: #164E7E;
+    font-size: 3.2rem;
+    /* color: #343A40; */
 }

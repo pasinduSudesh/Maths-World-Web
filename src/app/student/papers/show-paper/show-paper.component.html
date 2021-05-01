@@ -1,6 +1,6 @@
 
 <section class="show-paper">
-    <h5>{{paper?.papername}}</h5>
+    <h1 class="paper-name py-3">{{paper?.papername}}</h1>
     <a *ngIf="!isPaperStarted" class="btn btn-start-paper" (click)="startPaper()">Start Paper</a>
 
     <div  *ngIf="isPaperStarted">
@@ -22,22 +22,22 @@
             </div> -->
 
             <div [ngSwitch]="paperStatus" class="row mt-4 mb-2">
-                <div class="col-4 text-left submission-status">
+                <!-- <div class="col-4 text-left submission-status">
                     Submission Status
-                </div>
-                <div *ngSwitchCase="'notstart'" class="col-8 text-left submission-status status-notsubmitted">
+                </div> -->
+                <div *ngSwitchCase="'notstart'" class="col-12 text-center submission-status status-notsubmitted">
                     <i class="icofont-close-circled"></i> Not Submitted
                 </div>
-                <div *ngSwitchCase="'start'" class="col-8 text-left submission-status status-notsubmitted">
+                <div *ngSwitchCase="'start'" class="col-12 text-center submission-status status-notsubmitted">
                     <i class="icofont-close-circled"></i> Not Submitted
                 </div>
-                <div *ngSwitchCase="'upload'" class="col-8 text-left submission-status status-uploaded">
+                <div *ngSwitchCase="'upload'" class="col-12 text-center submission-status status-uploaded">
                     <i class="icofont-warning-alt"></i> File is uploaded, Please confirm submission
                 </div>
-                <div *ngSwitchCase="'submit'" class="col-8 text-left submission-status status-submitted">
+                <div *ngSwitchCase="'submit'" class="col-12 text-center submission-status status-submitted">
                     <i class="icofont-check-circled"></i> Submitted Successfuly
                 </div>
-                <div *ngSwitchCase="'overdue'" class="col-8 text-left submission-status status-notsubmitted">
+                <div *ngSwitchCase="'overdue'" class="col-12 text-center submission-status status-notsubmitted">
                     <i class="icofont-close-circled"></i> Submission is Overdue
                 </div>
             </div>
@@ -47,7 +47,10 @@
                 {{message}}
             </div> -->
             <app-file-uploader (uploadEvent)="paperStatus=$event" (fileEvent)="files=$event"></app-file-uploader>
-            <button (click)="onSubmit()">submit</button>
+            <div class="btn-container">
+                <button (click)="onSubmit()" class="btn btn-submit lg float-right">submit</button>
+            </div>
+            
         </div>
     </div>
 </section>

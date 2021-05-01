@@ -57,11 +57,13 @@ export class LandingComponent implements OnInit {
     }
 
     let subscriptions = localStorage.getItem(LocalStorage.SUBSCRIPTION);
+    console.log(subscriptions, "subscriptions")
     if(subscriptions === "" || subscriptions === null){
       this.router.navigate(['/login']);
     }
    
     this.subjectList = JSON.parse(subscriptions);
+    console.log(this.subjectList);
     //geting subscribed papers
     // var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
     // var subscribedSubjects = JSON.stringify(subscriptionResult.payload);

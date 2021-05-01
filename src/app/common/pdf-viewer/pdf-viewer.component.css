@@ -9,10 +9,11 @@ pdf-viewer {
 
   .pdf-controller{
     text-align: left;
-    margin-bottom: 5px;
-    /* width: 90vw; */
+    margin-bottom: 5px; 
     margin-left: auto;
     margin-right: auto;
+    /* display: block; */
+    width: 90%;
   }
 
   .pdf-viwer-container{
@@ -21,13 +22,18 @@ pdf-viewer {
   }
 
   .btn-pdf{
-    margin-right: 5px;
+    /* margin-right: 5px; */
   }
 
   .zoom{
-    margin-right: 5px;
+    /* margin-right: 5px; */
     display: inline;
     
+  }
+
+  .btn-secondary{
+    color: #164E7E !important;
+    border-color:  #164E7E !important;
   }
 
 
