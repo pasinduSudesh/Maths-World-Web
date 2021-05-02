@@ -30,10 +30,11 @@ export class StudentRootComponent implements OnInit {
       this.router.navigate(['/login']);
     }
 
-    var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
-    var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
-    this.subscribedSubjects = subscriptionResult.payload;
-    localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
+    // var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
+    // var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
+    this.subscribedSubjects = JSON.parse(localStorage.getItem(LocalStorage.SUBSCRIPTION));
+    // console.log(this.subscribedSubjects, "in student root")
+    // localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
   }
   
   public _opened: boolean = true;
@@ -60,7 +61,6 @@ export class StudentRootComponent implements OnInit {
 
   navigate(subject){
     console.log("inside navigate()", subject);
-    this.router.navigate(['/paper/list'], {queryParams:{subject:subject.subjectid}})
-
+    this.router.navigate(['/paper/list'], {queryParams:{subject:subject.subjectid}});
   }
 }
