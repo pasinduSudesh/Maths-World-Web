@@ -23,6 +23,7 @@ export class LocalStorage {
   public static CURRENT_PAPER_ID: string = "current_paper";
   public static PAPER_END_TIME: string = "end_time";
   public static PAPER_STATUS: string = "paper_status";
+  public static TEMP_USER_ID: string = "temp_user_id";
 
 
 }
