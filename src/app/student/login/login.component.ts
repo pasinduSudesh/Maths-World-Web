@@ -8,6 +8,7 @@ import { AlertService } from 'src/app/util/alert/alert.service';
 import { AuthenticationService } from "../../util/authentication.service";
 import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
+import { UserDetailsService } from '../../services/user/user-details.service';
 
 @Component({
   selector: 'app-login',
@@ -31,7 +32,8 @@ export class LoginComponent implements OnInit, OnDestroy {
     private router: Router,
     private http: HttpClient,
     private alertService: AlertService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private userService: UserDetailsService
   ) { }
 
   ngOnInit() {
@@ -97,7 +99,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       this.loginForm.value.password
     )
       .subscribe(
-        response => {
+        async response => {
           returnedStatus = response.status
           var roles: string[];
 
@@ -113,8 +115,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             localStorage.setItem(LocalStorage.ROLES, response.payload.roles);
             localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
 
+            var subscriptionResult = await this.userService.getSubscribedSubjects(response.payload.user.userId).toPromise();
+            var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
+
             console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
             console.log(response.payload.roles);
+            localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
 
             console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
             console.log(localStorage.getItem(LocalStorage.ROLES));
