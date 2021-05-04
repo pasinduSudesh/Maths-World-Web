@@ -143,7 +143,9 @@ export class PaymentComponent implements OnInit {
       this.router.navigate(['/paper/list']);
     }
     this.paper = this.paymentService.paper;
-    this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId)
+    this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId);
+
+    // check is paid for the previous week
   }
 
   getUserDetails() {

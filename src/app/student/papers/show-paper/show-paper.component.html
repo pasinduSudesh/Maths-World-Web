@@ -1,7 +1,7 @@
 
 <section class="show-paper">
     <h1 class="paper-name py-3">{{paper?.papername}}</h1>
-    <a *ngIf="!isPaperStarted" class="btn btn-start-paper" (click)="startPaper()">Start Paper</a>
+    <a *ngIf="!isPaperStarted" class="btn btn-start py-2 px-4" (click)="startPaper()">Start Paper</a>
 
     <div  *ngIf="isPaperStarted">
         <app-timer></app-timer>

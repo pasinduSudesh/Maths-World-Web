@@ -38,6 +38,10 @@ export class ShowResultComponent implements OnInit {
     week:false
   }
 
+  isShowPaper = true;
+  isShowAnswer = false;
+  isShowSchema = false;
+
   constructor(
     private showPaperService: ShowPaperService,
     private router: Router,
@@ -105,6 +109,25 @@ export class ShowResultComponent implements OnInit {
   }
 
   getMonthName(i){
-    return this.dateService.getMonthName(i);
+    return this.dateService.getMonthName(parseInt(i)-1);
+  }
+
+  showPaper(){
+    this.isShowPaper = true;
+    this.isShowAnswer = false;
+    this.isShowSchema = false;
+  }
+
+  showAnswer(){
+    this.isShowPaper = false;
+    this.isShowAnswer = true;
+    this.isShowSchema = false;
+  }
+
+  showSchema(){
+    this.isShowPaper = false;
+    this.isShowAnswer = false;
+    this.isShowSchema = true;
+
   }
 }

@@ -10,14 +10,17 @@
 {
     text-align: center;
     height: 80px;
-    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
-    color: #fff;
+    /* background: -webkit-linear-gradient(left, #0072ff, #8811c5); */
+    background-color: white;
+    color: #164E7E;
     font-weight: bold;
+    
     
    
 }
 
 .note h3{
+    font-size: 3.2rem;
     margin-top: 20px;
     font-weight: bold;
     line-height: 80px;
