@@ -1,0 +1,106 @@
+/* 
+ *  Copyright 2020-2021 404 Solutions Company
+ */
+
+ .loading-panel {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    z-index: 1052;
+}
+
+.loading-panel-bg {
+    background-color: #212121;
+    opacity: 0.6;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loading-percentage {
+    color: #f3f3f3;
+    position: absolute;
+}
+
+.loading-message {
+    color: #f3f3f3;
+    position: relative;
+    top: 72px;
+}
+
+.loader {
+    border: 4px solid #f3f3f3;
+    /* Light grey */
+    border-top: 4px solid #212121;
+    /* Blue */
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}@import url(https://fonts.googleapis.com/css?family=Comfortaa:400,700,300);
+
+*,html{margin:0;padding:0}
+
+//variables
+$baseColor : #e74c3c;
+$fontColor : blue;
+
+body{
+  background: $baseColor;
+  text-align: center;
+  font-family: 'Comfortaa', cursive;
+}
+svg{
+  width: 100px;
+  height: 100px;
+  margin: 20px;
+  display:inline-block;
+}
+h1{
+  text-align: center;
+  color: $fontColor;
+  margin: 0 0 100px;
+  font-size: 34px;
+  font-weight: 100;
+  text-transform: uppercase;
+  background-color: darken($baseColor, 5);
+  padding: 20px 0;
+  b{
+    font-weight: 700;
+  }
+}
+
+//follow me template
+.made-with-love{
+  margin-top: 20px;
+  padding: 10px;
+  font-size: 10px;
+  font-family: arial;
+  color: #fff;
+  i{
+    font-style: normal;
+    color: #F50057;
+    font-size: 14px;
+    position: relative;
+    top: 2px;
+  }
+  a{
+    color: #fff;
+    text-decoration: none;
+    &:hover{
+      text-decoration: underline;
+    }
+  }
+}
