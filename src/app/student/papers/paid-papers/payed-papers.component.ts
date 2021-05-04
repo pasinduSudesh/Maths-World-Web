@@ -79,7 +79,7 @@ export class PayedPapersComponent implements OnInit {
   }
 
   getMonth(i){
-    return this.dateService.getMonthName(i);
+    return this.dateService.getMonthName(parseInt(i)-1);
   }
 
 }

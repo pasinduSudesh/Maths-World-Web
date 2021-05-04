@@ -233,3 +233,33 @@ h3 {
   min-height: 10px;
   border-radius: 5px;
 }
+
+.btn-start{
+  background-color: #164E7E !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 35px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
+}
+
+.btn-start:hover{
+  background-color: #092b4b !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 35px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
+}

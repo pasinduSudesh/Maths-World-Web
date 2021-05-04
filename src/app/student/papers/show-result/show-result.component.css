@@ -1,5 +1,16 @@
+@font-face {
+    font-family: englishBodyFont;
+    src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: englishBodyFont2;
+    src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+
 section{
     margin-top: 70px;
+    width: 100%;
 }
 .rectangle{
     /* background-color: #C71D1E; */
@@ -69,15 +80,31 @@ section{
 .btn {
     border: 0.5px solid rgba(255, 255, 255, 0.5);;
     color: rgba(255, 255, 255, 0.8);
-    padding: 4px 28px;
-    font-size: 16px;
+    padding: 2px 28px;
+    font-size: 13px;
     cursor: pointer;
     /* border-radius: 50px; */
     margin: 2px 5px 5px 5px;
     width: 150px;
   
 }
+.paper-name h1{
+    text-align: center;
+    font-family: englishBodyFont;
+    /* margin: 20px 20px 20px 20px; */
+    color: #164E7E;
+    font-size: 3.2rem;
+    /* color: #343A40; */
+}
 
+.paper-name h4{
+    text-align: center;
+    font-family: englishBodyFont;
+    /* margin: 20px 20px 20px 20px; */
+    color: #164E7E;
+    font-size: 1.5rem;
+    /* color: #343A40; */
+}
 
 .buttons{
     position: relative;
@@ -85,6 +112,8 @@ section{
 }
 
 .header h5{
-    color: rgba(0, 0, 0, 0.4);
+    font-family: englishBodyFont;
+    color: #164E7E;
+    font-size: 1.5rem;
     text-align: center;
 }
