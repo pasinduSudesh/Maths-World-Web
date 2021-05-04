@@ -9,11 +9,11 @@
  @import "./app/styles/colors_function";
  @import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
  @import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
- $primary-color-acent: #047c0a;
+ $primary-color-acent: #042847;
  $error-color:#FF6D4A;
  $success-green:#28a745;
  $error-color-red:#dc3545;
- $primary-color: #15aa3a;
+ $primary-color: #164E7E;
  $secondary-color:#ffffff;
  $text-color-primary:#757575;
  $text-color-dark:#212223;
@@ -47,7 +47,7 @@
  .btn-primary:hover,
  .btn-primary:active,
  .btn-primary:visited {
-     color: material-color('grey', '900') !important;
+     color: white !important;
      background-color: $primary-color-acent !important;
      border-color: $primary-color-acent !important;
  }
