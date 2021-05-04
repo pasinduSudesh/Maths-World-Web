@@ -38,7 +38,7 @@ export class PaymentComponent implements OnInit {
       console.log("Payment completed. OrderID:" + orderId);
       console.log("dsds"+paymentService.paper);
       this.isSubmitted = true;
-      router.navigate(['/paper/list']);
+      router.navigate(['/paper/view']);
     };
 
     payhere.onDismissed = function onDismissed() {

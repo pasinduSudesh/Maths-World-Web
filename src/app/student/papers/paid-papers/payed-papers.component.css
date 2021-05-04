@@ -65,8 +65,10 @@ section {
     background-image: linear-gradient(to right, #219799, #219799);
     padding: 7px 25px 7px 25px;
     border-radius: 100px;
-    color: white;
-    font-weight: bolder;
+    color: white !important;
+    font-weight: normal;
     box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
     text-decoration: none;
+    cursor: pointer;
+    /* inherits: ; */
 }
