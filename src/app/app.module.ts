@@ -56,6 +56,8 @@ import { PdfViewerModule } from 'ng2-pdf-viewer';
 import { FileUploaderComponent } from './common/file-uploader/file-uploader.component';
 import { DndDirective } from './common/file-uploader/dnd.directive';
 import { LoadingComponent } from './common/loading/loading.component';
+import { LoadingComponent1 } from './util/loading/loading.component';
+import { LoadingService } from './util/loading/loading.service';
 import { AlertsComponent } from './common/alerts/alerts.component';
 import { ListPapersComponent } from './admin/list-papers/list-papers.component';
 import { LandingComponent } from './student/landing/landing.component';
@@ -100,6 +102,7 @@ import { StudentRootComponent } from './student/student-root/student-root.compon
     FileUploaderComponent,
     DndDirective,
     LoadingComponent,
+    LoadingComponent1,
     AlertsComponent,
     PaymentComponent,
     ListPapersComponent,
@@ -148,7 +151,7 @@ import { StudentRootComponent } from './student/student-root/student-root.compon
     ShowPaperService,
     FileUploaderComponent,
     PdfViewerComponent,
-    LoadingComponent,
+    LoadingService,
     AlertsComponent,
     UserAccessService,
     UserDetailsService,

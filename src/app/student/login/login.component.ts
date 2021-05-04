@@ -9,6 +9,7 @@ import { AuthenticationService } from "../../util/authentication.service";
 import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
 import { UserDetailsService } from '../../services/user/user-details.service';
+import { LoadingService } from '../../util/loading/loading.service';
 
 @Component({
   selector: 'app-login',
@@ -33,11 +34,13 @@ export class LoginComponent implements OnInit, OnDestroy {
     private http: HttpClient,
     private alertService: AlertService,
     private authenticationService: AuthenticationService,
-    private userService: UserDetailsService
+    private userService: UserDetailsService,
+    private loadingService: LoadingService
   ) { }
 
   ngOnInit() {
     this.initForm();
+    this.loadingService.hideLoading();
     // console.log(getMAC());
     // localStorage.setItem(LocalStorage.DEVICE_ID, getMAC()); 
     if (this.authenticationService.successMessages) {
@@ -76,6 +79,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     return this.loginForm.controls
   }
   public loginBtnClickEvent() {
+    this.loadingService.showLoading(true, null, "Loading", null)
     this.loginBtnClicked = true;
     var returnedStatus: any
     this.submitted = true
@@ -90,6 +94,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     console.log("login clicked" + this.loginForm.value.userName + "==" + this.loginForm.value.password)
     if (this.loginForm.invalid) {
       this.loginBtnClicked = false;
+      this.loadingService.hideLoading();
       return
     }
 
@@ -129,10 +134,12 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.setUser(this.user)
             console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
             if (returnedStatus.code == 200) {
+              this.loadingService.hideLoading();
               this.router.navigateByUrl("paper/list")
             }
           } else if (response.payload.user.status == '406') {
             this.authenticationService.setUser(response.payload.user.userId);
+            this.loadingService.hideLoading();
             this.router.navigateByUrl("verify");
           }
 
@@ -145,6 +152,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           //return returnedStatus;
           if (returnedStatus == 401) {
             this.loginBtnClicked = false;
+            this.loadingService.hideLoading();
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -154,6 +162,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 403) {
             this.loginBtnClicked = false;
+            this.loadingService.hideLoading();
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -162,8 +171,8 @@ export class LoginComponent implements OnInit, OnDestroy {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 532) {
-            console.log(returnedStatus);
             this.loginBtnClicked = false;
+            this.loadingService.hideLoading();
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -173,6 +182,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 404) {
             this.loginBtnClicked = false;
+            console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -182,6 +192,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 500) {
             this.loginBtnClicked = false;
+            console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -190,6 +201,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 200) {
+            console.log(returnedStatus);
             this.router.navigateByUrl("paper/list")
           }
         }
