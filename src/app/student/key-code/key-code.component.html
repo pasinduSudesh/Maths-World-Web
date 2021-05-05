@@ -8,7 +8,7 @@
         <div class="col-md-4 push-md-4"></div>
         <div class="col-md-4 push-md-4">
           <div class="panel">
-            <h1>Key Code Verification</h1>
+            <h1><b>Key Code Verification</b></h1>
             <div class="row">
               <div class="col-lg-2 col-md-2 col-sm-3"></div>
               <div class="col-lg-8 col-md-8 col-sm-6">
@@ -17,8 +17,9 @@
               <div class="col-lg-2 col-md-2 col-sm-3"></div>
             </div>
             <h3>
-              A key code has been sent to your email. Please enter the key code below to authorize the device.
+              A key code has been sent to your email <b><b>{{emailAddress}}</b></b> Please enter the key code below to authorize the device.
             </h3>
+            <h3>Key code verification is mandatory, please check that you are inserted the correct email address in Add User Form. If the key code verification email is not in inbox, check your spam in the email service.</h3>
             <input style="display: none;" id="deviceId" name="deviceId" type="text" />
             <div class="panel-body">
               <form [formGroup]="myForm">
@@ -28,8 +29,11 @@
                       type="text" />
                   </div>
                   <div></div>
-                  <button class="btn rounded-btn" [disabled]="!myForm.valid" (click)="onSubmit()">
+                  <button class="btn btn-primary btn-block" [disabled]="!myForm.valid" (click)="onSubmit()">
                     Submit
+                  </button>
+                  <button  class="btn btn-secondary btn-block mt-3" (click)="back()">
+                    Cancel
                   </button>
                 </fieldset>
               </form>

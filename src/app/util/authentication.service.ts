@@ -36,6 +36,18 @@ import { Subject } from "../../../node_modules/rxjs";
         )
     }
 
+    getEmailAddressForVerification() {
+      let userId = localStorage.getItem(LocalStorage.TEMP_USER_ID);
+      let headers: HttpHeaders = new HttpHeaders()
+      headers = headers.append("user-id", btoa(userId))
+      return this.http.get<any>(
+        environment.SERVER_URL + "/v1/users/getEmail",
+          {
+            headers: headers
+          }
+      )
+    }
+
     setKeycodeError(error) {
         this.keycodeError = error
         this.keycodeErrorOccurred.next(this.keycodeError)

@@ -9,13 +9,13 @@ import { Subject, Subscription } from "rxjs";
 import { map } from "rxjs/operators";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { AuthenticationService } from "../../util/authentication.service";
-
+import { LoadingService } from "../../util/loading/loading.service";
 
 @Injectable({
   providedIn: "root"
 })
 export class UserService {
-  constructor(private http: HttpClient, private authenticationService: AuthenticationService) { }
+  constructor(private http: HttpClient, private authenticationService: AuthenticationService, private loadingService: LoadingService) { }
   usersChanged = new Subject<User[]>();
   alertMessageOccured = new Subject<any>();
   users: User[] = [];
@@ -25,8 +25,8 @@ export class UserService {
 
 
   addUser(user) {
+    this.loadingService.showLoading(true, null, "Loading", null)
     let headers: HttpHeaders = new HttpHeaders()
-    
     var res = new Subject<any>();
     let options = {
       headers: headers

@@ -6,6 +6,7 @@ import { UserService } from "./user.service";
 import { Subscription } from 'rxjs';
 import { AlertService } from '../../util/alert/alert.service';
 import { AuthenticationService } from "../../util/authentication.service";
+import { LoadingService } from "../../util/loading/loading.service";
 
 
 @Component({
@@ -52,9 +53,17 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   @Input() user: any;
   @Output() closeClicked = new EventEmitter();
 
-  constructor(private userService: UserService, private alertService: AlertService, private router: Router, private authenticationService: AuthenticationService) { }
+  constructor(
+    private userService: UserService, 
+    private alertService: AlertService, 
+    private router: Router, 
+    private authenticationService: AuthenticationService,
+    private loadingService: LoadingService
+    
+    ) { }
 
   ngOnInit(){
+    this.loadingService.hideLoading();
   }
   selectSub(sub: string) {
     console.log("[selectUserRole] : (userRole) " + sub);
@@ -85,12 +94,14 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     }
     console.log("[userAccountsComponent] :: onSave()::" );
     if (addUserForm.value.password != addUserForm.value.repass) {
+      this.loadingService.hideLoading();
       this.alertService.clear();
       this.alertService.error("Passwords do not match!");
       return;
     }
     
     if (subjects.length == 0) {
+      this.loadingService.hideLoading();
       this.alertService.clear();
       this.alertService.warn("Please subscribed to atleast one Subject.");
       return;
@@ -118,10 +129,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
           (alert) => {
           console.log(alert);
           if (alert.code == 200) {
+            this.loadingService.hideLoading();
             this.alertService.clear();
             this.router.navigateByUrl("verify");
           } else {
             this.isSubmitted = false;
+            this.loadingService.hideLoading();
             this.alertService.clear();
             this.alertService.error(alert.message);
           }
