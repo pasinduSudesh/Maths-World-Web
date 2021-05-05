@@ -182,6 +182,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 404) {
             this.loginBtnClicked = false;
+            this.loadingService.hideLoading();
             console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
@@ -192,6 +193,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 500) {
             this.loginBtnClicked = false;
+            this.loadingService.hideLoading();
             console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
@@ -202,6 +204,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             return
           } else if (returnedStatus == 200) {
             console.log(returnedStatus);
+            this.loadingService.hideLoading();
             this.router.navigateByUrl("paper/list")
           }
         }
