@@ -34,12 +34,12 @@
                   <h5 class="mb-3">Please Select Your Subscription Method</h5>
                   <div class="d-block my-3">
         
-                    <div class="custom-control custom-radio">
+                    <div *ngIf="showWeek" class="custom-control custom-radio">
                       <input id="weekly" type="radio" class="custom-control-input" [value]="paper.prize" name="subscription" formControlName="subscription">
                       <label class="custom-control-label" for="weekly">Weekly Subscription of Rs.{{paper?.prize}}</label>
                     </div>
         
-                    <div class="custom-control custom-radio">
+                    <div *ngIf="showMonth" class="custom-control custom-radio">
                       <input id="monthly" type="radio" class="custom-control-input" [value]="paper?.categoryprize" name="subscription" formControlName="subscription">
                       <label class="custom-control-label" for="monthly">Monthly Subscription of Rs.{{paper?.categoryprize}}</label>
                     </div>

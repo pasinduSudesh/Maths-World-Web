@@ -8,6 +8,7 @@ import { Constants } from '../../util/Constants';
 import { Router } from "@angular/router";
 
 import { PaymentDetailsService } from '../../services/payment/payment-details.service';
+import { NumberFormatStyle } from '@angular/common';
 declare var payhere: any;
 
 @Component({
@@ -16,7 +17,7 @@ declare var payhere: any;
   styleUrls: ['./payment.component.scss']
 })
 export class PaymentComponent implements OnInit {
-  isSubmitted = false
+  isSubmitted = true
   hasErrors = false
   loginError: string = ""
   userId: string
@@ -26,6 +27,8 @@ export class PaymentComponent implements OnInit {
   categoryId: string
 
   paper:any;
+  showMonth = true;
+  showWeek = true;
   
   
   constructor(public fb: FormBuilder, 
@@ -131,7 +134,7 @@ export class PaymentComponent implements OnInit {
   
     }
   
-  ngOnInit() {
+  async ngOnInit() {
 
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
     if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
@@ -146,6 +149,12 @@ export class PaymentComponent implements OnInit {
     this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId);
 
     // check is paid for the previous week
+    console.log(this.paper, "paper details11")
+    const result = await this.paymentService.hasPaidAnotherWeek(this.paper.paperid).toPromise();
+    this.showMonth = ! result.payload.hasPaid;
+    this.showWeek = true;
+    this.isSubmitted = false;
+
   }
 
   getUserDetails() {
