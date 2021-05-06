@@ -1,5 +1,3 @@
-<app-navigation></app-navigation>
-
 <div class="summary">
     <section class="hero">
         <div class="container">
@@ -8,19 +6,19 @@
             <div class="note">
                 <div class="note-data">
                     <p class="note-name" >Total</p>
-                    <p class="note-value">50</p>
+                    <p class="note-value" id="total">{{summary.total}}</p>
                 </div>
                 <div class="note-data">
                     <p class="note-name" >Selected</p>
-                    <p class="note-value">28</p>
+                    <p class="note-value">{{summary.selected}}</p>
                 </div>
                 <div class="note-data">
                     <p class="note-name" >Pending</p>
-                    <p class="note-value">22</p>
+                    <p class="note-value">{{summary.pending}}</p>
                 </div>
                 <div class="note-data">
                     <p class="note-name" >Marking finished</p>
-                    <p class="note-value">19</p>
+                    <p class="note-value">{{summary.finished}}</p>
                 </div>
             </div>
         </div>
@@ -28,12 +26,6 @@
 
     <section class="options">
         <div class="container">
-            <div class="search-container">
-                <form action="#">
-                    <input type="text" placeholder="Search.." name="search">
-                    <button type="submit"><img src="../../../assets/images/Search_icon.svg" alt="Home"></button>
-                </form>
-            </div>
 
             <div class="select-panes">
                 <div class="input-group mb-3">
@@ -41,68 +33,50 @@
                         <label class="input-group-text" for="inputGroupSelect01">Answers</label>
                     </div>
 
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected value="All">All</option>
-                        <option value="Selected">Selected</option>
-                        <option value="Unselected">Unselected</option>
-                        <option value="Finished">Finished</option>
-                        <option value="Mine">My Evaluation</option>
+                    <select class="custom-select" (change)="onAnswersTypeChanged()" id="select-answers">
+                        <option selected value="all">All</option>
+                        <option value="selected">Selected</option>
+                        <option value="unselected">Unselected</option>
+                        <option value="finished">Finished</option>
+                        <option value="mine">My Evaluation</option>
                     </select>
                 </div>
 
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01">Paper</label>
+                        <label class="input-group-text" for="select-papers">Paper</label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01">
-                        <option selected value="1">Model Paper 1</option>
-                        <option value="2">Model Paper 2</option>
-                        <option value="3">Model Paper 3</option>
+                    <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" ngModel>
+                        <option *ngFor="let paper of paperDetails; let i = index" [ngValue]="paper.paperid" [selected]="i == 0">{{paper.papername}}</option>
                     </select>
                 </div>
             </div>
         </div>
     </section>
 
-    
-    <!-- <ag-grid-angular style="width: 100%; height: 60vh;" class="ag-theme-alpine" id="myGrid" [rowData]="rowData"
-    [columnDefs]="columnDefs" [animateRows]="true" rowSelection="multiple" [floatingFilter]="true"
-    [overlayLoadingTemplate]="loadingTemplate"
-    [overlayNoRowsTemplate]="noRowsTemplate"
-    (cellClicked)="onCellClicked($event)" [gridOptions]="gridOptions" rowHeight="35">
-    </ag-grid-angular> -->
+    <section class="datatable">
+        <div class="container">
+            <div class="example-header">
+                Page Size:
+                <select (change)="onPageSizeChanged()" id="page-size">
+                  <option value="10" selected="">10</option>
+                  <option value="10">100</option>
+                  <option value="500">500</option>
+                  <option value="1000">1000</option>
+                </select>
+            </div>
+            
+            <ag-grid-angular style="width: 100%; height: 60vh;" class="ag-theme-alpine" id="myGrid" [rowData]="rowData"
+                [columnDefs]="columnDefs" [animateRows]="true" rowSelection="single" [floatingFilter]="true"
+                [overlayLoadingTemplate]="loadingTemplate"
+                [overlayNoRowsTemplate]="noRowsTemplate"
+                [paginationPageSize]="paginationPageSize"
+                [frameworkComponents]="frameworkComponents"
+                [isRowSelectable]="isRowSelectable"
+                [suppressRowClickSelection]="true"
+                (rowSelected)="onRowSelected($event)"
+                [gridOptions]="gridOptions" rowHeight="46">
+            </ag-grid-angular>
+        </div>
+    </section> 
 </div>
-
-
-
-
-
-<script>
-    const searchFocus = document.getElementById('search-focus');
-    const keys = [
-    { keyCode: 'AltLeft', isTriggered: false },
-    { keyCode: 'ControlLeft', isTriggered: false },
-    ];
-
-    window.addEventListener('keydown', (e) => {
-    keys.forEach((obj) => {
-        if (obj.keyCode === e.code) {
-        obj.isTriggered = true;
-        }
-    });
-
-    const shortcutTriggered = keys.filter((obj) => obj.isTriggered).length === keys.length;
-
-    if (shortcutTriggered) {
-        searchFocus.focus();
-    }
-    });
-
-    window.addEventListener('keyup', (e) => {
-    keys.forEach((obj) => {
-        if (obj.keyCode === e.code) {
-        obj.isTriggered = false;
-        }
-    });
-    });
-</script>

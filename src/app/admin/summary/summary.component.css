@@ -71,40 +71,6 @@
     margin: 0 auto;
 }
 
-.options input[type=text] {
-    padding: 6px;
-    font-size: 15px;
-    width: 100%;
-    border: 1px solid #ccc;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
-}
-
-.options .search-container form{
-    display: flex;
-    margin: 1em 0;
-    width: 300px;
-}
-
-.options .search-container button {
-    padding: 5px 10px;
-    background: #ddd;
-    font-size: 17px;
-    border: none;
-    cursor: pointer;
-    border-top-right-radius: 50px;
-    border-bottom-right-radius: 50px;
-}
-
-.options .search-container button img{
-    width: 20px;
-    height: 20px;
-}
-
-.options .search-container button:hover {
-    background: rgb(165, 165, 165);
-}
-
 .options .select-panes{
     display: flex;
     margin: 1em 0;
@@ -123,6 +89,15 @@
 
 .options .select-panes .input-group-text, .custom-select option{
     font-size: 15px;
+}
+
+/* datatable section---------------------------- */
+.datatable .container{
+    margin-inline: auto;
+}
+
+.datatable .example-header{
+    margin-bottom: 0.5em;
 }
 
 @media screen and (max-width: 600px) {

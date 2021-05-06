@@ -70,8 +70,9 @@ import { NullVisitor } from '@angular/compiler/src/render3/r3_ast';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
 import { DashboardComponent } from './admin/dashboard/dashboard.component';
-import { NavigationComponent } from './admin/navigation/navigation.component';
-import { SummaryComponent } from './admin/summary/summary.component'
+import { SummaryComponent } from './admin/summary/summary.component';
+import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.component';
+import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 
 
 
@@ -89,7 +90,6 @@ import { SummaryComponent } from './admin/summary/summary.component'
     AlertComponent,
     UserAccountComponent,
     KeyCodeComponent,
-    
     ResetpasswordComponent,
     ForgotpasswordComponent,
     Svg1Component,
@@ -115,8 +115,9 @@ import { SummaryComponent } from './admin/summary/summary.component'
      DeleteEditorButtonComponent,
      AdminLoginComponent,
      DashboardComponent,
-     NavigationComponent,
-     SummaryComponent
+     SummaryComponent,
+     DownloadPdfComponent,
+     DownloadPdfStudentComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,7 +127,8 @@ import { SummaryComponent } from './admin/summary/summary.component'
     ReactiveFormsModule,
     PdfViewerModule,
     SidebarModule.forRoot(),
-    AgGridModule.withComponents([])
+    // AgGridModule.withComponents([]),
+    AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent]),
   ],
   exports: [
     TimerComponent

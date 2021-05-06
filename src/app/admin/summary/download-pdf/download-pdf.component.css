@@ -1,0 +1,21 @@
+.btn {
+    background-color: rgb(12, 136, 1);
+    border: none;
+    color: rgb(240, 240, 240);
+    cursor: pointer;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    border-radius: 50px;
+    text-align: center;
+}
+
+.btn[isVisible=""]{
+    display: none;
+}
+
+.btn:hover {
+    background-color: rgb(240, 240, 240);
+    color: rgb(12, 136, 1);
+}
