@@ -19,11 +19,13 @@
             <h3>
               A key code has been sent to your email <b><b>{{emailAddress}}</b></b> Please enter the key code below to authorize the device.
             </h3>
-            <h3>Key code verification is mandatory, please check that you are inserted the correct email address in Add User Form. If the key code verification email is not in inbox, check your spam in the email service.</h3>
+            <h3>රහස් කේතය(Key Code)  ඔබගේ අනන්‍යතාව හඳුනා ගැනීමේ අනිවාර්ය කරුණකි.
+              රහස් අංකය ඔබගේ විද්‍යුත් ලිපිනයට (check your email inbox) පැමිණ නොමැති නම් විද්‍යුත් ලිපිනයේ Spam අංශයට ගොස් පරීක්ෂාකර බලන්න එසේත් නොමැති නම් user form හි ඔබ යොදා ඇත්තේ නිවැරදිම විද්‍යුත් ලිපිනය දැයි හොඳින් පරීක්ෂාකර බලන්න.</h3>
             <input style="display: none;" id="deviceId" name="deviceId" type="text" />
             <div class="panel-body">
               <form [formGroup]="myForm">
                 <fieldset>
+                  <a class="link-primary float-right" (click)="resentKeyCode()"><u>Resend KeyCode</u></a>
                   <div class="form-group">
                     <input class="form-control" formControlName="keycode" placeholder="Key Code" name="keycode"
                       type="text" />

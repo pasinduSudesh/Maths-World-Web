@@ -115,4 +115,37 @@ export class KeyCodeComponent implements OnInit {
     this.router.navigateByUrl("/login");
   }
 
+  resentKeyCode() {
+    this.loadingService.showLoading(true, null, "Loading", null)
+    console.log("Keycode resent request");
+    this.authenticationService.resentKeyCode()
+      .subscribe(data => {
+        console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
+        var returnedStatus = data.status;
+        console.log(returnedStatus.code);
+          if (returnedStatus.code == 200) {
+            this.loadingService.hideLoading();
+            this.alertService.clear();
+            this.alertService.success('Successfully resent the keycode');
+          }
+      },
+      error => {
+        var returnedStatus = error.status;
+        console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
+
+          if (returnedStatus == 401) {
+            this.loadingService.hideLoading();
+            this.alertService.clear();
+            this.alertService.error("Invalid key code");
+          } else if (returnedStatus == 500) {
+            this.loadingService.hideLoading();
+            this.alertService.clear();
+            this.alertService.error("Error sending key code");
+            return;
+          }
+
+      }
+      )
+  }
+
 }
