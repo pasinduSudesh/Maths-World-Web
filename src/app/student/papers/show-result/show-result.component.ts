@@ -6,7 +6,7 @@ import { DateService } from '../../../services/util/date.service';
 import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.component';
 import { LoadingComponent } from '../../../common/loading/loading.component';
 import { Constants } from '../../../util/Constants';
-
+import { LoadingService } from '../../../util/loading/loading.service';
 
 @Component({
   selector: 'app-show-result',
@@ -15,7 +15,7 @@ import { Constants } from '../../../util/Constants';
 })
 export class ShowResultComponent implements OnInit {
 
-  loading = "";
+
   paperId:any;
   userId:any;
   paperLink="https://ceb.lk/front_img/img_reports/1532506088Supply_Services_Code_DD1.pdf";
@@ -47,6 +47,7 @@ export class ShowResultComponent implements OnInit {
     private router: Router,
     private pdf: PdfViewerComponent,
     private dateService: DateService,
+    private loadingService: LoadingService
   ) { }
 
   async ngOnInit() {
@@ -65,7 +66,7 @@ export class ShowResultComponent implements OnInit {
       this.router.navigate(['/paper/list']);
     }
 
-    this.loading = "Loading your result"
+    this.loadingService.showLoading(true, false, "Loading", null);
     this.paperId = this.showPaperService.paperId;
     this.userId = userid;
 
@@ -84,7 +85,7 @@ export class ShowResultComponent implements OnInit {
     this.paperLink = await this.getPdfLink(paperlinkPath, 60, this.userId);
     this.answerLink = await this.getPdfLink(answerlinkPath, 60, this.userId);
 
-    this.loading = "";
+    this.loadingService.hideLoading();
 
   }
 
