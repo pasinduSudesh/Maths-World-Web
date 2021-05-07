@@ -22,6 +22,7 @@ export class LoadingService {
 	}
 
 	public showLoading(showMessage: boolean, showPercentage: boolean, initialMessage: string, initialPercentage: number) {
+		console.log("msg");
 		this.showLoadingPanel.emit({
 			showMessage: showMessage,
 			showPercentage: showPercentage,
@@ -37,6 +38,7 @@ export class LoadingService {
 	}
 
 	public hideLoading() {
+		console.log("end msg")
 		this.hideLoadingPanel.emit();
 		//Enable scrolling
 		//this.renderer.removeStyle(document.body, 'overflow');

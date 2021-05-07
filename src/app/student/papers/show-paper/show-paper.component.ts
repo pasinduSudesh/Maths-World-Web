@@ -11,6 +11,8 @@ import { PdfViewerComponent } from '../../../common/pdf-viewer/pdf-viewer.compon
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../../util/localStorage.service';
 import { Constants } from '../../../util/Constants';
+import { LoadingService } from '../../../util/loading/loading.service';
+
 
 @Component({
   selector: 'app-show-paper',
@@ -27,7 +29,8 @@ export class ShowPaperComponent implements OnInit {
     private pdf: PdfViewerComponent,
     private paymentService: PaymentDetailsService,
     private router: Router,
-    private uploadService: UploadService
+    private uploadService: UploadService,
+    private loadingService: LoadingService
   ) { }
 
   private subscription: Subscription;
@@ -44,7 +47,7 @@ export class ShowPaperComponent implements OnInit {
   files = [];
   paperid;
   userid;
-  loading = "";
+
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
   async ngOnInit() {
@@ -53,12 +56,13 @@ export class ShowPaperComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     
-    this.loading = "Loading Paper Data";
+    // this.loading = "Loading Paper Data";
     let userid = localStorage.getItem(LocalStorage.USER_ID);
     if (userid === "" || userid === null) {
-      this.loading = "";
+      // this.loading = "";
       this.router.navigate(['/login'])
     }
+    this.loadingService.showLoading(true, false, "Loading", null);
     this.userid = userid;
     if (this.paymentService.paper !== null) {
       console.log("has paper");
@@ -73,7 +77,8 @@ export class ShowPaperComponent implements OnInit {
         localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
         this.paperStatus = "notstart";
         this.isPaperStarted = false;
-        this.loading = "";
+        this.loadingService.hideLoading();
+
       } else {
         console.log("has logg", this.paper);
         if (paperState[0].submitstate === "not-submited") {
@@ -94,10 +99,10 @@ export class ShowPaperComponent implements OnInit {
           if (nowTimeStamp > endTimeStamp) {
             this.paperStatus = "overdue"
           }
-          this.loading = "";
+          this.loadingService.hideLoading();
         } else {
           // paper is submited
-          this.loading = "";
+          this.loadingService.hideLoading();
           this.showPaperService.paperId = this.paperid;
           this.router.navigate(['paper/result']);
         }
@@ -110,7 +115,7 @@ export class ShowPaperComponent implements OnInit {
       console.log("no paper")
       var paperid = localStorage.getItem(LocalStorage.CURRENT_PAPER_ID);
       if (paperid === null || paperid === "") {
-        this.loading = "";
+        this.loadingService.hideLoading();
         this.router.navigate(['/paper/list']);
       } else {
         this.paperid = paperid;
@@ -122,7 +127,7 @@ export class ShowPaperComponent implements OnInit {
           localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
           this.paperStatus = "notstart";
           this.isPaperStarted = false;
-          this.loading = "";
+          this.loadingService.hideLoading();
         } else {
           console.log("has logg", this.paper);
           if (paperState[0].submitstate === "not-submited") {
@@ -146,9 +151,9 @@ export class ShowPaperComponent implements OnInit {
             if (nowTimeStamp > endTimeStamp) {
               this.paperStatus = "overdue"
             }
-            this.loading = "";
+            this.loadingService.hideLoading();
           } else {
-            this.loading = "";
+            this.loadingService.hideLoading();
             this.showPaperService.paperId = this.paperid;
             this.router.navigate(['paper/result']);
           }
@@ -178,7 +183,7 @@ export class ShowPaperComponent implements OnInit {
 
 
   async startPaper() {
-    this.loading = " ";
+    this.loadingService.showLoading(true, false, "Loading",null);
     let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
     this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000, localStorage.getItem(LocalStorage.USER_ID));
     console.log(this.link);
@@ -203,7 +208,7 @@ export class ShowPaperComponent implements OnInit {
     localStorage.setItem(LocalStorage.PAPER_STATUS, "start");
     this.paperStatus = "start";
     this.isPaperStarted = true;
-    this.loading = "";
+    this.loadingService.hideLoading();
   }
 
   async onSubmit() {

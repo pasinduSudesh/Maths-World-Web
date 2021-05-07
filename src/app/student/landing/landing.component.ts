@@ -7,6 +7,8 @@ import { DateService } from '../../services/util/date.service';
 import { PaymentDetailsService } from '../../services/payment/payment-details.service';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Constants } from '../../util/Constants';
+import { LoadingService } from '../../util/loading/loading.service';
+import { ShowPaperService } from '../../services/paper/show-paper.service';
 
 @Component({
   selector: 'app-landing',
@@ -15,6 +17,7 @@ import { Constants } from '../../util/Constants';
 })
 export class LandingComponent implements OnInit {
   pageLimit = 5;
+  userId;
   subjectList = [];
   selectedSubjectId = null;
   showingPapers = [];
@@ -39,7 +42,9 @@ export class LandingComponent implements OnInit {
     private availablePapersService: AvailablePapersService,
     private userService: UserDetailsService,
     private dateService: DateService,
-    private paymentService: PaymentDetailsService
+    private paymentService: PaymentDetailsService,
+    private loadingService: LoadingService,
+    private showPaperService: ShowPaperService,
   ) {
 
   }
@@ -47,7 +52,7 @@ export class LandingComponent implements OnInit {
   async ngOnInit() {
 
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
-    if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
+    if (!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))) {
       this.router.navigate(['/login']);
     }
 
@@ -55,13 +60,17 @@ export class LandingComponent implements OnInit {
     if (userId === "" || userId === null) {
       this.router.navigate(['/login']);
     }
+    this.userId = userId;
 
     let subscriptions = localStorage.getItem(LocalStorage.SUBSCRIPTION);
     console.log(subscriptions, "subscriptions")
-    if(subscriptions === "" || subscriptions === null){
+    if (subscriptions === "" || subscriptions === null) {
       this.router.navigate(['/login']);
     }
-   
+
+    // this.loadingService.hideLoading();
+
+
     this.subjectList = JSON.parse(subscriptions);
     console.log(this.subjectList);
     //geting subscribed papers
@@ -70,16 +79,14 @@ export class LandingComponent implements OnInit {
     this.hasNextPage = false;
     this.hasPreviousPage = false;
     if (this.subjectList.length > 0) {
-
+      this.loadingService.showLoading(true, null, "Loading Papers", null);
       this.activatedRouter.queryParams.subscribe(async p => {
         if (p.page !== undefined) {
-          
           this.showingPapers = [];
           this.pageNo = p.page;
           this.selectedSubjectId = p.subject ? p.subject : this.subjectList[0].subjectid;
           this.subjectName = this.getSubjectName(this.selectedSubjectId);
           await this.getPapers(p.y, p.m, userId, this.selectedSubjectId);
-
         } else {
           this.pageNo = 1;
           this.selectedSubjectId = p.subject ? p.subject : this.subjectList[0].subjectid;
@@ -88,13 +95,11 @@ export class LandingComponent implements OnInit {
           let today = new Date();
           this.month = today.getMonth() + 1;
           this.year = today.getFullYear();
-
           await this.getPapers(this.year, this.month, userId, this.selectedSubjectId);
           console.log(this.showingPapers);
-
         }
-      })
-
+      });
+      this.loadingService.hideLoading();
     }
   }
 
@@ -113,12 +118,12 @@ export class LandingComponent implements OnInit {
     }
   }
 
-  getNextMonth(year, month){
+  getNextMonth(year, month) {
     let thisMonth = parseInt(month);
     let thisYear = parseInt(year);
-    if(thisMonth + this.pageLimit > 13){
-      return { year: thisYear+1, month: thisMonth + this.pageLimit - 12 }
-    }else{ 
+    if (thisMonth + this.pageLimit > 13) {
+      return { year: thisYear + 1, month: thisMonth + this.pageLimit - 12 }
+    } else {
       return { year: thisYear, month: thisMonth + this.pageLimit }
     }
   }
@@ -138,7 +143,7 @@ export class LandingComponent implements OnInit {
         papersForMonth['year'] = yearNeed;
         console.log(papersForMonth)
         this.showingPapers.push(papersForMonth);
-       
+
       }
       i++;
       let previousMonth = this.getPreviousMonth(yearNeed, monthNeed);
@@ -150,15 +155,15 @@ export class LandingComponent implements OnInit {
     let nextPaper = await this.availablePapersService.gatAvailablePapers(this.nextPageData.year.toString(), this.nextPageData.month.toString(), userid, subjectid).toPromise();
     if (nextPaper.payload.papers.length > 0) {
       this.hasNextPage = true;
-    }else{
+    } else {
       this.hasNextPage = false;
     }
     let previousPaper = await this.availablePapersService.gatAvailablePapers(nextMonth.year.toString(), nextMonth.month.toString(), userid, subjectid).toPromise();
     // console.log(previousPaper,"prevois paper");
-    if(previousPaper.payload.papers.length > 0){
+    if (previousPaper.payload.papers.length > 0) {
       this.hasPreviousPage = true;
       this.previousPageData = nextMonth;
-    }else{
+    } else {
       this.hasPreviousPage = false;
     }
     // return showingPapers;
@@ -179,38 +184,57 @@ export class LandingComponent implements OnInit {
     return this.dateService.getMonthName(monthName);
   }
 
-  enterToPaper(paper) {
+  async enterToPaper(paper) {
     console.log(paper);
-    this.paymentService.paper = paper;
-    if (paper.isPaidForPaper) {
-      this.router.navigate(['/paper/view'])
+    let state = await this.getPaperState(paper.paperid, this.userId);
+    if (state.length === 0) {
+      this.paymentService.paper = paper;
+      if (paper.isPaidForPaper) {
+        this.router.navigate(['/paper/view'])
+      } else {
+        this.router.navigate(['/payment']);
+      }
     } else {
-      this.router.navigate(['/payment']);
+      if (state[0].submitstate === 'submited') {
+        
+      } else {
+        this.paymentService.paper = paper;
+        if (paper.isPaidForPaper) {
+          this.router.navigate(['/paper/view'])
+        } else {
+          this.router.navigate(['/payment']);
+        }
+      }
     }
   }
 
   previousPage() {
     this.pageNo = parseInt(this.pageNo.toString());
-    this.pageNo -=1;
-    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month, subject:this.selectedSubjectId } });
+    this.pageNo -= 1;
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.previousPageData.year, m: this.previousPageData.month, subject: this.selectedSubjectId } });
   }
 
   nextPage() {
     this.pageNo = parseInt(this.pageNo.toString());
-    this.pageNo +=1;
-    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month, subject:this.selectedSubjectId } });
+    this.pageNo += 1;
+    this.router.navigate(['/paper/list'], { queryParams: { page: this.pageNo, y: this.nextPageData.year, m: this.nextPageData.month, subject: this.selectedSubjectId } });
   }
 
-  getSubjectName(id){
-    if (this.subjectList.length>0){
-       for(let i=0; i<this.subjectList.length; i++){
-         if(this.subjectList[i].subjectid === id){
-           return this.subjectList[i].subjectname;
-         }
-       }  
-    }else{
+  getSubjectName(id) {
+    if (this.subjectList.length > 0) {
+      for (let i = 0; i < this.subjectList.length; i++) {
+        if (this.subjectList[i].subjectid === id) {
+          return this.subjectList[i].subjectname;
+        }
+      }
+    } else {
       return "";
     }
+  }
+
+  async getPaperState(paperid, userid) {
+    var result = await this.showPaperService.getPaperState(paperid, userid).toPromise();
+    return result.payload;
   }
 
 

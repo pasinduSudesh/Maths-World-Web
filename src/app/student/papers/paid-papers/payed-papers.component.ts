@@ -6,6 +6,7 @@ import { PaymentDetailsService } from '../../../services/payment/payment-details
 import { DateService } from '../../../services/util/date.service';
 import { LoadingComponent } from '../../../common/loading/loading.component';
 import { Constants } from '../../../util/Constants';
+import { LoadingService } from '../../../util/loading/loading.service';
 
 @Component({
   selector: 'app-payed-papers',
@@ -25,10 +26,11 @@ export class PayedPapersComponent implements OnInit {
     private showPaperService: ShowPaperService,
     private paymentService: PaymentDetailsService,
     private dateService: DateService,
+    private loadingService: LoadingService
   ) { }
 
   async ngOnInit() {
-
+    this.loadingService.showLoading(true, true, "Loading",10)
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
     if(!(Constants.USER_ROLE_ASSIGNMENTS_STUDENT.All.includes(userRoll))){
       this.router.navigate(['/login']);
@@ -53,6 +55,7 @@ export class PayedPapersComponent implements OnInit {
     this.papers = await this.getPaidpapers(userid, this.selectedSubjectId);
     console.log("papers:: ", this.papers);
     this.loading = "";
+    this.loadingService.hideLoading();
 
   }
 
