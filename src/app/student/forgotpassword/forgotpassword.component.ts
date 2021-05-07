@@ -10,6 +10,8 @@ import { HttpClient } from "@angular/common/http";
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Location } from "@angular/common";
+import { LoadingService } from '../../util/loading/loading.service';
+import { AlertService } from 'src/app/util/alert/alert.service';
 
 @Component({
   selector: "app-forgotpassword",
@@ -25,29 +27,43 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
   Error: string = ""
   successMessage: string = ""
   userId: string;
+  submitted = false
   public cancelForgotPassword;
   constructor(
     private router: Router,
     private forgotPasswordComponent: ForgotPasswordComponentService,
     private authenticationService: AuthenticationService,
     private _location: Location,
-    private http: HttpClient
+    private http: HttpClient,
+    private loadingService: LoadingService,
+    private alertService: AlertService
   ){}
   ngOnInit() {
+    this.loadingService.hideLoading();
     if (this.forgotPasswordComponent.pwdResetError) {
       this.hasErrors = true;
       this.Error = this.forgotPasswordComponent.pwdResetError;
     }
 
     this.passwordForm = new FormGroup({
-      email: new FormControl(null, Validators.required)
+      email: new FormControl("", [Validators.required])
     });
   }
 
+  get f() {
+    return this.passwordForm.controls
+  }
 
   onSubmit() {
-
+    this.loadingService.showLoading(true, null, "Loading", null)
+    this.submitted = true;
     var returnedStatus;
+
+    if (this.passwordForm.invalid) {
+      this.loadingService.hideLoading();
+      this.hasErrors = true;
+      return;
+    }
     this.forgotPasswordComponent
       .requestResetPassword(
         this.passwordForm.value.email
@@ -60,6 +76,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
           if (returnedStatus == 200) {
             this.successMessage = "Password reset request has been sent. Please check your email."
             this.authenticationService.setSuccessAlert(this.successMessage);
+            this.loadingService.hideLoading();
             this.router.navigateByUrl("/login");
           }
           // localStorage.setItem("token", data.token);
@@ -75,8 +92,9 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
           returnedStatus = error.error.status.code;
           console.log(returnedStatus);
           if (returnedStatus == 500) {
-            this.pwdResetError = "Error sending email";
-            this.Error = this.pwdResetError;
+            this.loadingService.hideLoading();
+            this.alertService.clear();
+            this.alertService.error("Error sending Email");
             this.hasErrors = true;
 
 
