@@ -196,7 +196,8 @@ export class LandingComponent implements OnInit {
       }
     } else {
       if (state[0].submitstate === 'submited') {
-        
+        this.showPaperService.paperId = paper.paperid;
+        this.router.navigate(['paper/result'])
       } else {
         this.paymentService.paper = paper;
         if (paper.isPaidForPaper) {
