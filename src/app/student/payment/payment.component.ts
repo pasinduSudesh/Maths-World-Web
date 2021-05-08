@@ -38,17 +38,19 @@ export class PaymentComponent implements OnInit {
     private paymentService: PaymentDetailsService
     ) { 
     payhere.onCompleted = function onCompleted(orderId) {
-      console.log("Payment completed. OrderID:" + orderId);
+      // console.log("Payment completed. OrderID:" + orderId);
       console.log("dsds"+paymentService.paper);
       this.isSubmitted = true;
       router.navigate(['/paper/view']);
     };
 
     payhere.onDismissed = function onDismissed() {
+      this.isSubmitted = false;
       console.log("Payment dismissed");
     };
 
     payhere.onError = function onError(error) {
+      this.isSubmitted = false;
       console.log("Error:" + error);
     };
 
@@ -80,6 +82,7 @@ export class PaymentComponent implements OnInit {
       let country
 
       if(!this.registrationForm.valid) {
+        this.isSubmitted = false;
         this.hasErrors = false;
         this.alertService.clear();
         this.alertService.error("Please select a subscription method by clicking tick in the circle!!!");

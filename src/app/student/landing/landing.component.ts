@@ -186,26 +186,30 @@ export class LandingComponent implements OnInit {
 
   async enterToPaper(paper) {
     console.log(paper);
-    let state = await this.getPaperState(paper.paperid, this.userId);
-    if (state.length === 0) {
-      this.paymentService.paper = paper;
-      if (paper.isPaidForPaper) {
-        this.router.navigate(['/paper/view'])
-      } else {
-        this.router.navigate(['/payment']);
-      }
-    } else {
-      if (state[0].submitstate === 'submited') {
-        this.showPaperService.paperId = paper.paperid;
-        this.router.navigate(['paper/result'])
-      } else {
+    if(paper !== null){
+      let state = await this.getPaperState(paper.paperid, this.userId);
+      if (state.length === 0) {
         this.paymentService.paper = paper;
         if (paper.isPaidForPaper) {
           this.router.navigate(['/paper/view'])
         } else {
           this.router.navigate(['/payment']);
         }
+      } else {
+        if (state[0].submitstate === 'submited') {
+          this.showPaperService.paperId = paper.paperid;
+          this.router.navigate(['paper/result'])
+        } else {
+          this.paymentService.paper = paper;
+          if (paper.isPaidForPaper) {
+            this.router.navigate(['/paper/view'])
+          } else {
+            this.router.navigate(['/payment']);
+          }
+        }
       }
+    }else{
+      
     }
   }
 

@@ -49,12 +49,12 @@
                     </div>
                     <div class="buttons">
                         <div>
-                            <button (click)="showPaper()" class="btn" [disabled]="!result.graded">View paper</button>
+                            <button (click)="showPaper()" class="btn">View paper</button>
                         </div>
-                        <div>
+                        <div *ngIf="result.graded">
                             <button (click)="showAnswer()" class="btn" [disabled]="!result.graded">View Answer</button>
                         </div>
-                        <div>
+                        <div *ngIf="result.graded">
                             <button (click)="showSchema()" class="btn" [disabled]="!result.graded">View Scheme</button>
                         </div>
                     </div>
