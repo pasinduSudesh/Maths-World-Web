@@ -3,7 +3,6 @@ import { NavbarComponent } from '../../navbar/navbar.component';
 import { DateService } from '../../services/util/date.service';
 import { UploadService } from '../../services/paper/upload.service';
 import { FileUploaderComponent } from '../../common/file-uploader/file-uploader.component';
-import { LoadingComponent } from '../../common/loading/loading.component';
 import { AlertsComponent } from '../../common/alerts/alerts.component';
 import { NgForm } from "@angular/forms";
 import { CompileShallowModuleMetadata } from '@angular/compiler';
@@ -37,7 +36,6 @@ export class AddPaperComponent implements OnInit {
   errPaperMonthlyPrice = "";
   publishLater = "";
   publishNow = "";
-  loading = "";
   subjectId = "";
 
 
@@ -49,7 +47,6 @@ export class AddPaperComponent implements OnInit {
     private dateService: DateService, 
     private uploadService: UploadService,
     private fileUploaderComponent: FileUploaderComponent,
-    private loadingComponent: LoadingComponent,
     private alertsComponent: AlertsComponent,
     private router: Router
     ) { }
@@ -65,7 +62,6 @@ export class AddPaperComponent implements OnInit {
       this.router.navigate(['/admin/login']);
     }else{
       try{
-        this.loading = "Loading";
         var result = await this.uploadService.getSubject(adminId).toPromise();
         this.subjectId = result.payload.subjectid;
         this.date = new Date();
@@ -77,10 +73,8 @@ export class AddPaperComponent implements OnInit {
         this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
         console.log(this.weeks);
         console.log(this.currentMonth, "current month");
-        this.loading=""
         // this.addUserForm.value.year=thisYear
       }catch(error){
-        this.loading=""
         this.errMsg = "Please Try again";
         console.log(error);
       }
@@ -92,7 +86,6 @@ export class AddPaperComponent implements OnInit {
     console.log(e);
   }
   async upload(addUserForm: NgForm) {
-    this.loading = "Saving Paper Details";
     if(this.files.length === 1){
       let file = this.files[0];
       console.log(file);  
@@ -128,20 +121,16 @@ export class AddPaperComponent implements OnInit {
                       this.categoryPrice,
                       this.subjectId
                     ).toPromise();
-          this.loading = "";
           this.router.navigate(['/admin/paper/list']);
         }catch(err){
-          this.loading = "";
           console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!1")
           console.log(err.message)
         }
       }
     }else if(this.files.length > 1){
-      this.loading = "";
       this.errMsg = "Please upload only one paper";
       console.log(this.errMsg);
     }else{
-      this.loading = "";
       this.errMsg = "Please upload paper PDF before submit";
       console.log(this.errMsg);
     }

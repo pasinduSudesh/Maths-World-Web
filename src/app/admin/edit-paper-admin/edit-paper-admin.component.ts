@@ -7,7 +7,6 @@ import { ShowPaperService } from '../../services/paper/show-paper.service';
 import { PdfViewerComponent } from '../../common/pdf-viewer/pdf-viewer.component';
 import { FileUploaderComponent } from '../../common/file-uploader/file-uploader.component';
 import { NgForm } from "@angular/forms";
-import { LoadingComponent } from '../../common/loading/loading.component';
 import { Constants } from 'src/app/util/Constants';
 
 @Component({
@@ -50,7 +49,6 @@ export class EditPaperAdminComponent implements OnInit {
   publish: any;
   paperId:any;
 
-  loading = "";
   showPdf = true;
   showPdfUploader = false;
   uploadStatus: string = null;
@@ -72,7 +70,6 @@ export class EditPaperAdminComponent implements OnInit {
     private showPaperService: ShowPaperService,
     private pdfView: PdfViewerComponent,
     private fileUploader: FileUploaderComponent,
-    private loadind: LoadingComponent,
     private route: ActivatedRoute
   ) { }
 
@@ -85,7 +82,6 @@ export class EditPaperAdminComponent implements OnInit {
     if(adminId === "" || adminId === null){
       this.router.navigate(['/admin/login'])
     }else{
-      this.loading = "Loading Paper Data";
       this.paper = this.route.snapshot.paramMap['params'];
       console.log(this.paper, "editing paper")
       this.year = this.paper.year;
@@ -109,13 +105,11 @@ export class EditPaperAdminComponent implements OnInit {
       // this.month = this.date.getMonth() + 1;
       this.years = [thisYear - 2, thisYear - 1, thisYear, thisYear + 1];
       this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
-      this.loading = "";
     }
 
   }
 
   async upload(addUserForm: NgForm){
-    this.loading = "Saving Changes"
     try{
       if(this.paper.paperid){
         this.validateFormData(this.paperName, this.price, this.categoryPrice, this.duration, this.week);
@@ -151,18 +145,15 @@ export class EditPaperAdminComponent implements OnInit {
             categoryId: this.paper.categoryid
           }
           await this.uploadService.updatePaperData(updateedData).toPromise();
-          this.loading = "";
           this.router.navigate(['/admin/paper/list']);
   
         }
       }else{
-        this.loading = "";
         this.router.navigate(['/admin/paper/list']);
       }
 
     }catch(err){
       // show error
-      this.loading = "";
       console.log(err)
     }
     
