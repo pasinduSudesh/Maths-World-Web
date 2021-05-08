@@ -97,6 +97,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.loadingService.hideLoading();
       this.alertService.clear();
       this.alertService.error("Passwords do not match!");
+      this.gotoTop();
       return;
     }
     
@@ -104,6 +105,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.loadingService.hideLoading();
       this.alertService.clear();
       this.alertService.warn("Please subscribed to atleast one Subject.");
+      this.gotoTop();
       return;
     }
     if (addUserForm.valid) {
@@ -137,6 +139,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
             this.loadingService.hideLoading();
             this.alertService.clear();
             this.alertService.error(alert.message);
+            this.gotoTop();
           }
 
         }
@@ -153,6 +156,14 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     if (this.subscription != undefined) {
       this.subscription.unsubscribe();
     }
+  }
+
+  gotoTop() {
+    window.scroll({ 
+      top: 1, 
+      left: 0, 
+      behavior: 'smooth' 
+    });
   }
 
 }
