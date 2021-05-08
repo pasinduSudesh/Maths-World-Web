@@ -27,9 +27,9 @@ export class UserComponent implements OnInit {
   onSubmit(addEditor: NgForm) {
     if (addEditor.valid) {
       this.isSubmitted = true;
-      //todo-set the userid of the user from the local storage
+    
       //todo- get the batch from ui for further require
-      const userId = ''
+      const userId = localStorage.getItem(LocalStorage.USER_ID);
       console.log(addEditor.value.email);  // { first: '', last: '' }
       const user = {
         email: addEditor.value.email,
