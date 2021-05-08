@@ -90,7 +90,6 @@ ul, li{
 }
 
 .hero .container .countdown span{
-    color: yellow;
     font-weight: bold;
     font-size: larger;
 }
@@ -145,7 +144,7 @@ ul, li{
     font-size: larger;
     font-weight: bold;
 }
-/* //////////////////////////// */
+
 .column {
     float: left;
     width: 25%;
@@ -185,12 +184,6 @@ background-color: #f1f1f1;
 }
 
 @media screen and (min-width: 1500px){
-    .dashboard{
-        width: 85%;
-        height: 100%;
-        float: right;
-        max-width: 1600px;
-    }
 
     .hero .container ul li{
         height:120px;

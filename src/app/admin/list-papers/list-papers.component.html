@@ -1,0 +1,84 @@
+
+<section class="table-section">
+    <div class="row">
+        <div class="add-paper">
+            <td class="text-center"><button type="button" (click)="addpaper()" class="btn btn-info btn-sm"><i class="icofont-ui-add"></i> Add
+                    Paper </button></td>
+        </div>
+    </div>
+    <table class="table table-bordered" *ngIf="showingPapers.length>0">
+        <thead class="thead-light">
+            <tr>
+                <th width="8%" scope="col">Week</th>
+                <th width="50%" scope="col">Paper Name</th>
+                <th width="10%" scope="col">Price</th>
+                <th width="8%" scope="col">View</th>
+                <th width="8%" scope="col">Publish</th>
+                <th width="8%" scope="col">Edit</th>
+                <th width="8%" scope="col">Delete</th>
+            </tr>
+        </thead>
+        <!-- <div class="row month">
+        <div class="col-md-6">
+            <h6>2021/05</h6>
+            
+        </div>
+        <div class="col-md-6">
+            <h6>2021/05</h6>
+            
+        </div>
+       
+        </div> -->
+        <tbody>           
+
+
+            <tr *ngFor="let paper of showingPapers; let i = index">
+                <!-- <td colspan="7" *ngIf="i>1 && paper.categoryid===papers[i-1]"> -->
+                <td *ngIf="paper.isCategory" colspan="7">
+                    <div class="row">
+                        <div class="view-month">
+                            <h6>{{paper.year}} / {{paper.month}}</h6>
+                        </div>
+                        <div>
+                            <h6>Monthly Price: {{paper.categoryprize}}</h6>
+                        </div>
+                    </div>
+                </td>
+
+
+                <th *ngIf="!paper.isCategory" scope="row" class="text-center">{{paper.week}}</th>
+                
+                <td *ngIf="!paper.isCategory">{{paper.papername}}</td>
+                <td *ngIf="!paper.isCategory">{{paper.prize}}</td>
+                <td *ngIf="!paper.isCategory" class="text-center">
+                    <button type="button" class="btn btn-success btn-sm" (click)="viewPaper(paper)"><i class="icofont-eye-alt"></i></button>
+                </td>
+                <td *ngIf="!paper.isCategory" class="text-center">
+                    <button *ngIf="paper.ispublished; else publishBtn" type="button" class="btn btn-info btn-sm" disabled>Published</button>
+                    <ng-template #publishBtn><button type="button" (click)="publishPaper(paper.paperid)" class="btn btn-info btn-sm"><i class="icofont-upload-alt"></i></button></ng-template>
+                </td>
+                <td *ngIf="!paper.isCategory" class="text-center">
+                    <button type="button" (click)="editPaper(paper)" class="btn btn-warning btn-sm" [disabled]="paper.ispublished"><i class="icofont-edit"></i></button>
+                </td>
+                <td *ngIf="!paper.isCategory" class="text-center">
+                    <button type="button" class="btn btn-danger btn-sm" (click)="deletePaper(paper)" [disabled]="paper.ispublished"><i class="icofont-ui-delete"></i></button>
+                    
+                </td>
+                 
+            </tr>
+
+
+        </tbody>
+
+    </table>
+
+    <!-- <ng-template #noPapers> -->
+        <div *ngIf="showingPapers.length===0 && loading==='' " class="text-center">
+            No Papers To Show
+        </div>
+    <!-- </ng-template> -->
+
+</section>
+
+<app-loading *ngIf="loading.length>0" [loadingMsg]="loading"></app-loading>
+

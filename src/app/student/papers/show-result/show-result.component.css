@@ -1,0 +1,119 @@
+@font-face {
+    font-family: englishBodyFont;
+    src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+    font-family: englishBodyFont2;
+    src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+
+section{
+    margin-top: 70px;
+    width: 100%;
+}
+.rectangle{
+    /* background-color: #C71D1E; */
+    margin-left: 5px;
+    margin-right: 5px;
+    height: 150px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.red{
+ background-color: #C71D1E;
+}
+.green{
+    background-color: #2DBD75;
+}
+.blue{
+    background-color: #3057DA;
+}
+.yellow{
+    background-color: #F99420;
+}
+
+.shadow{
+    -webkit-box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
+    -moz-box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
+    box-shadow: 3px 3px 13px 0px rgba(0, 0, 0, 0.1);
+}
+
+.topic{
+    padding-left: 20px;
+    padding-top: 10px;
+    color: whitesmoke;
+}
+
+.content h2{
+    line-height: 120px;
+    font-size: 80px;
+    text-align: right;
+    padding-right: 10px;
+    color: whitesmoke;
+}
+.content-state h2{
+    line-height: 120px;
+    font-size: 30px;
+    text-align: right;
+    padding-right: 10px;
+    color: whitesmoke;
+}
+
+.total{
+    position: absolute;
+    text-align: right;
+    padding-left: 20px;
+    color: white;
+}
+.paper-name{
+    height: 80px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+.paper-name h4{    
+    text-align: center;
+    color: rgba(0, 0, 0, 0.4);
+}
+.btn {
+    border: 0.5px solid rgba(255, 255, 255, 0.5);;
+    color: rgba(255, 255, 255, 0.8);
+    padding: 2px 28px;
+    font-size: 13px;
+    cursor: pointer;
+    /* border-radius: 50px; */
+    margin: 2px 5px 5px 5px;
+    width: 150px;
+  
+}
+.paper-name h1{
+    text-align: center;
+    font-family: englishBodyFont;
+    /* margin: 20px 20px 20px 20px; */
+    color: #164E7E;
+    font-size: 3.2rem;
+    /* color: #343A40; */
+}
+
+.paper-name h4{
+    text-align: center;
+    font-family: englishBodyFont;
+    /* margin: 20px 20px 20px 20px; */
+    color: #164E7E;
+    font-size: 1.5rem;
+    /* color: #343A40; */
+}
+
+.buttons{
+    position: relative;
+    text-align: center;
+}
+
+.header h5{
+    font-family: englishBodyFont;
+    color: #164E7E;
+    font-size: 1.5rem;
+    text-align: center;
+}

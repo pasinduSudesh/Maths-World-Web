@@ -1,0 +1,86 @@
+<section>
+    <div class="container">
+        <div class="row py-3">
+            <div class="col-12">
+                <div class="paper-name">
+                    <h1>{{paper.paperName?paper.paperName:'-'}}</h1>
+                    <h4>{{paper.paperName?paper.year+' '+getMonthName(paper.month)+' , Week 0'+paper.week:'-'}}</h4>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-lg-3 col-md-6">
+                <div class="rectangle shadow red">
+                    <div class="topic">
+                        <h4>State</h4>
+                    </div>
+                    <div class="content-state">
+                        <h2>{{result.graded?'Graded':'Not Graded'}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="rectangle shadow green">
+                    <div class="topic">
+                        <h4>Marks</h4>
+                    </div>
+                    <div class="content">
+                        <h2>{{result.graded?result.rank.marks:'-'}}</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="rectangle shadow blue">
+                    <div class="topic">
+                        <h4>Rank</h4>
+                    </div>
+                    <div class="content">
+                        <p class="total">Total 244</p>
+                        <h2>{{result.graded?result.rank.rank:'-'}}</h2>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="rectangle shadow yellow">
+                    <div class="topic">
+                        <h4>Paper</h4>
+                    </div>
+                    <div class="buttons">
+                        <div>
+                            <button (click)="showPaper()" class="btn" [disabled]="!result.graded">View paper</button>
+                        </div>
+                        <div>
+                            <button (click)="showAnswer()" class="btn" [disabled]="!result.graded">View Answer</button>
+                        </div>
+                        <div>
+                            <button (click)="showSchema()" class="btn" [disabled]="!result.graded">View Scheme</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div *ngIf="isShowPaper" class="paper mt-5 mb-2">
+            <div class="header">
+                <h5>Paper</h5>
+            </div>
+            <app-pdf-viewer [src]="paperLink" [name]="'paper'"></app-pdf-viewer>
+        </div>
+        <div *ngIf="isShowAnswer" class="answer mt-5 mb-2">
+            <div class="header">
+                <h5>Corrections</h5>
+            </div>
+            <app-pdf-viewer [src]="answerLink" name="'answer'"></app-pdf-viewer>
+        </div>
+        <div *ngIf="isShowSchema" class="answer mt-5 mb-2">
+            <div class="header">
+                <h5>Marking Scheme</h5>
+            </div>
+            <app-pdf-viewer [src]="answerLink" name="'answer'"></app-pdf-viewer>
+        </div>
+
+    </div>
+</section>

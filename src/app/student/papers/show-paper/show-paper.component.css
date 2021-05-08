@@ -1,0 +1,265 @@
+.show-paper {
+  margin-top: 70px;
+  text-align: center;
+  /* margin-left: auto; */
+}
+
+.btn-start-paper {
+  background-image: linear-gradient(to right, #1461b1, #14b164);
+  padding: 10px 25px 10px 25px;
+  border-radius: 100px;
+  color: white;
+  font-weight: bolder;
+  box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.5);
+}
+
+pdf-viewer {
+  display: block;
+  height: 100vh;
+}
+
+/* uploader */
+
+.container {
+  width: 450px;
+  height: 100px;
+  padding: 2rem;
+  text-align: center;
+  border: dashed 1px #979797;
+  position: relative;
+  margin: 0 auto;
+}
+
+input {
+  opacity: 0;
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 50%;
+  top: 0;
+  left: 0;
+}
+
+label {
+  color: white;
+  width: 183px;
+  height: 44px;
+  border-radius: 21.5px;
+  background-color: #db202f;
+  padding: 8px 16px;
+}
+
+h3 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #38424c;
+}
+
+.fileover {
+  animation: shake 1s;
+  animation-iteration-count: infinite;
+}
+
+.files-list {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-grow: 1;
+}
+
+.single-file {
+  display: flex;
+  padding: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border: dashed 1px #979797;
+  margin-bottom: 1rem;
+}
+
+.delete {
+  display: flex;
+  margin-left: 0.5rem;
+  cursor: pointer;
+  align-self: flex-end;
+}
+
+.name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #353f4a;
+  margin: 0;
+}
+
+.size {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a4a4a4;
+  margin: 0;
+  margin-bottom: 0.25rem;
+}
+
+.info {
+  width: 100%
+}
+
+/* Shake animation */
+
+@keyframes shake {
+  0% {
+    transform: translate(1px, 1px) rotate(0deg);
+  }
+  10% {
+    transform: translate(-1px, -2px) rotate(-1deg);
+  }
+  20% {
+    transform: translate(-3px, 0px) rotate(1deg);
+  }
+  30% {
+    transform: translate(3px, 2px) rotate(0deg);
+  }
+  40% {
+    transform: translate(1px, -1px) rotate(1deg);
+  }
+  50% {
+    transform: translate(-1px, 2px) rotate(-1deg);
+  }
+  60% {
+    transform: translate(-3px, 1px) rotate(0deg);
+  }
+  70% {
+    transform: translate(3px, 1px) rotate(-1deg);
+  }
+  80% {
+    transform: translate(-1px, -1px) rotate(1deg);
+  }
+  90% {
+    transform: translate(1px, 2px) rotate(0deg);
+  }
+  100% {
+    transform: translate(1px, -2px) rotate(-1deg);
+  }
+}
+
+/* .floating-timer {
+  position: fixed;
+  top: 100px;
+  right: 40px;
+  background-color: #0C9;
+  color: #FFF;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 99;
+} */
+
+.upload-text{
+  text-align: left;
+}
+
+.upload-header
+{
+    text-align: center;
+    height: 50px;
+    /* background: -webkit-linear-gradient(left, #0072ff, #8811c5); */
+    background-color: #164E7E;
+    color: #fff;
+    /* font-weight: bold; */
+    
+   
+}
+
+.upload-header h2{
+    margin-top: 20px;
+    /* font-weight: bold; */
+    line-height: 50px;
+    color:#ffffff;
+}
+
+.upload-section{
+  padding: 5%;
+}
+
+
+.submission-status{
+  display:block;
+  font-size: large;
+  font-weight: bold;
+}
+
+.status-notsubmitted{
+  color: #C30020;
+}
+
+.status-uploaded{
+  color: rgb(199, 115, 5);
+}
+
+.status-submitted{
+  color: green;
+}
+
+@font-face {
+  font-family: englishBodyFont;
+  src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
+@font-face {
+  font-family: englishBodyFont2;
+  src: url('../../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+.paper-name{
+ font-family: englishBodyFont;
+ color: #164E7E;
+ font-size: 3.2rem;
+}
+.btn-container{
+  width: 80%;
+  /* background-color: tomato; */
+  height: 20px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btn-submit{
+  background-color: #164E7E !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 15px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
+}
+
+.btn-start{
+  background-color: #164E7E !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 35px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
+}
+
+.btn-start:hover{
+  background-color: #092b4b !important;
+  color: white;
+  border-color: #164E7E;
+  color: #fbfdff !important;
+  text-shadow: none;
+  -webkit-font-smoothing: antialiased;
+  font-size: 35px;
+  padding: 5px 20px;
+  text-transform: capitalize;
+  margin-top: -3px;
+  min-height: 10px;
+  border-radius: 5px;
+}

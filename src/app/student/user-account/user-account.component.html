@@ -1,0 +1,267 @@
+<!-- 
+  Copyright 2019-2020 Axis Limited Liability Company
+ -->
+
+ <div class="create-account-form">
+	<section class="h-100">
+		<div class="container h-100">
+			<div class="row h-100">
+				<div class="card-wrapper">
+					<div class="card fat">
+						<div class="card-body">
+              <h4 class="card-title">Create New Account</h4>
+  
+              <div class="row pt-4">
+                <div class="col">
+                  <app-alert></app-alert>
+                  <form #addUserForm="ngForm">
+            
+  
+  
+            <div class="form row">
+              <div class="col-12 col-md-6 txtBox">
+                <label for="name">First Name</label>
+                <input type="text" class="form-control" id="alterEgo" name="firstName" required ngModel
+                  placeholder="First name" [ngClass]="{ 'error':addUserForm.submitted && firstName.invalid }"
+                  #firstName="ngModel" />
+                <div *ngIf="addUserForm.submitted && firstName.invalid" class="text-danger">
+                  <div *ngIf="firstName.errors.required">First name is required</div>
+    
+                </div>
+              </div>
+              <div class="col-12 col-md-6 txtBox">
+                <label for="name">Last Name</label>
+                <input type="text" class="form-control" id="alterEgo" name="lastName" required ngModel
+                  placeholder="Last name" [ngClass]="{ 'error':addUserForm.submitted && lastName.invalid }"
+                  #lastName="ngModel" />
+                <div *ngIf="addUserForm.submitted && lastName.invalid" class="text-danger">
+                  <div *ngIf="lastName.errors.required">Last name is required</div>
+    
+                </div>
+              </div>
+    
+              <!-- <div class="row" style="padding-left:20px;padding-right: 15px">
+                                  <div class="input-group-prepend" style="border-left: 5px solid #a94442;">
+                                          <span class="input-group-text" id="basic-addon1">First and last name</span>
+                                      </div>
+                                  <input   type="text" class="form-control col uname"
+                                  name="name" ngModel required>
+                                  <input   type="text" class="form-control col uname" 
+                              name="name" ngModel required>
+                          </div> -->
+            </div>
+    
+            <div class="form row">
+              <div class="col-12 col-md-12 txtBox">
+                <label for="alterEgo">Residential Address</label>
+                <input type="text" class="form-control" id="alterEgo" name="residentialAddress" required ngModel
+                placeholder="Residential Address"  [ngClass]="{ 'error':addUserForm.submitted && residentialAddress.invalid }" #residentialAddress="ngModel"/>
+                <div *ngIf="addUserForm.submitted && residentialAddress.invalid" class="text-danger">
+                  <div *ngIf="residentialAddress.errors.required">Residential Address is required</div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="form row">
+              <div class="col-12 col-md-6 txtBox">
+                <label for="name">District</label>
+                <select id="district" name="district" id="alterEgo" class="form-control" required ngModel 
+                [ngClass]="{ 'error':addUserForm.submitted && district.invalid }" #district="ngModel"   >
+                  <option *ngFor = "let district of Districts" [value]="district.name">{{district.name}}
+                  </option>
+               </select>
+               <div *ngIf="addUserForm.submitted && district.invalid" class="text-danger">
+                <div>District is required</div>
+              </div>
+              </div>
+              <div class="col-sm-12 col-md sm-6 txtBox">
+                <label for="name"> &nbsp;Mobile Number</label>
+                <input type="tel" class="form-control" id="alterEgo" name="mobileNum" required ngModel
+                  placeholder="Mobile Number" [ngClass]="{ 'error':addUserForm.submitted && mobileNum.invalid }"
+                  pattern="^((\\+91-?)|0)?[0-9]{10}$|^(?!0+$)(?:\(?\+\d{1,3}\)?[- ]?|0)?\d{8}$"
+                  #mobileNum="ngModel" />
+                <div *ngIf="addUserForm.submitted && mobileNum.invalid" class="text-danger">
+                  <div *ngIf="mobileNum.errors.required">Mobile Number is required</div>
+                  <div *ngIf="mobileNum.errors.pattern">Invalid mobile Number</div>
+                </div>
+              </div>
+            </div>
+              
+            <div class="form row">
+              <div class="col-sm-12 col-md sm-6 txtBox">
+                <label for="name">School</label>
+                <input type="text" class="form-control" id="alterEgo" name="college" required ngModel
+                  placeholder="School" [ngClass]="{ 'error':addUserForm.submitted && college.invalid }"
+                  #college="ngModel" />
+                <div *ngIf="addUserForm.submitted && college.invalid" class="text-danger">
+                  <div *ngIf="college.errors.required">School is required</div>
+    
+                </div>
+              </div>
+              <div class="col-sm-12 col-md sm-6 txtBox">
+                <label for="name"> &nbsp;A/L Year</label>
+                <input type="text" class="form-control" id="alterEgo" name="year" required ngModel
+                  placeholder="Year" [ngClass]="{ 'error':addUserForm.submitted && year.invalid }"
+                  #year="ngModel" />
+                <div *ngIf="addUserForm.submitted && year.invalid" class="text-danger">
+                  <div *ngIf="year.errors.required">A/L year is required</div>
+                </div>
+              </div>
+            </div>
+            
+            <p><label class="txtBox">Subscribed Subjects</label><br><label class="pt-0">Click on the card that you want to subscribe</label></p>
+            
+            <div class="form-group row m-0">
+              <div class="col-12 col-md sm-12">
+                <div class="row">
+                  <div class="col-sm-3 p-1">
+                    <div class="card select-role-item d-flex align-items-center justify-content-center"
+                      (click)="selectSub('mathematics')" id="mathematics"
+                      [ngClass]="mathematics ? 'role-card-selected' : 'role-card'">
+                      <img src="../assets/images/create-form-mathematics.svg" class="card-img-top role-icon py-3"
+                        style="width: 45%; height: 100px;" />
+                      <div class="card-body px-0 text-center px-0" id="mathematicsBody" [ngClass]="
+                      mathematics ? 'role-card-body-selected' : 'role-card-body'
+                        ">
+                        <p class="card-title mb-1">
+                          Mathematics
+                        </p>
+                        <p class="card-title mb-1">Thenuka Ranasinghe</p>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <div class="col-sm-3 p-1">
+                    <div class="card select-role-item d-flex align-items-center justify-content-center"
+                      (click)="selectSub('chemistry')" [ngClass]="chemistry ? 'role-card-selected' : 'role-card'">
+                      <img src="../assets/images/chalkboard-teacher.svg" class="card-img-top role-icon py-3"
+                        style="width: 45%; height: 100px;" />
+                      <div class="card-body px-0 text-center px-0" [ngClass]="
+                      chemistry ? 'role-card-body-selected' : 'role-card-body'
+                        ">
+                        <p class="card-title mb-0">
+                          Chemistry
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+    
+                  <div class="col-sm-3 p-1">
+                    <div class="card select-role-item d-flex align-items-center justify-content-center"
+                      (click)="selectSub('physics')" [ngClass]="physics ? 'role-card-selected' : 'role-card'">
+                      <img src="../assets/images/user-graduate.svg" class="card-img-top role-icon py-3"
+                        style="width: 45%; height: 100px;" />
+                      <div class="card-body px-0 text-center px-0"
+                        [ngClass]="physics ? 'role-card-body-selected' : 'role-card-body'">
+                        <p class="card-title mb-0">
+                         physics
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-3 p-1">
+                    <div class="card select-role-item d-flex align-items-center justify-content-center"
+                      (click)="selectSub('accounting')" [ngClass]="accounting ? 'role-card-selected' : 'role-card'">
+                      <img src="../assets/images/users-cog.svg" class="card-img-top role-icon py-3"
+                        style="width: 45%; height: 100px;" />
+                      <div class="card-body px-0 text-center px-0" [ngClass]="
+                      accounting ? 'role-card-body-selected' : 'role-card-body'
+                        ">
+                        <p class="card-title mb-0">
+                          Accounting
+                        </p>
+                      </div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+
+
+            <div class="form row">
+              <div class="col-sm-12 col-md sm-12 txtBox">
+                <label for="alterEgo">Email</label>
+                <input type="text" class="form-control" id="alterEgo" name="email" required ngModel
+                  [ngClass]="{ 'error':addUserForm.submitted && email.invalid }" #email="ngModel"
+                  pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
+                <div *ngIf="addUserForm.submitted && email.invalid" class="text-danger">
+                  <div *ngIf="email.errors.required">Email is required</div>
+                  <div *ngIf="email.errors.pattern">Email is not in correct format</div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="form row mb-0">
+              <div class="col-sm-12 col-md sm-6 txtBox">
+                <label for="alterEgo">Password</label>
+                <input [type]="showPassword_au ? 'text': 'password'" class="form-control" id="alterEgo" name="password" required ngModel
+                  [ngClass]="{ 'error':addUserForm.submitted && password.invalid }" #password="ngModel"
+                  pattern="^(?!.*([A-Za-z0-9\d~!@#$%^&*()_+|`\-={}[\]:;'<>\?,\.\/\\\x22])\1{2})(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[~!@#$%^&*()_+|`\-={}[\]:;'<>\?,\.\/\\\x22])[A-Za-z0-9\d~!@#$%^&*()_+|`\-={}[\]:;'<>\?,\.\/\\\x22].{5,}$"
+                  minlength="6" />
+                <div *ngIf="addUserForm.submitted && password.invalid" class="text-danger">
+                  <div *ngIf="password.errors.required">Password is required</div>
+                  <div *ngIf="password.errors.pattern">Password is not in correct format</div>
+                  <div *ngIf="password.errors.minlength">Password must be at least 6 characters</div>
+                </div>
+    
+                <p>Click <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false"
+                    aria-controls="collapseExample"><strong>Here</strong></a> to see conditions for the password.</p>
+                  
+              </div>
+    
+    
+              <div class="col-sm-12 col-md sm-6 txtBox">
+                <label for="alterEgo">Retype-Password</label>
+                <div class="btn-default icon float-right" (click)="showPassword_au = !showPassword_au" style="padding-right: 5px;">
+                  <i class="fa" aria-hidden="true"
+                    [ngClass]="{'fa-eye': showPassword_au, 'fa-eye-slash': !showPassword_au}"></i>
+                </div> 
+                <input [type]="showPassword_au ? 'text': 'password'" class="form-control" id="repass" name="repass" validateEqual="password" required
+                  ngModel [ngClass]="{ 'error':addUserForm.submitted && repass.invalid }" #repass="ngModel" />
+                <div *ngIf="addUserForm.submitted && repass.invalid" class="text-danger">
+                  <div *ngIf="repass.errors.required">Password confirmation is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-0">
+              <div class="col-sm-12 col-md sm-10">
+                <div class="collapse w-100" id="collapseExample">
+                  <div class="card card-body">
+                    <div class="row ">
+                      <div class="col-sm-12 col-md sm-5">
+                        <p>Password must contain at least <strong>six characters</strong></p>
+                        <p>Password must contain at least <strong>one number (0-9)</strong></p>
+                        <p>Password must contain at least <strong>one lower case letter (a-z)</strong></p>
+                      </div>
+                      <div class="col-sm-12 col-md sm-5">
+                        <p>Password <strong>cannot contain </strong>three consecutive same characters</p>
+                        <p>Password must contain at least <strong>one upper case letter (A-Z)</strong></p>
+                        <p>Password must contain at least <strong>one special character</strong></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
+            <div class="form row mt-1 ">
+              <div class="col-12 col-md sm-3">
+                <button type="submit" class="btn btn-custom lg  float-right " [disabled]="isSubmitted" (click)="onSave(addUserForm)">Submit</button>
+              </div>
+            </div>
+            
+    
+            
+          </form>
+    
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>
+      </div>
+    </div>
+    </section>
+ </div>
+    
+    
+    
+    

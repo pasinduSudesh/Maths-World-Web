@@ -1,0 +1,41 @@
+<nav class="navbar navbar-dark fixed-top">
+
+    <span class="">
+        <span class="navbar-toggler" (click)="_toggleSidebar()">
+            <i class="icofont-navigation-menu"></i>
+        </span>
+        <a class="navbar-brand" href="/">MathsWorld</a>
+    </span>
+
+</nav>
+
+<!-- Container for sidebar(s) + page content -->
+<ng-sidebar-container>
+
+    <!-- A sidebar -->
+    <ng-sidebar [(opened)]="_opened" [sidebarClass]="'app-sidebar'" [mode]="_mode"
+        [autoCollapseWidth]="_autoCollapseWidth">
+
+        <div style="height: 70px;"></div>
+        <h3>Profile</h3>
+        <br>
+
+        <a class="sidenav-link" [routerLink]="'/paper/list'" [routerLinkActive]="'sidenav-link-active'">All Papers</a>
+        <hr class="sidenav-link-seperator">
+        <a class="sidenav-link" [routerLink]="'/paper/paid'" [routerLinkActive]="'sidenav-link-active'">Paid Papers</a>
+        <hr class="sidenav-link-seperator">
+        <a class="sidenav-link" [routerLink]="'/login'" [routerLinkActive]="'sidenav-link-active'">Login</a>        
+        <div *ngFor="let subject of subscribedSubjects">
+            <hr class="sidenav-link-seperator">
+            <a class="sidenav-link" (click)="navigate(subject)" [routerLinkActive]="'sidenav-link-active'">{{subject.subjectname}}</a>
+        </div>
+
+
+    </ng-sidebar>
+
+    <!-- Page content -->
+    <div ng-sidebar-content style="margin-top: 70px;">
+        <router-outlet name="studentRouter"></router-outlet>
+    </div>
+
+</ng-sidebar-container>

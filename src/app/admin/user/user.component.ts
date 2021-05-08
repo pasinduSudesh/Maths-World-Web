@@ -3,6 +3,9 @@ import { NgForm } from '@angular/forms';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from "../../../environments/environment";
 import { AlertService } from 'src/app/util/alert/alert.service';
+import { Constants } from 'src/app/util/Constants';
+import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { LocalStorage } from '../../util/localStorage.service';
 
 @Component({
   selector: 'app-user',
@@ -12,9 +15,13 @@ import { AlertService } from 'src/app/util/alert/alert.service';
 export class UserComponent implements OnInit {
   isSubmitted: boolean = false;
   server_url = environment.SERVER_URL;
-  constructor(private http: HttpClient, private alertService: AlertService) { }
+  constructor(private http: HttpClient, private alertService: AlertService,private router: Router,) { }
 
   ngOnInit(): void {
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.UserManage.includes(userRoll))){
+      this.router.navigate(['/admin/login']);
+    }
   }
 
   onSubmit(addEditor: NgForm) {
