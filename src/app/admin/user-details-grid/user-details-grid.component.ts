@@ -4,6 +4,7 @@ import { environment } from "../../../environments/environment";
 import { AlertService } from 'src/app/util/alert/alert.service';
 import { Router } from "@angular/router";
 import { DeleteEditorButtonComponent } from './delete-editor-button/delete-editor-button.component';
+import { LocalStorage } from '../../util/localStorage.service';
 
 @Component({
   selector: 'app-user-details-grid',
@@ -12,10 +13,8 @@ import { DeleteEditorButtonComponent } from './delete-editor-button/delete-edito
 })
 export class UserDetailsGridComponent implements OnInit {
   server_url = environment.SERVER_URL;
-    //TODO: get the userId from the local storage
-    //const userId = localStorage.getItem(LocalStorage.USER_ID);
-    //TODO: remove the userId
-  private  userId = 'f7a653d0-7fdf-11eb-802b-0a98ed0793c9';
+
+  private  userId = localStorage.getItem(LocalStorage.USER_ID);
   private selectedRowIndex;
   private updatedEditorId;
   public updatedEditorFullName;
