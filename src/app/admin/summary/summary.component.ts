@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getUrlScheme } from '@angular/compiler';
+import { AlertService } from '../../util/alert/alert.service';
+import { LocalStorage } from '../../util/localStorage.service';
 
 import { environment } from '../../../environments/environment';
 import {DownloadPdfComponent} from './download-pdf/download-pdf.component';
@@ -14,8 +16,7 @@ export class SummaryComponent implements OnInit {
   server_url = environment.SERVER_URL;
   public summary;
   private currentAnswersType;
-  private currentPaperId = "143c7847-61d4-47f4-bf1a-a84f071cee71";
-  private myId = "da4cce58-7fe0-11eb-802b-0a98ed0793c9";
+  private currentPaperId;
   private gridApi;
   private responseDetails;
   public isRowSelectable;
@@ -27,7 +28,7 @@ export class SummaryComponent implements OnInit {
   public frameworkComponents;
   rowData: Array<any> = [];
 
-  constructor(private http: HttpClient) {
+  constructor(private alertService: AlertService, private http: HttpClient) {
     this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0}
     this.paginationPageSize = 10;
     this.currentAnswersType = 'all';
@@ -137,16 +138,19 @@ export class SummaryComponent implements OnInit {
     if(event.node.isSelected()){
       let result = confirm("Are you sure to select this paper for evaluation ?");
       if(result){
+        let headers: HttpHeaders = new HttpHeaders()
+        headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
         await this.http
           .post<any>(
-              environment.SERVER_URL + '/v1/response/selectOne',{"evaluatorId": this.myId, "responseId": event.data.responseId},
-              // {
-              //     headers: headers
-              // }
+              environment.SERVER_URL + '/v1/response/selectOne',{"evaluatorId": LocalStorage.USER_ID, "responseId": event.data.responseId},
+              {
+                  headers: headers
+              }
           ).subscribe((responseData) => {
             console.log("status : ", responseData.status.code);
             if(responseData.status.code == 403){
-              console.log("Error occured !");
+              this.alertService.clear();
+              this.alertService.error(responseData.status.message);
             }
           });
           await this.loadResponsesData();
@@ -156,30 +160,35 @@ export class SummaryComponent implements OnInit {
     }
   }
 
-  loadPapersData() {
-    this.http
+  async loadPapersData() {
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    await this.http
       .get<any>(
-        environment.SERVER_URL + '/v1/papers/getLatestPapers/3'
-        // {
-        //   headers: headers
-        // }
+        environment.SERVER_URL + '/v1/papers/getLatestPapers/5', //3 - limit of papers
+        {
+          headers: headers
+        }
       )
       .subscribe((responseData) => {
         console.log('ResponseData' + responseData.status.code);
         console.log(responseData.payload);
         if (responseData.payload != null) {
           this.paperDetails = responseData.payload;
+          this.currentPaperId = this.paperDetails[0].paperid;
         }
       });
   }
 
   async loadResponsesData() {
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
     await this.http
       .get<any>(
         environment.SERVER_URL + this.getUrl(this.currentAnswersType),
-        // {
-        //   headers: headers
-        // }
+        {
+          headers: headers
+        }
       )
       .subscribe((responseData) => {
         console.log('ResponseData' + responseData.status.code);
@@ -214,7 +223,6 @@ export class SummaryComponent implements OnInit {
             });
           }
           this.gridApi.setRowData(this.rowData);
-          console.log("summary dataaaaa: ", this.summary);
           console.log('[SummaryComponent] :: rowData=>' + this.gridApi);
         }
       });
@@ -250,10 +258,9 @@ export class SummaryComponent implements OnInit {
 
   getUrl(currentAnswersType) {
     console.log(
-      '[SummaryComponent] :: getUrl():: currentAnswersType::' +
+      '[SummaryComponent] :: getUrl():: currentAnswersType:: ' +
         this.currentAnswersType
     );
-    // console.log(currentAnswersType);
     if (currentAnswersType == 'selected') {
       return '/v1/response/selected/' + this.currentPaperId;
     } else if (currentAnswersType == 'unselected') {
@@ -261,7 +268,7 @@ export class SummaryComponent implements OnInit {
     } else if (currentAnswersType == 'finished') {
       return '/v1/response/evaluated/' + this.currentPaperId;
     } else if (currentAnswersType == 'mine') {
-      return '/v1/response/myselection/'+ this.currentPaperId + '/' + this.myId;
+      return '/v1/response/myselection/'+ this.currentPaperId + '/' + LocalStorage.USER_ID;
     } else {
       return '/v1/response/' + this.currentPaperId;
     }
