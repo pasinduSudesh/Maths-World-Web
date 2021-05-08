@@ -157,6 +157,18 @@ section {
     /* inherits: ; */
 }
 
+.btn-enter:hover {
+    background-image: linear-gradient(to right, #28797a, #015758);
+    padding: 7px 25px 7px 25px;
+    border-radius: 100px;
+    color: white !important;
+    font-weight: normal;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    cursor: pointer;
+    /* inherits: ; */
+}
+
 .subject-name h1 {
     text-align: left;
     font-family: englishBodyFont;

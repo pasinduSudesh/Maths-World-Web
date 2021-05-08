@@ -88,6 +88,18 @@ section{
     width: 150px;
   
 }
+.btn:hover{
+    border: 0.5px solid rgba(255, 255, 255, 0.5);;
+    color: orange;
+    background-color: white;
+    padding: 2px 28px;
+    font-size: 13px;
+    cursor: pointer;
+    /* border-radius: 50px; */
+    margin: 2px 5px 5px 5px;
+    width: 150px;
+  
+}
 .paper-name h1{
     text-align: center;
     font-family: englishBodyFont;
