@@ -12,6 +12,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../../util/localStorage.service';
 import { Constants } from '../../../util/Constants';
 import { LoadingService } from '../../../util/loading/loading.service';
+import { AlertService } from 'src/app/util/alert/alert.service';
 
 
 @Component({
@@ -30,7 +31,8 @@ export class ShowPaperComponent implements OnInit {
     private paymentService: PaymentDetailsService,
     private router: Router,
     private uploadService: UploadService,
-    private loadingService: LoadingService
+    private loadingService: LoadingService,
+    private alertService: AlertService
   ) { }
 
   private subscription: Subscription;
@@ -47,6 +49,7 @@ export class ShowPaperComponent implements OnInit {
   files = [];
   paperid;
   userid;
+  isSubmitted = false;
 
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
@@ -212,7 +215,10 @@ export class ShowPaperComponent implements OnInit {
   }
 
   async onSubmit() {
-    if (this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf") {
+    if (this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf") {    
+      this.loadingService.hideLoading();
+      this.loadingService.showLoading(true, false, "Loading", null);  
+      this.isSubmitted = true;
       console.log(this.files);
       const file = this.files[0];
       console.log(file, "file");
@@ -239,10 +245,13 @@ export class ShowPaperComponent implements OnInit {
       }
 
       const upload = await this.uploadService.addStudentAnswer(studentAnswers).toPromise();
+      this.loadingService.hideLoading();
       this.showPaperService.paperId = this.paperid;
       this.router.navigate(['paper/result']);
     } else {
-
+      this.alertService.clear();
+      this.alertService.error("Please enter PDF file");
+      this.isSubmitted = false;
     }
   }
 
