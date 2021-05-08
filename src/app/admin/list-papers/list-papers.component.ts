@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { ShowPaperService } from '../../services/paper/show-paper.service';
-import { LoadingComponent } from '../../common/loading/loading.component';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UploadService } from '../../services/paper/upload.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
@@ -23,7 +22,6 @@ export class ListPapersComponent implements OnInit {
   constructor(
     private navbar: NavbarComponent,
     private showPaperService: ShowPaperService,
-    private loadingComponent: LoadingComponent,
     private router: Router,
     private uploadService: UploadService
   ) { }

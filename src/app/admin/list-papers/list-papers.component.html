@@ -73,12 +73,11 @@
     </table>
 
     <!-- <ng-template #noPapers> -->
-        <div *ngIf="showingPapers.length===0 && loading==='' " class="text-center">
+        <div *ngIf="showingPapers.length===0" class="text-center">
             No Papers To Show
         </div>
     <!-- </ng-template> -->
 
 </section>
 
-<app-loading *ngIf="loading.length>0" [loadingMsg]="loading"></app-loading>
 
