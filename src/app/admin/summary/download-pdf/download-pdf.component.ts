@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ShowPaperService } from '../../../services/paper/show-paper.service';
+declare var require: any
+const FileSaver = require('file-saver');
 @Component({
   selector: 'app-download-pdf',
   templateUrl: './download-pdf.component.html',
@@ -12,11 +14,12 @@ export class DownloadPdfComponent implements OnInit {
     this.params = params;
   }
 
-  btnClickedHandler() {
-    console.log("evaluatorPdf",this.params.data.evaluatedPdf);
+  async btnClickedHandler() {
+    var result = await this.showPaperService.getPdfLink(this.params.data.evaluatedPdf, 600, this.params.evaluatorId).toPromise();
+    FileSaver.saveAs(result.payload, "test");
   }
 
-  constructor() { }
+  constructor(private showPaperService: ShowPaperService) { }
 
   ngOnInit(): void {
   }

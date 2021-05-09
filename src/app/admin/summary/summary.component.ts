@@ -87,7 +87,8 @@ export class SummaryComponent implements OnInit {
       cellRenderer: "downloadPdfStudent",
       filter: false,
       cellRendererParams: {
-        type: 'answerPdf'
+        type: 'answerPdf',
+        userId: localStorage.getItem(LocalStorage.USER_ID)
       },
       Width: 100,
     },
@@ -96,7 +97,8 @@ export class SummaryComponent implements OnInit {
       cellRenderer: "downloadPdf",
       filter: false,
       cellRendererParams: {
-        type: 'evaluatorPdf'
+        type: 'evaluatorPdf',
+        evaluatorId: localStorage.getItem(LocalStorage.USER_ID)
       },
       Width: 100
     },
@@ -268,7 +270,7 @@ export class SummaryComponent implements OnInit {
     } else if (currentAnswersType == 'finished') {
       return '/v1/response/evaluated/' + this.currentPaperId;
     } else if (currentAnswersType == 'mine') {
-      return '/v1/response/myselection/'+ this.currentPaperId + '/' + LocalStorage.USER_ID;
+      return '/v1/response/myselection/'+ this.currentPaperId + '/' + localStorage.getItem(LocalStorage.USER_ID);
     } else {
       return '/v1/response/' + this.currentPaperId;
     }
