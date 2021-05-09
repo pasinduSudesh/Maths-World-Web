@@ -698,6 +698,10 @@
         <!-- TODO: add shadow -->
         }
 
+        .join-button:hover {
+            fill: #00b8a8;
+        }
+
         .ring-web {
             transform-origin: 25% 55%;
             animation: ring-web-animation 1.5s infinite;;
