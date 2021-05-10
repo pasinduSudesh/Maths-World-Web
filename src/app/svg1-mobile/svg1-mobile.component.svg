@@ -663,7 +663,7 @@
     </defs>
     <circle class="ring" r="12%" cx="27.5%" cy="45.5%"></circle>
     <a xlink:href="../login">
-        <rect class="join-button" x="22%" y="45%" ry="3%" width="26%" height="7%" filter="url(#f2)"></rect>
+        <rect class="join-button-mobile" x="22%" y="45%" ry="3%" width="26%" height="7%" filter="url(#f2)"></rect>
     <text class="join-text" x="27.5%" y="45.5%" font-size="35">Join Now</text>
     </a>
     <style>
@@ -676,7 +676,7 @@
             
         }
 
-        .join-button {
+        .join-button-mobile {
             transform: translate(-8%, -4%);
             fill: #03d6c4;
         <!-- TODO: add shadow -->
