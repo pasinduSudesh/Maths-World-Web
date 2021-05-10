@@ -1,82 +1,84 @@
-<div class="summary">
-    <section class="hero">
-        <div class="container">
-            <p class="hero-topic">Summary</p>
+<!-- <div class="summary"> -->
+    <div class="container">
+        <section class="hero">
+            <div class="container">
+                <p class="hero-topic">Summary</p>
 
-            <div class="note">
-                <div class="note-data">
-                    <p class="note-name" >Total</p>
-                    <p class="note-value" id="total">{{summary.total}}</p>
-                </div>
-                <div class="note-data">
-                    <p class="note-name" >Selected</p>
-                    <p class="note-value">{{summary.selected}}</p>
-                </div>
-                <div class="note-data">
-                    <p class="note-name" >Pending</p>
-                    <p class="note-value">{{summary.pending}}</p>
-                </div>
-                <div class="note-data">
-                    <p class="note-name" >Marking finished</p>
-                    <p class="note-value">{{summary.finished}}</p>
+                <div class="note">
+                    <div class="note-data">
+                        <p class="note-name" >Total</p>
+                        <p class="note-value" id="total">{{summary.total}}</p>
+                    </div>
+                    <div class="note-data">
+                        <p class="note-name" >Selected</p>
+                        <p class="note-value">{{summary.selected}}</p>
+                    </div>
+                    <div class="note-data">
+                        <p class="note-name" >Pending</p>
+                        <p class="note-value">{{summary.pending}}</p>
+                    </div>
+                    <div class="note-data">
+                        <p class="note-name" >Marking finished</p>
+                        <p class="note-value">{{summary.finished}}</p>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="options">
-        <div class="container">
+        <section class="options">
+            <div class="container">
 
-            <div class="select-panes">
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01">Answers</label>
+                <div class="select-panes">
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Answers</label>
+                        </div>
+
+                        <select class="custom-select" (change)="onAnswersTypeChanged()" id="select-answers">
+                            <option selected value="all">All</option>
+                            <option value="selected">Selected</option>
+                            <option value="unselected">Unselected</option>
+                            <option value="finished">Finished</option>
+                            <option value="mine">My Evaluation</option>
+                        </select>
                     </div>
 
-                    <select class="custom-select" (change)="onAnswersTypeChanged()" id="select-answers">
-                        <option selected value="all">All</option>
-                        <option value="selected">Selected</option>
-                        <option value="unselected">Unselected</option>
-                        <option value="finished">Finished</option>
-                        <option value="mine">My Evaluation</option>
-                    </select>
-                </div>
-
-                <div class="input-group mb-3">
-                    <div class="input-group-prepend">
-                        <label class="input-group-text" for="select-papers">Paper</label>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="select-papers">Paper</label>
+                        </div>
+                        <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" name="currentPaperId" [(ngModel)]="currentPaperId">
+                            <option *ngFor="let paper of paperDetails; let i = index" [value]="paper.paperid" >{{paper.papername}}</option>
+                        </select>
                     </div>
-                    <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" name="currentPaperId" [(ngModel)]="currentPaperId">
-                        <option *ngFor="let paper of paperDetails; let i = index" [value]="paper.paperid" >{{paper.papername}}</option>
-                    </select>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="datatable">
-        <div class="container">
-            <div class="example-header">
-                Page Size:
-                <select (change)="onPageSizeChanged()" id="page-size">
-                  <option value="10" selected="">10</option>
-                  <option value="10">100</option>
-                  <option value="500">500</option>
-                  <option value="1000">1000</option>
-                </select>
+        <section class="datatable">
+            <div class="container">
+                <div class="example-header">
+                    Page Size:
+                    <select (change)="onPageSizeChanged()" id="page-size">
+                    <option value="10" selected="">10</option>
+                    <option value="10">100</option>
+                    <option value="500">500</option>
+                    <option value="1000">1000</option>
+                    </select>
+                </div>
+                
+                <ag-grid-angular style="width: 100%; height: 60vh;" class="ag-theme-alpine" id="myGrid" [rowData]="rowData"
+                    [columnDefs]="columnDefs" [animateRows]="true" rowSelection="single" [floatingFilter]="true"
+                    [overlayLoadingTemplate]="loadingTemplate"
+                    [overlayNoRowsTemplate]="noRowsTemplate"
+                    [paginationPageSize]="paginationPageSize"
+                    [frameworkComponents]="frameworkComponents"
+                    [isRowSelectable]="isRowSelectable"
+                    [suppressRowClickSelection]="true"
+                    (rowSelected)="onRowSelected($event)"
+                    [gridOptions]="gridOptions" rowHeight="46">
+                </ag-grid-angular>
             </div>
-            
-            <ag-grid-angular style="width: 100%; height: 60vh;" class="ag-theme-alpine" id="myGrid" [rowData]="rowData"
-                [columnDefs]="columnDefs" [animateRows]="true" rowSelection="single" [floatingFilter]="true"
-                [overlayLoadingTemplate]="loadingTemplate"
-                [overlayNoRowsTemplate]="noRowsTemplate"
-                [paginationPageSize]="paginationPageSize"
-                [frameworkComponents]="frameworkComponents"
-                [isRowSelectable]="isRowSelectable"
-                [suppressRowClickSelection]="true"
-                (rowSelected)="onRowSelected($event)"
-                [gridOptions]="gridOptions" rowHeight="46">
-            </ag-grid-angular>
-        </div>
-    </section> 
-</div>
+        </section>
+    </div>
+<!-- </div> -->

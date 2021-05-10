@@ -150,12 +150,14 @@ export class SummaryComponent implements OnInit {
               }
           ).subscribe((responseData) => {
             console.log("status : ", responseData.status.code);
-            if(responseData.status.code == 403){
+            if(responseData.status.code == 200){
+              this.loadResponsesData();
+            }
+            else if(responseData.status.code == 403){
               this.alertService.clear();
               this.alertService.error(responseData.status.message);
             }
           });
-          this.loadResponsesData();
       }else{
         event.node.setSelected(false);
       }

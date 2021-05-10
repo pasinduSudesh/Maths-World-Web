@@ -1,7 +1,13 @@
+@font-face {
+    font-family: englishBodyFont2;
+    src: url('../../../assets/fontawesome-pro/webfonts/Poppins-Light.ttf');
+}
+
 .container{
-    padding: unset;
-    margin: unset;
-    font-family: 'Poppins';
+    /* padding: unset;
+    margin: unset; */
+    font-family: englishBodyFont2;
+    /* background-color: yellow; */
 }
 
 .summary{
