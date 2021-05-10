@@ -50,6 +50,7 @@ export class SummaryComponent implements OnInit {
   columnDefs = [
     {
       headerName: 'Student Name',
+      resizable: true,
       checkboxSelection: true,
       width: 150,
       field: 'studentName',
@@ -57,6 +58,7 @@ export class SummaryComponent implements OnInit {
     },
     {
       headerName: 'Status',
+      resizable: true,
       cellRenderer: (nodeData) => {
         if(nodeData.data.marks != ""){
           return '<img src="../../../assets/images/checkbox-checked.svg" alt="Finished" style="width: 20px; height: 20px">'
@@ -72,18 +74,21 @@ export class SummaryComponent implements OnInit {
     },
     {
       headerName: 'Evaluator Name',
+      resizable: true,
       width: 150,
       field: 'evaluatorName',
       filter: 'agTextColumnFilter',
     },
     {
       headerName: 'Marks',
+      resizable: true,
       width: 150,
       field: 'marks',
       filter: 'agTextColumnFilter',
     },
     {
       field: "Student PDF",
+      resizable: true,
       cellRenderer: "downloadPdfStudent",
       filter: false,
       cellRendererParams: {
@@ -94,6 +99,7 @@ export class SummaryComponent implements OnInit {
     },
     {
       field: "Correction PDF",
+      resizable: true,
       cellRenderer: "downloadPdf",
       filter: false,
       cellRendererParams: {
@@ -122,17 +128,18 @@ export class SummaryComponent implements OnInit {
 
       this.gridColumnApi = params.columnApi;
       params.api.setColumnDefs(this.columnDefs);
-      params.api.sizeColumnsToFit();
       window.addEventListener('resize', function () {
         setTimeout(function () {
-          params.api.sizeColumnsToFit();
+          if (window.innerWidth >= 1000) {
+            params.api.sizeColumnsToFit();
+            console.log("windowwwww : ", window.innerWidth);
+          }
         });
+        
       });
-      window.addEventListener('click', function () {
-        setTimeout(function () {
-          params.api.sizeColumnsToFit();
-        });
-      });
+      // if (window.innerWidth >= 1000) {
+      //   params.api.sizeColumnsToFit();
+      // }
     },
   };
 
