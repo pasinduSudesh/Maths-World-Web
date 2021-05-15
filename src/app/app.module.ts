@@ -76,6 +76,7 @@ import { SummaryComponent } from './admin/summary/summary.component';
 import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.component';
 import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 import { StudentRootComponent } from './student/student-root/student-root.component';
+import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
 
 import { RecaptchaModule } from "ng-recaptcha";
 
@@ -126,6 +127,7 @@ import { RecaptchaModule } from "ng-recaptcha";
      SummaryComponent,
      DownloadPdfComponent,
      DownloadPdfStudentComponent,
+     SvgSlide2Component,
   ],
   imports: [
     BrowserModule,

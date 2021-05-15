@@ -16,7 +16,7 @@ export class SummaryComponent implements OnInit {
   server_url = environment.SERVER_URL;
   public summary;
   private currentAnswersType;
-  private currentPaperId;
+  public currentPaperId;
   private gridApi;
   private responseDetails;
   public isRowSelectable;
@@ -144,7 +144,7 @@ export class SummaryComponent implements OnInit {
         headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
         await this.http
           .post<any>(
-              environment.SERVER_URL + '/v1/response/selectOne',{"evaluatorId": LocalStorage.USER_ID, "responseId": event.data.responseId},
+              environment.SERVER_URL + '/v1/response/selectOne',{"evaluatorId": localStorage.getItem(LocalStorage.USER_ID), "responseId": event.data.responseId},
               {
                   headers: headers
               }
@@ -155,7 +155,7 @@ export class SummaryComponent implements OnInit {
               this.alertService.error(responseData.status.message);
             }
           });
-          await this.loadResponsesData();
+          this.loadResponsesData();
       }else{
         event.node.setSelected(false);
       }
@@ -174,10 +174,11 @@ export class SummaryComponent implements OnInit {
       )
       .subscribe((responseData) => {
         console.log('ResponseData' + responseData.status.code);
-        console.log(responseData.payload);
+        console.log("paperDetails : ",responseData.payload);
         if (responseData.payload != null) {
           this.paperDetails = responseData.payload;
-          this.currentPaperId = this.paperDetails[0].paperid;
+          this.currentPaperId = responseData.payload[0].paperid;
+          this.loadResponsesData();
         }
       });
   }
@@ -244,7 +245,7 @@ export class SummaryComponent implements OnInit {
   onPaperNameChanged() {
     var value = (<HTMLSelectElement>document.getElementById('select-papers'))
       .value;
-    this.currentPaperId = value.split(' ')[1];
+    this.currentPaperId = value;
     console.log(
       '[SummaryComponent] :: onPaperNameChanged():: currentPaper::' +
         this.currentPaperId

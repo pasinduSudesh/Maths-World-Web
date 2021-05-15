@@ -46,8 +46,8 @@
                     <div class="input-group-prepend">
                         <label class="input-group-text" for="select-papers">Paper</label>
                     </div>
-                    <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" ngModel>
-                        <option *ngFor="let paper of paperDetails; let i = index" [ngValue]="paper.paperid">{{paper.papername}}</option>
+                    <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" name="currentPaperId" [(ngModel)]="currentPaperId">
+                        <option *ngFor="let paper of paperDetails; let i = index" [value]="paper.paperid" >{{paper.papername}}</option>
                     </select>
                 </div>
             </div>
