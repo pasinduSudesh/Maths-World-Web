@@ -15,6 +15,8 @@ import { LoadingService } from "../../util/loading/loading.service";
   styleUrls: ['./user-account.component.scss']
 })
 export class UserAccountComponent implements OnInit, OnDestroy {
+
+  recaptchaSiteKey = '6LccP9YaAAAAAKIYXKtJcIkLIRn87KLNa7XtrT7D';
   public showPassword_au: boolean = false
   subscription!: Subscription;
   isSubmitted: boolean = false;
@@ -164,6 +166,15 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       left: 0, 
       behavior: 'smooth' 
     });
+  }
+
+  async resolved(e){
+    console.log("resolved()::")
+    // console.log(e)
+    var secretKey = "6LccP9YaAAAAAK659qiIyBADwc_U1te-spo5EmP5";
+    var url = "https://www.google.com/recaptcha/api/siteverify";
+    var response = await this.userService.verifyReCaptha(e).toPromise();
+    console.log(response);
   }
 
 }

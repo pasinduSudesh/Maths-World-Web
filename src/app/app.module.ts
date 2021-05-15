@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// import { Ng2GoogleRecaptchaModule } from 'ng2-google-recaptcha';
 import { BasicRequest } from './util/basic-request';
-
+// import { RecaptchaModule } from "ng-recaptcha";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -77,6 +77,7 @@ import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.
 import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 import { StudentRootComponent } from './student/student-root/student-root.component';
 
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 
@@ -136,6 +137,7 @@ import { StudentRootComponent } from './student/student-root/student-root.compon
     SidebarModule.forRoot(),
     // AgGridModule.withComponents([]),
     AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent]),
+    RecaptchaModule
   ],
   exports: [
     TimerComponent
