@@ -76,7 +76,7 @@ export class AddPaperComponent implements OnInit {
         // this.addUserForm.value.year=thisYear
       }catch(error){
         this.errMsg = "Please Try again";
-        console.log(error);
+        console.log(error); 
       }
     }
   }
