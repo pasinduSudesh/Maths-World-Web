@@ -108,23 +108,18 @@ export class UpdateMarksComponent implements OnInit {
 
 
   async onSubmit() {
-    // if(this.currentPaperId != undefined && this.currentResponseId != undefined){
-    //   await this.updateStudentData();
-    // }else if(this.currentRow != undefined){
-    //   this.currentPaperId = this.currentRow.paperId;
-    //   this.currentResponseId = this.currentRow.responseId;
-    //   await this.updateStudentData();
-    // }else{
-    //   this.marks = null;
-    //   this.alertService.clear();
-    //   this.alertService.error("Please Select Paper and Student First !");
-    //   this.isSubmitted = false;
-    // }
-    console.log(this.evaluatorId);
-    console.log(this.subjectId);
-    console.log(this.courseAdmin);
-    console.log(this.papers);
-    console.log(this.students);
+    if(this.currentPaperId != undefined && this.currentResponseId != undefined){
+      await this.updateStudentData();
+    }else if(this.currentRow != undefined){
+      this.currentPaperId = this.currentRow.paperId;
+      this.currentResponseId = this.currentRow.responseId;
+      await this.updateStudentData();
+    }else{
+      this.marks = null;
+      this.alertService.clear();
+      this.alertService.error("Please Select Paper and Student First !");
+      this.isSubmitted = false;
+    }
   }
 
   async updateStudentData(){
