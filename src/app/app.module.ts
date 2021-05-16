@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// import { Ng2GoogleRecaptchaModule } from 'ng2-google-recaptcha';
 import { BasicRequest } from './util/basic-request';
-
+// import { RecaptchaModule } from "ng-recaptcha";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -79,6 +79,7 @@ import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
 import { UpdateMarksComponent } from './admin/update-marks/update-marks.component';
 import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/update-mark-button.component';
 
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 
@@ -140,6 +141,7 @@ import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/up
     SidebarModule.forRoot(),
     // AgGridModule.withComponents([]),
     AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent, UpdateMarkButtonComponent]),
+    RecaptchaModule
   ],
   exports: [
     TimerComponent
