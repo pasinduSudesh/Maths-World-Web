@@ -7,8 +7,8 @@ import { UserDetailsComponent } from "./user-details/user-details.component";
 import { UserComponent } from "./user/user.component";
 import { AddPaperComponent } from "./add-paper/add-paper.component";
 import { ListPapersComponent } from "./list-papers/list-papers.component";
-import {DashboardComponent} from "./dashboard/dashboard.component";
 import {SummaryComponent} from "./summary/summary.component";
+import {UpdateMarksComponent} from './update-marks/update-marks.component';
 
 export const adminRoutes: Routes = [
 
@@ -47,10 +47,8 @@ export const adminRoutes: Routes = [
     ]
   },
   {
-    path: "dashboard", component: AdminRootComponent, children: [
-      { path: "", component: DashboardComponent, outlet: 'adminRouter' }
+    path: "updatemarks", component: AdminRootComponent, children: [
+      { path: "", component: UpdateMarksComponent, outlet: 'adminRouter' }
     ]
   },
-
-
 ];

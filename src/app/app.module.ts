@@ -71,12 +71,12 @@ import { AgGridModule } from 'ag-grid-angular';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
 import { PayedPapersComponent } from './student/papers/paid-papers/payed-papers.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SummaryComponent } from './admin/summary/summary.component';
 import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.component';
 import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 import { StudentRootComponent } from './student/student-root/student-root.component';
 import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
+import { UpdateMarksComponent } from './admin/update-marks/update-marks.component';
 
 
 
@@ -122,11 +122,11 @@ import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
      DeleteEditorButtonComponent,
      PayedPapersComponent,
      AdminLoginComponent,
-     DashboardComponent,
      SummaryComponent,
      DownloadPdfComponent,
      DownloadPdfStudentComponent,
      SvgSlide2Component,
+     UpdateMarksComponent,
   ],
   imports: [
     BrowserModule,

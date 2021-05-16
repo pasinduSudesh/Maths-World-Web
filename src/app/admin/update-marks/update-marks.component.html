@@ -1,0 +1,41 @@
+<div class="container">
+    <section class="options">
+        <div class="container">
+            <div class="select-panes">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="inputGroupSelect01">Paper</label>
+                    </div>
+                    <select class="custom-select" (change)="onPaperNameChanged()" id="select-papers" placeholder="0.0" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/">
+                        <option [ngValue]="null" selected disabled>Choose a Paper</option>
+                        <option *ngFor="let paper of papers; let i = index" [value]="paper.paperid" >{{paper.papername}}</option>
+                    </select>
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                        <label class="input-group-text" for="select-papers">Student</label>
+                    </div>
+                    <select class="custom-select" (change)="onStudentNameChanged()" id="select-students">
+                        <option [ngValue]="null" selected disabled>Choose a Student</option>
+                        <option *ngFor="let student of students; let i = index" [value]="student.responseid" >{{student.stufirst}} {{student.stulast}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="upload">
+        <div class="container">
+            <div class="update">
+                <label for="marks">Enter Student Marks</label>
+                <input numeric decimals="2" type="number" id="marks" name="marks" [(ngModel)]="marks">
+            </div>
+            <app-file-uploader (uploadEvent)="paperStatus=$event" (fileEvent)="files=$event"></app-file-uploader>
+            <div class="btn-container">
+                <button (click)="onSubmit()" class="btn btn-submit lg float-right"
+                    [disabled]="isSubmitted">submit</button>
+            </div>
+        </div>
+    </section>
+</div>
