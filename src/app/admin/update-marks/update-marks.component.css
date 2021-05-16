@@ -10,29 +10,14 @@
     /* background-color: yellow; */
 }
 
-.options{
-    margin-top: 30px;
-    width: 100%;
-}
-
-.options .container{
-    display: flex;
-    flex-direction: row;
-    margin: 0 auto;
+.options .container{margin: 0 auto;
     width: 80%;
 }
 
 .options .select-panes{
-    display: flex;
+    display: block;
     margin: 1em 0;
-    margin-left: auto;
-    width: 600px;
     
-}
-
-.options .select-panes .input-group{
-    margin-inline: 5px;
-    max-width: 300px;
 }
 
 .options .select-panes .input-group select{

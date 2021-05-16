@@ -106,6 +106,20 @@
     margin-bottom: 0.5em;
 }
 
+/* model Button--------------------------------- */
+.modal-footer .btn{
+    background-color: rgb(216, 216, 214);
+    float: right;
+    color: rgb(0, 0, 0);
+    border-radius: 20px;
+}
+
+.modal-footer .btn:hover{
+    background-color: rgb(70, 70, 70);
+    color: rgb(216, 216, 214);
+}
+
+
 @media screen and (max-width: 600px) {
     .options .container{
         display: block;
