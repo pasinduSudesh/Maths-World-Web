@@ -74,8 +74,32 @@
                 [isRowSelectable]="isRowSelectable"
                 [suppressRowClickSelection]="true"
                 (rowSelected)="onRowSelected($event)"
+                (rowClicked)="onRowClicked($event)"
                 [gridOptions]="gridOptions" rowHeight="46">
             </ag-grid-angular>
         </div>
     </section>
 </div>
+
+<div class="modal fade" id="updateCorretion" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Update Student Results</h4>
+                <button type="button" (click)="refreshData()" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <!-- <div class="modal-body"> -->
+                <app-update-marks *ngIf="clickedRow" [currentRow]= "clickedRow"></app-update-marks>
+            <!-- </div> -->
+            <div class="modal-footer">
+                <button type="button" (click)="refreshData()" class="btn" data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- btn-custom float-right  lg mr-2 -->

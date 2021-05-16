@@ -15,13 +15,14 @@ export class ResponseDetailsService {
 
   constructor(private http: HttpClient) { }
 
-  async getUnmarkedResponsesByEvaluator(paperid, evaluatorid){
+  async getResponsesByEvaluator(paperid, evaluatorid){
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
     let options = {
       headers: headers
     }
-    const url = this.serverURL + `/v1/response/myselection/unmarked/${paperid}/${evaluatorid}`;
+    // const url = this.serverURL + `/v1/response/myselection/unmarked/${paperid}/${evaluatorid}`;
+    const url = this.serverURL + `/v1/response/myselection/${paperid}/${evaluatorid}`;
     return this.http.get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)
     )

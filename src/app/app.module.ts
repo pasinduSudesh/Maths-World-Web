@@ -77,6 +77,7 @@ import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-studen
 import { StudentRootComponent } from './student/student-root/student-root.component';
 import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
 import { UpdateMarksComponent } from './admin/update-marks/update-marks.component';
+import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/update-mark-button.component';
 
 
 
@@ -127,6 +128,7 @@ import { UpdateMarksComponent } from './admin/update-marks/update-marks.componen
      DownloadPdfStudentComponent,
      SvgSlide2Component,
      UpdateMarksComponent,
+     UpdateMarkButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -137,7 +139,7 @@ import { UpdateMarksComponent } from './admin/update-marks/update-marks.componen
     PdfViewerModule,
     SidebarModule.forRoot(),
     // AgGridModule.withComponents([]),
-    AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent]),
+    AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent, UpdateMarkButtonComponent]),
   ],
   exports: [
     TimerComponent
