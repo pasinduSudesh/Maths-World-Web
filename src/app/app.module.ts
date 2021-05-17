@@ -76,8 +76,12 @@ import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.
 import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 import { StudentRootComponent } from './student/student-root/student-root.component';
 import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
+
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 import { UpdateMarksComponent } from './admin/update-marks/update-marks.component';
 import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/update-mark-button.component';
+
 
 import { RecaptchaModule } from "ng-recaptcha";
 
@@ -128,6 +132,7 @@ import { RecaptchaModule } from "ng-recaptcha";
      DownloadPdfComponent,
      DownloadPdfStudentComponent,
      SvgSlide2Component,
+     PageNotFoundComponent,
      UpdateMarksComponent,
      UpdateMarkButtonComponent,
   ],
