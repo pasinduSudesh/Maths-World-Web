@@ -242,18 +242,38 @@
                 </div>
               </div> 
             </div>
-            <div class="row mb-0">
-              <div class="col-sm-12 col-md sm-10">
-                     
-                <!-- <ng2-google-recaptcha [siteKey]="'6LccP9YaAAAAAKIYXKtJcIkLIRn87KLNa7XtrT7D'" (onCaptchaComplete)="onCaptchaComplete($event)">
-                  <div class="g-recaptcha" data-sitekey="6LccP9YaAAAAAKIYXKtJcIkLIRn87KLNa7XtrT7D"></div>
-                </ng2-google-recaptcha> -->
-                <re-captcha (resolved)="resolved($event)" siteKey="6LccP9YaAAAAAKIYXKtJcIkLIRn87KLNa7XtrT7D"></re-captcha>
+            
+            
+            <!-- <div class="row d-none d-md-flex">
+             
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="container-fluid text-center mb-3">
+                  <re-captcha (resolved)="resolved($event)" siteKey="6LccP9YaAAAAAKIYXKtJcIkLIRn87KLNa7XtrT7D"></re-captcha>
+                </div>
               </div>
+              <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="container-fluid text-center mb-3">
+                  <button type="submit" class="btn btn-custom lg  float-right " [disabled]="isSubmitted" (click)="onSave(addUserForm)">Submit</button>
+                </div>
+              </div>
+              
             </div>
+    
+       
+            <div class="row d-md-none">
+              <div class="col-sm-3"></div>
+              <div class="col-sm-6">
+                <div class="container text-center mb-3">
+                  <h1 style="font-family: englishBodyFont2; font-size: 2.2rem; ">Weeklysss</h1>
+                  <h1 style="font-family: englishBodyFont; font-size: 3rem;">Winner List</h1>
+                </div>
+              </div>
+              <div class="col-sm-3"></div>
+            </div> -->
+
             <div class="form row mt-1 ">
               <div class="col-12 col-md sm-3">
-                <button type="submit" class="btn btn-custom lg  float-right " [disabled]="isSubmitted" (click)="onSave(addUserForm)">Submit</button>
+                <button type="submit" class="btn btn-custom lg  float-right " [disabled]="isSubmitted" (click)="onSave(addUserForm)">Submit</button>                
               </div>
             </div>
             

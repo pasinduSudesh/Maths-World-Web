@@ -54,8 +54,8 @@ export class UserService {
   }
 
   verifyReCaptha(response){
-    var secretKey = "6LccP9YaAAAAAK659qiIyBADwc_U1te-spo5EmP5";
-    var url = "https://www.google.com/recaptcha/api/siteverify";
-    return this.http.post<any>(url, {secret:secretKey, response:response})
+    // var secretKey = "6LccP9YaAAAAAK659qiIyBADwc_U1te-spo5EmP5";
+    // var url = "https://www.google.com/recaptcha/api/siteverify";
+    return this.http.post<any>(this.server_url + "/v1/users/verify", {response:response})
   }
 }
