@@ -5,8 +5,9 @@ import { AlertService } from '../../util/alert/alert.service';
 import { LocalStorage } from '../../util/localStorage.service';
 
 import { environment } from '../../../environments/environment';
-import {DownloadPdfComponent} from './download-pdf/download-pdf.component';
-import {DownloadPdfStudentComponent} from './download-pdf-student/download-pdf-student.component';
+import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
+import { DownloadPdfStudentComponent } from './download-pdf-student/download-pdf-student.component';
+import { UpdateMarkButtonComponent } from './update-mark-button/update-mark-button.component';
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -26,6 +27,7 @@ export class SummaryComponent implements OnInit {
   public loadingTemplate;
   public paginationPageSize;
   public frameworkComponents;
+  public clickedRow;
   rowData: Array<any> = [];
 
   constructor(private alertService: AlertService, private http: HttpClient) {
@@ -39,6 +41,7 @@ export class SummaryComponent implements OnInit {
     this.frameworkComponents = {
       downloadPdf: DownloadPdfComponent,
       downloadPdfStudent: DownloadPdfStudentComponent,
+      updateResult: UpdateMarkButtonComponent,
     };
     this.isRowSelectable = function (rowNode) {
       return rowNode.data.evaluatorId == "" ? true : false;
@@ -93,9 +96,9 @@ export class SummaryComponent implements OnInit {
       filter: false,
       cellRendererParams: {
         type: 'answerPdf',
-        userId: localStorage.getItem(LocalStorage.USER_ID)
+        myId: localStorage.getItem(LocalStorage.USER_ID)
       },
-      Width: 100,
+      Width: 80,
     },
     {
       field: "Correction PDF",
@@ -104,9 +107,20 @@ export class SummaryComponent implements OnInit {
       filter: false,
       cellRendererParams: {
         type: 'evaluatorPdf',
-        evaluatorId: localStorage.getItem(LocalStorage.USER_ID)
+        myId: localStorage.getItem(LocalStorage.USER_ID)
       },
-      Width: 100
+      Width: 80
+    },
+    {
+      field: "Update Results",
+      resizable: true,
+      cellRenderer: "updateResult",
+      filter: false,
+      cellRendererParams: {
+        type: 'update',
+        myId: localStorage.getItem(LocalStorage.USER_ID)
+      },
+      Width: 80
     },
   ];
 
@@ -132,7 +146,6 @@ export class SummaryComponent implements OnInit {
         setTimeout(function () {
           if (window.innerWidth >= 1000) {
             params.api.sizeColumnsToFit();
-            console.log("windowwwww : ", window.innerWidth);
           }
         });
         
@@ -169,6 +182,10 @@ export class SummaryComponent implements OnInit {
         event.node.setSelected(false);
       }
     }
+  }
+
+  async onRowClicked(event: any) { 
+    this.clickedRow = event.data
   }
 
   async loadPapersData() {
@@ -266,6 +283,10 @@ export class SummaryComponent implements OnInit {
     var value = (<HTMLSelectElement>document.getElementById('page-size')).value;
     this.paginationPageSize = Number(value);
     this.gridApi.paginationSetPageSize(this.paginationPageSize);
+  }
+
+  refreshData(){
+    this.loadResponsesData();
   }
 
   getUrl(currentAnswersType) {

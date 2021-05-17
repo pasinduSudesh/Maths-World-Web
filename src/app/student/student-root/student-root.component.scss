@@ -37,11 +37,15 @@ nav {
 }
 
 .sidenav-link-active, .sidenav-link:hover {
-    color: $sidenav-bg-color;
-    background-color: $sidenav-color;
+    color: $sidenav-bg-color !important;
+    background-color: $sidenav-color !important;
 }
 
 .sidenav-link-seperator {
     margin-top: 2px;
     margin-bottom: 2px;
+}
+
+.nav-link {
+    padding: 0.25rem .75rem;
 }

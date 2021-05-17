@@ -1,8 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+// import { Ng2GoogleRecaptchaModule } from 'ng2-google-recaptcha';
 import { BasicRequest } from './util/basic-request';
-
+// import { RecaptchaModule } from "ng-recaptcha";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -71,14 +71,19 @@ import { AgGridModule } from 'ag-grid-angular';
 import { DeleteEditorButtonComponent } from './admin/user-details-grid/delete-editor-button/delete-editor-button.component';
 import { PayedPapersComponent } from './student/papers/paid-papers/payed-papers.component';
 import { AdminLoginComponent } from './admin/admin-login/admin-login.component';
-import { DashboardComponent } from './admin/dashboard/dashboard.component';
 import { SummaryComponent } from './admin/summary/summary.component';
 import { DownloadPdfComponent } from './admin/summary/download-pdf/download-pdf.component';
 import { DownloadPdfStudentComponent } from './admin/summary/download-pdf-student/download-pdf-student.component';
 import { StudentRootComponent } from './student/student-root/student-root.component';
 import { SvgSlide2Component } from './svg-slide2/svg-slide2.component';
+
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
+import { UpdateMarksComponent } from './admin/update-marks/update-marks.component';
+import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/update-mark-button.component';
+
+
+import { RecaptchaModule } from "ng-recaptcha";
 
 
 
@@ -123,12 +128,13 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
      DeleteEditorButtonComponent,
      PayedPapersComponent,
      AdminLoginComponent,
-     DashboardComponent,
      SummaryComponent,
      DownloadPdfComponent,
      DownloadPdfStudentComponent,
      SvgSlide2Component,
      PageNotFoundComponent,
+     UpdateMarksComponent,
+     UpdateMarkButtonComponent,
   ],
   imports: [
     BrowserModule,
@@ -139,7 +145,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     PdfViewerModule,
     SidebarModule.forRoot(),
     // AgGridModule.withComponents([]),
-    AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent]),
+    AgGridModule.withComponents([DownloadPdfComponent, DownloadPdfStudentComponent, UpdateMarkButtonComponent]),
+    RecaptchaModule
   ],
   exports: [
     TimerComponent

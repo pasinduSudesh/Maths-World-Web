@@ -15,7 +15,7 @@ export class DownloadPdfComponent implements OnInit {
   }
 
   async btnClickedHandler() {
-    var result = await this.showPaperService.getPdfLink(this.params.data.evaluatedPdf, 600, this.params.evaluatorId).toPromise();
+    var result = await this.showPaperService.getPdfLink(this.params.data.evaluatedPdf, 600, this.params.myId).toPromise();
     FileSaver.saveAs(result.payload, "test");
   }
 
