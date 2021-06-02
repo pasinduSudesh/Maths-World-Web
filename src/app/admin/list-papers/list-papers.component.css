@@ -18,3 +18,8 @@
     margin-bottom: 5px;
     margin-right: 20PX;
 }
+
+.release-btn:hover{
+    background-color: rgb(235, 236, 236);
+    color: aqua;
+}

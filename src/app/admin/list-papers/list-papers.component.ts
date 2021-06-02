@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { ShowPaperService } from '../../services/paper/show-paper.service';
+import { LoadingService } from '../../util/loading/loading.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UploadService } from '../../services/paper/upload.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
@@ -18,11 +19,13 @@ export class ListPapersComponent implements OnInit {
   showingPapers = [];
   subjectId="";
   canDelete = true;
+  adminId=""
 
   constructor(
     private navbar: NavbarComponent,
     private showPaperService: ShowPaperService,
     private router: Router,
+    private loadingService: LoadingService,
     private uploadService: UploadService
   ) { }
 
@@ -42,13 +45,18 @@ export class ListPapersComponent implements OnInit {
     if(adminId === "" || adminId === null){
       this.router.navigate(['/admin/login'])
     }else{
+      this.adminId = adminId;
       this.loading = "Getting Paper Details";
       var subjectDetails = await this.uploadService.getSubject(adminId).toPromise();
       this.subjectId = subjectDetails.payload.subjectid;
-      var result = await this.showPaperService.getPapers(this.subjectId, adminId).toPromise();
+      await this.loadPaperData();
+    }
+  }
+
+  async loadPaperData(){
+    var result = await this.showPaperService.getPapers(this.subjectId, this.adminId).toPromise();
       this.papers = result.payload;
       this.loading = "";
-      // console.log(this.papers);
       if(this.papers.length > 0){
         var data = {
           month: this.papers[0].month,
@@ -56,6 +64,7 @@ export class ListPapersComponent implements OnInit {
           categoryprize: this.papers[0].categoryprize,
           isCategory: true
         }
+        this.showingPapers = []
         this.showingPapers.push(data);
         for (let i = 0; i < this.papers.length; i++) {
           let categoryId = this.papers[i].categoryid;
@@ -71,9 +80,7 @@ export class ListPapersComponent implements OnInit {
     
           this.showingPapers.push(this.papers[i]); 
         }
-        console.log(this.showingPapers);
       }
-    }
   }
 
   addpaper() {
@@ -127,6 +134,22 @@ export class ListPapersComponent implements OnInit {
 
   editPaper(paper){
     this.router.navigate(['/admin/paper/edit',paper])
+  }
+
+  async updateStatus(paper){
+    if(paper.released){
+      if(confirm("Are you sure to stop releasing this paper results ? ")){
+        this.loadingService.showLoading(true, false, "Loading", null);
+        await this.showPaperService.updateStatus(paper.paperid, false).toPromise();
+      }
+    }else{
+      if(confirm("Are you sure to release this paper results ? ")){
+        this.loadingService.showLoading(true, false, "Loading", null);
+        await this.showPaperService.updateStatus(paper.paperid, true).toPromise();
+      }
+    }
+    await this.loadPaperData();
+    this.loadingService.hideLoading();
   }
 
 }

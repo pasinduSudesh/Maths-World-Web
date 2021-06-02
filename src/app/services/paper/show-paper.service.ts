@@ -69,6 +69,22 @@ export class ShowPaperService {
     )
   }
 
+  updateStatus(paperId, status){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/papers/updateStatus`;
+    const data = {
+      'paperId': paperId,
+      'status': status
+    };
+    return this.http.put<{ status: any; payload: any }>(url, data, options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   deletePaper(paperId,pdfLink){
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
