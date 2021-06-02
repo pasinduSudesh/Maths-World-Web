@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getUrlScheme } from '@angular/compiler';
 import { AlertService } from '../../util/alert/alert.service';
 import { LocalStorage } from '../../util/localStorage.service';
+import { LoadingService } from '../../util/loading/loading.service';
 
 import { environment } from '../../../environments/environment';
 import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
@@ -30,13 +31,13 @@ export class SummaryComponent implements OnInit {
   public clickedRow;
   rowData: Array<any> = [];
 
-  constructor(private alertService: AlertService, private http: HttpClient) {
+  constructor(private alertService: AlertService, private http: HttpClient, private loadingService: LoadingService, ) {
     this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0}
     this.paginationPageSize = 10;
     this.currentAnswersType = 'all';
     this.loadingTemplate =
       '<span class="ag-overlay-loading-center">data is loading...</span>';
-    this.noRowsTemplate = '<span>No Response received</span>';
+    this.noRowsTemplate = '<span>No Response received</span>'; 
     this.loadPapersData();
     this.frameworkComponents = {
       downloadPdf: DownloadPdfComponent,
@@ -189,6 +190,7 @@ export class SummaryComponent implements OnInit {
   }
 
   async loadPapersData() {
+    this.loadingService.showLoading(true, false, "Loading", null); 
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
     await this.http
@@ -207,6 +209,7 @@ export class SummaryComponent implements OnInit {
           this.loadResponsesData();
         }
       });
+    this.loadingService.hideLoading();
   }
 
   async loadResponsesData() {

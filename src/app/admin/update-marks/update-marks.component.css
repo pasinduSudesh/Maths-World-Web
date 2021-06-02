@@ -4,10 +4,7 @@
 }
 
 .container{
-    /* padding: unset;
-    margin: unset; */
     font-family: englishBodyFont2;
-    /* background-color: yellow; */
 }
 
 .options .container{margin: 0 auto;
@@ -17,18 +14,23 @@
 .options .select-panes{
     display: block;
     margin: 1em 0;
-    
-}
-
-.options .select-panes .input-group select{
-    width: 100px;
 }
 
 .options .select-panes .input-group-text{
-    padding: 0 15px;
+    font-size: 15px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
 }
 
-.options .select-panes .input-group-text, .custom-select option{
+.options .select-panes .input-group-value{
+    text-align: center;
+    padding: 6px 15px;
+    margin: auto 0;
+    font-weight: bold;
+    text-transform: capitalize;
+    border: 1px solid rgb(211, 210, 210);
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
     font-size: 15px;
 }
 
@@ -48,6 +50,7 @@
 .upload .container .update input{
     border: 1px solid rgb(3, 54, 112);
     padding: 2px 2px 2px 10px;
+    width: 80%;
 }
 
 .upload .container .btn-container{
