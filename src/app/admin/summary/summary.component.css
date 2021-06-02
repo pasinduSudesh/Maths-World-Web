@@ -107,16 +107,13 @@
 }
 
 /* model Button--------------------------------- */
-.modal-footer .btn{
-    background-color: rgb(216, 216, 214);
-    float: right;
-    color: rgb(0, 0, 0);
-    border-radius: 20px;
-}
 
-.modal-footer .btn:hover{
-    background-color: rgb(70, 70, 70);
-    color: rgb(216, 216, 214);
+.modal button{
+    font-size: 30px;
+    background-color: rgb(223, 223, 221);
+    border-radius: 100px;
+    margin: 1px;
+    padding: 6px 12px;
 }
 
 
