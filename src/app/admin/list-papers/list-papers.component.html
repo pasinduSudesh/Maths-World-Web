@@ -16,6 +16,7 @@
                 <th width="8%" scope="col">Publish</th>
                 <th width="8%" scope="col">Edit</th>
                 <th width="8%" scope="col">Delete</th>
+                <th width="8%" scope="col">Released</th>
             </tr>
         </thead>
         <!-- <div class="row month">
@@ -62,7 +63,10 @@
                 </td>
                 <td *ngIf="!paper.isCategory" class="text-center">
                     <button type="button" class="btn btn-danger btn-sm" (click)="deletePaper(paper)" [disabled]="paper.ispublished"><i class="icofont-ui-delete"></i></button>
-                    
+                </td>
+                <td *ngIf="!paper.isCategory" class="text-center">
+                    <button *ngIf="paper.released" type="button" class="btn btn-success btn-sm release-btn" (click)="updateStatus(paper)" ><i class="icofont-check"></i></button>
+                    <button *ngIf="!paper.released" type="button" class="btn btn-warning btn-sm release-btn" (click)="updateStatus(paper)" ><i class="icofont-clock-time"></i></button>
                 </td>
                  
             </tr>
