@@ -1,0 +1,20 @@
+$sidenav-color: #013a4b;
+$sidenav-bg-color: white;
+
+
+
+nav {
+    /* background-color: white; */
+    /* box-shadow: 0 0 2.5em rgb(85 85 85 / 50%); */
+    // background-color: rgb(40 40 40);
+    background-color: $sidenav-color;
+}
+
+
+.navbar-brand {
+    margin: 0 1rem;
+}
+
+.nav-link {
+    padding: 0.25rem .75rem;
+}
