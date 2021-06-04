@@ -12,7 +12,7 @@ import {UpdateMarksComponent} from './update-marks/update-marks.component';
 
 export const adminRoutes: Routes = [
 
-  { path: "", component: AdminRootComponent },
+  { path: "", component: AdminLoginComponent },
   {
     path: "login", component: AdminLoginComponent
   },
