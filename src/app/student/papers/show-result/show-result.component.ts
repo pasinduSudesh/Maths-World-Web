@@ -18,8 +18,8 @@ export class ShowResultComponent implements OnInit {
 
   paperId:any;
   userId:any;
-  paperLink="https://ceb.lk/front_img/img_reports/1532506088Supply_Services_Code_DD1.pdf";
-  answerLink="https://ceb.lk/front_img/img_reports/1532506088Supply_Services_Code_DD1.pdf";
+  paperLink="";
+  answerLink="";
   result:any = {
     graded:false,
     rank:{
@@ -33,6 +33,7 @@ export class ShowResultComponent implements OnInit {
   };
   paper:any={
     paperName:false,
+    paperLink:false,
     year:false,
     month:false,
     week:false
@@ -75,15 +76,15 @@ export class ShowResultComponent implements OnInit {
 
     this.paper = await this.getPaper(this.paperId, this.userId);
     this.result = await this.getPaperResult(this.userId, this.paperId);
-    console.log(this.paper)
+    // console.log(this.paper)
 
-    var paperlinkPath = "paperLink";//asign paper link here
-    var answerlinkPath = "answerLink";//asign answer link here
+    var paperlinkPath = this.paper.paperLink;//asign paper link here
+    var answerlinkPath = this.result.answer.evaluated_link_pdf;//asign answer link here
 
     console.log(this.result);
 
-    this.paperLink = await this.getPdfLink(paperlinkPath, 60, this.userId);
-    this.answerLink = await this.getPdfLink(answerlinkPath, 60, this.userId);
+    this.paperLink = await this.getPdfLink(paperlinkPath, 60*30, this.userId);
+    this.answerLink = await this.getPdfLink(answerlinkPath, 60*30, this.userId);
 
     this.loadingService.hideLoading();
 
@@ -101,8 +102,10 @@ export class ShowResultComponent implements OnInit {
 
   async getPaper(paperId, userId){
     var result = await this.showPaperService.getPaperById(paperId, userId).toPromise();
+    console.log(result.payload,"payload")
     return {
       paperName:result.payload.papername,
+      paperLink:result.payload.pdflink,
       year:result.payload.year,
       month:result.payload.month,
       week:result.payload.week
