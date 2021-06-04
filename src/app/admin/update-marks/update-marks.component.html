@@ -1,28 +1,16 @@
+<app-alert></app-alert>
 
 <section class="options">
     <div class="container">
-        
         <div class="select-panes">
             <div class="input-group mb-3">
                 <label class="input-group-text">Paper</label>
-                <!-- <select class="custom-select" (change)="onPaperNameChanged($event.target.value)" id="select-papers" disabled >
-                    <option [ngValue]="null" selected disabled>Choose a Paper</option>
-                    <option [value]="paper.paperid" [selected]="true" >{{currentRow.paperName}}</option>
-                    <option [selected]="true" >{{currentRow.paperid}}</option>
-                </select> -->
                 <label class="input-group-value">{{paper.papername}}</label>
-                <!-- <label class="input-group-value">paper 1</label> -->
             </div>
 
             <div class="input-group mb-3">
                 <label class="input-group-text">Student</label>
-                <!-- <select class="custom-select" (change)="onStudentNameChanged()" id="select-students" disabled>
-                    <option [ngValue]="null" selected disabled>Choose a Student</option>
-                    <option [selected]="currentRow.responseId" >{{student.stufirst}} {{student.stulast}}</option>
-                    <option [selected]="true" >Rashmika</option>
-                </select> -->
                 <label class="input-group-value">{{currentRow.studentName}}</label>
-                <!-- <label class="input-group-value">Rashmika Lakshan</label> -->
             </div>
         </div>
     </div>
