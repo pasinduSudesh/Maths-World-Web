@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from '../../navbar/navbar.component';
 import { ShowPaperService } from '../../services/paper/show-paper.service';
 import { LoadingService } from '../../util/loading/loading.service';
+import { AlertService } from '../../util/alert/alert.service';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { UploadService } from '../../services/paper/upload.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
@@ -26,6 +27,7 @@ export class ListPapersComponent implements OnInit {
     private showPaperService: ShowPaperService,
     private router: Router,
     private loadingService: LoadingService,
+    private alertService: AlertService,
     private uploadService: UploadService
   ) { }
 
@@ -137,18 +139,29 @@ export class ListPapersComponent implements OnInit {
   }
 
   async updateStatus(paper){
-    if(paper.released){
-      if(confirm("Are you sure to stop releasing this paper results ? ")){
-        this.loadingService.showLoading(true, false, "Loading", null);
-        await this.showPaperService.updateStatus(paper.paperid, false).toPromise();
+    try{
+      if(paper.released){
+        if(confirm("Are you sure to stop releasing this paper results ? ")){
+          this.loadingService.showLoading(true, false, "Loading", null);
+          await this.showPaperService.updateStatus(paper.paperid, false).toPromise();
+        }
+      }else{
+        if(confirm("Are you sure to release this paper results ? ")){
+          this.loadingService.showLoading(true, false, "Loading", null);
+          await this.showPaperService.updateStatus(paper.paperid, true).toPromise();
+        }
       }
-    }else{
-      if(confirm("Are you sure to release this paper results ? ")){
-        this.loadingService.showLoading(true, false, "Loading", null);
-        await this.showPaperService.updateStatus(paper.paperid, true).toPromise();
+      await this.loadPaperData();
+    }
+    catch(err){
+      if(err.status == 406){
+        this.alertService.clear();
+        this.alertService.error("Paper Marking is not finished yet !");
+      }else{
+        this.alertService.clear();
+        this.alertService.error("Something is not right! ");
       }
     }
-    await this.loadPaperData();
     this.loadingService.hideLoading();
   }
 
