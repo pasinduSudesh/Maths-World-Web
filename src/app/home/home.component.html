@@ -199,7 +199,32 @@
                   </div>
                   <div class="col-lg-5 col-md-5 col-sm-5 col-6">
                     <div class="d-flex align-items-center" style="height: 80px;">
-                      <h5>{{winner.name}}</h5>
+                      <div class="row">
+
+                        <!-- web view -->
+
+                        <div class="row d-none d-md-flex">
+                          <div class="col-lg-4 col-md-4">
+                            <h5>{{winner.name}}</h5>
+                          </div>
+                          <div class="col-lg-4 col-md-4">
+                            <h5>{{winner.college}}</h5>                          
+                          </div>
+                          <div class="col-lg-4 col-md-4">
+                            <h5>{{winner.district}}</h5>
+                          </div>
+                        </div>
+
+                        <!-- mobile view -->
+                        <div class="row d-md-none text-center">
+                          <h5>{{winner.name}}
+                          <br>
+                          {{winner.college}}
+                          <br>
+                          {{winner.district}}</h5>
+                        </div>
+                        
+                      </div>
                     </div>
 
                   </div>

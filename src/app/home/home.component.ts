@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
-
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { environment } from '../../environments/environment';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -18,24 +19,43 @@ export class HomeComponent implements OnInit {
   firstDistrict: string;
   secondDistrict: string;
   thirdDistrict: string;
-  constructor( private navbar: NavbarComponent) { }
+  subject: string;
+  constructor( private navbar: NavbarComponent, private http: HttpClient) { }
 
   ngOnInit() {
+    this.winnerList = []
+    this.getResult("1")
+    .subscribe (async response => {
+      const returnedStatus = response.status;
+      if (returnedStatus.code == '200') {
+        console.log("Result"+response.payload.rows.length);
+        const leaderBoard = response.payload.rows
+        this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
+        this.firstCollege = leaderBoard[0]["college"]
+        this.firstDistrict = leaderBoard[0]["district"]
+        this.secondPlace = leaderBoard[1]["firstname"]+" "+ leaderBoard[1]["lastname"]
+        this.secondCollege = leaderBoard[1]["college"]
+        this.secondDistrict = leaderBoard[1]["district"]
+        this.thirdPlace = leaderBoard[2]["firstname"]+" "+ leaderBoard[2]["lastname"]
+        this.thirdCollege = leaderBoard[2]["college"]
+        this.thirdDistrict = leaderBoard[2]["district"]
+        for (let i = 3; i<10 && i < leaderBoard.length; i++) {
+          var winner = {
+            "id": i,
+            "name": leaderBoard[i]['firstname']+" "+leaderBoard[i]['lastname'],
+            "college": leaderBoard[i]['college'],
+            "district": leaderBoard[i]['district']
+          }
+          console.log(winner);
+          this.winnerList.push(winner)
+        }
+        console.log(this.winnerList);
 
-    this.firstPlace = "Nimal Perera"
-    this.firstCollege = "H/Thopawewa college"
-    this.firstDistrict = "Hambantota"
-    this.secondPlace = "kamal Perera"
-    this.secondCollege = "Anuradhapura central"
-    this.secondDistrict = "Anuradhapura"
-    this.thirdPlace = "Sunil Perera"
-    this.thirdCollege = "Kurunegala maliyadewa college"
-    this.thirdDistrict = "Kurunegala"
-    this.winnerList = [
-      { id: 11, name: 'Dr Niceeeeeeeeeeee eeeeeeeeeeeee' , college: 'Richmond College', District: 'Galle'},
-      { id: 12, name: 'Narco cccccccccccc ccccccccccccc', college: 'Mahinda College' , District: 'Galle'},
-      { id: 13, name: 'Bombasto', college: 'Sangamitta Balika Vidyalaya', District: 'Gampaha' }
-    ]
+      }
+    }
+    );
+
+    
   }
 
   show() {
@@ -49,4 +69,13 @@ export class HomeComponent implements OnInit {
   }
 
 
+  getResult(subject: string   ) {
+    const body = {
+      paperId: subject
+    }
+    return this.http.post<any>(
+      environment.SERVER_URL + "/v1/response/result/getTopResult",
+      body
+    )
+  }
 }
