@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
     .subscribe (async response => {
       const returnedStatus = response.status;
       if (returnedStatus.code == '200') {
-        console.log("Result", response.payload.length);
+        console.log("Result", response.payload);
         const leaderBoard = response.payload
         this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
         this.firstCollege = leaderBoard[0]["college"]
