@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoadingService } from '../util/loading/loading.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment';
 @Component({
@@ -20,16 +21,17 @@ export class HomeComponent implements OnInit {
   secondDistrict: string;
   thirdDistrict: string;
   subject: string;
-  constructor( private navbar: NavbarComponent, private http: HttpClient) { }
+  constructor( private navbar: NavbarComponent, private http: HttpClient, private loadingService: LoadingService,) { }
 
   ngOnInit() {
+    this.loadingService.showLoading(true, false, "Loading", null);
     this.winnerList = []
     this.getResult("1")
     .subscribe (async response => {
       const returnedStatus = response.status;
       if (returnedStatus.code == '200') {
-        console.log("Result"+response.payload.rows.length);
-        const leaderBoard = response.payload.rows
+        console.log("Result", response.payload.length);
+        const leaderBoard = response.payload
         this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
         this.firstCollege = leaderBoard[0]["college"]
         this.firstDistrict = leaderBoard[0]["district"]
@@ -55,7 +57,7 @@ export class HomeComponent implements OnInit {
     }
     );
 
-    
+    this.loadingService.hideLoading();
   }
 
   show() {
