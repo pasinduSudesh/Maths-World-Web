@@ -1,0 +1,53 @@
+
+<div class="container px-3">
+    <app-alert></app-alert>
+</div>
+
+<!-- subscribed subject list -->
+<div class="row row-cols-1 row-cols-md-5 container">
+    <div *ngFor="let subjectCard of selectedSubjectList; let i=index" class="col mb-4 h-100">
+      <div class="card select-role-item d-flex align-items-center justify-content-center role-card-selected-subscribed"
+       id="mathematics"  id="mathematics">
+       <img src={{subjectCard.imgurl}} class="card-img-top role-icon py-3"
+       style="width: 45%; height: 100px;" />
+       <div class="verified-avatar-icon">✓</div>
+
+       <div class="card-body px-0 text-center px-0 role-card-body-selected-subscribed" id="mathematicsBody">
+        <p class="card-title mb-1">
+            {{subjectCard.subjectName}}
+        </p>
+        <p class="card-title mb-1">{{subjectCard.name}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+<!-- unsubscribed subject list -->
+<div class="row row-cols-1 row-cols-md-5 container">
+    <div *ngFor="let subjectCard of notSelectedSubjectList; let i=index" class="col mb-4 h-100">
+      <div class="card select-role-item d-flex align-items-center justify-content-center"
+       id="mathematics" (click)="selectSub(subjectCard.subjectId)" id="mathematics" 
+       [ngClass]="subjectCard.isSelected ? 'role-card-selected' : 'role-card'">
+       <img src={{subjectCard.imgurl}} class="card-img-top role-icon py-3"
+       style="width: 45%; height: 100px;" />
+       <div class="card-body px-0 text-center px-0" id="mathematicsBody" 
+       [ngClass]="subjectCard.isSelected ? 'role-card-body-selected' : 'role-card-body'">
+        <p class="card-title mb-1">
+            {{subjectCard.subjectName}}
+        </p>
+        <p class="card-title mb-1">{{subjectCard.name}}</p>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+  <div class="container">
+  <div class="form row mt-1">
+    <div class="col-12 col-md sm-3">
+      <button type="submit" style="border-radius: 1rem" class="btn btn-custom lg  float-left" [disabled]="isConfirmed"
+        (click)="onSave()">Confirm</button>
+    </div>
+</div>
+  </div>
