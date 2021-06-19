@@ -1,30 +1,39 @@
 <div class="container">
     <section class="hero">
         <div class="container">
-            <p class="hero-topic">Summary</p>
 
             <div class="note">
                 <div class="note-data">
-                    <p class="note-name" >Total</p>
                     <p class="note-value" id="total">{{summary.total}}</p>
+                    <p class="note-name" >Total</p>
                 </div>
                 <div class="note-data">
-                    <p class="note-name" >Selected</p>
                     <p class="note-value">{{summary.selected}}</p>
+                    <p class="note-name" >Selected</p>
                 </div>
                 <div class="note-data">
-                    <p class="note-name" >Pending</p>
                     <p class="note-value">{{summary.pending}}</p>
+                    <p class="note-name" >Pending</p>
                 </div>
                 <div class="note-data">
-                    <p class="note-name" >Marking finished</p>
                     <p class="note-value">{{summary.finished}}</p>
+                    <p class="note-name" >Marking finished</p>
                 </div>
+            </div>
+            <div class="schemes">
+                <button type="button" (click)="DownloadPaper()" class="btn">
+                    <img src="../../assets/images/summary/paper.svg">
+                    <p>Paper</p>
+                </button>
+                <button type="button" (click)="DownloadSchema()" class="btn">
+                    <img src="../../assets/images/summary/scheme.svg">
+                    <p>Scheme</p>
+                </button>
             </div>
         </div>
         <app-alert></app-alert>
     </section>
-
+    
     <section class="options">
         <div class="container">
             <div class="select-panes">
