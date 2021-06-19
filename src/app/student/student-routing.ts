@@ -11,6 +11,7 @@ import { PaymentComponent } from "./payment/payment.component";
 import { ResetpasswordComponent } from "./resetpassword/resetpassword.component";
 import { StudentRootComponent } from "./student-root/student-root.component";
 import { UserAccountComponent } from "./user-account/user-account.component";
+import { AddSubjectComponent } from "./add-subject/add-subject.component";
 
 
 export const studentRoutes: Routes = [
@@ -47,6 +48,11 @@ export const studentRoutes: Routes = [
   {
     path: "payment", component: StudentRootComponent, children: [
       { path: "", component: PaymentComponent, outlet: 'studentRouter' }
+    ]
+  },
+  {
+    path: "addNewSubject", component: StudentRootComponent, children: [
+      { path: "", component: AddSubjectComponent, outlet: 'studentRouter' }
     ]
   },
 

@@ -85,6 +85,7 @@ import { UpdateMarkButtonComponent } from './admin/summary/update-mark-button/up
 
 import { RecaptchaModule } from "ng-recaptcha";
 import { NavbarCreateAccountComponent } from './navbar-create-account/navbar-create-account.component';
+import { AddSubjectComponent } from './student/add-subject/add-subject.component';
 
 
 
@@ -137,6 +138,7 @@ import { NavbarCreateAccountComponent } from './navbar-create-account/navbar-cre
      UpdateMarksComponent,
      UpdateMarkButtonComponent,
      NavbarCreateAccountComponent,
+     AddSubjectComponent,
   ],
   imports: [
     BrowserModule,

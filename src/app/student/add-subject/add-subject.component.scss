@@ -1,0 +1,66 @@
+/* 
+ *  Copyright 2019-2020 Axis Limited Liability Company
+ */
+
+ @import "../../styles/colors_function";
+
+ .verified-avatar-icon {
+    position: absolute;
+    right: 0;
+    bottom: 1;
+    border-radius: 50%;
+    background: green;
+    width: 15px;
+    height: 15px;
+    
+    //style for inner text
+    display: grid;
+    text-align: center;
+    line-height: 15px;
+    color: white;
+    font-size: 13px;
+    font-weight: bolder;
+  }
+ .role-card {
+    cursor: pointer;
+    border-radius: 1rem !important;
+    background-color: material-color("grey", "100");
+  
+    .role-card-body {
+      width: 100%;
+      border-bottom-left-radius: 1rem !important;
+      border-bottom-right-radius: 1rem !important;
+      color: white;
+      background-color: $primary-color;
+    }
+  }
+  
+  .role-card-selected {
+    cursor: pointer;
+    border-radius: 1rem !important;
+    color: material-color("grey", "900") !important;
+    background-color: $primary-color !important;
+  }
+  
+  .role-card-body-selected {
+    width: 100%;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+    color: white;
+    background-color: material-color("grey", "900");
+  }
+  
+  .role-card-body-selected-subscribed {
+    width: 100%;
+    border-bottom-left-radius: 1rem !important;
+    border-bottom-right-radius: 1rem !important;
+    color: material-color("grey", "900");
+    background-color: material-color("grey", "100");
+  }
+
+  .role-card-selected-subscribed {
+    cursor: pointer;
+    border-radius: 1rem !important;
+    color: material-color("grey", "900") !important;
+    background-color: $primary-color !important;
+  }
