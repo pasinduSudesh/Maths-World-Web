@@ -178,7 +178,6 @@ export class SummaryComponent implements OnInit {
                   headers: headers
               }
           ).subscribe((responseData) => {
-            console.log("status : ", responseData.status.code);
             if(responseData.status.code == 200){
               this.loadResponsesData();
             }
@@ -209,8 +208,6 @@ export class SummaryComponent implements OnInit {
         }
       )
       .subscribe((responseData) => {
-        console.log('ResponseData' + responseData.status.code);
-        console.log("paperDetails : ",responseData.payload);
         if (responseData.payload != null) {
           this.paperDetails = responseData.payload;
           this.currentPaperId = responseData.payload[0].paperid;
@@ -231,8 +228,6 @@ export class SummaryComponent implements OnInit {
         }
       )
       .subscribe((responseData) => {
-        console.log('ResponseData' + responseData.status.code);
-        console.log(responseData.payload);
         this.rowData = [];
         this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0};
         if (responseData.payload != null) {
@@ -263,7 +258,6 @@ export class SummaryComponent implements OnInit {
             });
           }
           this.gridApi.setRowData(this.rowData);
-          console.log('[SummaryComponent] :: rowData=>' + this.gridApi);
         }
       });
   }
@@ -272,10 +266,6 @@ export class SummaryComponent implements OnInit {
     var value = (<HTMLSelectElement>document.getElementById('select-answers'))
       .value;
     this.currentAnswersType = value;
-    console.log(
-      '[SummaryComponent] :: onAnswersTypeChanged():: currentAnswersType::' +
-        this.currentAnswersType
-    );
     this.loadResponsesData();
   }
 
@@ -283,10 +273,6 @@ export class SummaryComponent implements OnInit {
     var value = (<HTMLSelectElement>document.getElementById('select-papers'))
       .value;
     this.currentPaperId = value;
-    console.log(
-      '[SummaryComponent] :: onPaperNameChanged():: currentPaper::' +
-        this.currentPaperId
-    );
     this.loadResponsesData();
   }
 
@@ -301,10 +287,6 @@ export class SummaryComponent implements OnInit {
   }
 
   getUrl(currentAnswersType) {
-    console.log(
-      '[SummaryComponent] :: getUrl():: currentAnswersType:: ' +
-        this.currentAnswersType
-    );
     if (currentAnswersType == 'selected') {
       return '/v1/response/selected/' + this.currentPaperId;
     } else if (currentAnswersType == 'unselected') {

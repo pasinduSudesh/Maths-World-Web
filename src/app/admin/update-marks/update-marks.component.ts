@@ -78,13 +78,9 @@ export class UpdateMarksComponent implements OnInit, OnChanges {
       if (this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf") {
         this.loadingService.showLoading(true, false, "Loading", null);  
         this.isSubmitted = true;
-        console.log(this.files);
         const file = this.files[0];
-        console.log(file, "file");
         var awsReq = await this.uploadService.getSignedRequest(`corrections/${this.currentRow.paperId}/${this.evaluatorId}/${file.name}`, file.type).toPromise();
-        console.log(awsReq, "resign URL");
         var b = await this.uploadService.uploadFile(file, awsReq.payload.signedRequest).toPromise();
-        console.log("uploaded", b); 
 
         const data = {
           paperid: this.currentRow.paperId,
