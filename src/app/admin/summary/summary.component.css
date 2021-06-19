@@ -22,6 +22,38 @@
     margin-inline: auto;
     max-width: 500px;
 }
+.hero .container .schemes{
+    display: flex;
+    margin-top: 3em;
+}
+
+.hero .container .schemes button{
+    width: 50%;
+    justify-content: center;
+    margin-inline: 0.5em;
+    background-color: rgb(12, 136, 1);
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+
+.hero .container .schemes button:hover{
+    background-color:white;
+    outline: 2px solid green;
+    border-radius: 5px;
+}
+
+.hero .container .schemes button img{
+    width: 1em;
+    height: 1em;
+    margin-right: 5px;
+    
+}
+
+.hero .container .schemes button p{
+    margin: unset;
+    font-weight: 400;
+}
 
 .hero .container{
     display: block;
@@ -33,36 +65,37 @@
     border-radius: 10px;
 }
 
-.hero .container .hero-topic{
-    padding-left: 0.5em;
-    font-size: large;
-    color: rgb(173, 173, 173);
-}
-
 .hero .container .note{
     margin-inline: auto;
-    display: block;
-    width: 80%;
-    max-width: 300px;
-}
-
-.hero .container .note .note-data{
-    display: grid;
-    grid-template-columns: 200px 50px;
-    margin: unset;
-    width: max-content;
-    padding-left: 1em;
+    display: flex;
+    width: 100%;
     
 }
 
-.hero .container .note .note-name{
-    float: left;
+.hero .container .note .note-data{
+    display: block;
+    margin: 0 10px;
+    width: max-content;
+    width: 25%;
+    text-align: center;
+    background-color: rgb(47, 62, 114);
+    border: 1px solid rgb(22, 38, 92);
+    border-radius: 5px;  
+}
+
+.hero .container .note .note-data .note-value, .note-name{
     margin: unset;
 }
 
-.hero .container .note .note-value{
-    float: right;
-    margin: unset;
+.hero .container .note .note-data .note-value{
+    padding: 10px 0;
+    font-size: xx-large;
+    background-color: white;
+}
+
+.hero .container .note .note-data .note-name{
+    padding: 5px;
+    color: white;
 }
 
 /* options section -----------------------------------*/
@@ -133,6 +166,22 @@
       text-align: left;
       width: 85%;
       margin: 0;
+    }
+
+    .hero .container .note{
+        max-width: 300px;  
+    }
+
+    .hero .container .note .note-data{
+        margin: 0 2px;
+    }
+
+    .hero .container .note .note-data .note-name{
+        font-size: smaller;
+    }
+
+    .hero .container .note .note-data .note-value{
+        padding: 5px 0;
     }
 }
 
