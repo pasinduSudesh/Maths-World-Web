@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit, OnDestroy {
     if (this.authenticationService.successMessages) {
       this.isSuccess = true;
       this.success = this.authenticationService.successMessages;
-
     }
   }
 
