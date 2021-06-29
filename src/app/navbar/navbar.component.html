@@ -3,7 +3,11 @@
 
 <div class="nav-opacity">
   <nav [ngClass]="scrolled || toggled ? 'navbar-light bg-light' : 'navbar-dark'"  class="navbar fixed-top navbar-expand-md font-style" id="navbar" (scroll)="onWindowScroll($event);">
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">
+      <div *ngIf="!scrolled && !toggled " class="container-fluid"><img src="../../assets/images/logo/logo32.svg"  width="150" height="30" alt=""></div>
+      <div *ngIf="scrolled || toggled" class="container-fluid"><img src="../../assets/images/logo/logo33.svg"  width="150" height="30" alt=""></div>
+      <!-- <img src="../../assets/images/logo/logo1.png"  alt=""> -->
+    </a>
     <div  class="navbar-toggler ml-auto mr-2" aria-controls="navbarSupportedContent" aria-expanded="false"
       aria-label="Toggle navigation" style="border-color: transparent;" (click)="onNavbarToggle()">
       
