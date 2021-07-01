@@ -4,7 +4,10 @@
         <span class="navbar-toggler" (click)="_toggleSidebar()">
             <i class="icofont-navigation-menu"></i>
         </span>
-        <a class="navbar-brand" routerLink="/">MathsWorld</a>
+        <a class="navbar-brand" routerLink="/">
+            <img src="../../assets/images/logo/logo32.svg" width="150" height="30" alt="">
+            
+        </a>
     </span>
 
     <ul class="navbar-nav">
@@ -26,29 +29,33 @@
         <div style="height: 70px;"></div>
         <h3>Profile</h3>
         <br>
-        
+
         <div id="sidenav-items">
             <hr class="sidenav-link-seperator">
             <div *ngFor="let link of sidenavLinks; let i = index;">
-                <a *ngIf="!link.content" class="sidenav-link" [routerLink]="link.link" [queryParams]="link.queryParams" [routerLinkActive]="'sidenav-link-active'">{{ link.title }}</a>
+                <a *ngIf="!link.content" class="sidenav-link" [routerLink]="link.link" [queryParams]="link.queryParams"
+                    [routerLinkActive]="'sidenav-link-active'">{{ link.title }}</a>
 
-                <a *ngIf="link.content" class="sidenav-link" data-toggle="collapse" attr.data-target="#sidenav-collapse-{{i}}">{{ link.title }}</a>
-                <div *ngIf="link.content" id="sidenav-collapse-{{i}}" class="collapse" data-parent="#sidenav-items" [routerLinkActive]="'show'">
+                <a *ngIf="link.content" class="sidenav-link" data-toggle="collapse"
+                    attr.data-target="#sidenav-collapse-{{i}}">{{ link.title }}</a>
+                <div *ngIf="link.content" id="sidenav-collapse-{{i}}" class="collapse" data-parent="#sidenav-items"
+                    [routerLinkActive]="'show'">
                     <hr class="sidenav-link-seperator">
-                    <ng-container  *ngFor="let sublink of link.content">
-                        <a class="sidenav-link" [routerLink]="sublink.link" [queryParams]="sublink.queryParams" [routerLinkActive]="'sidenav-link-active'">
+                    <ng-container *ngFor="let sublink of link.content">
+                        <a class="sidenav-link" [routerLink]="sublink.link" [queryParams]="sublink.queryParams"
+                            [routerLinkActive]="'sidenav-link-active'">
                             <i class="fa fa-angle-right ml-2 mr-1"></i>
                             {{ sublink.title }}
                         </a>
                         <hr class="sidenav-link-seperator">
                     </ng-container>
-                    
+
                 </div>
                 <hr class="sidenav-link-seperator">
             </div>
 
         </div>
-        
+
 
 
     </ng-sidebar>
