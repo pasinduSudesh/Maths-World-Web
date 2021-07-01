@@ -7,7 +7,10 @@
   <link href="https://fonts.googleapis.com/css?family=Muli:400,700" rel="stylesheet">
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <link rel="alternate icon" href="/favicon.ico">
+  <link rel="mask-icon" href="/favicon.ico" color="#ff8a01">
   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -17,7 +20,7 @@
   <link rel="stylesheet" href="assets/fontawesome-pro/css/baloon.css">
 
   <style type="text/css">
-  body {
+  /* body {
 	 background: #eee;
 }
  .loading {
@@ -64,7 +67,47 @@
 		 stroke-dashoffset: -297px;
 	}
 }
+  */
+
+
+  /* loading styles */
  
+.loading-scr{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: #a19b9b;
+}
+.load-bar{
+    width: 170px;
+    height: 2px;
+    position: relative;
+    overflow: hidden;
+    background: #cfcfcf;
+    margin-top: 22px;
+}
+.load-bar::before{
+    content: "";
+    width: 45px;
+    height: 3px;
+    position: absolute;
+    left: -34px;
+    background: rgb(21,79,128);  
+    animation: loadBar 1.5s infinite ease;
+}
+
+/*-- load bar animation CSS--*/
+@keyframes loadBar {
+    50%{
+        left: 100px;
+    }
+}
  
   </style>
 
@@ -94,14 +137,22 @@
   
   <app-root>
        <!-- loading layout replaced by app after startupp -->
-       <div class="loading">
+       <!-- <div class="loading">
         <svg width="300px" height="200px" viewBox="0 0 187.3 93.7" preserveAspectRatio="xMidYMid meet">
           <path id="infinity-outline" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" 
                 d="M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1        c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z" />
           <path id="infinity-bg" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" 
                 d="M93.9,46.4c9.3,9.5,13.8,17.9,23.5,17.9s17.5-7.8,17.5-17.5s-7.8-17.6-17.5-17.5c-9.7,0.1-13.3,7.2-22.1,17.1        c-8.9,8.8-15.7,17.9-25.4,17.9s-17.5-7.8-17.5-17.5s7.8-17.5,17.5-17.5S86.2,38.6,93.9,46.4z" />
           </svg>
-        </div>
+        </div> -->
+
+        <!-- loading logo -->
+        <div class="loading-scr">
+          <div class="loading-animation">
+              <img src="assets/images/logo/logo33.svg" width="170" height="50" alt="onlinepepare logo" class="text-center">
+              <div class="load-bar"></div>
+          </div>
+      </div>
         
   </app-root>
 </body>
