@@ -3,10 +3,11 @@ import { NgForm } from "@angular/forms";
 import { Router } from "@angular/router";
 import { User } from "./user";
 import { UserService } from "./user.service";
-import { Subscription } from 'rxjs';
+import { range, Subscription } from 'rxjs';
 import { AlertService } from '../../util/alert/alert.service';
 import { AuthenticationService } from "../../util/authentication.service";
 import { LoadingService } from "../../util/loading/loading.service";
+import { integer } from 'aws-sdk/clients/cloudfront';
 
 
 @Component({
@@ -23,6 +24,8 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   subjectList: any[];
   selectedSubjectList: any[];
   isLoadingSubjectList: boolean = true;
+  currentYear: integer;
+  yearList: any[];
   Districts: any[] = [
   { name: 'Ampara' },
   { name: 'Anuradhapura' },
@@ -74,6 +77,13 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
   ngOnInit(){
 
+    //get the year list
+    this.currentYear  = (new Date()).getFullYear();
+    this.yearList = [];
+    for (var x = 0; x<4; x++) {
+      this.yearList.push(this.currentYear + x)
+    }
+    console.log(this.yearList)
     //get the subject details using API call
     //put them to a lists and do some processing
     this.subjectList = [];

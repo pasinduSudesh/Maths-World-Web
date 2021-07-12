@@ -149,7 +149,7 @@
                       </div>
                       <div class="col-sm-12 col-md sm-6 txtBox">
                         <label for="name"> &nbsp;A/L Year</label>
-                        <div style="position:relative">
+                        <!-- <div style="position:relative">
                           <div class="input-with-icon">
                             <input type="text" class="form-control" id="alterEgo" name="year" required ngModel
                               placeholder="Year" [ngClass]="{ 'error':addUserForm.submitted && year.invalid }"
@@ -163,7 +163,25 @@
                               <div *ngIf="year.errors.required">A/L year is required</div>
                             </div>
                           </div>
-                        </div>
+                        </div> -->
+
+                          <div style="position:relative">
+                            <div class="input-with-icon">
+                              <select id="year" name="year" id="alterEgo" class="form-control" required ngModel
+                                [ngClass]="{ 'error':addUserForm.submitted && year.invalid }" #year="ngModel">
+                                <option *ngFor="let year of yearList" [value]="year">{{year}}
+                                </option>
+                              </select>
+                              <div class="btn btn-default icon" data-balloon-length="medium"
+                                aria-label="ඔබ උසස් පෙල පෙනීසිටීමට බලාපොරොත්තුවන වර්ෂය තෝරන්න (ඔබ 2021 උසස් පෙල සදහා පෙනීසිටීමට බලාපොරොත්තු වේ නම 2021 ලෙස තෝරන්න)" data-balloon-pos="up-right">
+                                <img src="../../../assets/fontawesome-pro/infoIcon/info-circle.svg">
+                              </div>
+                              <div *ngIf="addUserForm.submitted && year.invalid" class="text-danger">
+                                <div>A/L Year is required</div>
+                              </div>
+                            </div>
+                          </div>
+                        
                       </div>
                     </div>
 
@@ -347,6 +365,7 @@
                                 <p>Password must contain at least <strong>six characters</strong></p>
                                 <p>Password must contain at least <strong>one number (0-9)</strong></p>
                                 <p>Password must contain at least <strong>one lower case letter (a-z)</strong></p>
+                                <p>Password <strong>should not</strong> have space</p>
                               </div>
                               <div class="col-sm-12 col-md sm-5">
                                 <p>Password <strong>cannot contain </strong>three consecutive same characters</p>
