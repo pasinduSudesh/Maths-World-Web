@@ -128,7 +128,7 @@ export class AddSubjectComponent implements OnInit {
             this.loadingService.hideLoading();
             this.isConfirmed = false;
             this.alertService.success("Successfully subscribed the subject/s");
-            
+            this.gotoTop();
            }
         },
         err => {
@@ -138,16 +138,19 @@ export class AddSubjectComponent implements OnInit {
           var returnedStatus = err.error.status.code;
           if (returnedStatus == '204') {
             this.alertService.error('User does not exists');
+            this.gotoTop();
           } else {
             this.alertService.error('Database Error');
+            this.gotoTop();
           }
         }
         );
     }
   }
   gotoTop() {
+
     window.scroll({ 
-      top: 1, 
+      top: 0, 
       left: 0, 
       behavior: 'smooth' 
     });

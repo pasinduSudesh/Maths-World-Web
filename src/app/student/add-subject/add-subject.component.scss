@@ -4,6 +4,11 @@
 
  @import "../../styles/colors_function";
 
+ @font-face {
+  font-family: englishBodyFont;
+  src: url('../../../assets/fontawesome-pro/webfonts/Poppins-Medium.ttf');
+}
+
  .verified-avatar-icon {
     position: absolute;
     right: 0;
@@ -64,3 +69,13 @@
     color: material-color("grey", "900") !important;
     background-color: $primary-color !important;
   }
+
+  
+.header-name h1 {
+  text-align: left;
+  font-family: englishBodyFont;
+  /* margin: 20px 20px 20px 20px; */
+  color: #164E7E;
+  font-size: 3.2rem;
+  /* color: #343A40; */
+}
