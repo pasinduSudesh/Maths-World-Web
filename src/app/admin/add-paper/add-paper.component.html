@@ -1,3 +1,6 @@
+<div class="container px-3">
+    <app-alert></app-alert>
+</div>
 <section class="add-papers">
     <div class="container register-form">
         <div class="form">
@@ -160,8 +163,8 @@
                             </div>
                         </div>
                     </div>
-                  
-                    <button type="submit" [disabled]="false" (click)="upload(addPaperForm)"
+                    <button (click)="AddLoading()">loading</button>
+                    <button type="submit" [disabled]="hideButton" (click)="upload(addPaperForm)"
                         class="btnSubmit">Submit</button>
                     <p class="err-duration" *ngIf="errMsg.length>0">{{errMsg}} </p>
                 </div>
@@ -170,7 +173,7 @@
     </div>
 </section>
 
-<!-- <app-alerts></app-alerts> -->
+
 
 
 

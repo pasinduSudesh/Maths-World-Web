@@ -77,7 +77,7 @@
     </table>
 
     <!-- <ng-template #noPapers> -->
-        <div *ngIf="showingPapers.length===0" class="text-center">
+        <div *ngIf="showingPapers.length===0 && !loadingData" class="text-center">
             No Papers To Show
         </div>
     <!-- </ng-template> -->

@@ -8,6 +8,7 @@ import { UploadService } from '../../services/paper/upload.service';
 import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from 'node:constants';
 import { Constants } from 'src/app/util/Constants';
 import { LocalStorage } from '../../util/localStorage.service';
+
 @Component({
   selector: 'app-list-papers',
   templateUrl: './list-papers.component.html',
@@ -21,6 +22,7 @@ export class ListPapersComponent implements OnInit {
   subjectId="";
   canDelete = true;
   adminId=""
+  loadingData = false;
 
   constructor(
     private navbar: NavbarComponent,
@@ -47,11 +49,15 @@ export class ListPapersComponent implements OnInit {
     if(adminId === "" || adminId === null){
       this.router.navigate(['/admin/login'])
     }else{
+      this.loadingData = true;
+      this.loadingService.showLoading(true, false, "Loading Paper Data", null);
       this.adminId = adminId;
       this.loading = "Getting Paper Details";
       var subjectDetails = await this.uploadService.getSubject(adminId).toPromise();
       this.subjectId = subjectDetails.payload.subjectid;
       await this.loadPaperData();
+      this.loadingService.hideLoading();
+      this.loadingData = false;
     }
   }
 
