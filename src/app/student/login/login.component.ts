@@ -10,6 +10,7 @@ import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
 import { UserDetailsService } from '../../services/user/user-details.service';
 import { LoadingService } from '../../util/loading/loading.service';
+declare var $: any;
 
 @Component({
   selector: 'app-login',
@@ -133,6 +134,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             this.setUser(this.user)
             console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
             if (returnedStatus.code == 200) {
+              $('#loginModalHomePage').modal('hide')
               this.loadingService.hideLoading();
               this.router.navigateByUrl("paper/list")
             }
@@ -221,7 +223,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.isSuccess = false;
     this.authenticationService.successMessages = '';
   }
+  closeLoginModalHomePage() {
 
+    $('#loginModalHomePage').modal('hide')
+    this.router.navigateByUrl('/signup')
+  }
+
+  closeLoginModalHomePageForgotPsw() {
+    $('#loginModalHomePage').modal('hide')
+    this.router.navigateByUrl('/forgot-password')
+  }
 
 
 }
