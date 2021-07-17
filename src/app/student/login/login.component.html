@@ -6,7 +6,7 @@
 	 <div class="text-center pt-5 pb-3">
 		 <img src="../../../assets/images/logo/Logo.svg" height="60">
 	 </div>
-	 <p class="text-center pb-2" style="font-family: englishBodyFont; font-size: 1.7rem;">Sign in to OnlinePepare</p>
+	 <p class="text-center pb-2" style="font-family: englishBodyFontLoginComponent; font-size: 1.7rem;">Sign in to OnlinePepare</p>
 	<section class="h-100">
 		<div class="container h-100">
 			<div class="row h-100">
@@ -53,7 +53,7 @@
 								<div class="form-group">
 									<label for="password">Password
 										<!-- <a [routerLink]="['../forgot-password']" class="link-primary float-right"> -->
-											<a href="../forgot-password" class="link-primary float-right">
+											<a  (click)="closeLoginModalHomePageForgotPsw()" class="link-primary float-right">
 											Forgot Password?
 										</a>
 									</label>
@@ -90,7 +90,7 @@
 								</div>
 							</form>
 							<div class="form-group mt-4 mb-3">
-								<button id="create_account_submit" [routerLink]="['/signup']" class="btn btn-secondary btn-block">
+								<button id="create_account_submit" (click)="closeLoginModalHomePage()" class="btn btn-secondary btn-block">
 									Create New Account
 								</button>
 							</div>

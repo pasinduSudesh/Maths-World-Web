@@ -1,14 +1,17 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
 import { LoadingService } from '../util/loading/loading.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment';
+declare var $: any;
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  showLoginModal = false;
+  isLoginModalShowed = false;
   isDisplay: boolean = false;
   winnerList: any[];
   firstPlace: string;
@@ -26,6 +29,15 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.loadingService.showLoading(true, false, "Loading", null);
     this.winnerList = []
+    this.getSubjectDetails()
+    .subscribe(async response => {
+      const returnedStatus = response.status;
+      if (returnedStatus.code == '200') {
+        console.log("asasasas"+response.payload[0])
+      }
+      console.log("Returned status"+returnedStatus.code)
+    });
+
     this.getResult("1")
     .subscribe (async response => {
       const returnedStatus = response.status;
@@ -80,4 +92,32 @@ export class HomeComponent implements OnInit {
       body
     )
   }
+
+  getSubjectDetails() {
+    return this.http.get<any>(
+      environment.SERVER_URL + "/v1/subject/getSubjectDetails",
+    )
+  }
+  //modal testing
+  @HostListener('window:scroll', ['$event'])
+  
+  onWindowScroll(e) {
+
+      var hT = document.getElementById('contactUs').offsetTop;
+      var wH = document.body.clientHeight;
+      var wS = window.scrollY;
+      if (wS + wH > hT && this.isLoginModalShowed == false) {
+          console.log("INNNNNN")
+          $('#loginModalHomePage').modal('show')
+          this.isLoginModalShowed = true;
+      }
+      // if (this.showLoginModal) {
+      //   $('#exampleModalLong').modal('show')
+      //   this.log
+      // }
+  }
+ 
+  
+
+
 }
