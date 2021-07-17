@@ -79,7 +79,7 @@ export class LandingComponent implements OnInit {
     this.hasNextPage = false;
     this.hasPreviousPage = false;
     if (this.subjectList.length > 0) {
-      this.loadingService.showLoading(true, null, "Loading Papers", null);
+      this.loadingService.showLoading(true, false, "Loading Papers", null);
       this.activatedRouter.queryParams.subscribe(async p => {
         if (p.page !== undefined) {
           this.showingPapers = [];
@@ -130,6 +130,7 @@ export class LandingComponent implements OnInit {
 
 
   async getPapers(year, month, userid, subjectid) {
+    this.loadingService.showLoading(true, false, "Loading Your Paper Data", null);
     let monthNeed = month;
     let yearNeed = year;
     // let showingPapers = []
@@ -170,6 +171,7 @@ export class LandingComponent implements OnInit {
 
     console.log(this.hasNextPage)
     console.log(this.hasPreviousPage)
+    this.loadingService.hideLoading();
   }
 
   toggle(i) {
@@ -185,9 +187,11 @@ export class LandingComponent implements OnInit {
   }
 
   async enterToPaper(paper) {
+    this.loadingService.showLoading(true, false, "Checking Paper Details", null);
     console.log(paper);
     if(paper !== null){
       let state = await this.getPaperState(paper.paperid, this.userId);
+      this.loadingService.hideLoading();
       if (state.length === 0) {
         this.paymentService.paper = paper;
         if (paper.isPaidForPaper) {
@@ -209,7 +213,7 @@ export class LandingComponent implements OnInit {
         }
       }
     }else{
-      
+      this.loadingService.hideLoading();
     }
   }
 
