@@ -1,5 +1,5 @@
 .btn{
-    background-color: rgb(22, 38, 92);
+    background-color: #013A4B;
     border: none;
     color: rgb(240, 240, 240);
     cursor: pointer;
@@ -13,5 +13,5 @@
 
 .btn:hover {
     background-color: rgb(240, 240, 240);
-    color: rgb(22, 38, 92);
+    color: #013A4B;
 }

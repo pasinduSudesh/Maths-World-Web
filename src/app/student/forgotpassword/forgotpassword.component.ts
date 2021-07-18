@@ -61,7 +61,7 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
 
     if (this.passwordForm.invalid) {
       this.loadingService.hideLoading();
-      this.hasErrors = true;
+      this.submitted = false;
       return;
     }
     this.forgotPasswordComponent
@@ -95,9 +95,6 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
             this.loadingService.hideLoading();
             this.alertService.clear();
             this.alertService.error("Error sending Email");
-            this.hasErrors = true;
-
-
           }
 
         }

@@ -76,6 +76,10 @@ export class StudentRootComponent implements OnInit {
       {
         title: 'Login',
         link: '/login'
+      },
+      {
+        title: 'Subscribed Subject',
+        link: '/addNewSubject'
       }
     ]
 

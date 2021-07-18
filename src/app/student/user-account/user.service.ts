@@ -58,4 +58,8 @@ export class UserService {
     // var url = "https://www.google.com/recaptcha/api/siteverify";
     return this.http.post<any>(this.server_url + "/v1/users/verify", {response:response})
   }
+
+  getSubjectDetails() {
+    return this.http.get<any>(this.server_url + "/v1/subject/getSubjectDetails")
+  }
 }
