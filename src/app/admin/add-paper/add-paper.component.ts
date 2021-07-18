@@ -9,6 +9,8 @@ import { CompileShallowModuleMetadata } from '@angular/compiler';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { LocalStorage } from '../../util/localStorage.service';
 import { Constants } from '../../util/Constants';
+import { AlertService } from '../../util/alert/alert.service';
+import { LoadingService } from '../../util/loading/loading.service';
 
 
 @Component({
@@ -37,6 +39,7 @@ export class AddPaperComponent implements OnInit {
   publishLater = "";
   publishNow = "";
   subjectId = "";
+  hideButton = false;
 
 
 
@@ -48,7 +51,9 @@ export class AddPaperComponent implements OnInit {
     private uploadService: UploadService,
     private fileUploaderComponent: FileUploaderComponent,
     private alertsComponent: AlertsComponent,
-    private router: Router
+    private router: Router,
+    private alertService: AlertService,
+    private loadingService: LoadingService
     ) { }
 
 
@@ -81,12 +86,19 @@ export class AddPaperComponent implements OnInit {
     }
   }
 
+  AddLoading(){
+    this.loadingService.showLoading(true, false, "Hahahhahh", null);
+  }
+
   onChange(e){
 
     console.log(e);
   }
   async upload(addUserForm: NgForm) {
-    if(this.files.length === 1){
+    this.hideButton = true;
+    this.errMsg = "";
+    this.loadingService.showLoading(true, null, "Saving Paper Data", null);
+    if(this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf"){
       let file = this.files[0];
       console.log(file);  
       console.log(addUserForm.value);  
@@ -121,19 +133,30 @@ export class AddPaperComponent implements OnInit {
                       this.categoryPrice,
                       this.subjectId
                     ).toPromise();
+          this.hideButton = false; 
+          this.loadingService.hideLoading();
           this.router.navigate(['/admin/paper/list']);
         }catch(err){
-          console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrrrrr!!!1")
+          this.loadingService.hideLoading()
+          this.hideButton = false;
+          this.alertService.clear();
+          this.alertService.error("Upload Error")
+          console.log("errorrr")
           console.log(err.message)
         }
       }
     }else if(this.files.length > 1){
+      this.loadingService.hideLoading();
+      this.hideButton = false;
       this.errMsg = "Please upload only one paper";
       console.log(this.errMsg);
     }else{
+      this.loadingService.hideLoading();
+      this.hideButton = false;
       this.errMsg = "Please upload paper PDF before submit";
       console.log(this.errMsg);
     }
+    this.loadingService.hideLoading();
   }
 
   selectFile(event) {

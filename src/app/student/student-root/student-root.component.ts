@@ -42,36 +42,29 @@ export class StudentRootComponent implements OnInit {
       {
         title: 'All Papers',
         link: '/paper/list',
-        content: [
-          ... this.subscribedSubjects.map(subject => {
-            return {
-              title: subject.subjectname,
-              link: '/paper/list',
-              queryParams: { subject: subject.subjectid }
-            }
-          }),
-          {
-            title: 'Physics',
-            link: '/paper/list',
-            queryParams: { subject: 5 }
-          },
-          {
-            title: 'Chemistry',
-            link: '/paper/list',
-            queryParams: { subject: 6 }
-          }
-        ]
-        // content: this.subscribedSubjects.map(subject => {
-        //   return {
-        //     title: subject.subjectname,
-        //     link: '/paper/list',
-        //     queryParams: { subject: subject.subjectid }
-        //   }
-        // })
+        content: this.subscribedSubjects.map(subject => ({
+          title: subject.subjectname,
+          link: '/paper/list',
+          queryParams: { subject: subject.subjectid }
+        }))
+        // content: [
+        //   ... this.subscribedSubjects.map(subject => {
+        //     return {
+        //       title: subject.subjectname,
+        //       link: '/paper/list',
+        //       queryParams: { subject: subject.subjectid }
+        //     }
+        //   })
+        // ]
       },
       {
         title: 'Paid Papers',
-        link: '/paper/paid'
+        link: '/paper/paid',
+        content: this.subscribedSubjects.map(subject => ({
+          title: subject.subjectname,
+          link: '/paper/paid',
+          queryParams: { subject: subject.subjectid }
+        }))
       },
       {
         title: 'Login',
