@@ -79,12 +79,12 @@ export class ShowResultComponent implements OnInit {
     // console.log(this.paper)
 
     var paperlinkPath = this.paper.paperLink;//asign paper link here
-    var answerlinkPath = this.result.answer.evaluated_link_pdf;//asign answer link here
-
-    console.log(this.result);
-
     this.paperLink = await this.getPdfLink(paperlinkPath, 60*30, this.userId);
-    this.answerLink = await this.getPdfLink(answerlinkPath, 60*30, this.userId);
+
+    if(this.result.graded){
+      var answerlinkPath = this.result.answer.evaluated_link_pdf;//asign answer link here
+      this.answerLink = await this.getPdfLink(answerlinkPath, 60*30, this.userId);
+    }       
 
     this.loadingService.hideLoading();
 
@@ -92,6 +92,7 @@ export class ShowResultComponent implements OnInit {
 
   async getPaperResult(userId, paperId){
     const result = await this.showPaperService.getPaperResult(userId, paperId).toPromise();
+    console.log(result.payload,"payload")
     return result.payload;
   }
 
