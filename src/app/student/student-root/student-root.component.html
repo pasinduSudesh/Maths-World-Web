@@ -41,13 +41,13 @@
                 <div *ngIf="link.content" id="sidenav-collapse-{{i}}" class="collapse" data-parent="#sidenav-items"
                     [routerLinkActive]="'show'">
                     <hr class="sidenav-link-seperator">
-                    <ng-container *ngFor="let sublink of link.content">
+                    <ng-container *ngFor="let sublink of link.content; let lastSublink = last">
                         <a class="sidenav-link" [routerLink]="sublink.link" [queryParams]="sublink.queryParams"
                             [routerLinkActive]="'sidenav-link-active'">
                             <i class="fa fa-angle-right ml-2 mr-1"></i>
                             {{ sublink.title }}
                         </a>
-                        <hr class="sidenav-link-seperator">
+                        <hr *ngIf="!lastSublink" class="sidenav-link-seperator">
                     </ng-container>
 
                 </div>
