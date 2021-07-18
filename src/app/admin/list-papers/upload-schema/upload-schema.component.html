@@ -1,0 +1,11 @@
+<app-alert></app-alert>
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="form-group">
+            <label for="description">Upload Schema in PDF format</label>
+            <app-file-uploader (uploadEvent)="uploadStatus=$event" (fileEvent)="files=$event">
+            </app-file-uploader>
+        </div>
+    </div>
+</div>
+<button type="submit" (click)="upload()" [disabled]="files===undefined || files.length!==1" class="btnSubmit">Submit</button>

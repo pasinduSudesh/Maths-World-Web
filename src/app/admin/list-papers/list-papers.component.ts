@@ -22,7 +22,10 @@ export class ListPapersComponent implements OnInit {
   subjectId="";
   canDelete = true;
   adminId=""
+  selectedpaperId = null;
+  selectedIndex = null;
   loadingData = false;
+
 
   constructor(
     private navbar: NavbarComponent,
@@ -49,6 +52,7 @@ export class ListPapersComponent implements OnInit {
     if(adminId === "" || adminId === null){
       this.router.navigate(['/admin/login'])
     }else{
+
       this.loadingData = true;
       this.loadingService.showLoading(true, false, "Loading Paper Data", null);
       this.adminId = adminId;
@@ -58,6 +62,7 @@ export class ListPapersComponent implements OnInit {
       await this.loadPaperData();
       this.loadingService.hideLoading();
       this.loadingData = false;
+
     }
   }
 
@@ -88,6 +93,7 @@ export class ListPapersComponent implements OnInit {
     
           this.showingPapers.push(this.papers[i]); 
         }
+        console.log(this.showingPapers,"showing paperssssss");
       }
   }
 
@@ -171,4 +177,29 @@ export class ListPapersComponent implements OnInit {
     this.loadingService.hideLoading();
   }
 
+  onClickedUploadShema(paperId, i){
+    this.selectedpaperId = paperId;
+    this.selectedIndex = i;
+  }
+
+  onFinishUpload(event){
+    this.showingPapers[event.id].markingschema = event.link;
+    this.router.navigateByUrl("/admin/paper/list", { skipLocationChange: true });
+  }
+
+  async onDeleteSchema(paperId, i, schemaLink){
+    if(confirm("Are you sure to delete this Marking Scheme?")){
+      try{
+        this.loadingService.showLoading(true, false, "Deleting Marking Scheme", null);
+        await this.uploadService.deleteFromS3(schemaLink).toPromise();
+        await this.uploadService.setSchema(paperId, null).toPromise();
+        this.showingPapers[i].markingschema = null;
+        this.loadingService.hideLoading();
+      }catch(err){
+        this.loadingService.hideLoading();
+        this.alertService.clear();
+        this.alertService.error(err.message)
+      }
+    }
+  }
 }
