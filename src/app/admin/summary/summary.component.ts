@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getUrlScheme } from '@angular/compiler';
+import { Router } from '@angular/router';
 import { AlertService } from '../../util/alert/alert.service';
 import { LocalStorage } from '../../util/localStorage.service';
 import { LoadingService } from '../../util/loading/loading.service';
 import {ShowPaperService} from '../../services/paper/show-paper.service';
+import {EvalDetailsService} from "../../services/admin/eval-details.service";
+import { Constants } from '../../util/Constants';
 
 import { environment } from '../../../environments/environment';
 import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
@@ -22,6 +25,8 @@ export class SummaryComponent implements OnInit {
   public summary;
   private currentAnswersType;
   public currentPaperId;
+  private evalId;
+  private subjectId;
   private gridApi;
   private responseDetails;
   public isRowSelectable;
@@ -38,7 +43,9 @@ export class SummaryComponent implements OnInit {
     private alertService: AlertService, 
     private http: HttpClient, 
     private loadingService: LoadingService, 
-    private showPaperService: ShowPaperService 
+    private showPaperService: ShowPaperService,
+    private evalDetailsService: EvalDetailsService,
+    private router: Router, 
     ){
     this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0}
     this.paginationPageSize = 10;
@@ -46,7 +53,6 @@ export class SummaryComponent implements OnInit {
     this.loadingTemplate =
       '<span class="ag-overlay-loading-center">data is loading...</span>';
     this.noRowsTemplate = '<span>No Response received</span>'; 
-    this.loadPapersData();
     this.frameworkComponents = {
       downloadPdf: DownloadPdfComponent,
       downloadPdfStudent: DownloadPdfStudentComponent,
@@ -57,7 +63,26 @@ export class SummaryComponent implements OnInit {
     };
   }
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    this.loadingService.showLoading(true, false, "Loading", null); 
+
+    let userRoll = localStorage.getItem(LocalStorage.ROLES);
+    if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll))){
+      this.router.navigate(['/admin/login']);
+    }
+
+    let userid = localStorage.getItem(LocalStorage.USER_ID);
+    if (userid === "" || userid === null) {
+      this.router.navigate(['/admin/login']);
+    }
+    this.evalId = userid;
+    var result = await this.evalDetailsService.getSubjectIdByEvaluator().toPromise();
+    this.subjectId = result.payload[0].subjectid;
+
+    await this.loadPapersData();
+
+    this.loadingService.hideLoading();
+  }
 
   columnDefs = [
     {
@@ -198,26 +223,16 @@ export class SummaryComponent implements OnInit {
 
   async loadPapersData() {
     this.loadingService.showLoading(true, false, "Loading", null); 
-    let headers: HttpHeaders = new HttpHeaders()
-    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
-    await this.http
-      .get<any>(
-        environment.SERVER_URL + '/v1/papers/getLatestPapers/5', //3 - limit of papers
-        {
-          headers: headers
-        }
-      )
-      .subscribe((responseData) => {
-        if (responseData.payload != null) {
-          this.paperDetails = responseData.payload;
-          this.currentPaperId = responseData.payload[0].paperid;
-          this.loadResponsesData();
-        }
-      });
+    
+    var results = await this.showPaperService.getLatestPapers(this.subjectId, this.evalId).toPromise();
+    this.paperDetails = results.payload;
+    this.currentPaperId = results.payload[0].paperid;
+    this.loadResponsesData();
     this.loadingService.hideLoading();
   }
 
   async loadResponsesData() {
+    this.loadingService.showLoading(true, false, "Loading", null);
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
     await this.http
@@ -260,6 +275,7 @@ export class SummaryComponent implements OnInit {
           this.gridApi.setRowData(this.rowData);
         }
       });
+      this.loadingService.hideLoading();
   }
 
   onAnswersTypeChanged() {

@@ -30,6 +30,19 @@ export class EvalDetailsService {
     )
   }
 
+  getSubjectIdByEvaluator(){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/admin/getSubject`;
+    return this.http
+    .get<{ status: any; payload: any }>(url, options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
