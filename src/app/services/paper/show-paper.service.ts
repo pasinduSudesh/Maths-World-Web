@@ -57,6 +57,21 @@ export class ShowPaperService {
     )
   }
 
+  getLatestPapers(subjectId, adminId){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(adminId));
+    // headers = headers.append("app")
+    let options = {
+      headers: headers
+    }
+
+    const url = this.serverURL + `/v1/papers/getLatestPapers/${subjectId}/5`;
+    return this.http
+    .get<{ status: any; payload: any }>(url,options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
   getPdfLink(fileName, expireTime, userId){
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(userId));
