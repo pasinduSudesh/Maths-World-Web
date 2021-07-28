@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, HostListener } from '@angular/core';
 import { NavbarComponent } from '../navbar/navbar.component';
+import { LoadingService } from '../util/loading/loading.service';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { environment } from '../../environments/environment';
 declare var $: any;
@@ -25,9 +26,10 @@ export class HomeComponent implements OnInit {
   secondDistrict: string;
   thirdDistrict: string;
   subject: string;
-  constructor( private navbar: NavbarComponent, private http: HttpClient) { }
+  constructor( private navbar: NavbarComponent, private http: HttpClient, private loadingService: LoadingService,) { }
 
   ngOnInit() {
+
   //messenger live chat- start
   var chatbox = document.getElementById('fb-customer-chat');
   chatbox.setAttribute("page_id", "109369341428736");
@@ -50,6 +52,9 @@ export class HomeComponent implements OnInit {
 
 
   //messeger live chat- end
+
+    this.loadingService.showLoading(true, false, "Loading", null);
+
     this.winnerList = []
     this.getSubjectDetails()
     .subscribe(async response => {
@@ -64,8 +69,8 @@ export class HomeComponent implements OnInit {
     .subscribe (async response => {
       const returnedStatus = response.status;
       if (returnedStatus.code == '200') {
-        console.log("Result"+response.payload.rows.length);
-        const leaderBoard = response.payload.rows
+        console.log("Result", response.payload);
+        const leaderBoard = response.payload
         this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
         this.firstCollege = leaderBoard[0]["college"]
         this.firstDistrict = leaderBoard[0]["district"]
@@ -91,7 +96,7 @@ export class HomeComponent implements OnInit {
     }
     );
 
-    
+    this.loadingService.hideLoading();
   }
 
   show() {

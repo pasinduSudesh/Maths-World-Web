@@ -4,11 +4,14 @@ import { getUrlScheme } from '@angular/compiler';
 import { AlertService } from '../../util/alert/alert.service';
 import { LocalStorage } from '../../util/localStorage.service';
 import { LoadingService } from '../../util/loading/loading.service';
+import {ShowPaperService} from '../../services/paper/show-paper.service';
 
 import { environment } from '../../../environments/environment';
 import { DownloadPdfComponent } from './download-pdf/download-pdf.component';
 import { DownloadPdfStudentComponent } from './download-pdf-student/download-pdf-student.component';
 import { UpdateMarkButtonComponent } from './update-mark-button/update-mark-button.component';
+declare var require: any
+const FileSaver = require('file-saver');
 @Component({
   selector: 'app-summary',
   templateUrl: './summary.component.html',
@@ -31,7 +34,12 @@ export class SummaryComponent implements OnInit {
   public clickedRow;
   rowData: Array<any> = [];
 
-  constructor(private alertService: AlertService, private http: HttpClient, private loadingService: LoadingService, ) {
+  constructor(
+    private alertService: AlertService, 
+    private http: HttpClient, 
+    private loadingService: LoadingService, 
+    private showPaperService: ShowPaperService 
+    ){
     this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0}
     this.paginationPageSize = 10;
     this.currentAnswersType = 'all';
@@ -170,7 +178,6 @@ export class SummaryComponent implements OnInit {
                   headers: headers
               }
           ).subscribe((responseData) => {
-            console.log("status : ", responseData.status.code);
             if(responseData.status.code == 200){
               this.loadResponsesData();
             }
@@ -201,8 +208,6 @@ export class SummaryComponent implements OnInit {
         }
       )
       .subscribe((responseData) => {
-        console.log('ResponseData' + responseData.status.code);
-        console.log("paperDetails : ",responseData.payload);
         if (responseData.payload != null) {
           this.paperDetails = responseData.payload;
           this.currentPaperId = responseData.payload[0].paperid;
@@ -223,8 +228,6 @@ export class SummaryComponent implements OnInit {
         }
       )
       .subscribe((responseData) => {
-        console.log('ResponseData' + responseData.status.code);
-        console.log(responseData.payload);
         this.rowData = [];
         this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0};
         if (responseData.payload != null) {
@@ -255,7 +258,6 @@ export class SummaryComponent implements OnInit {
             });
           }
           this.gridApi.setRowData(this.rowData);
-          console.log('[SummaryComponent] :: rowData=>' + this.gridApi);
         }
       });
   }
@@ -264,10 +266,6 @@ export class SummaryComponent implements OnInit {
     var value = (<HTMLSelectElement>document.getElementById('select-answers'))
       .value;
     this.currentAnswersType = value;
-    console.log(
-      '[SummaryComponent] :: onAnswersTypeChanged():: currentAnswersType::' +
-        this.currentAnswersType
-    );
     this.loadResponsesData();
   }
 
@@ -275,10 +273,6 @@ export class SummaryComponent implements OnInit {
     var value = (<HTMLSelectElement>document.getElementById('select-papers'))
       .value;
     this.currentPaperId = value;
-    console.log(
-      '[SummaryComponent] :: onPaperNameChanged():: currentPaper::' +
-        this.currentPaperId
-    );
     this.loadResponsesData();
   }
 
@@ -293,10 +287,6 @@ export class SummaryComponent implements OnInit {
   }
 
   getUrl(currentAnswersType) {
-    console.log(
-      '[SummaryComponent] :: getUrl():: currentAnswersType:: ' +
-        this.currentAnswersType
-    );
     if (currentAnswersType == 'selected') {
       return '/v1/response/selected/' + this.currentPaperId;
     } else if (currentAnswersType == 'unselected') {
@@ -307,6 +297,41 @@ export class SummaryComponent implements OnInit {
       return '/v1/response/myselection/'+ this.currentPaperId + '/' + localStorage.getItem(LocalStorage.USER_ID);
     } else {
       return '/v1/response/' + this.currentPaperId;
+    }
+  }
+
+  async DownloadPaper(){
+    const data = await this.getPaperById();
+    if(data.pdflink != null){
+      var result = await this.showPaperService.getPdfLink(data.pdflink, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
+      FileSaver.saveAs(result.payload, data.papername + "_paper");
+    }else{
+      this.alertService.clear();
+      this.alertService.error("Paper is not available !");
+    }
+    this.loadingService.hideLoading();
+  }
+
+  async DownloadSchema(){
+    const data = await this.getPaperById();
+    if(data.markingschema != null){
+      var result = await this.showPaperService.getPdfLink(data.markingschema, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
+      FileSaver.saveAs(result.payload, data.papername + "_scheme");
+    }else{
+      this.alertService.clear();
+      this.alertService.error("Marking Scheme is not available !");
+    }
+    this.loadingService.hideLoading();
+  }
+
+  async getPaperById(){
+    this.loadingService.showLoading(true, false, "Loading", null); 
+    var result = await this.showPaperService.getPaperById(this.currentPaperId, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
+    if(result.status.code == 200){
+      return result.payload;
+    }else{
+      this.alertService.clear();
+      this.alertService.error("Please select paper first !");
     }
   }
 

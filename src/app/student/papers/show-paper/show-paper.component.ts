@@ -13,6 +13,7 @@ import { LocalStorage } from '../../../util/localStorage.service';
 import { Constants } from '../../../util/Constants';
 import { LoadingService } from '../../../util/loading/loading.service';
 import { AlertService } from 'src/app/util/alert/alert.service';
+import $ from "jquery";
 
 
 @Component({
@@ -50,6 +51,8 @@ export class ShowPaperComponent implements OnInit {
   paperid;
   userid;
   isSubmitted = false;
+  showNotice = false;
+
 
 
   link = "https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf";
@@ -269,5 +272,9 @@ export class ShowPaperComponent implements OnInit {
   async getPaperPdfLink(pdfLink: string, duration: number, userId: string) {
     var result = await this.showPaperService.getPdfLink(pdfLink, duration, userId).toPromise();
     return result.payload;
+  }
+
+  onClose(){
+    this.showNotice = false
   }
 }

@@ -42,7 +42,7 @@
     </div>
 
     <div *ngIf="isPaperStarted">
-        <app-timer></app-timer>
+        <app-timer (showNoticeEvent)="showNotice=$event"></app-timer>
 
 
         <div class="pdf-container">
@@ -116,3 +116,15 @@
         </div>
     </div>
 </section>
+
+<!-- The Modal -->
+<div *ngIf="showNotice" id="myModal" class="modalx">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close" (click)="onClose()">&times;</span>
+        <p>You have 10 minutes more.........</p>
+        <button (click)="onClose()" class="btn btn-ok float-right">OK</button>
+    </div>
+
+</div>

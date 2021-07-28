@@ -23,6 +23,7 @@ export class PayedPapersComponent implements OnInit {
 
   constructor(
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private showPaperService: ShowPaperService,
     private paymentService: PaymentDetailsService,
     private dateService: DateService,
@@ -51,7 +52,10 @@ export class PayedPapersComponent implements OnInit {
     }
 
     this.subjectList = JSON.parse(subscribedSubjects);
-    this.selectedSubjectId = this.subjectList[0]['subjectid'];
+    this.activatedRoute.queryParams.subscribe(async p => {
+      this.selectedSubjectId = p.subject ? p.subject : this.subjectList[0].subjectid;
+    });  
+
     this.papers = await this.getPaidpapers(userid, this.selectedSubjectId);
     console.log("papers:: ", this.papers);
     this.loading = "";

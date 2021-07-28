@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter } from '@angular/core';
 import { Subscription, interval } from 'rxjs';
 import { LocalStorage } from '../../util/localStorage.service';
 
@@ -8,6 +8,9 @@ import { LocalStorage } from '../../util/localStorage.service';
   styleUrls: ['./timer.component.css']
 })
 export class TimerComponent implements OnInit {
+
+  @Output() public showNoticeEvent = new EventEmitter();
+
 
   constructor() { }
   private subscription: Subscription;
@@ -21,6 +24,7 @@ export class TimerComponent implements OnInit {
 
   ngOnInit(): void {
     let endTime = parseInt(localStorage.getItem(LocalStorage.PAPER_END_TIME));
+    this.showNoticeEvent.emit(false);
     if(endTime){
       this.endTime = endTime;
   
@@ -63,9 +67,14 @@ export class TimerComponent implements OnInit {
       this.warning = true;
       this.subscription.unsubscribe();
     }
-    if (s<10 && m===0 && h===0){
+    if (m<10 && h===0){
       this.warning = true;
+      
     }
+
+    if(s===0 && m===10 && h===0){
+      this.showNoticeEvent.emit(true);
+    }   
     
 
   }

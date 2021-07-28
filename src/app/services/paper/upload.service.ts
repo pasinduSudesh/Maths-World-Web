@@ -121,6 +121,30 @@ export class UploadService {
     )
   }
 
+  deleteFromS3(link){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/s3/deleteFile?fileName=${link}`;
+    return this.http.delete<{ status: any; payload: any }>(url,options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
+  setSchema(paperId, schemaLink){
+    let headers: HttpHeaders = new HttpHeaders()
+    headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
+    let options = {
+      headers: headers
+    }
+    const url = this.serverURL + `/v1/papers/setSchema`;
+    return this.http.put<{ status: any; payload: any }>(url,{paperId:paperId, schemaLink:schemaLink},options).pipe(
+      catchError(this.handleError)
+    )
+  }
+
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -134,8 +158,7 @@ export class UploadService {
         `body was: ${error.error}`);
     }
     // Return an observable with a user-facing error message.
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(error);
   }
   
   getCategoryData(year, month){
