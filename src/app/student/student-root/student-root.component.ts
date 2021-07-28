@@ -92,4 +92,8 @@ export class StudentRootComponent implements OnInit {
     //console.log("inside navigate()", subject);
     this.router.navigate(['/paper/list'], { queryParams: { subject: subject.subjectid } });
   }
+  
+  logout() {
+    localStorage.clear();
+  }
 }

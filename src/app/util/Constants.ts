@@ -53,7 +53,9 @@ export class Constants {
       AddPapers:[Constants.USER_ROLES.SystemAdmin],
       EditPapers:[Constants.USER_ROLES.SystemAdmin],
       ViewPapers:[Constants.USER_ROLES.SystemAdmin, Constants.USER_ROLES.Evaluaor],
-      UserManage:[Constants.USER_ROLES.SystemAdmin]
+      UserManage:[Constants.USER_ROLES.SystemAdmin],
+      ListPapers:[Constants.USER_ROLES.SystemAdmin],
+      SummaryPapers:[Constants.USER_ROLES.SystemAdmin, Constants.USER_ROLES.Evaluaor]
     }
 
     public static USER_ROLE_ASSIGNMENTS_STUDENT = {

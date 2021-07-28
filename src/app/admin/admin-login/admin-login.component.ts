@@ -8,6 +8,7 @@ import { AlertService } from 'src/app/util/alert/alert.service';
 import { AuthenticationService } from "../../util/authentication.service";
 import { environment } from '../../../environments/environment';
 import { Subject } from 'rxjs';
+import { Constants } from 'src/app/util/Constants';
 
 
 @Component({
@@ -118,7 +119,11 @@ export class AdminLoginComponent implements OnInit {
 
             this.setUser(this.user)
             // TODO- change the routing
-            this.router.navigateByUrl("/admin/paper/list")
+            if (Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ListPapers.includes(response.payload.role)) {
+              this.router.navigateByUrl("/admin/paper/list")
+            } else {
+              this.router.navigateByUrl("/admin/summary")
+            }
           
           } 
           // return returnedStatus;
