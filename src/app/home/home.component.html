@@ -71,15 +71,21 @@
         </div>
 
 
-        <div *ngIf="subjectList != null" class="d-flex justify-content-center align-items-center">
-          <i class="fa fa-angle-left" style="font-size: 5rem;"
+        <div *ngIf="subjectList != null" class="d-flex justify-content-center align-items-center mb-5">
+          <i *ngIf="selectedSubject > 0" class="fa fa-angle-left" style="font-size: 7rem; color: #164d7e;"
             (click)="changeSubject(-1)"></i>
-          <div style="min-width: 15rem;">
-            <div class="p-1 text-center">{{ subjectList[selectedSubject].firstname }}</div>
-            <div class="p-1 text-center">{{ subjectList[selectedSubject].subjectname }}</div>
+          <i *ngIf="selectedSubject <= 0" class="fa fa-angle-left" style="font-size: 7rem; color: #8faac1;"></i>
+
+          <div style="min-width: 15rem; padding: 0 1rem;">
+            <div class="text-center" style="font-size: 2rem; letter-spacing: 3px; text-transform: uppercase; color: #6f6f6f;">{{ subjectList[selectedSubject].subjectname }}</div>
+            <div class="text-center" style="font-size: 1.5rem; letter-spacing: 1px; line-height: 1.5rem; color: #acacac;">{{ (subjectList[selectedSubject].firstname || "") + " " + (subjectList[selectedSubject].lastname || "") }}</div>
+            <!-- <div class="text-center" style="font-size: 1.5rem; letter-spacing: 1px; line-height: 1.5rem;">Supun Thenuka Ranasinghe Thenuka Ranasinghe</div> -->
+
           </div>
-          <i class="fa fa-angle-right" style="font-size: 5rem;"
+
+          <i *ngIf="selectedSubject < subjectList.length - 1" class="fa fa-angle-right" style="font-size: 7rem; color: #164d7e;"
             (click)="changeSubject(+1)"></i>
+          <i *ngIf="selectedSubject >= subjectList.length - 1" class="fa fa-angle-right" style="font-size: 7rem; color: #8faac1;"></i>
         </div>
 
         <!-- web view -->
