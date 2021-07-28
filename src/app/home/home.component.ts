@@ -26,7 +26,11 @@ export class HomeComponent implements OnInit {
   secondDistrict: string;
   thirdDistrict: string;
   subject: string;
-  constructor( private navbar: NavbarComponent, private http: HttpClient, private loadingService: LoadingService,) { }
+  // for winner list
+  subjectList: Array<any> = null;
+  selectedSubject: number = 0;
+
+  constructor(private navbar: NavbarComponent, private http: HttpClient, private loadingService: LoadingService,) { }
 
   ngOnInit() {
 
@@ -57,60 +61,31 @@ export class HomeComponent implements OnInit {
 
     this.winnerList = []
     this.getSubjectDetails()
-    .subscribe(async response => {
-      const returnedStatus = response.status;
-      if (returnedStatus.code == '200') {
-        //console.log("asasasas"+response.payload[0])
-      }
-      //console.log("Returned status"+returnedStatus.code)
-    });
-
-    this.getResult("1")
-    .subscribe (async response => {
-      const returnedStatus = response.status;
-      if (returnedStatus.code == '200') {
-        //console.log("Result", response.payload);
-        const leaderBoard = response.payload
-        this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
-        this.firstCollege = leaderBoard[0]["college"]
-        this.firstDistrict = leaderBoard[0]["district"]
-        this.secondPlace = leaderBoard[1]["firstname"]+" "+ leaderBoard[1]["lastname"]
-        this.secondCollege = leaderBoard[1]["college"]
-        this.secondDistrict = leaderBoard[1]["district"]
-        this.thirdPlace = leaderBoard[2]["firstname"]+" "+ leaderBoard[2]["lastname"]
-        this.thirdCollege = leaderBoard[2]["college"]
-        this.thirdDistrict = leaderBoard[2]["district"]
-        for (let i = 3; i<10 && i < leaderBoard.length; i++) {
-          var winner = {
-            "id": i,
-            "name": leaderBoard[i]['firstname']+" "+leaderBoard[i]['lastname'],
-            "college": leaderBoard[i]['college'],
-            "district": leaderBoard[i]['district']
-          }
-          //console.log(winner);
-          this.winnerList.push(winner)
+      .subscribe(async response => {
+        if (response.status.code == '200') {
+          this.subjectList = response.payload;
+          console.log(response.payload);
+          console.log(this.subjectList[0])
         }
-        //console.log(this.winnerList);
+      });
 
-      }
-    }
-    );
+    this.loadWinnerList(this.subjectList[0].subjectid);
 
     this.loadingService.hideLoading();
   }
 
   show() {
-    this.isDisplay = ! this.isDisplay;
+    this.isDisplay = !this.isDisplay;
   }
 
   changeDirection() {
     var element = document.getElementById("page");
-  element.classList.toggle("no-filter");
-  this.isDisplay = ! this.isDisplay;
+    element.classList.toggle("no-filter");
+    this.isDisplay = !this.isDisplay;
   }
 
 
-  getResult(subject: string   ) {
+  getResult(subject: string) {
     const body = {
       paperId: subject
     }
@@ -127,24 +102,60 @@ export class HomeComponent implements OnInit {
   }
   //modal testing
   @HostListener('window:scroll', ['$event'])
-  
+
   onWindowScroll(e) {
 
-      var hT = document.getElementById('contactUs').offsetTop;
-      var wH = document.body.clientHeight;
-      var wS = window.scrollY;
-      if (wS + wH > hT && this.isLoginModalShowed == false) {
-          //console.log("INNNNNN")
-          $('#loginModalHomePage').modal('show')
-          this.isLoginModalShowed = true;
-      }
-      // if (this.showLoginModal) {
-      //   $('#exampleModalLong').modal('show')
-      //   this.log
-      // }
+    var hT = document.getElementById('contactUs').offsetTop;
+    var wH = document.body.clientHeight;
+    var wS = window.scrollY;
+    if (wS + wH > hT && this.isLoginModalShowed == false) {
+      //console.log("INNNNNN")
+      $('#loginModalHomePage').modal('show')
+      this.isLoginModalShowed = true;
+    }
+    // if (this.showLoginModal) {
+    //   $('#exampleModalLong').modal('show')
+    //   this.log
+    // }
   }
- 
-  
+
+  changeSubject(direction) {
+    this.selectedSubject = (this.selectedSubject + this.subjectList.length + direction) % this.subjectList.length;
+    this.loadWinnerList(this.subjectList[this.selectedSubject].subjectid);
+  }
+
+  loadWinnerList(subjectId) {
+    this.getResult(subjectId)
+      .subscribe(async response => {
+        const returnedStatus = response.status;
+        if (returnedStatus.code == '200') {
+          this.winnerList = []
+          console.log("Result", response.payload);
+          const leaderBoard = response.payload
+          this.firstPlace = leaderBoard[0]["firstname"] + " " + leaderBoard[0]["lastname"]
+          this.firstCollege = leaderBoard[0]["college"]
+          this.firstDistrict = leaderBoard[0]["district"]
+          this.secondPlace = leaderBoard[1]["firstname"] + " " + leaderBoard[1]["lastname"]
+          this.secondCollege = leaderBoard[1]["college"]
+          this.secondDistrict = leaderBoard[1]["district"]
+          this.thirdPlace = leaderBoard[2]["firstname"] + " " + leaderBoard[2]["lastname"]
+          this.thirdCollege = leaderBoard[2]["college"]
+          this.thirdDistrict = leaderBoard[2]["district"]
+          for (let i = 3; i < 10 && i < leaderBoard.length; i++) {
+            var winner = {
+              "id": i,
+              "name": leaderBoard[i]['firstname'] + " " + leaderBoard[i]['lastname'],
+              "college": leaderBoard[i]['college'],
+              "district": leaderBoard[i]['district']
+            }
+            console.log(winner);
+            this.winnerList.push(winner)
+          }
+          console.log(this.winnerList);
+
+        }
+      });
+  }
 
 
 }
