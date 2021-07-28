@@ -47,15 +47,6 @@ export class StudentRootComponent implements OnInit {
           link: '/paper/list',
           queryParams: { subject: subject.subjectid }
         }))
-        // content: [
-        //   ... this.subscribedSubjects.map(subject => {
-        //     return {
-        //       title: subject.subjectname,
-        //       link: '/paper/list',
-        //       queryParams: { subject: subject.subjectid }
-        //     }
-        //   })
-        // ]
       },
       {
         title: 'Paid Papers',
@@ -65,10 +56,6 @@ export class StudentRootComponent implements OnInit {
           link: '/paper/paid',
           queryParams: { subject: subject.subjectid }
         }))
-      },
-      {
-        title: 'Login',
-        link: '/login'
       },
       {
         title: 'Subscribed Subject',
