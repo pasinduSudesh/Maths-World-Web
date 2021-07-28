@@ -56,7 +56,7 @@ export class AdminLoginComponent implements OnInit {
       deviceId: deviceid,
       appName: btoa("Portal")
     }
-    console.log("[AuthenticationService]::validateUser()");
+    //console.log("[AuthenticationService]::validateUser()");
     return this.http.post<any>(
       environment.SERVER_URL + "/v1/admin/login",
       user
@@ -73,15 +73,15 @@ export class AdminLoginComponent implements OnInit {
     this.loginBtnClicked = true;
     var returnedStatus: any
     this.submitted = true
-    console.log("[LoginComponent]:: loginBtnClickEvent")
+    //console.log("[LoginComponent]:: loginBtnClickEvent")
     let deviceId = localStorage.getItem(LocalStorage.DEVICE_ID)
-    console.log("deviceId :: " + deviceId);
+    //console.log("deviceId :: " + deviceId);
     window.localStorage.clear()
     //Set back the device id
     if (deviceId != null) {
       localStorage.setItem(LocalStorage.DEVICE_ID, deviceId);
     }
-    console.log("login clicked" + this.loginForm.value.userName + "==" + this.loginForm.value.password)
+    //console.log("login clicked" + this.loginForm.value.userName + "==" + this.loginForm.value.password)
     if (this.loginForm.invalid) {
       this.loginBtnClicked = false;
       return
@@ -97,10 +97,10 @@ export class AdminLoginComponent implements OnInit {
           returnedStatus = response.status
           var roles: string[];
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + JSON.stringify(response))
+          //console.log("[loginComponent] :: loginBtnClickEvent():: response::" + JSON.stringify(response))
           this.user = response.payload
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
+          //console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
           if (returnedStatus.code == 200) {
             localStorage.setItem(LocalStorage.USER_ID, response.payload.user.evaluatorid);
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
@@ -109,11 +109,11 @@ export class AdminLoginComponent implements OnInit {
             localStorage.setItem(LocalStorage.ROLES,response.payload.role);
             localStorage.setItem(LocalStorage.TOKEN, response.payload.token);
 
-            console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
-            console.log(response.payload.roles);
+            //console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
+            //console.log(response.payload.roles);
 
-            console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
-            console.log(localStorage.getItem(LocalStorage.ROLES));
+            //console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
+            //console.log(localStorage.getItem(LocalStorage.ROLES));
 
 
             this.setUser(this.user)
@@ -125,7 +125,7 @@ export class AdminLoginComponent implements OnInit {
         },
         err => {
           returnedStatus = err.error.status.code;
-          console.log("[loginComponent]::loginBtnClickEvent() : returnedStatus=> " + err.error.status.code)
+          //console.log("[loginComponent]::loginBtnClickEvent() : returnedStatus=> " + err.error.status.code)
           //return returnedStatus;
           if (returnedStatus == 401) {
             this.loginBtnClicked = false;
@@ -146,7 +146,7 @@ export class AdminLoginComponent implements OnInit {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 532) {
-            console.log(returnedStatus);
+            //console.log(returnedStatus);
             this.loginBtnClicked = false;
             this.isSuccess = false;
             this.hasErrors = false;

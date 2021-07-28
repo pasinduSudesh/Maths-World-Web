@@ -16,7 +16,7 @@ export class AvailablePapersService {
   data:any;
 
   constructor(private http: HttpClient) {
-    console.log(this.serverURL);
+    //console.log(this.serverURL);
    }
 
   gatAvailablePapers(year: string, month: string, userId: string, subjectId: string) {
@@ -28,7 +28,7 @@ export class AvailablePapersService {
     let options = {
       headers: headers
     }
-    console.log( environment.SERVER_URL)
+    //console.log( environment.SERVER_URL)
     const url = this.serverURL + '/v1/papers/getPapersByMonth/' + year + '/' + month + '/' + userId + '/' + subjectId;      
     return this.http
         .get<{ status: any; payload: any }>(url,options)

@@ -83,7 +83,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
     for (var x = 0; x<4; x++) {
       this.yearList.push(this.currentYear + x)
     }
-    console.log(this.yearList)
+    //console.log(this.yearList)
     //get the subject details using API call
     //put them to a lists and do some processing
     this.subjectList = [];
@@ -115,7 +115,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
 
   selectSub(sub: string) {
-    console.log("[selectUserRole] : (userRole) " + sub);
+    //console.log("[selectUserRole] : (userRole) " + sub);
     for (var i = 0; i < this.selectedSubjectList.length; i++){
       if (this.selectedSubjectList[i]['subjectId'] === sub) {
         this.selectedSubjectList[i]['isSelected'] = !this.selectedSubjectList[i]['isSelected'];
@@ -163,7 +163,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
 
     //put the subscribed subject ids to array: end
 
-    console.log("[userAccountsComponent] :: onSave()::" );
+    //console.log("[userAccountsComponent] :: onSave()::" );
     if (addUserForm.value.password != addUserForm.value.repass) {
       this.loadingService.hideLoading();
       this.alertService.clear();
@@ -201,7 +201,7 @@ export class UserAccountComponent implements OnInit, OnDestroy {
       this.subscription = this.userService.alertMessageOccured
         .subscribe(
           (alert) => {
-          console.log(alert);
+          //console.log(alert);
           if (alert.code == 200) {
             this.loadingService.hideLoading();
             this.alertService.clear();
@@ -239,12 +239,12 @@ export class UserAccountComponent implements OnInit, OnDestroy {
   }
 
   async resolved(e){
-    console.log("resolved()::")
+    //console.log("resolved()::")
     // console.log(e)
     var secretKey = "6LccP9YaAAAAAK659qiIyBADwc_U1te-spo5EmP5";
     var url = "https://www.google.com/recaptcha/api/siteverify";
     var response = await this.userService.verifyReCaptha(e).toPromise();
-    console.log(response);
+    //console.log(response);
   }
 
 }

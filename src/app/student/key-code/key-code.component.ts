@@ -36,9 +36,9 @@ export class KeyCodeComponent implements OnInit {
     this.authenticationService.getEmailAddressForVerification()
       .subscribe(
         data => {
-          console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
+          //console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
           var returnedStatus = data.status;
-          console.log(returnedStatus.code);
+          //console.log(returnedStatus.code);
             if (returnedStatus.code == 200) {
             this.emailAddress = data.payload;
           }
@@ -46,7 +46,7 @@ export class KeyCodeComponent implements OnInit {
         },
         error => {
           var returnedStatus = error.status;
-          console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
+          //console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
 
           if (returnedStatus == 401) {
             this.emailAddress = 'Error Getting Email Address'
@@ -62,15 +62,15 @@ export class KeyCodeComponent implements OnInit {
   
   onSubmit() {
     this.loadingService.showLoading(true, null, "Loading", null)
-    console.log(this.myForm.value.keycode);
+    //console.log(this.myForm.value.keycode);
 
     var returnedStatus;
     this.authenticationService.validateKeyCode(this.myForm.value.keycode)
       .subscribe(
         data => {
-          console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
+          //console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
           returnedStatus = data.status;
-          console.log(returnedStatus.code);
+          //console.log(returnedStatus.code);
             if (returnedStatus.code == 200) {
             this.successMessage = "KeyCode verification is Success."
             this.authenticationService.setSuccessAlert(this.successMessage);
@@ -81,7 +81,7 @@ export class KeyCodeComponent implements OnInit {
         },
         error => {
           returnedStatus = error.status;
-          console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
+          //console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
 
           if (returnedStatus == 401) {
             this.loadingService.hideLoading();
@@ -117,12 +117,12 @@ export class KeyCodeComponent implements OnInit {
 
   resentKeyCode() {
     this.loadingService.showLoading(true, null, "Loading", null)
-    console.log("Keycode resent request");
+    //console.log("Keycode resent request");
     this.authenticationService.resentKeyCode()
       .subscribe(data => {
-        console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
+        //console.log("[keyCodeComponent]:: onSubmit() ::===data :" + JSON.stringify(data));
         var returnedStatus = data.status;
-        console.log(returnedStatus.code);
+        //console.log(returnedStatus.code);
           if (returnedStatus.code == 200) {
             this.loadingService.hideLoading();
             this.alertService.clear();
@@ -131,7 +131,7 @@ export class KeyCodeComponent implements OnInit {
       },
       error => {
         var returnedStatus = error.status;
-        console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
+        //console.log("[keyCodeComponent]:: onSubmit() :: errorStatus:: " + returnedStatus);
 
           if (returnedStatus == 401) {
             this.loadingService.hideLoading();

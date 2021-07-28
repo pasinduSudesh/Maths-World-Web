@@ -76,7 +76,7 @@ export class StudentRootComponent implements OnInit {
       }
     ]
 
-    console.log(this.sidenavLinks)
+    //console.log(this.sidenavLinks)
   }
 
   public _opened: boolean = true;
@@ -102,7 +102,7 @@ export class StudentRootComponent implements OnInit {
   }
 
   navigate(subject) {
-    console.log("inside navigate()", subject);
+    //console.log("inside navigate()", subject);
     this.router.navigate(['/paper/list'], { queryParams: { subject: subject.subjectid } });
   }
 }

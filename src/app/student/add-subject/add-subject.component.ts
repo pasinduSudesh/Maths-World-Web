@@ -33,7 +33,7 @@ export class AddSubjectComponent implements OnInit {
     this.notSelectedSubjectList = [];
     this.selectedSubjectList = [];
     this.subscribedSubjectList = JSON.parse(localStorage.getItem(LocalStorage.SUBSCRIPTION));
-    console.log("subs subject" + this.subscribedSubjectList);
+    //console.log("subs subject" + this.subscribedSubjectList);
     this.getSubjectDetails()
       .subscribe(async response => {
         var responseStatus = response.status.code;
@@ -42,7 +42,7 @@ export class AddSubjectComponent implements OnInit {
             for (let i = 0; i < response.payload.length; i++) {
               var isSelected = false;
               for (let j = 0; j < this.subscribedSubjectList.length; j++) {
-                console.log("1:: "+this.subscribedSubjectList[j]['subjectid']+" "+response.payload[i]["subjectid"])
+                //console.log("1:: "+this.subscribedSubjectList[j]['subjectid']+" "+response.payload[i]["subjectid"])
                 if (this.subscribedSubjectList[j]['subjectid'] == response.payload[i]["subjectid"]) {
                   var subjectListJson = {
                     'subjectId': response.payload[i]["subjectid"],
@@ -82,7 +82,7 @@ export class AddSubjectComponent implements OnInit {
     return this.http.get<any>(this.server_url + "/v1/subject/getSubjectDetails")
   }
   selectSub(sub: string) {
-    console.log("[selectUserRole] : (userRole) " + sub);
+    //console.log("[selectUserRole] : (userRole) " + sub);
     for (var i = 0; i < this.notSelectedSubjectList.length; i++){
       if (this.notSelectedSubjectList[i]['subjectId'] === sub) {
         this.notSelectedSubjectList[i]['isSelected'] = !this.notSelectedSubjectList[i]['isSelected'];
@@ -115,14 +115,14 @@ export class AddSubjectComponent implements OnInit {
       return;
     } else {
       this.isConfirmed = true;
-      console.log('subjects ::'+subjects)
+      //console.log('subjects ::'+subjects)
       this.addNewSubject(subjects, newSubjects)
         .subscribe(async response => {
            var responseStatus = response.status.code;
            if (responseStatus == '200') {
             var subscriptionResult = await this.userService.getSubscribedSubjects(this.userId).toPromise();
             var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
-            console.log("[addSubjectComponenet] :: onSave():: subject::");
+            //console.log("[addSubjectComponenet] :: onSave():: subject::");
             localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
             this.syncSubjectList();
             this.loadingService.hideLoading();

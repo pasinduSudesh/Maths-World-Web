@@ -38,13 +38,13 @@ export class ListPapersComponent implements OnInit {
 
   async ngOnInit() {
     let userRoll = localStorage.getItem(LocalStorage.ROLES);
-    console.log("in list");
-    console.log(userRoll,"in list");
-    console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers,"list of roles")
-    console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll.toString()),"asasasas")
+    //console.log("in list");
+    //console.log(userRoll,"in list");
+    //console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers,"list of roles")
+    //console.log(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll.toString()),"asasasas")
 
     if(!(Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers.includes(userRoll))){
-      console.log('Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers')
+      //console.log('Constants.USER_ROLE_ASSIGNMENTS_ADMIN.ViewPapers')
       this.router.navigate(['/admin/login']);
     }
     
@@ -93,7 +93,7 @@ export class ListPapersComponent implements OnInit {
     
           this.showingPapers.push(this.papers[i]); 
         }
-        console.log(this.showingPapers,"showing paperssssss");
+        //console.log(this.showingPapers,"showing paperssssss");
       }
   }
 
@@ -133,8 +133,8 @@ export class ListPapersComponent implements OnInit {
         }
       }
       this.showingPapers.splice(index,1);
-      console.log(this.showingPapers)
-      console.log(deleteResult);
+      //console.log(this.showingPapers)
+      //console.log(deleteResult);
     }
   }
 

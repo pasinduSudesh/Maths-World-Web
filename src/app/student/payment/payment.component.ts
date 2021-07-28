@@ -39,19 +39,19 @@ export class PaymentComponent implements OnInit {
     ) { 
     payhere.onCompleted = function onCompleted(orderId) {
       // console.log("Payment completed. OrderID:" + orderId);
-      console.log("dsds"+paymentService.paper);
+      //console.log("dsds"+paymentService.paper);
       this.isSubmitted = true;
       router.navigate(['/paper/view']);
     };
 
     payhere.onDismissed = function onDismissed() {
       this.isSubmitted = false;
-      console.log("Payment dismissed");
+      //console.log("Payment dismissed");
     };
 
     payhere.onError = function onError(error) {
       this.isSubmitted = false;
-      console.log("Error:" + error);
+      //console.log("Error:" + error);
     };
 
   }
@@ -144,7 +144,7 @@ export class PaymentComponent implements OnInit {
       this.router.navigate(['/login']);
     }
     
-    console.log(this.paymentService.paper);
+    //console.log(this.paymentService.paper);
     if(this.paymentService.paper === null){
       this.router.navigate(['/paper/list']);
     }
@@ -152,7 +152,7 @@ export class PaymentComponent implements OnInit {
     this.getPaperDetails(this.paper.paperid, this.paper.categoryid, this.paper.categoryId);
 
     // check is paid for the previous week
-    console.log(this.paper, "paper details11")
+    //console.log(this.paper, "paper details11")
     const result = await this.paymentService.hasPaidAnotherWeek(this.paper.paperid).toPromise();
     this.showMonth = ! result.payload.hasPaid;
     this.showWeek = true;
@@ -162,10 +162,10 @@ export class PaymentComponent implements OnInit {
 
   getUserDetails() {
     this.userId = localStorage.getItem(LocalStorage.USER_ID);
-    console.log(this.userId);
+    //console.log(this.userId);
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(this.userId))
-    console.log(headers);
+    //console.log(headers);
     return this.http.get<any>(
       environment.SERVER_URL+ "/v1/users/userDetails",
       {

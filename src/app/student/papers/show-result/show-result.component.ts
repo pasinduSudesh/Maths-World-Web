@@ -71,8 +71,8 @@ export class ShowResultComponent implements OnInit {
     this.paperId = this.showPaperService.paperId;
     this.userId = userid;
 
-    console.log(this.userId, "userid");
-    console.log(this.paperId);
+    //console.log(this.userId, "userid");
+    //console.log(this.paperId);
 
     this.paper = await this.getPaper(this.paperId, this.userId);
     this.result = await this.getPaperResult(this.userId, this.paperId);
@@ -92,7 +92,7 @@ export class ShowResultComponent implements OnInit {
 
   async getPaperResult(userId, paperId){
     const result = await this.showPaperService.getPaperResult(userId, paperId).toPromise();
-    console.log(result.payload,"payload")
+    //console.log(result.payload,"payload")
     return result.payload;
   }
 
@@ -103,7 +103,7 @@ export class ShowResultComponent implements OnInit {
 
   async getPaper(paperId, userId){
     var result = await this.showPaperService.getPaperById(paperId, userId).toPromise();
-    console.log(result.payload,"payload")
+    //console.log(result.payload,"payload")
     return {
       paperName:result.payload.papername,
       paperLink:result.payload.pdflink,
