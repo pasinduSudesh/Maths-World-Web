@@ -57,7 +57,7 @@ export class PayedPapersComponent implements OnInit {
     });  
 
     this.papers = await this.getPaidpapers(userid, this.selectedSubjectId);
-    console.log("papers:: ", this.papers);
+    //console.log("papers:: ", this.papers);
     this.loading = "";
     this.loadingService.hideLoading();
 
@@ -69,7 +69,7 @@ export class PayedPapersComponent implements OnInit {
   }
 
   async changeSubject(subject) {
-    console.log("changeSubject():: ", subject)
+    //console.log("changeSubject():: ", subject)
     if (this.selectedSubjectId !== subject.subjectid) {
       this.loading = "Loading Papers"
       this.papers = await this.getPaidpapers(this.userId, subject.subjectid);
@@ -79,18 +79,18 @@ export class PayedPapersComponent implements OnInit {
   }
 
   async enterToPaper(paper) {
-    console.log(paper);
+    //console.log(paper);
     let state = await this.getPaperState(paper.paperid, this.userId);
     if (state.length === 0) {
       this.paymentService.paper = paper;
-      console.log(this.paymentService.paper)
+      //console.log(this.paymentService.paper)
       this.router.navigate(['/paper/view'])
     } else if (state[0].submitstate === 'submited') {
       this.showPaperService.paperId = paper.paperid;
       this.router.navigate(['paper/result'])
     } else {
       this.paymentService.paper = paper;
-      console.log(this.paymentService.paper)
+      //console.log(this.paymentService.paper)
       this.router.navigate(['/paper/view'])
     }
     

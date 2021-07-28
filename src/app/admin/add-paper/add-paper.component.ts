@@ -76,12 +76,12 @@ export class AddPaperComponent implements OnInit {
         this.currentMonth = this.date.getMonth() + 1;
         this.years = [thisYear - 2, thisYear - 1, thisYear, thisYear + 1];
         this.weeks = ["Week 1", "Week 2", "Week 3", "Week 4", "Week 5"];
-        console.log(this.weeks);
-        console.log(this.currentMonth, "current month");
+        //console.log(this.weeks);
+        //console.log(this.currentMonth, "current month");
         // this.addUserForm.value.year=thisYear
       }catch(error){
         this.errMsg = "Please Try again";
-        console.log(error); 
+        //console.log(error); 
       }
     }
   }
@@ -92,7 +92,7 @@ export class AddPaperComponent implements OnInit {
 
   onChange(e){
 
-    console.log(e);
+    //console.log(e);
   }
   async upload(addUserForm: NgForm) {
     this.hideButton = true;
@@ -100,20 +100,20 @@ export class AddPaperComponent implements OnInit {
     this.loadingService.showLoading(true, null, "Saving Paper Data", null);
     if(this.files.length === 1 && this.files[0].progress === 100 && this.files[0].type === "application/pdf"){
       let file = this.files[0];
-      console.log(file);  
-      console.log(addUserForm.value);  
+      //console.log(file);  
+      //console.log(addUserForm.value);  
       this.validateFormData(addUserForm);
       if(!(this.hasErrors())) {        
         try{
-          console.log(file);
+          //console.log(file);
           var paperIdRequest = await this.uploadService.getPaperId().toPromise();
           const paperId = paperIdRequest.payload;
-          console.log("paperId: ", paperId);
+          //console.log("paperId: ", paperId);
           var awsReq = await this.uploadService.getSignedRequest(`papers/${paperId}/${file.name}`, file.type).toPromise();
-          console.log(awsReq);
+          //console.log(awsReq);
           var b = await this.uploadService.uploadFile(file,awsReq.payload.signedRequest).toPromise();
-          console.log("aws request",b);
-          console.log(addUserForm.value,"year")
+          //console.log("aws request",b);
+          //console.log(addUserForm.value,"year")
           var isPublish = false;
           if( addUserForm.value.publish === "publishNow"){
             isPublish = true;
@@ -141,20 +141,20 @@ export class AddPaperComponent implements OnInit {
           this.hideButton = false;
           this.alertService.clear();
           this.alertService.error("Upload Error")
-          console.log("errorrr")
-          console.log(err.message)
+          //console.log("errorrr")
+          //console.log(err.message)
         }
       }
     }else if(this.files.length > 1){
       this.loadingService.hideLoading();
       this.hideButton = false;
       this.errMsg = "Please upload only one paper";
-      console.log(this.errMsg);
+      //console.log(this.errMsg);
     }else{
       this.loadingService.hideLoading();
       this.hideButton = false;
       this.errMsg = "Please upload paper PDF before submit";
-      console.log(this.errMsg);
+      //console.log(this.errMsg);
     }
     this.loadingService.hideLoading();
   }
@@ -219,16 +219,16 @@ export class AddPaperComponent implements OnInit {
         category.payload.forEach(element => {
           if(element.week.toString() === week.toString()){
             this.errDuplicate = "Already Has Paper"
-            console.log(this.errDuplicate);
+            //console.log(this.errDuplicate);
           }
         });
 
         if(category.payload.length > 0 && this.errDuplicate === ""){
           this.categoryPrice = category.payload[0].categoryprize
-          console.log(this.categoryPrice, "werdasa")
+          //console.log(this.categoryPrice, "werdasa")
         }
       }catch(err){
-        console.log(err);
+        //console.log(err);
       }
     }
   }

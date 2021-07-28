@@ -70,9 +70,9 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
       )
       .subscribe(
         data => {
-          console.log("[forgotPasswordComponent]::onSubmit():: returnedData::===>" + JSON.stringify(data));
+          //console.log("[forgotPasswordComponent]::onSubmit():: returnedData::===>" + JSON.stringify(data));
           returnedStatus = data.status.code;
-          console.log(returnedStatus);
+          //console.log(returnedStatus);
           if (returnedStatus == 200) {
             this.successMessage = "Password reset request has been sent. Please check your email."
             this.authenticationService.setSuccessAlert(this.successMessage);
@@ -88,9 +88,9 @@ export class ForgotpasswordComponent implements OnInit, OnDestroy {
         },
         error => {
           var err = JSON.stringify(error);
-          console.log("[forgotPasswordComponent]:: onSubmit():: returnedData::===>" + error)
+          //console.log("[forgotPasswordComponent]:: onSubmit():: returnedData::===>" + error)
           returnedStatus = error.error.status.code;
-          console.log(returnedStatus);
+          //console.log(returnedStatus);
           if (returnedStatus == 500) {
             this.loadingService.hideLoading();
             this.alertService.clear();

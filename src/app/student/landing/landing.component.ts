@@ -63,7 +63,7 @@ export class LandingComponent implements OnInit {
     this.userId = userId;
 
     let subscriptions = localStorage.getItem(LocalStorage.SUBSCRIPTION);
-    console.log(subscriptions, "subscriptions")
+    //console.log(subscriptions, "subscriptions")
     if (subscriptions === "" || subscriptions === null) {
       this.router.navigate(['/login']);
     }
@@ -72,7 +72,7 @@ export class LandingComponent implements OnInit {
 
 
     this.subjectList = JSON.parse(subscriptions);
-    console.log(this.subjectList);
+    //console.log(this.subjectList);
     //geting subscribed papers
     // var subscriptionResult = await this.userService.getSubscribedSubjects(userId).toPromise();
     // var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
@@ -96,7 +96,7 @@ export class LandingComponent implements OnInit {
           this.month = today.getMonth() + 1;
           this.year = today.getFullYear();
           await this.getPapers(this.year, this.month, userId, this.selectedSubjectId);
-          console.log(this.showingPapers);
+          //console.log(this.showingPapers);
         }
       });
       this.loadingService.hideLoading();
@@ -105,7 +105,7 @@ export class LandingComponent implements OnInit {
 
 
   loadPapers(subjectDet) {
-    console.log(subjectDet);
+    //console.log(subjectDet);
   }
 
   getPreviousMonth(year, month) {
@@ -142,7 +142,7 @@ export class LandingComponent implements OnInit {
       if (papersForMonth.papers.length > 0) {
         papersForMonth['month'] = monthNeed;
         papersForMonth['year'] = yearNeed;
-        console.log(papersForMonth)
+        //console.log(papersForMonth)
         this.showingPapers.push(papersForMonth);
 
       }
@@ -169,8 +169,8 @@ export class LandingComponent implements OnInit {
     }
     // return showingPapers;
 
-    console.log(this.hasNextPage)
-    console.log(this.hasPreviousPage)
+    //console.log(this.hasNextPage)
+    //console.log(this.hasPreviousPage)
     this.loadingService.hideLoading();
   }
 
@@ -188,7 +188,7 @@ export class LandingComponent implements OnInit {
 
   async enterToPaper(paper) {
     this.loadingService.showLoading(true, false, "Checking Paper Details", null);
-    console.log(paper);
+    //console.log(paper);
     if(paper !== null){
       let state = await this.getPaperState(paper.paperid, this.userId);
       this.loadingService.hideLoading();

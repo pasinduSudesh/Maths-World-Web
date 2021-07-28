@@ -60,16 +60,16 @@ export class HomeComponent implements OnInit {
     .subscribe(async response => {
       const returnedStatus = response.status;
       if (returnedStatus.code == '200') {
-        console.log("asasasas"+response.payload[0])
+        //console.log("asasasas"+response.payload[0])
       }
-      console.log("Returned status"+returnedStatus.code)
+      //console.log("Returned status"+returnedStatus.code)
     });
 
     this.getResult("1")
     .subscribe (async response => {
       const returnedStatus = response.status;
       if (returnedStatus.code == '200') {
-        console.log("Result", response.payload);
+        //console.log("Result", response.payload);
         const leaderBoard = response.payload
         this.firstPlace = leaderBoard[0]["firstname"]+" "+ leaderBoard[0]["lastname"] 
         this.firstCollege = leaderBoard[0]["college"]
@@ -87,10 +87,10 @@ export class HomeComponent implements OnInit {
             "college": leaderBoard[i]['college'],
             "district": leaderBoard[i]['district']
           }
-          console.log(winner);
+          //console.log(winner);
           this.winnerList.push(winner)
         }
-        console.log(this.winnerList);
+        //console.log(this.winnerList);
 
       }
     }
@@ -134,7 +134,7 @@ export class HomeComponent implements OnInit {
       var wH = document.body.clientHeight;
       var wS = window.scrollY;
       if (wS + wH > hT && this.isLoginModalShowed == false) {
-          console.log("INNNNNN")
+          //console.log("INNNNNN")
           $('#loginModalHomePage').modal('show')
           this.isLoginModalShowed = true;
       }
