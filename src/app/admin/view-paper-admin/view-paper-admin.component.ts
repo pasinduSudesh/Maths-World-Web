@@ -45,7 +45,7 @@ export class ViewPaperAdminComponent implements OnInit {
       this.router.navigate(['/admin/login'])
     }else{
       this.paper = this.route.snapshot.paramMap['params'];
-      console.log(this.paper);
+      //console.log(this.paper);
       var pdfLinkResult = await this.showPaperService.getPdfLink(this.paper.pdflink, 60, adminId).toPromise()
       this.link = pdfLinkResult.payload;
     }

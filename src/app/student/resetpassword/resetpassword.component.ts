@@ -41,7 +41,7 @@ export class ResetpasswordComponent implements OnInit {
     this.loadingService.hideLoading();
     this.route.queryParamMap.subscribe(params => {
       //console.log(params);
-      console.log("[resetPasswordComponent]:: routeQueryParams:: " + params['params']['reqId']);
+      //console.log("[resetPasswordComponent]:: routeQueryParams:: " + params['params']['reqId']);
       if (params['params']['reqId'] == null || params['params']['userId'] == null) {
         this.isReqIdUserIdNull = true;
       } else {
@@ -81,7 +81,7 @@ export class ResetpasswordComponent implements OnInit {
                 data => {
                   
                   if (data.status.code == '200') {
-                    console.log("[resetPasswordComponent]::onSubmit():: returnedData =>", + data)
+                    //console.log("[resetPasswordComponent]::onSubmit():: returnedData =>", + data)
                     this.authenticationService.setSuccessAlert("Password Reset Successfully");
                     this.router.navigateByUrl('/login')
                   } else {
@@ -95,17 +95,17 @@ export class ResetpasswordComponent implements OnInit {
                   this.isSubmitted = false;
                   this.loadingService.hideLoading();
                   this.alertService.error('Try again!')
-                  console.log("[resetPasswordComponent]::onSubmit():: returnedError =>" + err)
+                  //console.log("[resetPasswordComponent]::onSubmit():: returnedError =>" + err)
                 }
               )
           }
-          console.log("[resetPasswordComponent]::onSubmit():: returnedData =>" + data);
+          //console.log("[resetPasswordComponent]::onSubmit():: returnedData =>" + data);
         }
           , err => {
             this.isSubmitted = false;
             this.loadingService.hideLoading();
             returnedStatus = err.error.status.code;
-            console.log("Error"+err.error.status.message+" code:: "+returnedStatus)
+            //console.log("Error"+err.error.status.message+" code:: "+returnedStatus)
             if (returnedStatus == 403) {
               this.forgotPasswordComponent.setpwdResetError('Invalid Request');
               this.router.navigateByUrl('forgot-password');
@@ -115,7 +115,7 @@ export class ResetpasswordComponent implements OnInit {
             }
             this.forgotPasswordComponent.setpwdResetError('Invalid Request');
             this.router.navigateByUrl('forgot-password');
-            console.log("[resetPasswordComponent]:: onSubmit() :: returnedError =>" + err);
+            //console.log("[resetPasswordComponent]:: onSubmit() :: returnedError =>" + err);
           })
 
     } else {

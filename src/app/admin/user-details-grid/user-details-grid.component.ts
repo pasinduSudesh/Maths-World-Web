@@ -64,8 +64,8 @@ export class UserDetailsGridComponent implements OnInit {
         }
       )
         .subscribe(responseData => {
-          console.log("ResponseData" + responseData.status.code);
-          console.log(responseData.payload);
+          //console.log("ResponseData" + responseData.status.code);
+          //console.log(responseData.payload);
           if (responseData.payload != null) {
             this.editorDetails = responseData.payload.rows;
 
@@ -80,7 +80,7 @@ export class UserDetailsGridComponent implements OnInit {
               });
             }
             this.gridApi.setRowData(this.rowData);
-            console.log("[classroomComponent] :: rowData=>" + this.gridApi);
+            //console.log("[classroomComponent] :: rowData=>" + this.gridApi);
   
           }
         })
@@ -106,7 +106,7 @@ export class UserDetailsGridComponent implements OnInit {
   }
 
   deleteEditor() {
-    console.log('Delete Editor'+ this.updatedEditorId+" "+this.userId)
+    //console.log('Delete Editor'+ this.updatedEditorId+" "+this.userId)
 
       const options = {
         headers: new HttpHeaders({
@@ -121,7 +121,7 @@ export class UserDetailsGridComponent implements OnInit {
       options
     )
     .subscribe(responseData => {
-      console.log("Delete Editor"+responseData.status.code);
+      //console.log("Delete Editor"+responseData.status.code);
       if (responseData.status.code == 200) {
         this.alertService.success("Successfully Delete the examiner");
         window.location.reload();
@@ -134,12 +134,12 @@ export class UserDetailsGridComponent implements OnInit {
 
   onCellClicked($event) {
     this.selectedRowIndex = $event.rowIndex;
-    console.log("[editorDetailsComponent] :: onCellClicked():: selectedRowIndex::" + this.selectedRowIndex);
-    console.log($event);
+    //console.log("[editorDetailsComponent] :: onCellClicked():: selectedRowIndex::" + this.selectedRowIndex);
+    //console.log($event);
 
 
     if ($event.colDef.headerName == '') {
-      console.log('[classroomComponent]:: oncellClicked:: '+$event.data.evaluatorId);
+      //console.log('[classroomComponent]:: oncellClicked:: '+$event.data.evaluatorId);
       this.updatedEditorId = $event.data.evaluatorId;
       this.updatedEditorFullName = $event.data.firstName + " " + $event.data.lastName; 
       

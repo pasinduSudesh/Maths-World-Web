@@ -71,13 +71,13 @@ export class ShowPaperComponent implements OnInit {
     this.loadingService.showLoading(true, false, "Loading", null);
     this.userid = userid;
     if (this.paymentService.paper !== null) {
-      console.log("has paper");
+      //console.log("has paper");
       this.paper = this.paymentService.paper;
       this.paperid = this.paper.paperid;
       var paperState = await this.getPaperState(this.paper.paperid, userid);
-      console.log(paperState)
+      //console.log(paperState)
       if (paperState.length === 0) {
-        console.log("no record")
+        //console.log("no record")
         // new paper started
         localStorage.setItem(LocalStorage.CURRENT_PAPER_ID, this.paper.paperid);
         localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
@@ -86,7 +86,7 @@ export class ShowPaperComponent implements OnInit {
         this.loadingService.hideLoading();
 
       } else {
-        console.log("has logg", this.paper);
+        //console.log("has logg", this.paper);
         if (paperState[0].submitstate === "not-submited") {
 
           let endTimeString = paperState[0].endingtime;
@@ -98,7 +98,7 @@ export class ShowPaperComponent implements OnInit {
 
           let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
           this.link = await this.getPaperPdfLink(this.paper.pdflink, (durationTimeStamp / 1000) + 60 * 60, this.userid);
-          console.log(this.link)
+          //console.log(this.link)
 
           var nowTimeStamp = new Date().getTime();
 
@@ -118,7 +118,7 @@ export class ShowPaperComponent implements OnInit {
       }
 
     } else {
-      console.log("no paper")
+      //console.log("no paper")
       var paperid = localStorage.getItem(LocalStorage.CURRENT_PAPER_ID);
       if (paperid === null || paperid === "") {
         this.loadingService.hideLoading();
@@ -128,23 +128,23 @@ export class ShowPaperComponent implements OnInit {
         this.paperStatus = localStorage.getItem(LocalStorage.PAPER_STATUS);
         var paperState = await this.getPaperState(paperid, userid);
         this.paper = await this.getPaper(paperid, userid);
-        console.log(paperState);
+        //console.log(paperState);
         if (paperState.length === 0) {
           localStorage.setItem(LocalStorage.PAPER_STATUS, "notstart");
           this.paperStatus = "notstart";
           this.isPaperStarted = false;
           this.loadingService.hideLoading();
         } else {
-          console.log("has logg", this.paper);
+          //console.log("has logg", this.paper);
           if (paperState[0].submitstate === "not-submited") {
 
             let endTimeString = paperState[0].endingtime;
             let endTimeObj = new Date(endTimeString);
-            console.log(endTimeObj);
+            //console.log(endTimeObj);
             let endTimeStamp = endTimeObj.getTime();
-            console.log(endTimeStamp);
-            console.log(new Date().getTime());
-            console.log(new Date());
+            //console.log(endTimeStamp);
+            //console.log(new Date().getTime());
+            //console.log(new Date());
             localStorage.setItem(LocalStorage.PAPER_END_TIME, endTimeStamp.toString());
             this.isPaperStarted = true;
             this.paperStatus = "start";
@@ -173,7 +173,7 @@ export class ShowPaperComponent implements OnInit {
 
 
 
-    console.log(this.link, "link");
+    //console.log(this.link, "link");
 
 
 
@@ -192,7 +192,7 @@ export class ShowPaperComponent implements OnInit {
     this.loadingService.showLoading(true, false, "Loading",null);
     let durationTimeStamp = this.showPaperService.getTimeStamp(this.paper.duration);
     this.link = await this.getPaperPdfLink(this.paper.pdflink, durationTimeStamp / 1000, localStorage.getItem(LocalStorage.USER_ID));
-    console.log(this.link);
+    //console.log(this.link);
     let now = new Date();
     let endingTime = new Date();
 
@@ -222,13 +222,13 @@ export class ShowPaperComponent implements OnInit {
       this.loadingService.hideLoading();
       this.loadingService.showLoading(true, false, "Loading", null);  
       this.isSubmitted = true;
-      console.log(this.files);
+      //console.log(this.files);
       const file = this.files[0];
-      console.log(file, "file");
+      //console.log(file, "file");
       var awsReq = await this.uploadService.getSignedRequest(`answers/${this.paper.paperid}/${this.userid}/${file.name}`, file.type).toPromise();
-      console.log(awsReq, "resign URL");
+      //console.log(awsReq, "resign URL");
       var b = await this.uploadService.uploadFile(file, awsReq.payload.signedRequest).toPromise();
-      console.log("uploaded", b);
+      //console.log("uploaded", b);
       await this.uploadService.updateExamInstanceDetails({
         userid: this.userid,
         paperid: this.paper.paperid,
@@ -265,7 +265,7 @@ export class ShowPaperComponent implements OnInit {
 
   async getPaper(paperid, userid) {
     var result = await this.showPaperService.getPaperById(paperid, userid).toPromise();
-    console.log(result.payload);
+    //console.log(result.payload);
     return result.payload;
   }
 

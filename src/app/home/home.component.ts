@@ -109,7 +109,7 @@ export class HomeComponent implements OnInit {
     var wH = document.body.clientHeight;
     var wS = window.scrollY;
     if (wS + wH > hT && this.isLoginModalShowed == false) {
-      console.log("INNNNNN")
+      //console.log("INNNNNN")
       $('#loginModalHomePage').modal('show')
       this.isLoginModalShowed = true;
     }

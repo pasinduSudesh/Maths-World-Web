@@ -24,7 +24,7 @@ export class BasicRequest implements HttpInterceptor {
             this.token = localStorage.getItem(LocalStorage.TOKEN);
         }
 
-        console.log(environment.SERVER_URL);
+        //console.log(environment.SERVER_URL);
         var url = request.url;
         if (url.includes(environment.SERVER_URL)){
             request = request.clone({

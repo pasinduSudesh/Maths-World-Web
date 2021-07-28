@@ -83,7 +83,7 @@ export class EditPaperAdminComponent implements OnInit {
       this.router.navigate(['/admin/login'])
     }else{
       this.paper = this.route.snapshot.paramMap['params'];
-      console.log(this.paper, "editing paper")
+      //console.log(this.paper, "editing paper")
       this.year = this.paper.year;
       this.week = this.paper.week;
       this.month = this.paper.month;
@@ -154,7 +154,7 @@ export class EditPaperAdminComponent implements OnInit {
 
     }catch(err){
       // show error
-      console.log(err)
+      //console.log(err)
     }
     
   }
@@ -192,7 +192,7 @@ export class EditPaperAdminComponent implements OnInit {
         category.payload.forEach(element => {
           if(element.week.toString() === week.toString()){
             this.errDuplicate = "Already Has Paper"
-            console.log(this.errDuplicate);
+            //console.log(this.errDuplicate);
           }
         });
       }catch(err){

@@ -21,7 +21,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   onSave(addEditorForm: NgForm) {
-    console.log("[userAccountsComponent] :: onSave()::");
+    //console.log("[userAccountsComponent] :: onSave()::");
     if (addEditorForm.value.password != addEditorForm.value.repass) {
       this.alertService.clear();
       this.alertService.error("Passwords do not match!");
@@ -32,7 +32,7 @@ export class UserDetailsComponent implements OnInit {
       let jwtToken;
       this.activatedRoute.queryParams.subscribe(params => {
         jwtToken = params['token'];
-        console.log(jwtToken); // Print the parameter to the console. 
+        //console.log(jwtToken); // Print the parameter to the console. 
     });
       const user = {
         firstName: addEditorForm.value.firstName,
@@ -55,7 +55,7 @@ export class UserDetailsComponent implements OnInit {
           }
         )
         .subscribe(responseData => {
-          console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
+          //console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
         if (responseData.status.code == 200) {
           this.isSubmitted = false;
             this.alertService.clear();

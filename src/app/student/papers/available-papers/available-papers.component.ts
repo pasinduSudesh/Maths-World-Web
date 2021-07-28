@@ -54,15 +54,15 @@ export class AvailablePapersComponent implements OnInit {
   }
 
   enterToPaper(paper:any){
-    console.log(paper);
+    //console.log(paper);
     
   }
 
   payForCategory(category:any){
-    console.log(category);
+    //console.log(category);
   }
   paperPay(paper:any){
-    console.log(paper);
+    //console.log(paper);
 
   }
 

@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit, OnDestroy {
       deviceId: deviceid,
       appName: btoa("Portal")
     }
-    console.log("[AuthenticationService]::validateUser()");
+    //console.log("[AuthenticationService]::validateUser()");
     return this.http.post<any>(
       environment.SERVER_URL + "/v1/users/login",
       user
@@ -83,15 +83,15 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.loginBtnClicked = true;
     var returnedStatus: any
     this.submitted = true
-    console.log("[LoginComponent]:: loginBtnClickEvent")
+    //console.log("[LoginComponent]:: loginBtnClickEvent")
     let deviceId = localStorage.getItem(LocalStorage.DEVICE_ID)
-    console.log("deviceId :: " + deviceId);
+    //console.log("deviceId :: " + deviceId);
     window.localStorage.clear()
     //Set back the device id
     if (deviceId != null) {
       localStorage.setItem(LocalStorage.DEVICE_ID, deviceId);
     }
-    console.log("login clicked" + this.loginForm.value.userName + "==" + this.loginForm.value.password)
+    //console.log("login clicked" + this.loginForm.value.userName + "==" + this.loginForm.value.password)
     if (this.loginForm.invalid) {
       this.loginBtnClicked = false;
       this.loadingService.hideLoading();
@@ -108,10 +108,10 @@ export class LoginComponent implements OnInit, OnDestroy {
           returnedStatus = response.status
           var roles: string[];
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + JSON.stringify(response))
+          //console.log("[loginComponent] :: loginBtnClickEvent():: response::" + JSON.stringify(response))
           this.user = response.payload
 
-          console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
+          //console.log("[loginComponent] :: loginBtnClickEvent():: response::" + response.payload.user.Status);
           if (response.payload.user.status == '200') {
             localStorage.setItem(LocalStorage.USER_ID, response.payload.user.userId);
             localStorage.setItem(LocalStorage.USER_EMAIL, response.payload.user.email);
@@ -123,16 +123,16 @@ export class LoginComponent implements OnInit, OnDestroy {
             var subscriptionResult = await this.userService.getSubscribedSubjects(response.payload.user.userId).toPromise();
             var subscribedSubjects = JSON.stringify(subscriptionResult.payload);
 
-            console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
-            console.log(response.payload.roles);
+            //console.log("[loginComponent] :: loginBtnClickEvent():: roles::");
+            //console.log(response.payload.roles);
             localStorage.setItem(LocalStorage.SUBSCRIPTION, subscribedSubjects);
 
-            console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
-            console.log(localStorage.getItem(LocalStorage.ROLES));
+            //console.log("[loginComponent] :: loginBtnClickEvent():: LocalStorage.ROLES::");
+            //console.log(localStorage.getItem(LocalStorage.ROLES));
 
 
             this.setUser(this.user)
-            console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
+            //console.log("[LoginComponent]::loginBtnClickEvent()::Returned Status:=> " + returnedStatus.code)
             if (returnedStatus.code == 200) {
               $('#loginModalHomePage').modal('hide')
               this.loadingService.hideLoading();
@@ -149,7 +149,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         err => {
           returnedStatus = err.error.status.code;
-          console.log("[loginComponent]::loginBtnClickEvent() : returnedStatus=> " + err.error.status.code)
+          //console.log("[loginComponent]::loginBtnClickEvent() : returnedStatus=> " + err.error.status.code)
           //return returnedStatus;
           if (returnedStatus == 401) {
             this.loginBtnClicked = false;
@@ -184,7 +184,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           } else if (returnedStatus == 404) {
             this.loginBtnClicked = false;
             this.loadingService.hideLoading();
-            console.log(returnedStatus);
+            //console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -195,7 +195,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           } else if (returnedStatus == 500) {
             this.loginBtnClicked = false;
             this.loadingService.hideLoading();
-            console.log(returnedStatus);
+            //console.log(returnedStatus);
             this.isSuccess = false;
             this.hasErrors = false;
             this.alertService.clear();
@@ -204,7 +204,7 @@ export class LoginComponent implements OnInit, OnDestroy {
             // this.hasErrors = true
             return
           } else if (returnedStatus == 200) {
-            console.log(returnedStatus);
+            //console.log(returnedStatus);
             this.loadingService.hideLoading();
             this.router.navigateByUrl("paper/list")
           }

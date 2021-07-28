@@ -38,7 +38,7 @@ export class UserService {
         options
       )
       .subscribe(responseData => {
-        console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
+        //console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
         res = responseData;
         if ( responseData.status.code == 200 ) {
           this.user = responseData.payload.user;

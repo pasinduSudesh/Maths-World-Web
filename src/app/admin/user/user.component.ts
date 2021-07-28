@@ -30,7 +30,7 @@ export class UserComponent implements OnInit {
     
       //todo- get the batch from ui for further require
       const userId = localStorage.getItem(LocalStorage.USER_ID);
-      console.log(addEditor.value.email);  // { first: '', last: '' }
+      //console.log(addEditor.value.email);  // { first: '', last: '' }
       const user = {
         email: addEditor.value.email,
         userId: userId,
@@ -49,7 +49,7 @@ export class UserComponent implements OnInit {
         options
       )
       .subscribe(responseData => {
-        console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
+        //console.log("[usersService]::addUser():: responseStatusCode::=>" + responseData.status.code);
         if (responseData.status.code == 200) {
           this.isSubmitted = false;
           addEditor.reset();
