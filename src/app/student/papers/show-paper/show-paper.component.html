@@ -1,6 +1,45 @@
 <section class="show-paper">
     <h1 class="paper-name py-3">{{paper?.papername}}</h1>
     <a *ngIf="!isPaperStarted" class="btn btn-start py-2 px-4" (click)="startPaper()">Start Paper</a>
+    <div *ngIf="!isPaperStarted">
+        <div class="col-12 pt-5">
+            <h3 class="px-3">ප්‍රථමයෙන් පහත උපදෙස් හොඳින් කියවන්න</h3>
+            <div class="px-3 pt-2">
+                <ul>
+                    <li>
+                        <h6 class="text-justify">ඔබ Start Paper button එක click කළ මොහොතේ සිට ‍ප්‍රශ්න පත්‍රය සඳහා ලබාදී
+                            ඇති
+                            කාලය ගණනය
+                            කිරීම ආරම්භ වේ.</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-justify">ඔබට ‍ ප්‍රශ්න පත්‍රය මුළු කාලය පුරාම වෙබ් පිටුවේ සිට හෝ ‍ප්‍රශ්න පත්‍රය
+                            බාගත කර
+                            පිළිතුරු සැපයීම කළ හැක</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-justify">ඔබ කුමන ආකාරයක් භාවිතා කළ ද ඔබගේ කාල ගණනය සිදු වේ</h6>
+                    <li>
+                        <h6 class="text-justify">මෙහි ඔබට කාලය ලබා දී ඇත්තේ ඔබගේ පිළිතුරු පත්‍රය PDF කර upload කිරීමටත්
+                            සමග වන
+                            බැවින් දී
+                            ඇති කාලය තුළ පිළිතුරු සැපයීම
+                            අවසන් කර ‍ප්‍රශ්න පත්‍රය සහිත පිටුවේ පහල ඇති upload section එක තුළට ඔබගේ
+                            පිළිතුරු සහිත PDF එක upload කල පසු පහල ඇති submit button එක click කරන්න</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-justify">ඔබගේ පිළිතුරු පත්‍රය අප වෙත ලැබුණු බව තහවුරු කරගන්න</h6>
+                    </li>
+                    <li>
+                        <h6 class="text-justify">ඔබට දී ඇති කාලය තුළ පිලිතුරු පත්‍රය upload කිරීමට නොහැකි වුවහොත් ඔබ
+                            පිළිතුරු
+                            ලබා නොදුන් අයකු
+                            ලෙස සැලකේ</h6>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <div *ngIf="isPaperStarted">
         <app-timer (showNoticeEvent)="showNotice=$event"></app-timer>
