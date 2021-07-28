@@ -4,8 +4,16 @@
         <span class="navbar-toggler" (click)="_toggleSidebar()">
             <i class="icofont-navigation-menu"></i>
         </span>
-        <a class="navbar-brand" href="/">MathsWorld</a>
+        <a class="navbar-brand" routerLink="/">
+            <img src="../../assets/images/logo/logo32.svg" width="150" height="30" alt=""> 
+        </a>
     </span>
+
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" (click)="logout()" routerLink="/">Logout</a>
+        </li>
+    </ul>
 
 </nav>
 
@@ -20,20 +28,29 @@
         <h3>Profile</h3>
         <br>
 
-        <a class="sidenav-link" [routerLink]="'/admin/paper/list'" [routerLinkActive]="'sidenav-link-active'">All Papers</a>
         <hr class="sidenav-link-seperator">
-        <!-- <a class="sidenav-link" [routerLink]="'/admin/paper/view'" [routerLinkActive]="'sidenav-link-active'">View Paper</a>
-        <hr class="sidenav-link-seperator">
-        <a class="sidenav-link" [routerLink]="'/admin/paper/edit'" [routerLinkActive]="'sidenav-link-active'">Edit Paper</a>
-        <hr class="sidenav-link-seperator"> -->
-        <a class="sidenav-link" [routerLink]="'/admin/paper/add'" [routerLinkActive]="'sidenav-link-active'">Add Paper</a>
-        <hr class="sidenav-link-seperator">
-        <a class="sidenav-link" [routerLink]="'/admin/users'" [routerLinkActive]="'sidenav-link-active'">Users</a>
-        <hr class="sidenav-link-seperator">
-        <a class="sidenav-link" [routerLink]="'/admin/login'" [routerLinkActive]="'sidenav-link-active'">Login</a>
-        <hr class="sidenav-link-seperator">
-        <a class="sidenav-link" [routerLink]="'/admin/summary'" [routerLinkActive]="'sidenav-link-active'">Summary</a>
+        <ng-container *ngIf="userRoles.ListPapers.includes(userRole)">
+            <a class="sidenav-link" [routerLink]="'/admin/paper/list'" [routerLinkActive]="'sidenav-link-active'">All
+                Papers</a>
+            <hr class="sidenav-link-seperator">
+        </ng-container>
 
+        <ng-container *ngIf="userRoles.AddPapers.includes(userRole)">
+            <a class="sidenav-link" [routerLink]="'/admin/paper/add'" [routerLinkActive]="'sidenav-link-active'">Add
+                Paper</a>
+            <hr class="sidenav-link-seperator">
+        </ng-container>
+
+        <ng-container *ngIf="userRoles.UserManage.includes(userRole)">
+            <a class="sidenav-link" [routerLink]="'/admin/users'" [routerLinkActive]="'sidenav-link-active'">Users</a>
+            <hr class="sidenav-link-seperator">
+        </ng-container>
+
+        <ng-container *ngIf="userRoles.SummaryPapers.includes(userRole)">
+            <a class="sidenav-link" [routerLink]="'/admin/summary'"
+                [routerLinkActive]="'sidenav-link-active'">Summary</a>
+            <hr class="sidenav-link-seperator">
+        </ng-container>
 
     </ng-sidebar>
 
