@@ -130,7 +130,6 @@ export class HomeComponent implements OnInit {
         const returnedStatus = response.status;
         if (returnedStatus.code == '200') {
           this.winnerList = []
-          console.log("Result", response.payload);
           const leaderBoard = response.payload
           this.firstPlace = leaderBoard[0]["firstname"] + " " + leaderBoard[0]["lastname"]
           this.firstCollege = leaderBoard[0]["college"]
@@ -148,11 +147,8 @@ export class HomeComponent implements OnInit {
               "college": leaderBoard[i]['college'],
               "district": leaderBoard[i]['district']
             }
-            console.log(winner);
             this.winnerList.push(winner)
           }
-          console.log(this.winnerList);
-
         }
       });
   }

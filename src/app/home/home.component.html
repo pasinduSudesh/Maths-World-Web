@@ -75,12 +75,18 @@
           <i *ngIf="selectedSubject > 0" class="fa fa-angle-left" style="font-size: 7rem; color: #164d7e;"
             (click)="changeSubject(-1)"></i>
           <i *ngIf="selectedSubject <= 0" class="fa fa-angle-left" style="font-size: 7rem; color: #8faac1;"></i>
+          
+          <!-- subject's and teacher's name -->
+          <!-- for small screen -->
+          <div style="min-width: 15rem; padding: 0 0.5rem;" class="d-sm-none">
+            <div class="text-center" style="font-size: 1rem; letter-spacing: 3px; text-transform: uppercase; color: #6f6f6f;">{{ subjectList[selectedSubject].subjectname }}</div>
+            <div class="text-center" style="font-size: 0.75rem; letter-spacing: 1px; line-height: 0.75rem; color: #acacac;">{{ (subjectList[selectedSubject].firstname || "") + " " + (subjectList[selectedSubject].lastname || "") }}</div>
+          </div>
 
-          <div style="min-width: 15rem; padding: 0 1rem;">
+          <!-- for screens larger than small -->
+          <div style="min-width: 15rem; padding: 0 1rem;" class="d-none d-sm-block">
             <div class="text-center" style="font-size: 2rem; letter-spacing: 3px; text-transform: uppercase; color: #6f6f6f;">{{ subjectList[selectedSubject].subjectname }}</div>
             <div class="text-center" style="font-size: 1.5rem; letter-spacing: 1px; line-height: 1.5rem; color: #acacac;">{{ (subjectList[selectedSubject].firstname || "") + " " + (subjectList[selectedSubject].lastname || "") }}</div>
-            <!-- <div class="text-center" style="font-size: 1.5rem; letter-spacing: 1px; line-height: 1.5rem;">Supun Thenuka Ranasinghe Thenuka Ranasinghe</div> -->
-
           </div>
 
           <i *ngIf="selectedSubject < subjectList.length - 1" class="fa fa-angle-right" style="font-size: 7rem; color: #164d7e;"
