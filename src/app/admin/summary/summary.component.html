@@ -22,11 +22,11 @@
             </div>
 
             <div class="schemes">
-                <button type="button" (click)="DownloadPaper()" class="btn">
+                <button type="button" (click)="DownloadPaper()" class="btn" [disabled]="isButtonsDisabled">
                     <img src="../../assets/images/summary/paper.svg">
                     <p>Paper</p>
                 </button>
-                <button type="button" (click)="DownloadSchema()" class="btn">
+                <button type="button" (click)="DownloadSchema()" class="btn" [disabled]="isButtonsDisabled">
                     <img src="../../assets/images/summary/scheme.svg">
                     <p>Scheme</p>
                 </button>

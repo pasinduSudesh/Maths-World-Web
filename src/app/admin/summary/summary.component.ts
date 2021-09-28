@@ -36,6 +36,7 @@ export class SummaryComponent implements OnInit {
   public loadingTemplate;
   public paginationPageSize;
   public frameworkComponents;
+  public isButtonsDisabled;
   public clickedRow;
   rowData: Array<any> = [];
 
@@ -50,6 +51,7 @@ export class SummaryComponent implements OnInit {
     this.summary = {"total": 0, "selected": 0, "pending": 0, "finished": 0}
     this.paginationPageSize = 10;
     this.currentAnswersType = 'all';
+    this.isButtonsDisabled = false;
     this.loadingTemplate =
       '<span class="ag-overlay-loading-center">data is loading...</span>';
     this.noRowsTemplate = '<span>No Response received</span>'; 
@@ -224,10 +226,16 @@ export class SummaryComponent implements OnInit {
   async loadPapersData() {
     this.loadingService.showLoading(true, false, "Loading", null); 
     
-    var results = await this.showPaperService.getLatestPapers(this.subjectId, this.evalId).toPromise();
-    this.paperDetails = results.payload;
-    this.currentPaperId = results.payload[0].paperid;
-    this.loadResponsesData();
+    if( this.subjectId != undefined){
+      var results = await this.showPaperService.getLatestPapers(this.subjectId, this.evalId).toPromise();
+      this.paperDetails = results.payload;
+      if(results.payload.length > 0){
+        this.currentPaperId = results.payload[0].paperid;
+        this.loadResponsesData();
+      }else{
+        this.currentPaperId = undefined;
+      }
+    }
     this.loadingService.hideLoading();
   }
 
@@ -317,26 +325,37 @@ export class SummaryComponent implements OnInit {
   }
 
   async DownloadPaper(){
-    const data = await this.getPaperById();
-    if(data.pdflink != null){
-      var result = await this.showPaperService.getPdfLink(data.pdflink, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
-      FileSaver.saveAs(result.payload, data.papername + "_paper");
+    if(this.currentPaperId != undefined){
+      const data = await this.getPaperById();
+      if(data.pdflink != null){
+        var result = await this.showPaperService.getPdfLink(data.pdflink, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
+        FileSaver.saveAs(result.payload, data.papername + "_paper");
+      }else{
+        this.alertService.clear();
+        this.alertService.error("Paper is not available !");
+      }
+      this.isButtonsDisabled = false;
     }else{
-      this.alertService.clear();
-      this.alertService.error("Paper is not available !");
+      this.isButtonsDisabled = true;
     }
     this.loadingService.hideLoading();
   }
 
   async DownloadSchema(){
-    const data = await this.getPaperById();
-    if(data.markingschema != null){
-      var result = await this.showPaperService.getPdfLink(data.markingschema, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
-      FileSaver.saveAs(result.payload, data.papername + "_scheme");
+    if(this.currentPaperId != undefined){
+      const data = await this.getPaperById();
+      if(data.markingschema != null){
+        var result = await this.showPaperService.getPdfLink(data.markingschema, 600, localStorage.getItem(LocalStorage.USER_ID)).toPromise();
+        FileSaver.saveAs(result.payload, data.papername + "_scheme");
+      }else{
+        this.alertService.clear();
+        this.alertService.error("Marking Scheme is not available !");
+      }
+      this.isButtonsDisabled = false;
     }else{
-      this.alertService.clear();
-      this.alertService.error("Marking Scheme is not available !");
+      this.isButtonsDisabled = true;
     }
+
     this.loadingService.hideLoading();
   }
 
