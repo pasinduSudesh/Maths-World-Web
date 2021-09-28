@@ -87,7 +87,7 @@ export class AddPaperComponent implements OnInit {
   }
 
   // AddLoading(){
-  //   this.loadingService.showLoading(true, false, "Hahahhahh", null);
+  //   this.loadingService.showLoading(true, false, "Hahahhahhccccccc", null);
   // }
 
   onChange(e){
