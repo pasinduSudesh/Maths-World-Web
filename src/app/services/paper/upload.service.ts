@@ -161,13 +161,13 @@ export class UploadService {
     return throwError(error);
   }
   
-  getCategoryData(year, month){
+  getCategoryData(year, month, subjectId){
     let headers: HttpHeaders = new HttpHeaders()
     headers = headers.append("user-id", btoa(localStorage.getItem(LocalStorage.USER_ID)));
     let options = {
       headers: headers
     }
-    const url = this.serverURL + `/v1/papers/getCategoryData/${year}/${month}`;
+    const url = this.serverURL + `/v1/papers/getCategoryData/${year}/${month}/${subjectId}`;
     return this.http.get<{ status: any; payload: any }>(url, options).pipe(
       catchError(this.handleError)
     )

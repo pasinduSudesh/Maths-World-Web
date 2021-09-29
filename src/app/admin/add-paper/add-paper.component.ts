@@ -165,17 +165,17 @@ export class AddPaperComponent implements OnInit {
 
   onChangeYear(e){
     this.errMsg = "";
-    this.checkDuplicate(e, this.currentMonth, this.week);
+    this.checkDuplicate(e, this.currentMonth, this.week,this.subjectId);
   }
 
   onChangeMonth(e){
     this.errMsg = "";
-    this.checkDuplicate(this.currentYear, e, this.week);
+    this.checkDuplicate(this.currentYear, e, this.week, this.subjectId);
   }
 
   onChangeWeek(e){
     this.errMsg = "";
-    this.checkDuplicate(this.currentYear, this.currentMonth, e);
+    this.checkDuplicate(this.currentYear, this.currentMonth, e, this.subjectId);
   }
 
   onChangePaperName(e){
@@ -211,10 +211,10 @@ export class AddPaperComponent implements OnInit {
     }
   }
 
-  async checkDuplicate(year: any, month: any, week: any){
+  async checkDuplicate(year: any, month: any, week: any, subjectId){
     if (week !== "" && month !== "" && year !== ""){
       try{
-        var category = await this.uploadService.getCategoryData(year, month).toPromise();
+        var category = await this.uploadService.getCategoryData(year, month, subjectId).toPromise();
         this.errDuplicate = "";
         category.payload.forEach(element => {
           if(element.week.toString() === week.toString()){
