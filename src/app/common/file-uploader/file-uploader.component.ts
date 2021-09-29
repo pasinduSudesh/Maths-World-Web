@@ -104,12 +104,12 @@ export class FileUploaderComponent implements OnInit {
       // if(file.type === 'application/pdf'){
           this.uploadService.getSignedRequest(file.name, file.type).subscribe(
             (data:any)=>{
-              console.log(data);
+              // console.log(data);
               var url = data.payload.signedRequest;
-              console.log(url);
+              // console.log(url);
               this.uploadService.uploadFile(file, url).subscribe(
                 (aa:any)=>{
-                  console.log(aa)
+                  // console.log(aa)
                   // 
                 }
               )

@@ -64,8 +64,8 @@ export class HomeComponent implements OnInit {
       .subscribe(async response => {
         if (response.status.code == '200') {
           this.subjectList = response.payload;
-          console.log(response.payload);
-          console.log(this.subjectList[0])
+          // console.log(response.payload);
+          // console.log(this.subjectList[0])
         }
       });
 

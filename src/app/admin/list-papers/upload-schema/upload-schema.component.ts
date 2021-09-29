@@ -23,8 +23,8 @@ export class UploadSchemaComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log("aaaaaaaaaaaaaaaaa")
-    console.log(this.selectedPaperId,"aa")
+    // console.log("aaaaaaaaaaaaaaaaa")
+    // console.log(this.selectedPaperId,"aa")
   }
 
   async upload(){
@@ -34,7 +34,7 @@ export class UploadSchemaComponent implements OnInit {
         this.loadingService.showLoading(true, false, "Loading", null);
         var file = this.files[0];
         var awsReq = await this.uploadService.getSignedRequest(`markinSchemas/${this.selectedPaperId}/${file.name}`, file.type).toPromise();
-        console.log(awsReq);
+        // console.log(awsReq);
         var b = await this.uploadService.uploadFile(file,awsReq.payload.signedRequest).toPromise();
         var result = await this.uploadService.setSchema(this.selectedPaperId, `markinSchemas/${this.selectedPaperId}/${file.name}`).toPromise();
         this.loadingService.hideLoading();

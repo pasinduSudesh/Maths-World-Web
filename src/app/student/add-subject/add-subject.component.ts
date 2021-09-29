@@ -67,7 +67,7 @@ export class AddSubjectComponent implements OnInit {
                 this.notSelectedSubjectList.push(subjectListJson)
               }
 
-           //   console.log("selected subjectlist :: "+this.selectedSubjectList[i]['subjectId']+" "+this.selectedSubjectList[i]['isSelected'])
+              // console.log("selected subjectlist :: "+this.selectedSubjectList[i]['subjectId']+" "+this.selectedSubjectList[i]['isSelected'])
 
             }
           }
