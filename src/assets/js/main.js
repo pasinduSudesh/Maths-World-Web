@@ -64,7 +64,7 @@
 
   // Mobile Navigation
   if ($('.nav-menu').length) {
-    console.log("ssssssssssssss")
+    // console.log("ssssssssssssss")
     var $mobile_nav = $('.nav-menu').clone().prop({
       class: 'mobile-nav d-lg-none'
     });

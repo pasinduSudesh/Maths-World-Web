@@ -31,7 +31,7 @@ export class UploadService {
   }
 
   uploadFile(file:any, requrl:string) {
-    console.log(file.type);
+    // console.log(file.type);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  file.type
@@ -91,7 +91,7 @@ export class UploadService {
       monthlyPrice:monthlyPrice,
       subjectId:subjectId
     }
-    console.log(data, "add paper data");
+    // console.log(data, "add paper data");
     return this.http.post<{ status: any; payload: any }>(url,data,options).pipe(
       catchError(this.handleError)
     )
