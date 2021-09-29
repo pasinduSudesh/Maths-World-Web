@@ -25,7 +25,7 @@ jobs:
       - run: npm run build
       
       - run: |
-          git clone --depth 1 https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Maths-World-Web-Build.git
+          git clone --depth 1 https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/pasinduSudesh/Maths-World-Web-Build.git
           cp -R dist/ Maths-World-Web-Build/
           cd Maths-World-Web-Build
           git add .
