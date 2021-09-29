@@ -62,6 +62,8 @@ export class EditPaperAdminComponent implements OnInit {
   errDuration = "";
   description = "";
 
+  subjectId;
+
 
   constructor(
     private router: Router,
@@ -83,6 +85,8 @@ export class EditPaperAdminComponent implements OnInit {
       this.router.navigate(['/admin/login'])
     }else{
       this.paper = this.route.snapshot.paramMap['params'];
+      console.log("subject id is", this.subjectId)
+      this.subjectId = this.paper.subjectid;
       //console.log(this.paper, "editing paper")
       this.year = this.paper.year;
       this.week = this.paper.week;
@@ -187,7 +191,7 @@ export class EditPaperAdminComponent implements OnInit {
   async checkDuplicate(year: any, month: any, week: any){
     if (week !== "" && month !== "" && year !== ""){
       try{
-        var category = await this.uploadService.getCategoryData(year, month).toPromise();
+        var category = await this.uploadService.getCategoryData(year, month, this.subjectId).toPromise();
         this.errDuplicate = "";
         category.payload.forEach(element => {
           if(element.week.toString() === week.toString()){
