@@ -25,9 +25,9 @@ jobs:
       - run: npm run build
       
       - run: |
-          git clone --depth 1 https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Maths-World-Web-Build.git /Maths-World-Web-Build
-          cp -R dist/ /Maths-World-Web-Build/
-          cd /Maths-World-Web-Build
+          git clone --depth 1 https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/Maths-World-Web-Build.git
+          cp -R dist/ Maths-World-Web-Build/
+          cd Maths-World-Web-Build
           git add .
           git commit -m "chore: add new dist folder"
           git push
