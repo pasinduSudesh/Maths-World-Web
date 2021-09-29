@@ -54,7 +54,7 @@
                         <div *ngIf="result.graded">
                             <button (click)="showAnswer()" class="btn" [disabled]="!result.graded">View Answer</button>
                         </div>
-                        <div *ngIf="result.graded">
+                        <div *ngIf="result.graded && schemaLink">
                             <button (click)="showSchema()" class="btn" [disabled]="!result.graded">View Scheme</button>
                         </div>
                     </div>
@@ -79,7 +79,7 @@
             <div class="header">
                 <h5>Marking Scheme</h5>
             </div>
-            <app-pdf-viewer [src]="answerLink" name="'answer'"></app-pdf-viewer>
+            <app-pdf-viewer [src]="schemaLink" name="'answer'"></app-pdf-viewer>
         </div>
 
     </div>

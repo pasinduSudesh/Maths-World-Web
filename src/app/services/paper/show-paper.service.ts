@@ -65,7 +65,7 @@ export class ShowPaperService {
       headers: headers
     }
 
-    const url = this.serverURL + `/v1/papers/getLatestPapers/${subjectId}/5`;
+    const url = this.serverURL + `/v1/papers/getLatestPapers/${subjectId}/6`;
     return this.http
     .get<{ status: any; payload: any }>(url,options).pipe(
       catchError(this.handleError)

@@ -20,6 +20,7 @@ export class ShowResultComponent implements OnInit {
   userId:any;
   paperLink="";
   answerLink="";
+  schemaLink=null;
   result:any = {
     graded:false,
     rank:{
@@ -81,10 +82,18 @@ export class ShowResultComponent implements OnInit {
     var paperlinkPath = this.paper.paperLink;//asign paper link here
     this.paperLink = await this.getPdfLink(paperlinkPath, 60*30, this.userId);
 
+    var schemaLinkPath = this.paper.schema;
+    if(schemaLinkPath){
+      this.schemaLink = await this.getPdfLink(schemaLinkPath, 60*30, this.userId);
+    }
+    
     if(this.result.graded){
       var answerlinkPath = this.result.answer.evaluated_link_pdf;//asign answer link here
       this.answerLink = await this.getPdfLink(answerlinkPath, 60*30, this.userId);
+      // console.log(answerlinkPath);
     }       
+    console.log(this.schemaLink);
+    // console.log(this.paper.paperLink.schema);
 
     this.loadingService.hideLoading();
 
@@ -103,13 +112,14 @@ export class ShowResultComponent implements OnInit {
 
   async getPaper(paperId, userId){
     var result = await this.showPaperService.getPaperById(paperId, userId).toPromise();
-    //console.log(result.payload,"payload")
+    console.log(result.payload,"payload")
     return {
       paperName:result.payload.papername,
       paperLink:result.payload.pdflink,
       year:result.payload.year,
       month:result.payload.month,
-      week:result.payload.week
+      week:result.payload.week,
+      schema:result.payload.markingschema
     }
   }
 
