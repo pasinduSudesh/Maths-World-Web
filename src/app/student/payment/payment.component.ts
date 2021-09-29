@@ -80,6 +80,7 @@ export class PaymentComponent implements OnInit {
       let address
       let city
       let country
+      let paymentType;
 
       if(!this.registrationForm.valid) {
         this.isSubmitted = false;
@@ -88,13 +89,15 @@ export class PaymentComponent implements OnInit {
         this.alertService.error("Please select a subscription method by clicking tick in the circle!!!");
         return false;
       } else {
-        amount = JSON.parse(JSON.stringify(this.registrationForm.value.subscription));
-        if (amount.toString() === this.paper.prize.toString()) {
+        paymentType = JSON.parse(JSON.stringify(this.registrationForm.value.subscription));
+        if (paymentType == "weekly") {
           this.orderId = this.paperId;
+          amount = this.paper.prize;
         } else {
           this.orderId = this.categoryId;
+          amount = this.paper.categoryprize;
         }
-
+        
         notifyUrl = environment.SERVER_URL + "/v1/payment/addPayment";
         merchantId = Constants.PAY_DET.merchant_id;
         this.getUserDetails().subscribe( response => {

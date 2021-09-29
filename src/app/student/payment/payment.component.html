@@ -35,12 +35,12 @@
                   <div class="d-block my-3">
         
                     <div *ngIf="showWeek" class="custom-control custom-radio">
-                      <input id="weekly" type="radio" class="custom-control-input" [value]="paper.prize" name="subscription" formControlName="subscription">
+                      <input id="weekly" type="radio" class="custom-control-input" [value]="'weekly'" name="subscription" formControlName="subscription">
                       <label class="custom-control-label" for="weekly">Weekly Subscription of Rs.{{paper?.prize}}</label>
                     </div>
         
                     <div *ngIf="showMonth" class="custom-control custom-radio">
-                      <input id="monthly" type="radio" class="custom-control-input" [value]="paper?.categoryprize" name="subscription" formControlName="subscription">
+                      <input id="monthly" type="radio" class="custom-control-input" [value]="'monthly'" name="subscription" formControlName="subscription">
                       <label class="custom-control-label" for="monthly">Monthly Subscription of Rs.{{paper?.categoryprize}}</label>
                     </div>
         
