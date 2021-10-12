@@ -297,7 +297,7 @@
                         <label for="alterEgo">Email</label>
                         <div style="position:relative">
                           <div class="input-with-icon">
-                            <input type="text" class="form-control" id="alterEgo" name="email" required ngModel
+                            <input type="email" class="form-control" id="alterEgo" name="email" required ngModel
                               [ngClass]="{ 'error':addUserForm.submitted && email.invalid }" #email="ngModel"
                               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" />
                             <div class="btn btn-default icon" data-balloon-length="large"
